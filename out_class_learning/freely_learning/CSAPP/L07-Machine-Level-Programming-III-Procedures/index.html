@@ -1,0 +1,2338 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../L06-Machine-Level-Programming-II-Control/">
+      
+      
+        <link rel="next" href="../../../quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>L07 Machine-Level Programming III: Procedures - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#l07-machine-level-programming-iii-procedures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              L07 Machine-Level Programming III: Procedures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    In class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    In class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semester 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semester 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%201%20%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%202%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%203%20%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%204%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%206%20%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch.0%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch.7%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    problem solving III
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    problem solving III
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/A001_%E8%AE%B0%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A001 记号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/A002_OJ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A002 OJ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/A003_OT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A003 OT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L001_%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L002_%E8%BF%9E%E9%80%9A%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L003_%E5%9C%88%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L004_%E8%BF%9E%E9%80%9A%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L005_%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L006_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L006 单源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L007_%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L007 多源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L008_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E8%B5%8B%E6%9D%83%E6%AC%A7%E6%8B%89%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L009_%E6%9C%89%E5%90%91%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L010_%E6%B5%81%E7%BD%91%E7%BB%9C%E5%92%8C%E6%9C%80%E5%A4%A7%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L011_%E7%8B%AC%E7%AB%8B%E3%80%81%E8%A6%86%E7%9B%96%E5%92%8C%E6%94%AF%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L011 独立、覆盖和支配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L012_%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L013_%E5%B9%B3%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L014_%E7%BE%A4%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BE%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L014 群和循环群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L015_%E7%BD%AE%E6%8D%A2%E7%BE%A4%E3%80%81%E9%99%AA%E9%9B%86%E5%92%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L015 置换群、陪集和拉格朗日定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L016_%E4%BB%A3%E6%95%B0%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L016 代数编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L017_%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L017 抽象代数中的其他问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Out class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Out class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%97%A5%E8%AF%AD%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    日语学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Freely learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Freely learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CSAPP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CSAPPreadme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPPreadme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L05-Machine-Level-Programming-I-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L05 Machine-Level Programming I: Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L06-Machine-Level-Programming-II-Control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mechanisms-in-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程的机制（mechanisms in procedures）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 栈
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程的控制流（procedure control flow）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程的数据流（procedure data flow）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manage-local-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        管理本地数据（manage local data）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="管理本地数据（manage local data）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x86-64linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64/Linux 栈帧
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        递归
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickly learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quickly learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++OOP 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/MkDocs%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/%E4%B8%89%E5%B0%8F%E6%97%B6%E5%89%8D%E7%AB%AF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三小时前端快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mechanisms-in-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程的机制（mechanisms in procedures）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 栈
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程的控制流（procedure control flow）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedure-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程的数据流（procedure data flow）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manage-local-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        管理本地数据（manage local data）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="管理本地数据（manage local data）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x86-64linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64/Linux 栈帧
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        递归
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="l07-machine-level-programming-iii-procedures">L07 Machine-Level Programming III: Procedures</h1>
+<p>Source: https://www.bilibili.com/video/BV1iW411d7hd/?p=7</p>
+<p>过程（procedure）：在不同语言中可能称为函数（function）、过程（procedure）、以及 OOP 中的方法（method）</p>
+<p>应用程序二进制接口（ABI, application binary interface），L07 就重在讲 ABI. Windows ABI 和 Linux ABI 不完全相同，苹果的 OSX 也有自己的 ABI，甚至 FreeBSD（Unix 操作系统的另一种变体）也有自己的 ABI，它们都很类似但在细节上不同。</p>
+<h2 id="mechanisms-in-procedures">过程的机制（mechanisms in procedures）</h2>
+<pre><code>P(...) {
+    ...
+    y = Q(x)
+    print（y）
+    ...
+}
+int Q(int i) {
+    int t = 3 * i;
+    int v[10];
+    ...
+    return v[t]; 
+}
+</code></pre>
+<ul>
+<li>传递控制权 passing control</li>
+<li>调用另一个过程 to beginning of procedure code</li>
+<li>调用结束后返回调用位置 back to return point</li>
+<li>传递数据 passing data</li>
+<li>传递参数 procedure arguments</li>
+<li>返回返回值 return value</li>
+<li>内存管理 memory management</li>
+<li>函数执行时分配空间 allocate during procedure execution</li>
+<li>函数返回时释放空间 deallocate upon return </li>
+<li>mechanism  all implemented with machine instructions</li>
+<li>x86-64 implementation of a procedure uses only those mechanisms required</li>
+</ul>
+<p>今天：过程</p>
+<ul>
+<li>栈结构 stack structure</li>
+<li>调用惯例 calling conventions</li>
+<li>passing control</li>
+<li>passing data</li>
+<li>managing local data</li>
+<li>刻画递归 illustration of recursion</li>
+</ul>
+<h2 id="x86-64">x86-64 栈</h2>
+<pre><code>---------------------  地址增加  【栈底】
+|                   |    ↑
+---------------------
+|       ......      |
+---------------------
+|                   |    ↓
+---------------------  栈往下
+|                   |
+---------------------  &lt;- 栈指针 %rsp  【栈顶】
+</code></pre>
+<p>程序用栈来管理过程调用与返回的状态，我们有 <code>push</code> 和 <code>pop</code> 这两个明确的指令来对栈进行操作。</p>
+<p><code>push src</code> ：1. 获取操作数 <code>src</code> （可以来自立即数、寄存器、内存） 2. 栈指针减去 8 3. 入栈了，被 <code>%rsp</code> 指向。</p>
+<p><code>pop dest</code>：1. 获取栈顶（<code>%rsp</code> 指向的数据）2. 栈指针加上 8 3. 将获取的栈顶赋值给 <code>dest</code>，<code>dest</code> 必须是寄存器。</p>
+<p>为什么是 8？数据都是 64 比特即 8 字节的。下面是一个例子：</p>
+<pre><code class="language-c">long mult2(long a, long b) {
+    long s = a * b;
+    return s;
+}
+void multstore(long x, long y, long *dest) {
+    long t = mult2(x, y);
+    *dest = t;
+}
+</code></pre>
+<pre><code class="language-assembly">0000000000400540 &lt;multstore&gt;:
+  400540:  push   %rbx       # save %rbx
+  400541:  mov    %rdx, %rbx # save dest
+  400544:  callq  400550 &lt;mult2&gt; # mult2(x, y)
+  400549:  mov    %rax, (%rbx)   # save at dest
+  50054c:  pop    %rbx       # restore %rbx
+  40054d:  retq              # return
+0000000000400550 &lt;mult2&gt;:
+  400550:  mov    %rdi, %rax # a
+  400553:  imul   %rsi, %rax # a
+  400557:  retq              # Return
+</code></pre>
+<h2 id="procedure-control-flow">过程的控制流（procedure control flow）</h2>
+<ul>
+<li>使用栈来帮助过程调用和返回</li>
+<li>过程调用：<code>call label</code></li>
+<li>将返回地址入栈</li>
+<li>跳转到 <code>label</code> 处</li>
+<li>返回地址</li>
+<li>调用后的下一条指令地址 address of the next instruction right after call</li>
+<li>反汇编得到的例子（如上） </li>
+<li>过程返回：<code>ret</code></li>
+<li>弹栈得到地址</li>
+<li>跳转这个地址</li>
+</ul>
+<pre><code>400544:  callq  400550 &lt;mult2&gt; # mult2(x, y)
+400549:  mov    %rax, (%rbx)   # save at dest
+
+400550:  mov    %rdi, %rax # a
+
+400557:  retq              # Return
+</code></pre>
+<h2 id="procedure-data-flow">过程的数据流（procedure data flow）</h2>
+<p>ABI 约定：开头的六个参数固定由 <code>%rdi</code>、<code>%rsi</code>、<code>%rdx</code>、<code>%rcx</code>、<code>%rcx</code>、<code>%r8</code> 和 <code>%r9</code> 传递，之后的参数倒序压入栈中，返回值固定由 <code>%rax</code> 传递。</p>
+<p>IA32 所有的参数都在栈中传递。</p>
+<pre><code>  400541:  mov    %rdx, %rbx #
+  400544:  callq  400550 &lt;mult2&gt; #
+  400549:  mov    %rax, (%rbx)   #
+
+  400550:  mov    %rdi, %rax #
+  400553:  imul   %rsi, %rax #
+  400557:  retq              #
+</code></pre>
+<h2 id="manage-local-data">管理本地数据（manage local data）</h2>
+<p>单线程：每时每刻只有一个过程在运行，调用相当于冻结调用前过程。</p>
+<p>因为单线程，所以我们可以为当前运行的过程分配无限的内存而不必担心和其他过程冲突，当这个过程返回时，之前用到的数据全部可以不保留。</p>
+<p>stack frame：栈帧，用于特定调用的每个内存块。调用链（call chain）【28:30】</p>
+<pre><code>Stack-Based Language
+    Languages that support recursion
+        e.g. C, Pascal, Java
+        Code must be &quot;Reentrant&quot;
+            Multiple simultaneous instantiations of single procedure
+        Need some place to store state of each instantiation
+            Arguments
+            Local variables
+            Return pointer
+    Stack discipline
+        state for given procedure needed for limited time
+            From when called to when return
+        Callee returns before caller does
+    Stack allocated in FRAMES
+        state for single procedure instatiation
+</code></pre>
+<p>栈帧，包含</p>
+<ul>
+<li>返回信息 return information</li>
+<li>本体存储（如果需要）local storage (if needed)</li>
+<li>临时空间（如果需要）temporary space (if neede)</li>
+</ul>
+<pre><code>--------------------
+|                  |
+| previous frame   |
+|                  |
+-------------------- &lt;- frame pointer %rbp (optional)
+|                  |
+| frame for proc   |
+|                  |
+-------------------- &lt;- stack pointer %rsp
+     STACK TOP
+</code></pre>
+<p>管理</p>
+<p>​   当进入过程的时候分配的空间</p>
+<p>​       「启动」代码</p>
+<p>​       包括 <code>push</code> 指令，这被包含在 <code>call</code> 指令中。</p>
+<p>​   当返回的时候释放</p>
+<p>​       「结束」代码</p>
+<p>​       包括 <code>pop</code> 指令，这被包含在 <code>ret</code> 指令中。</p>
+<p>大多数系统会限制栈的深度，目的是为了防止无限递归。</p>
+<h3 id="x86-64linux">x86-64/Linux 栈帧</h3>
+<pre><code>--------------------
+|                  |
+|      ......      |
+|                  |
+--------------------
+|                  |
+| Arguments 7+     |
+|                  |
+--------------------    ^
+| Return Address   |    |  caller frame
+-------------------- -------
+| Old %rbp (Op)    | &lt;- %rbp (Optional) 
+--------------------
+|                  |
+| Save Registers   |
+|        +         |
+| Local Variables  |
+|                  |
+--------------------
+|                  |
+| Argument Build   |
+| (Optional)       |
+|                  |
+-------------------- &lt;- %rsp
+     STACK TOP
+</code></pre>
+<p>​   当前栈帧（从顶到底）： </p>
+<p>​       参数构建：用于调用的过程</p>
+<p>​       本地变量：不能保存在寄存器中</p>
+<p>​       保存的寄存器上下文</p>
+<p>​       旧栈帧（可选）</p>
+<p>​   调用者栈帧：</p>
+<p>​       返回地址，这被 <code>call</code> 指令压入栈中</p>
+<p>​       这次调用的各个参数。</p>
+<p>下面为一个例子</p>
+<pre><code class="language-c">long incr(long *p, long val) {
+    long x = *p;
+    long y = x + val;
+    *p = y;
+    return x;
+}
+/*
+%rdi  参数 p
+%rsi  参数 val 和 y
+%rax  参数 x 和返回值
+*/
+</code></pre>
+<pre><code class="language-assembly">incr:
+    movq    (%rdi), %rax
+    addq    %rax, %rsi
+    movq    %rsi, (%rdi)
+    ret
+</code></pre>
+<pre><code class="language-c">long call_incr() {
+    long v1 = 15213;
+    long v2 = incr(&amp;v1, 3000);
+    return v1 + v2;
+}
+</code></pre>
+<pre><code class="language-assembly">call_incr:
+    subq    $16, %rsp        # 
+    movq    $15213, 8(%rsp)  # 此两条为强制，为了避免其中数据丢失
+    movl    $3000, %esi      # 这里用 movl 是因为其指令短一些，少用一些空间（这也省...）
+    leaq    8(%rsp), %rdi
+    call    incr
+    addq    8(%rsp), %rax
+    addq    $16, %rsp
+    ret 
+</code></pre>
+<pre><code>--------------------
+|                  |
+|      ......      |
+|                  |
+--------------------
+| Return Address   |
+--------------------
+| 15213            | &lt;- %rsp + 8 
+--------------------
+| Unused           | &lt;- %rsp
+--------------------
+         | Updated Stack Structure
+         v
+--------------------
+|                  |
+|      ......      |
+|                  |
+--------------------
+| Return Address   | &lt;- %rsp
+--------------------     
+</code></pre>
+<p>寄存器可以进行临时存储吗？</p>
+<p>​   可以，但是可能会被覆写，因此会存一遍。</p>
+<p>我们有两种方法可以管理寄存器，一种称为调用者保存（caller saved）：调用者在调用之前将临时值保存在它的栈帧中；另一种称为被调用者保存（callee saved）：被调用者在使用之前将临时值保存在它的栈帧中，被调用者在返回之前恢复这些临时值。显然选择哪种方式由 ABI 这个约定规定。</p>
+<p>x86-64 Linux 寄存器使用（书P173）
+    %rax：返回值，调用者保存，可能被过程修改</p>
+<p>​   %rdi, ..., %r9：参数，调用者保存，可能被过程修改</p>
+<p>​   %r10, %r11：调用者保存，可能被过程修改，用于调用者保存的临时值（caller-saved temporaries）。</p>
+<p>​   %rbx, %r12, %r13, %r14：被调用者保存，被调用者<strong>必须</strong>保存且恢复。</p>
+<p>​   %rbp：被调用者保存，被调用者<strong>必须</strong>保存且恢复，<strong>可能</strong>被用作基指针（frame pointer），可以混合、匹配（mix &amp; match）</p>
+<p>​   %rsp：被调用者保存的特殊形式，退出过程前恢复原值。</p>
+<pre><code class="language-c">long call_incr2(long x) {
+    long v1 = 15213;
+    long v2 = incr(&amp;v1, 3000);
+    return x + v2;
+}
+</code></pre>
+<pre><code class="language-assembly">call_incr2:
+    pushq   %rbx
+    subq    $16, %rsp
+    movq    %rdi, %rbx
+    movq    $15213, 8(%rsp)
+    movl    $3000, %esi
+    leaq    8(%rsp), %rdi
+    call    incr
+    addq    %rbx, %rax
+    popq    %rbx
+    ret
+</code></pre>
+<pre><code>--------------------
+|                  |
+|      ......      |
+|                  |
+--------------------
+| Return Address   | &lt;- %rsp
+--------------------
+         |
+         v
+--------------------
+|                  |
+|      ......      |
+|                  |
+--------------------
+| Return Address   | 
+--------------------      
+| Saved %rbx       |
+--------------------
+| 15213            | &lt;- %rsp + 8 
+--------------------
+| Unused           | &lt;- %rsp
+--------------------
+         | Updated Stack Structure
+         v
+--------------------
+|                  |
+|      ......      |
+|                  |
+--------------------
+| Return Address   | &lt;- %rsp
+--------------------     
+</code></pre>
+<h2 id="_1">递归</h2>
+<p>如上所述，因为栈帧机制和（被）调用者保存，调用自己没什么特殊的。</p>
+<p>下面是一个例子：</p>
+<pre><code class="language-c">/* Recursive popcount */
+long pcount_r(unsigned long x) {
+    if (x == 0)
+        return 0;
+    else 
+        return (x &amp; 1) + pcount_r(x &gt;&gt; 1);
+}
+</code></pre>
+<pre><code class="language-assembly">pcount_r:
+    movl    $0, %eax
+    testq   %rdi, %rdi
+    je      .L6
+    pushq   %rbx
+    movq    %rdi, %rbx
+    andl    $1, %ebx
+    shrq    %rdi
+    call    pcount_r
+    addq    %rbx, %rax
+    popq    %rbx
+.L6:
+    rep; ret
+</code></pre>
+<pre><code>Observations About Recursion
+    Handled without special consideration
+        Satck frames mean that each function call has private storage
+            saved registers &amp; local variables
+            saved return pointer
+        Registers saving conventions prevent one function call from corrupting another's data
+            Unless the C code explicitly does so (e.g. buffer overflow in L09)
+        Stack discipline follows call/return pattern
+            If P calls Q, then Q returns before P
+            Last-In, First-Out
+    Also works for mutual recursion
+        P calls Q; Q calls P
+x86-64 Procedure Summary
+    Important Points
+        Stack is the right data structure for procedure call/return
+            If P calls Q, then Q returns before P
+    Recursion (&amp; mutual recursion) handled by normal calling conventions
+        Can safely store values in local stack frame and in callee-saved registers
+        Put function arguments at top of stack
+        Result return in %rax
+    Pointers are addresses of values
+        On stack or global
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

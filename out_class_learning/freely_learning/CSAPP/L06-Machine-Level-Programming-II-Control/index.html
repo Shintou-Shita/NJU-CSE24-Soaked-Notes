@@ -1,0 +1,2388 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../L05-Machine-Level-Programming-I-Basics/">
+      
+      
+        <link rel="next" href="../L07-Machine-Level-Programming-III-Procedures/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>L06 Machine-Level Programming II: Control - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#l06-machine-level-programming-ii-control" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              L06 Machine-Level Programming II: Control
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    In class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    In class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semester 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semester 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%201%20%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%202%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%203%20%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%204%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%206%20%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch.0%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch.7%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    problem solving III
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    problem solving III
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/A001_%E8%AE%B0%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A001 记号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/A002_OJ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A002 OJ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/A003_OT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A003 OT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L001_%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L002_%E8%BF%9E%E9%80%9A%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L003_%E5%9C%88%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L004_%E8%BF%9E%E9%80%9A%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L005_%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L006_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L006 单源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L007_%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L007 多源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L008_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E8%B5%8B%E6%9D%83%E6%AC%A7%E6%8B%89%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L009_%E6%9C%89%E5%90%91%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L010_%E6%B5%81%E7%BD%91%E7%BB%9C%E5%92%8C%E6%9C%80%E5%A4%A7%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L011_%E7%8B%AC%E7%AB%8B%E3%80%81%E8%A6%86%E7%9B%96%E5%92%8C%E6%94%AF%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L011 独立、覆盖和支配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L012_%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L013_%E5%B9%B3%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L014_%E7%BE%A4%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BE%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L014 群和循环群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L015_%E7%BD%AE%E6%8D%A2%E7%BE%A4%E3%80%81%E9%99%AA%E9%9B%86%E5%92%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L015 置换群、陪集和拉格朗日定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L016_%E4%BB%A3%E6%95%B0%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L016 代数编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/L017_%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L017 抽象代数中的其他问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Out class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Out class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%97%A5%E8%AF%AD%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    日语学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Freely learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Freely learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CSAPP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CSAPPreadme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPPreadme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L05-Machine-Level-Programming-I-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L05 Machine-Level Programming I: Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-control-condition-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1: Control: Condition Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-conditional-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2: Conditional branches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3: Loops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-switch-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4: Switch Statements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L07-Machine-Level-Programming-III-Procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickly learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quickly learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++OOP 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/MkDocs%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/%E4%B8%89%E5%B0%8F%E6%97%B6%E5%89%8D%E7%AB%AF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三小时前端快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-control-condition-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1: Control: Condition Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-conditional-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2: Conditional branches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3: Loops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-switch-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4: Switch Statements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="l06-machine-level-programming-ii-control">L06 Machine-Level Programming II: Control</h1>
+<p>Source: https://www.bilibili.com/video/BV1iW411d7hd?p=6</p>
+<p>Four parts</p>
+<ol>
+<li>Control: Condition Codes</li>
+<li>Conditional branches</li>
+<li>Loops</li>
+<li>Switch Statements</li>
+</ol>
+<h2 id="part-1-control-condition-codes">Part 1: Control: Condition Codes</h2>
+<p>条件码（condition codes）是运算时额外存储的标志位（bit flags），其作为条件指令（conditional operation）运作的基础。</p>
+<p>特殊的寄存器：%rsp，意为 stack pointer，为栈指针。</p>
+<p>另一个特殊的寄存器：%rip，意为 instruction pointer，为指令指针，IA32 中为 %eip，其包含的是当前正在执行指令的地址，这个寄存器你无法直接地、正常地访问。同样有 32 位的 %eip 和 16 位的 %ip，共享一个寄存器。</p>
+<p>条件码存储在 %rflags 这个状态寄存器（status register）上：32 位版本的 %eflags 按如下方式存储：</p>
+<p>​   </p>
+<table>
+<thead>
+<tr>
+<th>0: CF</th>
+<th>1: 1</th>
+<th>2: PF</th>
+<th>3: 0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4: AF</td>
+<td>5: 0</td>
+<td>6: ZF</td>
+<td>7: SF</td>
+</tr>
+<tr>
+<td>8: TF</td>
+<td>9: IF</td>
+<td>10:DF</td>
+<td>11: OF</td>
+</tr>
+<tr>
+<td>12-13: IOPL</td>
+<td>14: NT</td>
+<td>15: 0</td>
+<td>16: RF</td>
+</tr>
+<tr>
+<td>17: VM</td>
+<td>18: AC</td>
+<td>19: VIF</td>
+<td>20: VIP</td>
+</tr>
+<tr>
+<td>21: ID</td>
+<td>22-31: 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>carry flag 进位标志</td>
+<td>/</td>
+<td>parity flag 奇偶标志</td>
+<td>/</td>
+</tr>
+<tr>
+<td>auxiliary carry flag 辅助进位标志</td>
+<td>/</td>
+<td>zero flag 零标志</td>
+<td>sign flag 符号标志</td>
+</tr>
+<tr>
+<td>trap flag 跟踪标志</td>
+<td>interrupt-enable flag 中断许可标志</td>
+<td>direction flag 方向标志</td>
+<td>overflow flag 溢出标志</td>
+</tr>
+<tr>
+<td>I/O privilege level IO 特权标志</td>
+<td>nested task 嵌套任务标志</td>
+<td>/</td>
+<td>resume flag 恢复标志</td>
+</tr>
+<tr>
+<td>virtual-8086 mode 虚拟 8086 方式标志</td>
+<td>alignment check 对齐检查</td>
+<td>virtual interrupt flag 虚拟中断标志</td>
+<td>virtual interrupt pending 虚拟中断等待</td>
+</tr>
+<tr>
+<td>ID flag 识别标志</td>
+<td>/</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>四个常用的条件码：对于 <code>t = a + b</code>：假设运算位数为 <span class="arithmatex">\(w\)</span></p>
+<ul>
+<li>CF: carry flag (for unsigned) 【进位标志/无符号运算溢出位】：为两个无符号整数相加后第 <span class="arithmatex">\(w\)</span> 位（<span class="arithmatex">\(\operatorname{floor}(?/2^w)\)</span>）。</li>
+<li>ZF: zero flag 【零标志】：为 1 当且仅当 <code>t</code> 为 0，也即等价为 <code>a == b</code>.</li>
+<li>SF: sign flag (for signed) 【符号标志】：为 1 当且仅当 <code>t</code> 小于零，其直接等于 <code>t</code> 的第 <span class="arithmatex">\(w-1\)</span> 位。</li>
+<li>OF: overflow flag (for signed) 【溢出标志/有符号运算溢出位】：为 1 当且仅当：<code>(a &gt; 0 &amp;&amp; b &gt; 0 &amp;&amp; t &lt; 0) || (a &lt; 0 &amp;&amp; b &lt; 0 &amp;&amp; t &gt;= 0)</code>.</li>
+</ul>
+<p>指令 <code>cmp</code>（compare）接受两个参数：<code>cmpq src2,src1</code>，接下来它会计算 <code>src1 - src2</code>. 其做的事情和减法指令几乎一样，但是只进行运算不进行赋值。显然这个指令因为进行了计算，所以条件码会被设置。</p>
+<p>指令 <code>test</code>（test）接受两个参数：<code>testq src2,src1</code>，接下来它会计算 <code>src1 &amp; src2</code>，类似地，只进行运算不进行赋值，条件码同样会被设置。一般来说，这两个参数会设置成同一个参数，ZF 就用于判零，SF 就用于判负。</p>
+<p>设置条件码指令（可间接获取标志标志位（））：</p>
+<p>​   <code>set</code> 指令的作用是将当个寄存器的单个字节置值，当被改写为如下形式时，则为有条件地设置。</p>
+<table>
+<thead>
+<tr>
+<th>SetX</th>
+<th>Condition</th>
+<th>Description</th>
+<th>SetX</th>
+<th>Condition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sete</code></td>
+<td>ZF</td>
+<td>Equal/Zero</td>
+<td><code>setge</code></td>
+<td>~(SF^OF)</td>
+<td>GreaterOrEqual(Signed)</td>
+</tr>
+<tr>
+<td><code>setne</code></td>
+<td>~ZF</td>
+<td>NotEqual/NotZero</td>
+<td><code>setl</code></td>
+<td>SF^OF</td>
+<td>Less(Signed)</td>
+</tr>
+<tr>
+<td><code>sets</code></td>
+<td>SF</td>
+<td>Negative</td>
+<td><code>setle</code></td>
+<td>(SF^OF)|ZF</td>
+<td>LessOrEqual(Signed)</td>
+</tr>
+<tr>
+<td><code>setns</code></td>
+<td>~SF</td>
+<td>Nonnegative</td>
+<td><code>seta</code></td>
+<td>~CF&amp;ZF</td>
+<td>Above(Unsigned)</td>
+</tr>
+<tr>
+<td><code>setg</code></td>
+<td>~(SF^OF)&amp;~ZF</td>
+<td>Greater(Signed)</td>
+<td><code>setb</code></td>
+<td>CF</td>
+<td>Below(Unsigned)</td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<pre><code class="language-c">int gt(long x, long y) {
+    return x &gt; y
+}
+/*
+%rdi   argument x
+%rsi   argument y
+%rax   return value
+*/
+</code></pre>
+<pre><code class="language-assembly">cmpq   %rsi, %rdi  # compare x:y
+setg   %al         # set when &gt;
+movzbl %al, %eax   # zero rest of %rax
+ret
+</code></pre>
+<p>这里 <code>movzbl</code> 指令总体上是 <code>mov</code> 指令，但是有一个转换：<code>z</code> 表示零扩展，<code>b</code> 和 <code>l</code> 分别表示字节（byte，8 位）和长字（long word，32 位），那么为什么不是 <code>movzbq</code> 呢？首先没有这条指令，其次 <code>%rax</code> 高位会自动清零——对低 32 位操作会清理高 32 位，这个规则对字节-双字节不适用，至于谁设计了这条长字-四字规则，只有天知道。</p>
+<h2 id="part-2-conditional-branches">Part 2: Conditional branches</h2>
+<p>jX instructions（条件跳转指令）：</p>
+<p>之前十条 setx 改为 jx，额外加上一条无条件跳转指令：<code>jmp</code>，条件：<code>1</code>，描述：Unconditional（无条件）.</p>
+<p>条件跳转指令（老式）</p>
+<pre><code class="language-c">long absdiff(long x, long y) {
+    long result;
+    if (x &gt; y)
+        result = x - y;
+    else
+        result = y - x;
+    return result;
+}
+/*
+%rdi   argument x
+%rsi   argument y
+%rax   return value
+*/
+</code></pre>
+<p>generation:</p>
+<pre><code class="language-bash">shark&gt; gcc -Og -S -fno-if-conversion control.c
+</code></pre>
+<pre><code class="language-assembly">absdiff:
+   cmpq    %rsi, %rdi # x:y
+   jle     .L4
+   movq    %rdi, %rax # branch1
+   subq    %rsi, %rax # branch1
+   ret                # branch1
+.L4:       # x &lt;= y
+   movq    %rsi, %rax # branch2
+   subq    %rdi, %rax # branch2
+   ret                # branch2
+</code></pre>
+<p>条件跳转指令（使用 goto）</p>
+<pre><code class="language-c">long absdiff_j(long x, long y) {
+    long result;
+    int ntest = x &lt;= y;
+    if (ntest) goto Else;
+    result = x - y;
+    goto Done;
+Else:
+    result = y - x;
+Done:
+    return result;
+}
+</code></pre>
+<p>广义条件表达式翻译，使用分支（general conditional expressions translation with branches）</p>
+<pre><code class="language-c">val = Test ? Then_Expr : Else_Expr;
+// result = x &gt; y ? x - y : y - x;
+</code></pre>
+<p>Goto 版本：</p>
+<pre><code class="language-c">    ntest = !Test;
+    if (ntest) goto Else;
+    val = Then_Expr;
+    goto Done;
+Else:
+    val = Else_Expr;
+Done:
+    ...
+</code></pre>
+<p>使用条件移动（conditional moves）：Then 和 Else 结果同时计算，然后再根据 Test 计算决定取哪个，其中<strong>不需要暂停处理器的执行，特别是流水线的执行</strong>，看上去效率差，但反而更有效率，特别是计算十分简单的时候这一优点更加突出：这要得益于流水线技术，特别是其中的指令跳转预测。</p>
+<p>普通 C 代码和前述一致，Goto 版本如下：</p>
+<pre><code class="language-c">    result = Then_Expr;
+    eval = Else_Expr;
+    nt = !Test;
+    if (nt) result = eval;
+    return result;
+</code></pre>
+<pre><code class="language-assembly">absdiff:
+    movq    %rdi, %rax  # x
+    subq    %rsi, %rax  # result = x - y
+    movq    %rsi, %rdx
+    subq    %rdi, %rdx  # eval = y - x
+    cmpq    %rsi, %rdi  # x:y
+    cmovle  %rdx, %rax  # if &lt;=, result = eval
+    ret
+</code></pre>
+<p>条件移动很坏的情况：</p>
+<ol>
+<li>各分支计算花费大</li>
+</ol>
+<pre><code class="language-c">val = Test(x) ? Hard1(x) : Hard2(x);
+</code></pre>
+<ol>
+<li>计算有风险</li>
+</ol>
+<pre><code class="language-c">val = p ? *p : 0;
+</code></pre>
+<p>解引用可以吗？这段代码逻辑上来说没问题，非空则取其指向的值，但空指针解引用爆了——计算存在风险。</p>
+<ol>
+<li>计算有副作用</li>
+</ol>
+<pre><code class="language-c">val = x &gt; 0 ? x *= 7 : x += 3;
+</code></pre>
+<p>两个分支的计算可能产生副作用干扰。</p>
+<p>以上三种情况，编译器不会采用条件移动优化。</p>
+<h2 id="part-3-loops">Part 3: Loops</h2>
+<p>Do-While 循环的例子：C 语言代码：</p>
+<pre><code class="language-c">long pcount_do(unsigned long x) {
+    long result = 0;
+    do {
+        result += x &amp; 0x1;
+        x &gt;&gt;= 1;
+    } while(x);
+    return result;
+}
+</code></pre>
+<p>goto 版本：</p>
+<pre><code class="language-c">long pcount_do(unsigned long x) {
+    long result = 0;
+loop:
+    result += x &amp; 0x1;
+    x &gt;&gt;= 1;
+    if (x) goto loop;
+    return result;
+}
+</code></pre>
+<p>注：以上函数用于计算数据在二进制下 1 的个数，一般称为 <code>popcount()</code> 函数。</p>
+<pre><code>do
+    Body
+    while (Test);
+-------------------------------
+loop:
+    Body
+    if (Test)
+        goto loop;
+===============================
+while Test
+    Body
+-------------------------------
+    goto test;
+loop:
+    Body
+test:
+    if (Test)
+        goto loop:
+done:
+-------------------------------
+    if (!Test)
+        goto done;
+loop:
+    Body
+    if (Test)
+        goto loop;
+done:
+===============================
+</code></pre>
+<p>for 循环形式：</p>
+<pre><code>for (Init; Test; Update)
+    Body
+-------------------------------
+Init;
+while (Test) {
+    Body
+    Update;
+}
+</code></pre>
+<p>显然这些循环编译过程中有很大优化空间，实际上也确实优化了很多。</p>
+<h2 id="part-4-switch-statements">Part 4: Switch Statements</h2>
+<p><code>c
+ long switch_eg(long x, long y, long z) {
+     long w = 1;
+     switch(x) {
+     case 1:
+         w = y * x;
+         break;
+     case 2:
+         w = y / z;
+         /* Fall Through */
+     case 3:
+         w += z
+         break;
+     case 5:
+     case 6:
+         w -= z;
+         break;
+     default:
+         w = 2;
+     }
+     return w;
+ }</code></p>
+<p>switch 语句转为汇编：跳转表结构（jump table structure）</p>
+<pre><code>// switch form
+switch (x) {
+case val_0:
+    Block0
+case val_1:
+    Block1
+    ...
+case val_n-1:
+    Blockn-1
+}
+-------------------------------
+// jump table
+jtab: Targ0
+      Targ1
+      Targ2
+      ...
+      Targn-1
+-------------------------------
+// actual
+goto *JTab[x];
+</code></pre>
+<pre><code class="language-c">long switch_eg(long x, long y, long z) {
+    long w = 1;
+    switch(x) {
+        ... 
+    }
+    return w;
+}
+/*
+%rdi  argument x
+%rsi  argument y
+%rdx  argument z
+%rax  return value
+*/
+</code></pre>
+<pre><code class="language-assembly">.section    .rodata
+    .align 8
+.L4
+    .quad    .L8 # x = 0
+    .quad    .L3 # x = 1
+    .quad    .L5 # x = 2
+    .quad    .L9 # x = 3
+    .quad    .L8 # x = 4
+    .quad    .L7 # x = 5
+    .quad    .L7 # x = 6
+
+.L3 # 普通分支
+    movq     %rsi, %rax # y
+    imulq    %rdx, %rax # y * z
+    ret
+
+.L5 # 下落分支，这三个分支被编译器优化得联合起来写了
+    movq     %rsi, %rax
+    cqto
+    idivq    %rcx       # y / z
+    jmp      .L6        # goto merge
+.L9
+    movl     $1, %eax   # w := 1
+.L6 
+    addq     %rcx, %rax # w += z
+    ret
+
+.L7
+    movl     $1, %eax   # w := 1
+    subq     %rdx, %rax # w -= z
+    ret
+.L8                     # Default
+    movl     $2, %eax   # w := 2
+    ret
+
+switch_eg:
+    movq    %rdx, %rcx
+    cmpq    $6, %rdi      # x:6
+    ja      .L6           # Use default
+    jmp     *.L4(,%rdi,8) # goto *JTab[x]
+</code></pre>
+<p>编译器可能将 switch 语句优化成较短的 if-else 链甚至改用二分搜索（cases 过多时）</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>C Control</li>
+<li>if-then-else</li>
+<li>do-while</li>
+<li>while, for</li>
+<li>
+<p>switch</p>
+</li>
+<li>
+<p>Assembler Control</p>
+</li>
+<li>conditional jump</li>
+<li>conditional move</li>
+<li>indirect jump (via jump tables)</li>
+<li>
+<p>compiler generates code sequence to implement more complex control</p>
+</li>
+<li>
+<p>Standard Technique</p>
+</li>
+<li>Loops converted to do-while or jump-to-middle form</li>
+<li>Large switch statements use jump tables</li>
+<li>Sparse switch statements may use decision trees (if-elseif-elseif-else)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

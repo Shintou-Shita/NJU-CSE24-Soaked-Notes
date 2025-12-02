@@ -1,0 +1,2294 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/">
+      
+      
+        <link rel="next" href="../Ch.0%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Ch.6 统计量与抽样分布 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ch6" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ch.6 统计量与抽样分布
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    In class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    In class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semester 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semester 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%201%20%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%202%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%203%20%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%204%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总体与样本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        统计量与抽样分布
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多元正态分布理论*
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体相关定理的证明*
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch.0%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch.7%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    problem solving III
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    problem solving III
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/A001_%E8%AE%B0%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A001 记号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/A002_OJ/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A002 OJ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/A003_OT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A003 OT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L001_%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L002_%E8%BF%9E%E9%80%9A%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L003_%E5%9C%88%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L004_%E8%BF%9E%E9%80%9A%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L005_%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L006_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L006 单源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L007_%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L007 多源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L008_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E8%B5%8B%E6%9D%83%E6%AC%A7%E6%8B%89%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L009_%E6%9C%89%E5%90%91%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L010_%E6%B5%81%E7%BD%91%E7%BB%9C%E5%92%8C%E6%9C%80%E5%A4%A7%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L011_%E7%8B%AC%E7%AB%8B%E3%80%81%E8%A6%86%E7%9B%96%E5%92%8C%E6%94%AF%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L011 独立、覆盖和支配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L012_%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L013_%E5%B9%B3%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L014_%E7%BE%A4%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BE%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L014 群和循环群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L015_%E7%BD%AE%E6%8D%A2%E7%BE%A4%E3%80%81%E9%99%AA%E9%9B%86%E5%92%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L015 置换群、陪集和拉格朗日定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L016_%E4%BB%A3%E6%95%B0%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L016 代数编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/L017_%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L017 抽象代数中的其他问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Out class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Out class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/%E6%97%A5%E8%AF%AD%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    日语学习
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Freely learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Freely learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CSAPP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/CSAPPreadme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPPreadme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L05-Machine-Level-Programming-I-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L05 Machine-Level Programming I: Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L06-Machine-Level-Programming-II-Control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L07-Machine-Level-Programming-III-Procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickly learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quickly learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++OOP 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/MkDocs%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/%E4%B8%89%E5%B0%8F%E6%97%B6%E5%89%8D%E7%AB%AF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三小时前端快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总体与样本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        统计量与抽样分布
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多元正态分布理论*
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体相关定理的证明*
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ch6">Ch.6 统计量与抽样分布</h1>
+<h3 id="_1">总体与样本</h3>
+<p><strong>定义</strong>：在数理统计中我们将所研究的对象的全体称为总体，将总体中每个成员称为个体.</p>
+<p><strong>样本</strong>：为了对总体 <span class="arithmatex">\(X\)</span> 进行研究，通常要从总体中随机地抽取一些个体，这些个体就称为样本，抽得样本的过程称为抽样，样本中个体的数量称为样本容量.</p>
+<p>设对总体进行了 <span class="arithmatex">\(n\)</span> 次观测，得到一组数据 <span class="arithmatex">\((x_1, x_2, \cdots, x_n)\)</span>，称其为样本观察值或样本值.</p>
+<p><strong>样本的二重性</strong>：我们通常将样本看成一组数，通常用小写字母表示，记为 <span class="arithmatex">\((x_1, x_2, \cdots, x_n)\)</span> 而在考虑一般问题时，我们谈到样本，往往将其看做一组随机变量，通常用大写字母表示，记为 <span class="arithmatex">\((X_1, X_2, \cdots, X_n)\)</span>.</p>
+<p>研究这一组随机变量，就要研究其分布，为了使样本能够反映总体的特征，我们对随机抽样作出如下两点要求：</p>
+<p>(1) 代表性：样本的每个分量 <span class="arithmatex">\(X_i\)</span> 与总体 <span class="arithmatex">\(X\)</span> 有相同的分布.</p>
+<p>(2) 独立性：<span class="arithmatex">\(X_1, X_2, \cdots, X_n\)</span> 相互独立.</p>
+<p><strong>简单随机样本</strong>：满足上述两点性质的样本称为简单随机样本，也通常简称为样本.</p>
+<p><strong>分布函数</strong>：设总体 X 的分布函数为 <span class="arithmatex">\(F(x)\)</span>，则样本 <span class="arithmatex">\((X_1, X_2, \cdots, X_n)\)</span> 的分布函数为：</p>
+<div class="arithmatex">\[
+F(x_1,x_2,\cdots, x_n)=\prod_{i=1}^{n}F(x_i)
+\]</div>
+<p><strong>概率密度函数</strong>：若总体是连续型随机变量，其概率密度函数为 <span class="arithmatex">\(p(x)\)</span>，则样本 <span class="arithmatex">\((X_1, X_2, \cdots, X_n)\)</span> 的概率密度函数为：</p>
+<div class="arithmatex">\[
+p(x_1,x_2,\cdots,x_n)=\prod_{i=1}^{n}p(x_i)
+\]</div>
+<h3 id="_2">统计量与抽样分布</h3>
+<p><strong>统计量</strong>：设 <span class="arithmatex">\((X_1, X_2, \cdots, X_n)\)</span> 为总体 <span class="arithmatex">\(X\)</span> 的一个样本，<span class="arithmatex">\(T(x_1, x_2, \cdots, x_n)\)</span> 为不含任何未知参数的函数，则称 <span class="arithmatex">\(T(X_1, X_2, \cdots, X_n)\)</span> 为一个统计量.</p>
+<p>统计量是样本的函数，但因统计量中不含任何未知量，故一旦有了样本，就可以计算出统计量. 下面介绍一些常用的统计量：</p>
+<p>设 <span class="arithmatex">\((X_1, X_2, \cdots, X_n)\)</span> 为总体 <span class="arithmatex">\(X\)</span> 中抽取的一个样本，下述统计量称为<strong>样本均值</strong>：</p>
+<div class="arithmatex">\[
+\bar{X}=\dfrac{1}{n}\sum_{i=1}^{n}X_i
+\]</div>
+<p>下述统计量称为<strong>样本方差</strong>：</p>
+<div class="arithmatex">\[
+S^2=\dfrac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X})^2
+\]</div>
+<ul>
+<li>
+<p>这里的分母为什么是 <span class="arithmatex">\(n-1\)</span>？</p>
+<p>这是为了保证<strong>无偏性</strong>.</p>
+<p><strong>自由度</strong>的解释：我们已经用到了 <span class="arithmatex">\(\bar{X}\)</span>，故而确定了 <span class="arithmatex">\(n-1\)</span> 个变量，便确定了 <span class="arithmatex">\(n\)</span> 个变量，故而除以自由度 <span class="arithmatex">\(n-1\)</span>.</p>
+<p>更详细的<strong>无偏性</strong>的解释：无偏估计（unbiased estimator）是指在已知样本时，这个无偏估计必须是所有估计中的平均值，换句话说，我们应当保证 <span class="arithmatex">\(\mathrm{E}(S^2)=\sigma^2\)</span>，其中 <span class="arithmatex">\(\sigma^2\)</span> 为总体方差（population variance），这样 <span class="arithmatex">\(S^2\)</span> 就被称作是无偏估计的。</p>
+<p>接下来我们进行推导，设总体均值为 <span class="arithmatex">\(\mu\)</span>，总体方差为 <span class="arithmatex">\(\sigma^2\)</span>，样本平均为 <span class="arithmatex">\(\bar{x}\)</span>，样本容量为 <span class="arithmatex">\(n\)</span>，于是：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat\sigma^2
+&amp;:=\dfrac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2 \\
+&amp;=\dfrac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2+\dfrac{2}{n}\sum_{i=1}^{n}(x_i-\mu)(\mu-\bar{x})+\dfrac{1}{n}\sum_{i=1}^{n}(\mu-\bar{x})^2\\
+&amp;=S^2-\dfrac{2}{n}\sum_{i=1}^{n}(\mu^2-(\bar{x}+x_i)\mu+x_i\bar{x})+n\times \dfrac{1}{n}(\mu-\bar{x})^2\\
+&amp;=S^2-2\mu^2+4\mu\bar{x}-2\bar{x}^2+(\mu-\bar{x})^2\\
+&amp;=S^2-(\bar{x}-\mu)^2
+\end{aligned}
+\]</div>
+<p>两边取期望得到：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathrm{E}\left(\dfrac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2\right)
+&amp;=\mathrm{E}(S^2-(\bar{x}-\mu)^2)\\
+&amp;=\mathrm{E}(S^2)-\mathrm{E}((\bar{x}-\mu)^2)\\
+&amp;\xlongequal{\text{unbiased}}\sigma^2-\mathrm{E}((\bar{x}-\mu)^2)
+\end{aligned}
+\]</div>
+<p>因 <span class="arithmatex">\(\mathrm{E}((\bar{x}-\mu)^2)\)</span> 是针对所有取样本时 <span class="arithmatex">\((\bar{x}-\mu)^2\)</span> 取值的均值，根据 CLT（中心极限定理），我们有 <span class="arithmatex">\(\bar{x}\sim N\left(\mu, \dfrac{\sigma^2}{n}\right)\)</span>，注意！各 <span class="arithmatex">\(x_i\)</span> 独立，且单独一个的方差为 <span class="arithmatex">\(\sigma^2\)</span> ，可以使用 CLT. 于是就直接导出了：</p>
+<div class="arithmatex">\[
+\mathrm{E}((\bar{x}-\mu)^2)=\mathrm{Var}(\bar{x})=\dfrac{\sigma^2}{n}
+\]</div>
+<p>最终得到：</p>
+<div class="arithmatex">\[
+\mathrm{E}(\hat{\sigma}^2)
+=\dfrac{n-1}{n}\sigma^2\Leftrightarrow \mathrm{E}\left(\dfrac{n}{n-1}\hat{\sigma}^2\right)
+=\sigma^2
+\]</div>
+<p>也就是</p>
+<div class="arithmatex">\[
+S^2=\dfrac{n}{n-1}\hat{\sigma}^2=\dfrac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2
+\]</div>
+<p>即得. 不难发现这个式子成立和无偏要求可互推.</p>
+</li>
+</ul>
+<p>与之对比，我们称下述统计量为<strong>样本二阶中心矩</strong>：</p>
+<div class="arithmatex">\[
+S^{*2}=\dfrac{1}{n}\sum_{i=1}^{n}(X_i-\bar{X})^2
+\]</div>
+<p>下述统计量为<strong>样本标准差</strong>：</p>
+<div class="arithmatex">\[
+S=\sqrt{\dfrac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X})^2}
+\]</div>
+<p>下述统计量为<strong>样本 <span class="arithmatex">\(k\)</span> 阶原点矩</strong>：</p>
+<div class="arithmatex">\[
+A_k=\dfrac{1}{n}\sum_{i=1}^{n}{X_i}^k,k=1,2,3,\cdots
+\]</div>
+<p>下述统计量为<strong>样本 <span class="arithmatex">\(k\)</span> 阶中心矩</strong>：</p>
+<div class="arithmatex">\[
+B_k=\dfrac{1}{n}\sum_{i=1}^{n}(X_i-\bar{X})^k,k=1,2,3,\cdots
+\]</div>
+<p><strong>样本相关系数</strong>：</p>
+<div class="arithmatex">\[
+r=\dfrac{S_{XY}}{S_X^*\cdot S_Y^*}\\
+S_{XY}=\dfrac{1}{n}\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})
+\]</div>
+<p>因样本具有二重性，故而统计量作为样本的函数同样具有二重性，即在一次具体的观察中，统计量是具体的数值；脱离具体的观察或试验，统计量应堪称随机变量. 统计量的分布称为<strong>抽样分布</strong>. 研究统计量的分布对于统计推断十分重要，一般来说，要确定一个统计量的精确分布十分困难，只有在<strong>正态总体</strong>的情况下，有比较好的结论. 对于一般情形，我们通常利用概率论中的极限定理求出统计量的极限分布，这种方法称为大样本理论.</p>
+<h3 id="_3">正态总体</h3>
+<p>正态总体是实际总体的一个较好的近似，我们线介绍一下三大分布：</p>
+<p><strong><span class="arithmatex">\(\chi^2\)</span> 分布</strong></p>
+<p>定义：设 <span class="arithmatex">\(X_1, X_2,\cdots, X_n\)</span> 为独立同分布的随机变量且均服从标准正态分布 <span class="arithmatex">\(N(0,1)\)</span>，则称随机变量</p>
+<div class="arithmatex">\[
+\chi_n^2:=\sum_{i=1}^{n}X_i^2
+\]</div>
+<p>为服从自由度为 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(\chi^2\)</span> 分布，记为 <span class="arithmatex">\(\chi_n^2\sim \chi^2(n)\)</span>.</p>
+<p><span class="arithmatex">\(\chi^2\)</span> 分布由现代统计学的奠基人之一 Pearson 提出，其密度函数如下：</p>
+<div class="arithmatex">\[
+p(x)=\begin{cases}
+\dfrac{\mathrm{e}^{-\frac{x}{2}}x^{\frac{n}{2}-1}}{2^{n/2}\Gamma(n/2)}, &amp;x&gt;0,\\
+0, &amp;x\le 0.
+\end{cases}
+\]</div>
+<ul>
+<li>
+<p>Gamma 函数补漏</p>
+<p>定义式：</p>
+<div class="arithmatex">\[
+\Gamma(z)=\int_{0}^{\infty}\mathrm{e}^{-t}t^{z-1}\mathrm{d}t,\operatorname{Re}z&gt;0
+\]</div>
+<p>一些性质：</p>
+<ol>
+<li><span class="arithmatex">\(\Gamma(1)=1\)</span>. proof. 代入简单计算即可.</li>
+<li><span class="arithmatex">\(\Gamma(z+1)=z\Gamma(z)\)</span>. proof. 定义+分部积分.</li>
+<li><span class="arithmatex">\(\Gamma(n+1)=n!, n\in\mathbb{N}\)</span>. proof. 相同递推关系，归纳即可.</li>
+<li><span class="arithmatex">\(\Gamma(\frac{1}{2})=\sqrt{\pi}\)</span>. proof. 换元并使用著名的高斯积分 <span class="arithmatex">\(\int_{-\infty}^{+\infty}\mathrm{e}^{-x^2}\mathrm{d}x=\sqrt{\pi}\)</span>.</li>
+<li>Digamma 函数：定义：</li>
+</ol>
+<div class="arithmatex">\[
+\psi(z):=\dfrac{\mathrm{d}(\ln\Gamma(z))}{\mathrm{d}z}=\dfrac{\Gamma'(z)}{\Gamma(z)}
+\]</div>
+<p>特殊值：</p>
+<div class="arithmatex">\[
+\psi(n)=H_{n-1}-\gamma,n\in\mathbb{Z}_+
+\]</div>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\psi(1)=-\gamma\)</span></th>
+<th><span class="arithmatex">\(\psi'(1)=\dfrac{\pi^2}{6}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\psi(1/2)=-\gamma-2\ln 2\)</span></td>
+<td><span class="arithmatex">\(\psi'(1/2)=\dfrac{\pi^2}{2}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\psi(-1/2)=-\gamma-2\ln 2+2\)</span></td>
+<td><span class="arithmatex">\(\psi'(-1/2)=\dfrac{\pi^2}{2}+4\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\psi(1/4)=-\gamma-\dfrac{\pi}{2}-3\ln 2\)</span></td>
+<td><span class="arithmatex">\(\psi(3/4)-\gamma+\dfrac{\pi}{2}-3\ln 2\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\psi(1/3)=-\gamma-\dfrac{\pi}{2\sqrt{3}}-\dfrac{3}{2}\ln 3\)</span></td>
+<td><span class="arithmatex">\(\psi(2/3)=-\gamma+\dfrac{\pi}{2\sqrt{3}}-\dfrac{3}{2}\ln 3\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>递推公式：</p>
+<div class="arithmatex">\[
+    \psi(z+n)=\psi(z)+\sum_{k=0}^{n-1}\dfrac{1}{z+k},n\in\mathbb{N}
+\]</div>
+<p>余元公式：</p>
+<div class="arithmatex">\[
+    \psi(1-z)-\psi(z)=\pi\cot(\pi z)
+\]</div>
+<p>积分表示：</p>
+<div class="arithmatex">\[
+    \psi(z)=\int_{0}^{\infty}\left(\dfrac{\mathrm{e}^{-t}}{t}-\dfrac{\mathrm{e}^{-zt}}{1-\mathrm{e}^{-t}}\right)\mathrm{d}t,\operatorname{Re}z&gt;0
+\]</div>
+<p>Polygamma 函数：</p>
+<div class="arithmatex">\[
+    \psi^{(n)}(z)=\dfrac{\mathrm{d}^n}{\mathrm{d}z^n}\psi(z)
+\]</div>
+<p><span class="arithmatex">\(n=1\)</span> 时称为 Trigamma 函数.</p>
+<div class="arithmatex">\[
+    \psi^{(m)}(z+n)-\psi^{(m)}(z)=(-1)^{m}m!\sum_{k=0}^{n-1}\dfrac{1}{(k+z)^{m+1}}\\
+    \psi^{(n)}(1)=\begin{cases}
+    -\gamma,&amp;n=0,\\
+    (-1)^{n+1}n!\zeta(n+1),&amp;n\in\mathbb{Z}_+.
+    \end{cases}
+\]</div>
+<ol>
+<li>
+<p>Beta 函数/B 函数/第一欧拉积分</p>
+<p>定义：</p>
+</li>
+</ol>
+<div class="arithmatex">\[
+    B(p,q)=\int_{0}^{1}t^{p-1}(1-t)^{q-1}\mathrm{d}t,\operatorname{Re}p&gt;0,\operatorname{Re}q&gt;0
+\]</div>
+<p>等式：</p>
+<div class="arithmatex">\[
+    \begin{aligned}
+    B(p,q)&amp;=B(q,p)\\
+    B(p,q)&amp;=\dfrac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}\\
+    B(z,1-z)&amp;=\dfrac{\pi}{\sin(\pi z)}
+    \end{aligned}
+\]</div>
+<p>无穷乘积表示</p>
+<p>Euler 无穷乘积表示</p>
+<div class="arithmatex">\[
+    \Gamma(z)=\prod_{k=1}^{\infty}\left(\dfrac{k}{z+k-1}\right)\left(\dfrac{k+1}{k}\right)^{z-1}
+\]</div>
+<p>Weierstrass 无穷乘积表示</p>
+<div class="arithmatex">\[
+\Gamma(z)=\dfrac{1}{z\mathrm{e}^{z\gamma}}\prod_{k=1}^{\infty}\dfrac{k}{z+k}\mathrm{e}^{z/k}
+\]</div>
+</li>
+</ul>
+<p>性质：</p>
+<ol>
+<li>若 <span class="arithmatex">\(\chi_1^2\sim \chi^2(n_1),\chi_2^2\sim \chi^2(n_2)\)</span>，且二者相互独立，则<span class="arithmatex">\(\chi_1^2+\chi_2^2\sim\chi^2(n_1+n_2)\)</span>.</li>
+<li>若<span class="arithmatex">\(\chi^2\sim \chi^2(n)\)</span>，则 <span class="arithmatex">\(\mathrm{E}\chi^2=n,\mathrm{Var}\chi^2=2n\)</span>.</li>
+<li>
+<p>Cochran 分解定理/柯赫伦分解定理</p>
+<p>设 <span class="arithmatex">\(X_1,X_2,\cdots, X_n\)</span> 为独立同分布的随机变量，均服从 <span class="arithmatex">\(N(0,1)\)</span>，又设秩为 <span class="arithmatex">\(n_i\)</span> 的 <span class="arithmatex">\(X_1, X_2,\cdots, X_n\)</span> 的非负二次型 <span class="arithmatex">\(Q_i, i=1,2,\cdots, k\)</span> 满足：</p>
+<div class="arithmatex">\[
+Q_1+Q_2+\cdots+Q_k=\sum_{i=1}^{n}X_i^2
+\]</div>
+<p>则 <span class="arithmatex">\(Q_i\)</span> 相互独立且分别服从自由度为 <span class="arithmatex">\(n_i\)</span> 的 <span class="arithmatex">\(\chi^2\)</span> 分布的充要条件为：</p>
+<div class="arithmatex">\[
+n_1+n_2+\cdots+n_k=n
+\]</div>
+<p>这个定理有矩阵版本.</p>
+</li>
+</ol>
+<p><strong>t 分布</strong></p>
+<p>设 <span class="arithmatex">\(X\sim N(0,1), Y\sim \chi^2(n)\)</span>，且 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立，则称随机变量</p>
+<div class="arithmatex">\[
+T=\dfrac{X}{\sqrt{Y/n}}
+\]</div>
+<p>服从自由度为 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(t\)</span> 分布，记作 <span class="arithmatex">\(T\sim t(n)\)</span>.</p>
+<p>t 分布由英国统计学家 W. Gosset 以笔名 Student 发表，故而又称为学生分布（Student 分布），其密度函数如下：</p>
+<div class="arithmatex">\[
+p(x)=\dfrac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)}\left(1+\dfrac{x^2}{n}\right)^{-\frac{n+1}{2}}
+\]</div>
+<p>显然该函数为偶函数，可以证明当 <span class="arithmatex">\(n\to\infty\)</span> 时 <span class="arithmatex">\(p(x)\to \varphi(x)\)</span>，换句话说 <span class="arithmatex">\(n\)</span> 足够大时 t 分布可近似为 <span class="arithmatex">\(N(0,1)\)</span>.</p>
+<p><strong>F 分布</strong></p>
+<p>设 <span class="arithmatex">\(U\sim \chi^2(n_1),V\sim \chi^2(n_2)\)</span>，且 <span class="arithmatex">\(U,V\)</span> 相互独立，则称随机变量：</p>
+<div class="arithmatex">\[
+F=\dfrac{U/n_1}{V/n_2}
+\]</div>
+<p>服从自由度为 <span class="arithmatex">\((n_1,n_2)\)</span> 的 <span class="arithmatex">\(F\)</span> 分布，记作 <span class="arithmatex">\(F\sim F(n_1, n_2)\)</span>.</p>
+<p>F 分布由现代统计学的奠基人之一 Fisher 提出，其密度函数如下：</p>
+<div class="arithmatex">\[
+p(x)=\dfrac{\Gamma((n_1+n_2)/2)}{\Gamma(n_1/2)\Gamma(n_2/2)}\left(\dfrac{n_1}{n_2}\right)^{\frac{n_1}{2}}x^{\frac{n_1}{2}-1}\left(1+\dfrac{n_1}{n_2}x\right)^{-\frac{n_1+n_2}{2}},x&gt;0
+\]</div>
+<p>另 <span class="arithmatex">\(x\le 0\)</span> 时 <span class="arithmatex">\(p(x)=0\)</span>. </p>
+<p>一些性质如下：</p>
+<ol>
+<li>若 <span class="arithmatex">\(F\sim F(n_1, n_2)\)</span>，则 <span class="arithmatex">\(\dfrac{1}{F}\sim F(n_2,n_1)\)</span>.</li>
+<li>若 <span class="arithmatex">\(T\sim t(n)\)</span>，则 <span class="arithmatex">\(T^2\sim F(1, n)\)</span>.</li>
+</ol>
+<p><strong>上 <span class="arithmatex">\(\alpha\)</span> 分位点</strong></p>
+<p>定义：设 X 是一个随机变量，对于一个给定的数 <span class="arithmatex">\(\alpha(0&lt;\alpha &lt;1)\)</span>，成满足下述条件的实数 <span class="arithmatex">\(\lambda_\alpha\)</span> 为 <span class="arithmatex">\(X\)</span> 的上 <span class="arithmatex">\(\alpha\)</span> 分位点.</p>
+<div class="arithmatex">\[
+\mathrm{Pr}(X&gt;\lambda_\alpha)=\alpha
+\]</div>
+<p>记法：</p>
+<p>当 <span class="arithmatex">\(X\)</span> 服从 <span class="arithmatex">\(N(0,1), \chi^2(n),t(n),F(n_1,n_2)\)</span> 时，上 <span class="arithmatex">\(\alpha\)</span> 分位点 <span class="arithmatex">\(\lambda_\alpha\)</span> 分别记为：<span class="arithmatex">\(u_\alpha, \chi_\alpha^2(n),t_\alpha(n),F_\alpha(n_1,n_2)\)</span>.</p>
+<p>一些性质：</p>
+<ol>
+<li><span class="arithmatex">\(u_{1-\alpha}=-u_\alpha, t_{1-\alpha}=-t_\alpha(n)\)</span>.</li>
+<li><span class="arithmatex">\(F_{1-\alpha}(n_1,n_2)=\dfrac{1}{F_\alpha(n_2,n_1)}\)</span>.</li>
+</ol>
+<p><strong>正态总体的样本与样本方差的分布</strong></p>
+<p>对于正态总体，样本均值与样本方差及其相关的某些统计量的分布具有非常完美的结论，这些结论对于参数估计与假设检验具有重要的意义，结果由下述定理给出：</p>
+<p><strong>定理</strong>：设 <span class="arithmatex">\(X_1, X_2,\cdots, X_n\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> （即独立同分布为该分布）的一个样本，则：</p>
+<p>(1) <span class="arithmatex">\(\bar{X}\sim N(\mu, \dfrac{\sigma^2}{n})\)</span>.</p>
+<p>(2) <span class="arithmatex">\((n-1)S^2/\sigma^2\sim \chi^2(n-1)\)</span>.</p>
+<p>(3) <span class="arithmatex">\(\bar{X}\)</span> 与 <span class="arithmatex">\(S^2\)</span> 相互独立.</p>
+<p><strong>推论 1</strong>：设 <span class="arithmatex">\(X_1, X_2,\cdots, X_n\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的一个样本，则：</p>
+<div class="arithmatex">\[
+T:=\dfrac{\sqrt{n}(\bar{X}-\mu)}{S}\sim t(n-1)
+\]</div>
+<p><strong>推论 2</strong>：设 <span class="arithmatex">\(X_1, X_2,\cdots, X_{n_1}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_1,\sigma_1^2)\)</span> 的一个样本，设 <span class="arithmatex">\(Y_1, Y_2,\cdots, Y_{n_2}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_2,\sigma_2^2)\)</span> 的一个样本，且两样本相互独立，记 <span class="arithmatex">\(\bar{X}\)</span> 和 <span class="arithmatex">\(\bar{Y}\)</span> 分别为其样本均值，<span class="arithmatex">\(S_1^2, S_2^2\)</span> 分别为其样本方差，则：</p>
+<div class="arithmatex">\[
+F:=\dfrac{S_1^2\sigma_2^2}{S_2^2\sigma_1^2}\sim F(n_1-1,n_2-1)
+\]</div>
+<p><strong>推论 3</strong>：设 <span class="arithmatex">\(X_1, X_2,\cdots, X_{n_1}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_1,\sigma_1^2)\)</span> 的一个样本，设 <span class="arithmatex">\(Y_1, Y_2,\cdots, Y_{n_2}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_2,\sigma_2^2)\)</span> 的一个样本，且两样本相互独立，则：</p>
+<div class="arithmatex">\[
+T:=\sqrt{\dfrac{n_1n_2(n_1+n_2-2)}{n_1+n_2}}\dfrac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{(n_1-1)S_1^2+(n_2-1)S_2^2}}\sim t(n_1+n_2-2)
+\]</div>
+<h3 id="_4">多元正态分布理论*</h3>
+<p>Source: 回归分析|笔记整理（3）——多元正态分布理论（上） - 知乎 - 学弱渣：https://zhuanlan.zhihu.com/p/46665398</p>
+<p>前置线性代数内容：</p>
+<ol>
+<li>称方阵 <span class="arithmatex">\(A\)</span> 为幂等阵当且仅当 <span class="arithmatex">\(A^2=A\)</span>，容易证明其特征值为 <span class="arithmatex">\(0\)</span> 或 <span class="arithmatex">\(1\)</span>.</li>
+<li>若 <span class="arithmatex">\(A_{n\times n}\)</span> 为对称幂等阵，且 <span class="arithmatex">\(\mathrm{rank}(A)=r\)</span>，那么存在正交阵 <span class="arithmatex">\(P_{n\times n}\)</span>，使得 <span class="arithmatex">\(A=P\begin{bmatrix} I_r &amp;0 \\ 0 &amp;0\\ \end{bmatrix}P^{\mathsf{T}}\)</span>. 正交阵即 <span class="arithmatex">\(PP^{\mathsf{T}}=I\)</span> 的阵.</li>
+<li>若 <span class="arithmatex">\(A\)</span> 对称幂等，则 <span class="arithmatex">\(\mathrm{tr}(A)=\mathrm{rank}(A)\)</span>.</li>
+<li>若 <span class="arithmatex">\(A_{n\times n}\)</span> 对称幂等，且 <span class="arithmatex">\(\mathrm{rank}(A)=r\)</span>，则存在列满秩矩阵 <span class="arithmatex">\(B_{n\times r}\)</span> 使得 <span class="arithmatex">\(A=B(B^{\mathsf{T}}B)^{-1}B^{\mathsf{T}}\)</span>.</li>
+<li>正交投影阵：对任一列满秩矩阵 <span class="arithmatex">\(A\)</span>，定义正交投影阵 <span class="arithmatex">\(P_A=A(A^{\mathsf{T}}A)^{-1}A^{\mathsf{T}}\)</span>，不难发现其必为一个对称幂等阵.</li>
+<li><span class="arithmatex">\(\forall x\in\mathbb{R}^n\)</span>，设 <span class="arithmatex">\(P\)</span> 为 <span class="arithmatex">\(n\)</span> 阶正交投影阵，那么存在分解式 <span class="arithmatex">\(x=y+z\)</span> 使得 <span class="arithmatex">\(y=Pz, z=(I-P)x\)</span>，且 <span class="arithmatex">\(y^{\mathsf{T}}z=0\)</span>.</li>
+</ol>
+<p><strong>均值向量</strong>：设 <span class="arithmatex">\(X=(X_1,X_2\cdots X_p)^{\mathsf{T}}\)</span> 为 <span class="arithmatex">\(p\)</span> 维随机变量，称下述为 <span class="arithmatex">\(X\)</span> 的均值向量：</p>
+<div class="arithmatex">\[
+\mathrm{E}X:=(\mathrm{E}X_1,\mathrm{E}X_2,\cdots,\mathrm{E}X_n)^{\mathsf{T}}
+\]</div>
+<p><strong>协差</strong>：定义 <span class="arithmatex">\(\mathrm{Var}X=\mathrm{Cov}X=\mathrm{E}((X-\mathrm{E}X)(X-\mathrm{E}X)^{\mathsf{T}})\)</span> 为随机变量 <span class="arithmatex">\(X\)</span> 的协差，是一个矩阵，显然：<span class="arithmatex">\((\mathrm{Cov}X)[i,j]=\mathrm{Cov}(X_i,X_j)\)</span>，并且矩阵是半正定矩阵.</p>
+<p>设 <span class="arithmatex">\(A\)</span> 是常数阵，<span class="arithmatex">\(X\)</span> 是随机变量，则 <span class="arithmatex">\(\mathrm{Cov}(AX)=A\mathrm{Cov}(X)A^{\mathsf{T}}\)</span>.</p>
+<p><strong>协方差</strong>：设 <span class="arithmatex">\(X, Y\)</span>分别是 <span class="arithmatex">\(p,q\)</span> 维向量，定义二者的协方差： <span class="arithmatex">\(\mathrm{Cov}(X,Y)=\mathrm{E}((X-\mathrm{E}X)(Y-\mathrm{E}Y)^{\mathsf{T}})\)</span>.</p>
+<p>设 <span class="arithmatex">\(A,B\)</span> 是常数阵，<span class="arithmatex">\(X,Y\)</span> 是随机变量 <span class="arithmatex">\(\mathrm{Cov} (AX,BY)=A\mathrm{Cov}(X,Y)B^{\mathsf{T}}\)</span>.</p>
+<p><strong>二次型</strong>：设 <span class="arithmatex">\(X\)</span> 为 <span class="arithmatex">\(p\)</span> 维列向量，<span class="arithmatex">\(A\)</span> 为 <span class="arithmatex">\(p\times p\)</span> 的对称阵，则称 <span class="arithmatex">\(X^\mathsf{T}AX\)</span> 为 <span class="arithmatex">\(X\)</span> 的二次型，显然其是关于 <span class="arithmatex">\(X\)</span> 各分量的二次项之和.</p>
+<p>二次型的均值：设 <span class="arithmatex">\(\mathrm{E}X=\mu,\mathrm{Cov}X=\Sigma\)</span>，则 <span class="arithmatex">\(\mathrm{E}(X^\mathsf{T}AX)=\mu^\mathsf{T}A\mu+\mathrm{tr}(A\Sigma)\)</span>.</p>
+<p><strong><span class="arithmatex">\(p\)</span> 元正态分布</strong>：设 <span class="arithmatex">\(X=(X_1,\cdots, X_n)\)</span> 为 <span class="arithmatex">\(p\)</span> 维随机变量，若其联合密度函数为：</p>
+<div class="arithmatex">\[
+f(x)=(2\pi)^{-p/2}|\Sigma|^{-1/2}\exp\left(-\frac{1}{2}(x-\mu)^\mathsf{T}\Sigma^{-1}(x-\mu)\right)
+\]</div>
+<p>其中 <span class="arithmatex">\(\mu=(\mu_1,\cdots, \mu_n)^{\mathsf{T}}\)</span>，<span class="arithmatex">\(\Sigma_{p\times p}\)</span> 正定，则称 <span class="arithmatex">\(X\)</span> 服从参数为 <span class="arithmatex">\(\mu\)</span> 和 <span class="arithmatex">\(\Sigma\)</span> 的 <span class="arithmatex">\(p\)</span> 元正态分布，记作 <span class="arithmatex">\(X\sim N_p(\mu,\Sigma)\)</span>，显然其均值向量和协差 为 <span class="arithmatex">\(\mu\)</span> 和 <span class="arithmatex">\(\Sigma\)</span>.</p>
+<p>当 <span class="arithmatex">\(\mu=\vec{0},\Sigma=I_p\)</span> 时转化为多元标准正态分布，<span class="arithmatex">\(X\)</span> 各分量为独立同标准正态分布.</p>
+<p><strong>标准化与平方根阵</strong>：</p>
+<p>平方根阵：设 <span class="arithmatex">\(\Sigma=P^{-1}JP\)</span>，其中 <span class="arithmatex">\(J\)</span> 是 <span class="arithmatex">\(\Sigma\)</span> 的 Jordan 标准型，那么定义其平方根阵为：<span class="arithmatex">\(\Sigma^{1/2}=P^{-1}J^{1/2}P\)</span>.</p>
+<p>标准化：<span class="arithmatex">\(Y=\Sigma^{-1/2}(X-\mu)\)</span>.</p>
+<p>多元正态分布的更一般定义：设 <span class="arithmatex">\(X\)</span> 为 <span class="arithmatex">\(p\)</span> 维随机变量，若存在 <span class="arithmatex">\(p\times r\)</span> 阶的列满秩矩阵 <span class="arithmatex">\(A\)</span> 使得 <span class="arithmatex">\(X=AY+\mu\)</span>，其中 <span class="arithmatex">\(Y\sim N_r(\vec{0},I_r)\)</span>，且 <span class="arithmatex">\(\mu\)</span> 为常数向量，则称 <span class="arithmatex">\(X\sim N_p(\mu, AA^{\mathsf{T}})\)</span>.</p>
+<h3 id="_5">正态总体相关定理的证明*</h3>
+<p><strong>定理</strong>：设 <span class="arithmatex">\(X_1, X_2,\cdots, X_n\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> （即独立同分布为该分布）的一个样本，则：</p>
+<p>(1) <span class="arithmatex">\(\bar{X}\sim N(\mu, \dfrac{\sigma^2}{n})\)</span>.</p>
+<p>(2) <span class="arithmatex">\((n-1)S^2/\sigma^2\sim \chi^2(n-1)\)</span>.</p>
+<p>(3) <span class="arithmatex">\(\bar{X}\)</span> 与 <span class="arithmatex">\(S^2\)</span> 相互独立.</p>
+<p>proof.</p>
+<p>(1) 因 <span class="arithmatex">\(X_1,X_2,\cdots,X_n\)</span> 独立同分布于 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span>，故而 </p>
+<div class="arithmatex">\[
+\bar{X}=\dfrac{1}{n}\sum_{i=1}^{n} X_i\sim N(\dfrac{1}{n}\times n\mu,\dfrac{1}{n^2}\times n\sigma^2)
+\]</div>
+<p>也就是 <span class="arithmatex">\(\bar{X}\sim N\left(\mu,\dfrac{\sigma^2}{n}\right)\)</span>.</p>
+<p>(2)</p>
+<p>构造如下矩阵 <span class="arithmatex">\(A\)</span>，并令 <span class="arithmatex">\(\vec{Y}=A\vec{X}\)</span>：</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+\mathbf{u}_1\\
+\mathbf{u}_2\\
+\vdots\\
+\mathbf{u}_n
+\end{bmatrix},
+\mathbf{u}_1=\dfrac{1}{\sqrt{n}}\mathbf{1}_n,
+\mathbf{u}_i=\dfrac{1}{\sqrt{i(i-1)}}(\mathbf{1}_{i-1},-i+1,\mathbf{0}_{n-i})(i\ne 1)
+\]</div>
+<p>这个矩阵是这样构造的，首先 <span class="arithmatex">\(\mathbf{u}_1\)</span> 的构造是因为这使得 <span class="arithmatex">\(Y_1=\mathbf{u}_1\vec{X}=\sqrt{n}\bar{X}\)</span>，然后使用施密特正交化的方式构造 <span class="arithmatex">\(\mathbf{u}_i\)</span>.</p>
+<p>首先因 <span class="arithmatex">\(A\)</span> 的正交性，故：</p>
+<div class="arithmatex">\[
+\vec{Y}^\mathsf{T}\vec{Y}=\vec{X}^\mathsf{T}A^\mathsf{T}A\vec{X}=\vec{X}^\mathsf{T}\vec{X}
+\]</div>
+<p>也就是 <span class="arithmatex">\(\sum_{i=1}^{n} X_i^2=\sum_{i=1}^{n}Y_i^2\)</span>.</p>
+<p>根据 <span class="arithmatex">\(\vec{Y}=A\vec{X}\)</span> 不难得到 <span class="arithmatex">\(Y_1\sim N\left(\sqrt{n}\mu,\sigma^2\right),Y_i\sim N(0,\sigma^2),i\ne 1\)</span>.</p>
+<p>同时因 <span class="arithmatex">\((X_1,\cdots,X_n)\sim N(\mu\vec{1}_n,\sigma^2 I_n)\)</span>，故 <span class="arithmatex">\((Y_1,\cdots, Y_n)\sim N(\mu A\vec{1}_n,A(\sigma^2I_n)A^\mathsf{T})=N((\sqrt{n}\mu,\mathbf{0}_{n-1})^\mathsf{T},\sigma^2 I_n)\)</span>。</p>
+<p>注：这个结论直接根据正态分布的线性性得到，推广可以得到如下结论：</p>
+<p>设 <span class="arithmatex">\(X\sim N_p(\mu, \Sigma)\)</span>，<span class="arithmatex">\(B\)</span> 为任意的 <span class="arithmatex">\(m\times p\)</span> 的常数阵，<span class="arithmatex">\(Y=BX\)</span>，随即有：</p>
+<div class="arithmatex">\[
+Y\sim N_m(B\mu,B\Sigma B^\mathsf{T})
+\]</div>
+<p>由协差阵说明 <span class="arithmatex">\(\vec{Y}\)</span>各分量独立，然后：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\dfrac{(n-1)S^2}{\sigma^2}
+&amp;=\dfrac{1}{\sigma^2}\sum_{i=1}^{n}(X_i-\bar{X})^2\\
+&amp;=\dfrac{1}{\sigma^2}\left(\sum_{i=1}^{n}X_i^2-n\bar{X}^2\right)\\
+&amp;=\dfrac{1}{\sigma^2}\left(\sum_{i=1}^{n}Y_i^2-Y_1^2\right)\\
+&amp;=\sum_{i=2}^{n}\left(\dfrac{Y_i}{\sigma}\right)^2\\
+&amp;\sim\chi^2(n-1)
+\end{aligned}
+\]</div>
+<p>Q.E.D.</p>
+<p>(3) 由 (2) 得知：<span class="arithmatex">\(\bar{X}=\dfrac{1}{\sqrt{n}}Y_1,S^2=\dfrac{1}{n-1}\sum_{i=2}^{n}Y_i^2\)</span>，而 <span class="arithmatex">\(Y\)</span> 各分量独立，自然有 <span class="arithmatex">\(\bar{X}\)</span> 和 <span class="arithmatex">\(S^2\)</span> 独立。Q.E.D.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
