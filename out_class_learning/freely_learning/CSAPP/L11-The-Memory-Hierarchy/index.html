@@ -1,0 +1,3710 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../L10-Program-Optimization/">
+      
+      
+        <link rel="next" href="../L12-Cache-Memories/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>L11 The Memory Hierarchy - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#l11-the-memory-hierarchy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              L11 The Memory Hierarchy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    In class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    In class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semester 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semester 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network attack and defense
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Network attack and defense
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab7_pwn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAD lab07 PWN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/AAA_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%200%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%201%20%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%202%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%203%20%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%204%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%206%20%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%207%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    problem solving III
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    problem solving III
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3_1" id="__nav_2_1_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3_2" id="__nav_2_1_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges Solutions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges Solutions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1008/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1009/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1009
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1010/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1010
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1011/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1011
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1012/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1012
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1013/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1013
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1014/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1014
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1015/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1015
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1016/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1016
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1017/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1017
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1018/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1018
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3_3" id="__nav_2_1_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/A001_%E8%AE%B0%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A001 记号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L001_%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L002_%E8%BF%9E%E9%80%9A%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L003_%E5%9C%88%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L004_%E8%BF%9E%E9%80%9A%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L005_%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L006_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L006 单源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L007_%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L007 多源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L008_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E8%B5%8B%E6%9D%83%E6%AC%A7%E6%8B%89%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L009_%E6%9C%89%E5%90%91%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L010_%E6%B5%81%E7%BD%91%E7%BB%9C%E5%92%8C%E6%9C%80%E5%A4%A7%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L011_%E7%8B%AC%E7%AB%8B%E3%80%81%E8%A6%86%E7%9B%96%E5%92%8C%E6%94%AF%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L011 独立、覆盖和支配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L012_%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L013_%E5%B9%B3%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L014_%E7%BE%A4%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BE%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L014 群和循环群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L015_%E7%BD%AE%E6%8D%A2%E7%BE%A4%E3%80%81%E9%99%AA%E9%9B%86%E5%92%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L015 置换群、陪集和拉格朗日定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L016_%E4%BB%A3%E6%95%B0%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L016 代数编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L017_%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L017 抽象代数中的其他问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Out class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Out class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Freely learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Freely learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CSAPP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CSAPPreadme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPPreadme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L05-Machine-Level-Programming-I-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L05 Machine-Level Programming I: Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L06-Machine-Level-Programming-II-Control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L07-Machine-Level-Programming-III-Procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L08-Machine-Level-Programming-IV-Data%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L08 Machine-Level Programming IV: Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L09-Machine-Level-Programming-V-Advanced-Topics%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L09 Machine-Level Programming V: Advanced Topics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L10-Program-Optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L10 Program Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L11 The Memory Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L12-Cache-Memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L12 Cache Memories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickly learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quickly learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++OOP 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/MkDocs%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/%E4%B8%89%E5%B0%8F%E6%97%B6%E5%89%8D%E7%AB%AF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三小时前端快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="l11-the-memory-hierarchy">L11 The Memory Hierarchy</h1>
+<p>Source: https://www.bilibili.com/video/BV1iW411d7hd?p=11</p>
+<p>Today（存储器层次结构 memory hierarchy）</p>
+<p>​   存储技术及趋势 Storage technologies and trends</p>
+<p>​   引用的本地性 Locality of reference</p>
+<p>​   存储器层次结构中的缓存 Caching in the memory hierarchy</p>
+<hr />
+<p>随机访问存储器（RAM, random-access memory）</p>
+<p>​   关键特性 Key features</p>
+<p>​       一般被打包成芯片样式 RAM is traditionally packaged as a chip</p>
+<p>​       基本的存储单位称为单元（cell），一个单元存储一个比特 Basic storage unit is normally a cell (one bit per cell)</p>
+<p>​       多个 RAM 构成一个内存 Multiple RAM chips form a memory</p>
+<p>​   RAM 分为两种 RAM comes in two varieties:</p>
+<p>​       SRAM (Static RAM)</p>
+<p>​       DRAM (Dynamic RAM)</p>
+<p>（SRAM 和 DRAM 是根据存储单元实现方式来区分的）</p>
+<p>SRAM 和 DRAM 异同比较总结</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Trans. per bit</th>
+<th>Access time</th>
+<th>Needs refresh?</th>
+<th>Needs EDC?</th>
+<th>Cost</th>
+<th>Applications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRAM</td>
+<td>4 or 6</td>
+<td>1X</td>
+<td>No</td>
+<td>Maybe</td>
+<td>100X</td>
+<td>Cache memories</td>
+</tr>
+<tr>
+<td>DRAM</td>
+<td>1</td>
+<td>10X</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>1X</td>
+<td>Main memories, frame buffers</td>
+</tr>
+</tbody>
+</table>
+<p>注：</p>
+<ol>
+<li>
+<p>此处 trans. 即 transistor（晶体管）。</p>
+</li>
+<li>
+<p>需要刷新：如果需要刷新（定时将数据读出并写回），那么需要一定的电压充电，否则就会丢失电荷进而丢失所保存的信息，换句话说 DRAM 需要插电使用。</p>
+</li>
+<li>EDC: error detection  &amp; correction 错误检测和纠正</li>
+<li>cost：成本</li>
+<li>cache memories：高速缓存，内存容量小但速度非常快的芯片</li>
+<li>main memories：主存；frame buffers：（图形显卡中的）帧缓存</li>
+</ol>
+<p>非易失性存储器 Nonvolatile Memories</p>
+<p>​   DRAM 和 SRAM 都是易失性存储器 DRAM and SRAM are volatile memories</p>
+<p>​       如果断电就会丢掉信息 Lose information if powered off</p>
+<p>​   非易失性存储器断电后信息还能保存 Nonvolatile memories retain value even if powered off</p>
+<p>​       ROM 只读内存：在生产时被硬编码一次 Read-only memory (ROM): programmed during production</p>
+<p>​       Programmable ROM (PROM): can be programmed once</p>
+<p>​       Erasable PROM (EPROM): can be bulk erased (UV, X-ray)</p>
+<p>​       Electrically erasable PROM (EEPROM): electronic erase capability</p>
+<p>​       闪存 Flash memory: EEPROMs. with partial (block-level) erase capability </p>
+<p>​           Wears out after about 100,000 erasings</p>
+<p>​   Uses for Nonvolatile Memories</p>
+<p>​       固件程序存储在 ROM 中 Firmware programs stored in a ROM (BIOS, controllers for disks), network cards, graphic accelerators, security subsystems（BIOS：Basic Input/Output System）</p>
+<p>​       固态硬盘（SSD, solid state disk）Solid state disks (replace rotating disks in thumb drives, smart phones, mp3 players, tablets, laptops, ...)</p>
+<p>​       Disk caches.</p>
+<p>传统的总线结构连接 CPU 和内存 Trditional Bus Structure Connecting CPU and Memory</p>
+<p>​   A bus is a collection of parallel wires that carry address, data, and control signals.</p>
+<p>​   Buses are typically shared by multiple devices.</p>
+<pre><code>          System bus               Memory bus
+CPU chip &lt;----------&gt; I/O bridege &lt;----------&gt; main memory
+
+CPU ship:
+  Bus interface &lt;-&gt; Register file &lt;-&gt; ALU
+    ^
+    | 
+    --&gt; I/O bridge
+</code></pre>
+<p>Memory Read Transaction</p>
+<p>​   <code>movq A, %rax</code></p>
+<p>​   (1) CPU places address A on the memory bus. (from bus interface to main memory)</p>
+<p>​   (2) Main memory reads A from the memory bus, retrieves word x, and places it on the bus (from main memory to bus interface)</p>
+<p>​   (3) CPU read word x from the bus and copies it into register %rax (from bus interface to register file)</p>
+<p>Memory Write Transaction</p>
+<p>​   <code>movq %rax, A</code></p>
+<p>​   (1)  CPU places address A on the memory bus. Main memory reads it and waits for the corresponding data word to arrive. (from bus interface to main memory)</p>
+<p>​   (2) CPU places data word y on the bus. (from register file to main memory)</p>
+<p>​   (3) main memory reads data word y from the bus and stores it at address A.</p>
+<p>What's Inside A Disk Drive?</p>
+<p><img alt="QQ_1765111500146" src="../QQ_1765111500146.png" /></p>
+<p>platters：盘片，每个盘片都涂有磁性材料，然后在该磁性材料中编码二进制位。</p>
+<p>arm：传动臂，铰接在硬盘上，它漂浮在盘片上方的薄薄一层空气中。传动臂最末端有一个读/写头，可以感知编码位的磁场变化。盘片逆时针旋转，磁臂可以前后移动。这种机械结构而非电磁结构说明硬盘比 DRAM 和 SRAM 慢。</p>
+<p>Disk Geometry</p>
+<p>​   Disks consist of <strong>platters</strong>, each with two <strong>surfaces</strong>.</p>
+<p>​   Each surfaces consists of concentric rings（同心圆） called <strong>tracks（磁道）</strong>.</p>
+<p>​   Each track consists of <strong>sectors（扇区）</strong> separated by <strong>gaps（空隙）</strong>. （一般一个扇区存储 512 个字节）</p>
+<p>​   盘片在主轴（spindle）上是彼此对齐的，故而在不同表面上，轨道也是对齐的。这些轨道的集合称为一个柱面（cylinder）</p>
+<p>Disk Capacity</p>
+<p>​   Capacity: maximum number of bits that be stored</p>
+<p>​       Vendors express capacity in units of gigabytes (GB), where 1 GB = 10^9 Bytes not 1GB = 2^20 Bytes.</p>
+<p>​   Capacity is determined by these technology factors:</p>
+<p>​       记录密度 Recording density (bits/in): number of bits that can be squeezed into a 1 inch segment of a track.</p>
+<p>​       磁道密度 Track density (tracks/in): number of tracks that can be squeezed into a 1 inch radial segment.</p>
+<p>​       面密度 Areal density (bits/in2): product of recording and track density. 面密度越高。一个磁面上就能存储更多比特。</p>
+<p>Recording Zones</p>
+<p>​   Modern disks partition tracks into disjoint subsets called recording zones.</p>
+<p>​       Each track in a zone has the same number of sectors, determined by the circumference of innermost track.</p>
+<p>​       Each zone has a different number of sectors/track, outer zones have more sectors/track than inner zones.</p>
+<p>​       So, we use average number of sectors/track when computing capacity.</p>
+<p>Computing Disk Capacity</p>
+<p>​   Capacity = (# bytes/sector) * (avg. # sectois/track) * (# tracks/surface) * (# surface/platter) * (# platters/disk)</p>
+<p>Disk Operation (Single-Platter View) (18:39)</p>
+<p>​   The disk surface spins at a fixed rotational rate，现在（2015 年）典型的速率可能是 7200r/min.</p>
+<p>​   The read/write head is attached to the end of the arm and flies over the disk surface on a thin cushion of air.</p>
+<p>​   By moving rapidly, the arm can position the read/write head over any track.</p>
+<p>Disk Operation (Multi-Platter View) (19:23)</p>
+<p>Disk Structure - top view of single platter (20:35)</p>
+<p>​   Data transfer -&gt; Seek -&gt; Rotational latency -&gt; Data transfer -&gt; ...</p>
+<p>​   先径向移动，再旋转盘。这个过程中如上所述有三个部分。</p>
+<p>​   第一部分：移动磁头 move the head，所花费的时间称为寻道时间（seek）。</p>
+<p>​   第二部分：旋转磁盘，所花费的时间称为旋转延迟（rotational latency），此时间通常是转半圈的时间，即旋转一整圈的时间的一半。</p>
+<p>​   第三部分：轨道在读/写头下通过的时间，所花费的时间称作传送时间（data transfer）</p>
+<p>Disk Access Time</p>
+<p>​   Average time to access some target sector approximated by:</p>
+<p>​       T(access) = T(avg seek) + T(avg rotation) + T(avg transfer)</p>
+<p>​   Seek time (T(avg seek))</p>
+<p>​       Time to position heads over cyclinder containing target sector.</p>
+<p>​       Typically T(avg seek) is 3-9 ms.</p>
+<p>​   Rotational latency (T(avg rotation))</p>
+<p>​       Time waiting for first bit of target sector to pass under r/w head.</p>
+<p>​       T(avg rotation) = 1/2 *  1/RPMs * 60 sec/1 min</p>
+<p>​       Typical T(avg rotation) = 7200 RPMs.</p>
+<p>​   Transfer time (T(avg transfer))</p>
+<p>​       Time to read the bits in the target sector</p>
+<p>​       T(avg transfer) = 1/RPM * 1/(avg # sectors/track) * 60 secs/1 min</p>
+<p>​   注：RPM 为每分钟磁盘转多少圈 rounds per minute.</p>
+<p>Important points:</p>
+<p>​   访问时间主要取决于寻道时间和旋转延迟 Access time dominated by seek time and rotational latency.</p>
+<p>​   连续访问时，访问一个扇区的第一个比特最花费时间，后面的时间都可以忽略不计 First bit in a sector is the most expensive, the rest are free.</p>
+<p>​   SRAM access time is about 4 ns/doubleword, DRAM about 60 ns/doubleword.</p>
+<p>​       Disk is about 40,000 times slower than SRAM, and 2,500 times slower than DRAM.</p>
+<p>Logical Disk Blocks</p>
+<p>​   Modern disks present a simpler abstract view of the complex sector geometry:</p>
+<p>​       现代磁盘将磁盘作为一系列逻辑块提供给 CPU，每个块是扇区大小的整数倍，编号从 0 开始。</p>
+<p>​       The set of available sectors is modeled as a sequence of b-sized logical blocks (0, 1, 2, ...)</p>
+<p>​   Mapping between logical blocks and actual (physical) sectors</p>
+<p>​       磁盘控制器（disk controller）保持物理扇区和逻辑块之间的映射。</p>
+<p>​       Maintained by hardware/firmware device called disk controller.</p>
+<p>​       Converts requests for logical blocks into (surface, track, sector) triples. </p>
+<p>​   Allows controller to set aside spare cylinders for each zone.</p>
+<p>​       磁盘控制器允许将一些柱面保留为备用柱面，其中没有映射到任何一个逻辑块，一旦某个使用的柱面的扇区坏了，则启用备用柱面。这就解释了为什么磁盘的「格式容量（formatted capacity）」比实际容量（如果你去数实际的柱面数）要小。</p>
+<p>​       Accounts for the difference in "formatted capacity" and "maximum capacity".</p>
+<p>输入输出总线 I/O Bus (27:18)</p>
+<p>​   此处展示的是五年前（以 2015 年为基准）的 PCI 总线（PCI bus），其为广播总线（broadcast bus），换句话说，该总线直接连接的部分一旦更改，其余部分都可知道这一改变，进而其为单一线路。</p>
+<p>​   现代系统使用称为 PCIe（PCI express）的总线结构，该结构是点对点的（point-to-point），并且点对点之间通过某种开关仲裁，显然其为一种更有效、高效的设计。</p>
+<p><img alt="QQ_1765119891769" src="../QQ_1765119891769.png" /></p>
+<p>Reading a Disk Sector</p>
+<p>​   (1) CPU initiates a disk read by writing a command, logical block number, and destination memory address to a <strong>port</strong> (address) associated with disk controller.（此处展示了这样的三要素：指令 command、逻辑块号 logical block number、内存地址 destination memory address）【from bus interface to disk controller】</p>
+<p>​   (2) Disk controller reads the sector and performs a <strong>direct memory access (DMA)</strong> transfer into main memory. 【from disk to main memory】</p>
+<p>​   (3) When the DMA transfer conpletes, the disk controller notifies the CPU with an <strong>interrupt</strong> (i.e., asserts a special "interrupt" pin on the CPU) 【from disk controller to CPU chip】</p>
+<p>​   这个机制的目的将读写打包，让慢速的磁盘读写能够配合上快速的指令处理。</p>
+<p>Solid State Disks (SSDs) (31:56)</p>
+<p><img alt="QQ_1765120330961" src="../QQ_1765120330961.png" /></p>
+<p>​   固态硬盘（SSD）融合了旋转磁盘和 DRAM，作为其中间态，近年来（2015 年视角）受到欢迎。在 CPU 看来，固态硬盘和旋转磁盘有着相同的物理接口（physical interface），具有相同的包装，二者十分相似。但实际上固态硬盘没有那种机械部件，而完全由闪存（flash memory）和充当控制器的固件（firmware）构建。</p>
+<p>【2020 年视角：主机和 PC 都有一定的直读 SSD 功能】</p>
+<p>​   在固态硬盘内部有一组固件，称为闪存翻译层（the flash translation layer），其作用与旋转磁盘的磁盘控制器相同。而内存本身，可以以页（page）为单位从闪存读取和写入数据。页的大小根据具体技术的不同，从 512Bytes 到 4KB（PPT 上系笔误），一系列的页形成一个块，根据具体技术不同从 32 页到 128 页，此处块与前述逻辑块不同。</p>
+<p>​   固态硬盘对读没什么限制，但是写很麻烦（如 PPT：Page can be written only after its block has been erase），这是因为块在经过一定数量（大概十万次）重复写入后就会磨损无法再读写了。现代技术的闪存翻译层做了很多努力和使用了许多专有算法以延长 SSD 的使用生命。</p>
+<p>固态硬盘的性能特点 SSD Performance Characteristics</p>
+<p>​   (source: Intel SSD 730 product specification)</p>
+<pre><code>Sequential read tput  550 MB/s
+Random read tput      365 MB/s
+Avg seq read time      50 us
+Sequential write tput 470 MB/s
+Random write tput     303 MB/s
+Avg seq write time     60 us
+</code></pre>
+<p>Sequential access faster than random access</p>
+<p>​   Common theme in the memory hierarchy</p>
+<p>Random writes are somewhat slower</p>
+<p>​   Erasing a block takes a long time (~1 ms).</p>
+<p>​   Modifying a block page requires all other pages to be copied to new block.</p>
+<p>​   In earlier SSDs. the read/write gap was much larger.</p>
+<p>SSD Tradeoffs v.s. Rotating Disks</p>
+<p>​   Advantages</p>
+<p>​       没有移动部件所以读写速度更快，耗电更少，更结实 No moving parts -&gt; faster, less, more rugged</p>
+<p>​   Disadvantages</p>
+<p>​       可能磨损 Have the potential to wear out</p>
+<p>​           Mitigated by "wear leveling logic" in flash translation layer</p>
+<p>​           e.g. Intel SSD 730 guarantees 128 petabyte (here 1PB = 10^15 Bytes) of writes before they wear out</p>
+<p>​       In 2015, about 30 times more expensive per byte.</p>
+<p>​   Applications</p>
+<p>​       MP3 players, smart phones, laptops</p>
+<p>​       Beginning to appear om desktops and servers.</p>
+<p>The CPU-Memory Gap (37:42)</p>
+<p>​   The gap widens between DRAM, disk, and CPU speeds.</p>
+<p><strong>局部性</strong>发挥关键作用 Locality to the Rescue</p>
+<p>​   弥合 CPU 和内存之间差距的关键是这个非常根本的程序的基本属性——<strong>程序局部性</strong>。The key to bridging this CPU-Memory gap is a fundamental property of computer programs known as locality.</p>
+<p>​   程序局部性：程序倾向于使用其地址接近或等于最近使用过的数据和指令的那些数据和地址。Principle of Locality: Programs tend to use data and instructions with addresses near or equal to those they have used recently.</p>
+<p>​   时间局部性：最近引用的存储器位置可能再不久的将来再次被引用的属性。Temporal locality: Recently referenced items are likely to be referenced again in the near future.</p>
+<p>​   空间局部性：引用临近存储器位置的倾向。Spatial locality: items with nearby addresses tend to be referenced close together in time. </p>
+<p>Locality Example</p>
+<pre><code class="language-c">sum = 0;
+for (i = 0; i &lt; n; i++)
+    sum += a[i];
+return sum;
+</code></pre>
+<p>​   数据引用 Data references</p>
+<p>​       References array elements in succession (stride-1 reference pattern).【空间局部性】</p>
+<p>​       Reference variable <code>sum</code> each iteration.【时间局部性】</p>
+<p>​   指令引用 Instuction references</p>
+<p>​       Reference instructions in sequence.【空间局部性】</p>
+<p>​       Cycle through loop repeatedly.【时间局部性】</p>
+<p>Qualitative Estimates of Locality</p>
+<p>​   Claim: Being able to look at code and get a qualitative sense of its locality is a key skill for a professional programmer.</p>
+<p>​   Question: Does this function have good locality with respect to array <code>a</code>.</p>
+<pre><code class="language-c">int sum_array_rows(int a[M][N]) {
+    int i, j, sum = 0;
+    for (i = 0; i &lt; M; i++)
+        for (j = 0; j &lt; N; j++)
+            sum += a[i][j];
+   return sum;
+}
+</code></pre>
+<p>【好的程序局部性带来良好的性能，拥有对程序局部性的感知是程序员的一项重要技能】</p>
+<p>不难发现上述代码对数组 <code>a</code> 的访问是连续的（记住二维数组也是行优先排列为一列数据），下述代码则相当差：</p>
+<pre><code class="language-c">int sum_array_cols(int a[M][N]) {
+    int i, j, sum = 0;
+    for (j = 0; j &lt; N; j++)
+        for (i = 0; i &lt; M; i++)
+            sum += a[i][j];
+   return sum;
+}
+</code></pre>
+<p>存储器层次结构 Memory Hierarchies</p>
+<p>​   Some fundamental and enduring properties of hardware and software</p>
+<p>​       Fast storage technologies cost more per byte, have less capacity, and require more powerful (heat!).</p>
+<p>​       The gap between CPU and main memory speed is widening.</p>
+<p>​       Well-written programs tend to exhibit good locality.</p>
+<p>​   These fundamental properties complement each other beautifully.</p>
+<p>​   They suggest an approach for organizing memory and storage systems known as a <strong>memory hierarchy</strong>.</p>
+<pre><code>Smaller, faster, costlier storage devices
+^ L0: Registers // CPU registers hold words retrieved from the L1 cache.
+| L1: cache (SRAM) // L1 cache holds cache lines retrieved from the L2 cache.
+| L2: cache (SRAM) // L2 cache holds cache lines retrieved from the L3 cache.
+| L3: cache (SRAM) // L3 cache holds cache lines retrieved form main memory.
+| L4: main memory (DRAM) // Main memory holds disk blocks retrieved from local disks.
+| L5: local secondary storage (local disks)
+v L6: remote secondary storage (e.g. Web servers)
+Larger, slower, and cheaper storage devices 
+</code></pre>
+<p>Caches </p>
+<p>​   <strong>缓存</strong>：一个更小的、更快的存储设备，充当更慢的设备中的数据的暂存区域。<strong>Cache</strong>: A smaller, faster storage device that acts as a staging area for a subset of the data in a larger, slower device.</p>
+<p>​   Fundamental idea of a memory hierarchy:</p>
+<p>​       For each k, the faster, smaller device at level k serves as a cache for the larger, slower device at level k+1.</p>
+<p>​   为什么存储器层次结构有用 Why do memory hierarchies work?</p>
+<p>​       因为局部性，相比第 k+1 层的数据，程序更倾向于访问存储在第 k 层的数据。Because of locality, programs tend to access the data at level k more often than they access the data at level k+1.</p>
+<p>​       因此我们访问第 k 层的这些数据，将以第 k 层访问的速度而非第 k+1 层访问的速度。Thus, the storage at level k+1 can be slower, and thus larger and cheaper per bit.</p>
+<p>​   <strong>Big Idea</strong>: The memory hierarchy creates a large pool of storage that costs as much as the cheap storage near the bottom, but that serves data to programs at the rate of fast storage near the top.</p>
+<p>通用的缓存的概念 General Cache Concepts</p>
+<p>```</p>
+<hr />
+<p>|  8  |  9  | 14  |  3  |  Cache </p>
+<hr />
+<pre><code>         ^
+         |
+         v
+</code></pre>
+<hr />
+<p>|  0  |  1  |  2  |  3  |  Memory</p>
+<hr />
+<p>|  4  |  5  |  6  |  7  | </p>
+<hr />
+<p>|  8  |  9  | 10  | 11  | </p>
+<hr />
+<p>| 12  | 13  | 14  | 15  | </p>
+<hr />
+<p>|          ...          | </p>
+<hr />
+<p>```</p>
+<p>缓存命中：需要的数据就在缓存里 Cache Hit：data in block b needed.</p>
+<p>缓存缺失（缓存未命中）：需要的数据需要从下级取（不在缓存中） Cache Miss: block b is fetched from memory.</p>
+<p>缓存未命中的类型 Types of Cache Misses</p>
+<p>​   冷不命中/强制不命中 Cold (compulsory) miss（显然这种未命中无法避免，将数据加载到空缓存中称为缓存的暖身 warming up）</p>
+<p>​       缓存是空的 Cold misses occur because the cache is empty.</p>
+<p>​   冲突不命中 Conflict miss</p>
+<p>​       （这种未命中出现的原因是缓存必须设计比较简单，这就导致其限制了块可以被放置的位置，因此这种未命中与用于映射块的算法密切相关。）</p>
+<p>​       Most caches limit blocks at level k+1 to a small subset (somtimes a singleton) of the block positions at level k.</p>
+<p>​           e.g. Block i at level k+1 must be placed in block (i mod 4) at level k.</p>
+<p>​       Conflict misses occur when the level k cache is large enough, but multiple data objects all map to the same level k block.</p>
+<p>​           e.g. referencing blocks 0, 8, 0, 8, 0, 8, 0, 8, ... would miss every time.</p>
+<p>​   容量不命中 Capacity miss</p>
+<p>​       缓存大小有限，你的工作集大小比缓存大 Occurs when the set of active cache blocks (working set) is larger than the cache.（我们称呼一定时间内反复访问的数据构成工作集，对应到更高一级的抽象，可能就是一个循环或函数内反复调用的数组。）</p>
+<p>Examples of Caching in the Memory Hierarchy</p>
+<table>
+<thead>
+<tr>
+<th>Cache Type</th>
+<th>What is cached?</th>
+<th>Where is it cached?</th>
+<th>Latency (cycles)</th>
+<th>Managed by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registers</td>
+<td>4-8 bytes words</td>
+<td>CPU core</td>
+<td>0</td>
+<td>Compiler</td>
+</tr>
+<tr>
+<td>TLB</td>
+<td>Address translations</td>
+<td>On-Chip TLB</td>
+<td>0</td>
+<td>Hardware MMU</td>
+</tr>
+<tr>
+<td>L1 cache</td>
+<td>64-byte blocks</td>
+<td>On-Chip L1</td>
+<td>4</td>
+<td>Hardware</td>
+</tr>
+<tr>
+<td>L2 cache</td>
+<td>64-byte blocks</td>
+<td>On-Chip L2</td>
+<td>10</td>
+<td>Hardware</td>
+</tr>
+<tr>
+<td>Virtual Memory</td>
+<td>4-KB pages</td>
+<td>Main memory</td>
+<td>100</td>
+<td>Hardware + OS</td>
+</tr>
+<tr>
+<td>Buffer cache</td>
+<td>Parts of files</td>
+<td>Main memory</td>
+<td>100</td>
+<td>OS</td>
+</tr>
+<tr>
+<td>Disk cache</td>
+<td>Disk sectors</td>
+<td>Disk controller</td>
+<td>100,000</td>
+<td>Disk firmware</td>
+</tr>
+<tr>
+<td>Network buffer cache</td>
+<td>Parts of files</td>
+<td>Local disk</td>
+<td>10,000,000</td>
+<td>NFS client</td>
+</tr>
+<tr>
+<td>Browser cache</td>
+<td>Web pages</td>
+<td>Local disk</td>
+<td>10,000,000</td>
+<td></td>
+</tr>
+<tr>
+<td>Web cache</td>
+<td>Web pages</td>
+<td>Remote server disks</td>
+<td>1,000,000,000</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>注：</p>
+<p>​   翻译后备缓冲（TLB, translation lookaside buffer）是一个在虚拟内存中使用的缓存。</p>
+<p>​   操作系统（OS, operating system）。</p>
+<p>​   缓冲区缓存（buffer cache）</p>
+<p>​   网络文件系统（network file system）和安德鲁文件系统（andrew file system）。</p>
+<p>​   浏览器缓存（cache browser）。</p>
+<hr />
+<p>Summary</p>
+<p>​   The speed gap between CPU, memory and mass storage continues to widen.</p>
+<p>​   Well-written programs exhibit a property called <em>locality</em>.</p>
+<p>​   Memory hierarchies based on <em>caching</em> close the gap by exploiting locality.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
