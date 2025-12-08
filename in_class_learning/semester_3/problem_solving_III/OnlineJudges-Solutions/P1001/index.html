@@ -3244,88 +3244,88 @@
 
   <h1>P1001</h1>
 
-<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
 
-typedef std::pair&lt;int, int&gt; PII;
-const int N = 100010;
-int q, inpo, inpx, inpu, inpv, inps;
-std::set&lt;int&gt; pts;
-int ptsize;
-std::vector&lt;PII&gt; eds;
-std::vector&lt;int&gt; query;
-bool tag[N];
-std::vector&lt;int&gt; adj[N];
-int deg[N];
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">PII</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100010</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">inpo</span><span class="p">,</span><span class="w"> </span><span class="n">inpx</span><span class="p">,</span><span class="w"> </span><span class="n">inpu</span><span class="p">,</span><span class="w"> </span><span class="n">inpv</span><span class="p">,</span><span class="w"> </span><span class="n">inps</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pts</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ptsize</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PII</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eds</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">tag</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">adj</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">deg</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
 
-int main(void) {
-    scanf(&quot;%d&quot;, &amp;q);
-    while (q --) {
-        scanf(&quot;%d&quot;, &amp;inpo);
-        if (inpo == 1) {
-            scanf(&quot;%d&quot;, &amp;inpx);
-            if (pts.find(inpx) == pts.end()) {
-                ++ ptsize;
-                pts.insert(inpx);
-            }
-            printf(&quot;%d\n&quot;, ptsize);
-        } else if (inpo == 2) {
-            scanf(&quot;%d%d&quot;, &amp;inpu, &amp;inpv);
-            if (pts.find(inpu) == pts.end() || pts.find(inpv) == pts.end()) {
-                continue;
-            }
-            adj[inpu].push_back(inpv);
-            adj[inpv].push_back(inpu);
-            ++ deg[inpu];
-            ++ deg[inpv];
-            eds.push_back(std::make_pair(inpu, inpv));
-        } else if (inpo == 3) {
-            scanf(&quot;%d&quot;, &amp;inpx);
-            printf(&quot;%d\n&quot;, deg[inpx]);
-        } else if (inpo == 4) {
-            scanf(&quot;%d&quot;, &amp;inps);
-            query.resize(inps);
-            for (int i = 0; i &lt; inps; ++ i) {
-                scanf(&quot;%d&quot;, &amp;query[i]);
-                tag[query[i]] = true;
-            }
-            int ans = 0;
-            for (int i = 0; i &lt; inps; ++ i) {
-                for (int j = 0, l = adj[query[i]].size(); j &lt; l; ++ j) {
-                    if (tag[adj[query[i]][j]]) {
-                        ++ ans;
-                    }
-                }
-            }
-            ans &gt;&gt;= 1;
-            printf(&quot;%d\n&quot;, ans);
-            for (int i = 0; i &lt; inps; ++ i) {
-                tag[query[i]] = false;
-            }
-        } else if (inpo == 5) {
-            int ans = 0;
-            scanf(&quot;%d&quot;, &amp;inps);
-            for (int i = 0; i &lt; inps; ++ i) {
-                scanf(&quot;%d&quot;, &amp;inpx);
-                -- inpx;
-                if (!tag[eds[inpx].first]) {
-                    ++ ans;
-                    tag[eds[inpx].first] = true;
-                }
-                if (!tag[eds[inpx].second]) {
-                    ++ ans;
-                    tag[eds[inpx].second] = true;
-                }
-            }
-            printf(&quot;%d\n&quot;, ans);
-            for (auto it = pts.begin(); it != pts.end(); ++ it) {
-                tag[*it] = false;
-            }
-        }
-    }
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="w"> </span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inpo</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inpo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inpx</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pts</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">inpx</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pts</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="o">++</span><span class="w"> </span><span class="n">ptsize</span><span class="p">;</span>
+<span class="w">                </span><span class="n">pts</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">inpx</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ptsize</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inpo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inpu</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inpv</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pts</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">inpu</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pts</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">pts</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">inpv</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pts</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">adj</span><span class="p">[</span><span class="n">inpu</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">inpv</span><span class="p">);</span>
+<span class="w">            </span><span class="n">adj</span><span class="p">[</span><span class="n">inpv</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">inpu</span><span class="p">);</span>
+<span class="w">            </span><span class="o">++</span><span class="w"> </span><span class="n">deg</span><span class="p">[</span><span class="n">inpu</span><span class="p">];</span>
+<span class="w">            </span><span class="o">++</span><span class="w"> </span><span class="n">deg</span><span class="p">[</span><span class="n">inpv</span><span class="p">];</span>
+<span class="w">            </span><span class="n">eds</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">inpu</span><span class="p">,</span><span class="w"> </span><span class="n">inpv</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inpo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inpx</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">deg</span><span class="p">[</span><span class="n">inpx</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inpo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inps</span><span class="p">);</span>
+<span class="w">            </span><span class="n">query</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">inps</span><span class="p">);</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inps</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">query</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">                </span><span class="n">tag</span><span class="p">[</span><span class="n">query</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inps</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adj</span><span class="p">[</span><span class="n">query</span><span class="p">[</span><span class="n">i</span><span class="p">]].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="n">adj</span><span class="p">[</span><span class="n">query</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">j</span><span class="p">]])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="o">++</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">ans</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ans</span><span class="p">);</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inps</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">tag</span><span class="p">[</span><span class="n">query</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inpo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inps</span><span class="p">);</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inps</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">inpx</span><span class="p">);</span>
+<span class="w">                </span><span class="o">--</span><span class="w"> </span><span class="n">inpx</span><span class="p">;</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">tag</span><span class="p">[</span><span class="n">eds</span><span class="p">[</span><span class="n">inpx</span><span class="p">].</span><span class="n">first</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="o">++</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">tag</span><span class="p">[</span><span class="n">eds</span><span class="p">[</span><span class="n">inpx</span><span class="p">].</span><span class="n">first</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">tag</span><span class="p">[</span><span class="n">eds</span><span class="p">[</span><span class="n">inpx</span><span class="p">].</span><span class="n">second</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="o">++</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">tag</span><span class="p">[</span><span class="n">eds</span><span class="p">[</span><span class="n">inpx</span><span class="p">].</span><span class="n">second</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ans</span><span class="p">);</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pts</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">pts</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">tag</span><span class="p">[</span><span class="o">*</span><span class="n">it</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-    return 0;
-}
-</code></pre>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

@@ -3552,20 +3552,20 @@
 <p>​   Reduce frequency with which computation performed</p>
 <p>​       If it will always produce same result</p>
 <p>​       Especially moving code out of loop</p>
-<pre><code class="language-c">void set_row(double *a, double *b, long i, long n) {
-    long j;
-    for (j = 0; j &lt; n; j++)
-        a[n*i+j] = b[j]
-}
-</code></pre>
-<pre><code class="language-c">void set_row(double *a, double *b, long i, long n) {
-    long j;
-    int ni = n*i;
-    for (j = 0; j &lt; n; j++)
-        a[ni+j] = b[j]
-}
-</code></pre>
-<pre><code class="language-assembly">set_row:
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">set_row</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">set_row</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ni</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">a</span><span class="p">[</span><span class="n">ni</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>set_row:
     testq   %rcx, %rcx           # Test n
     jle     .L1                  # If , go to done
     imulq   %rcx, %rdx           # ni = n*i
@@ -3579,8 +3579,7 @@
     jne     .L3                  # if !=, goto loop
 .L1:                             # done:
     rep; ret
-
-</code></pre>
+</code></pre></div>
 <h3 id="reduction-in-strength">减少计算量 Reduction in Strength</h3>
 <p>​   Replace costly operation with simpler one</p>
 <p>​   Shift, and instead of multiply or divide</p>
@@ -3592,14 +3591,14 @@
 <h3 id="share-common-subexpressions">共用子表达式 Share Common Subexpressions</h3>
 <p>​   复用部分表达式 Reuse portions of expressions</p>
 <p>​   GCC will do this with <code>--O1</code></p>
-<pre><code class="language-c">/* Sum neighbors of i,j */
-up =    val[(i-1)*n + j  ];
-down =  val[(i+1)*n + j  ];
-left =  val[i*n     + j-1];
-right = val[i*n     + j+1];
-sum = up + down + left + right;
-</code></pre>
-<pre><code class="language-assembly">leaq    1(%rsi), %rax # i+1
+<div class="highlight"><pre><span></span><code><span class="cm">/* Sum neighbors of i,j */</span>
+<span class="n">up</span><span class="w"> </span><span class="o">=</span><span class="w">    </span><span class="n">val</span><span class="p">[(</span><span class="n">i</span><span class="mi">-1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w">  </span><span class="p">];</span>
+<span class="n">down</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">val</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w">  </span><span class="p">];</span>
+<span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">n</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="mi">-1</span><span class="p">];</span>
+<span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">n</span><span class="w">     </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">down</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>leaq    1(%rsi), %rax # i+1
 leaq    -1(%rsi), %r8 # i-1
 imulq   %rcx, %rsi    # i*n
 imulq   %rcx, %rax    # (i+1)*n
@@ -3607,40 +3606,40 @@ imulq   %rcx, %r8     # (i-1)*n
 addq    %rdx, %rsi    # i*n+j
 addq    %rdx, %rax    # (i+1)*n+j
 addq    %rdx, %r8     # (i-1)*n+j
-</code></pre>
+</code></pre></div>
 <p>优化后</p>
-<pre><code class="language-c">long inj = i*n+j
-up =    val[inj - n];
-down =  val[inj + n];
-left =  val[inj - 1];
-right = val[inj + 1];
-sum = up + down + left + right;
-</code></pre>
-<pre><code class="language-assembly">imulq   %rcx, %rsi        # i*n
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">inj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="n">j</span>
+<span class="n">up</span><span class="w"> </span><span class="o">=</span><span class="w">    </span><span class="n">val</span><span class="p">[</span><span class="n">inj</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">n</span><span class="p">];</span>
+<span class="n">down</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">val</span><span class="p">[</span><span class="n">inj</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">];</span>
+<span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">val</span><span class="p">[</span><span class="n">inj</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">[</span><span class="n">inj</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">down</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>imulq   %rcx, %rsi        # i*n
 addq    %rdx, %rsi        # i*n+j
 movq    %rsi, %rax        # i*n+j
 subq    %rcx, %rax        # i*n+j-n
 leaq    (%rsi,%rcx), %rcx # i*n+n -&gt; i*n and then again
-</code></pre>
+</code></pre></div>
 <h3 id="optimization-blocker-1-procedure-calls">优化的阻碍一：过程调用 Optimization Blocker #1: Procedure Calls</h3>
 <p>Procedure to Convert String to Lower Case</p>
-<pre><code class="language-c">void lower(char *s) {
-    size_t i;
-    for (i = 0; i &lt; strlen(s); i ++)
-        if (s[i] &gt;= 'A' &amp;&amp; s[i] &lt;= 'Z')
-            s[i] -= 'A' - 'a';
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">lower</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;Z&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Extracted from 213 lab submissions, Fall, 1998</p>
 <p>【这里有一个关键问题：循环时调用了 <code>strlen()</code> 而对象 <code>s</code> 发生了变化，所以编译器不敢将字符串长固定为常数，只因它不懂代码，这就导致每次循环都调用该函数，使得效率劣化可观：本应线性的复杂度劣化到了平方级别。】</p>
-<pre><code class="language-c">void lower(char *s) {
-    size_t i;
-    size_t len = strlen(s);
-    for (i = 0; i &lt; len; i ++)
-        if (s[i] &gt;= 'A' &amp;&amp; s[i] &lt;= 'Z')
-            s[i] -= 'A' - 'a';
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">lower</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;Z&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Why couldn't compiler move <code>strlen</code> out of inner loop?</p>
 <p>​   Procedure may have side effects</p>
 <p>​       Alters global state each time called</p>
@@ -3655,29 +3654,29 @@ leaq    (%rsi,%rcx), %rcx # i*n+n -&gt; i*n and then again
 <p>​       GCC does this with <code>--O1</code></p>
 <p>​           Within single file</p>
 <p>​   Do your own code motion</p>
-<pre><code class="language-c">size_t lencnt = 0;
-size_t strlen(const char *s) {
-    size_t length = 0;
-    while (*s != 0) {
-        s++; length++;
-    }
-    lencnt += length;
-    return length;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">lencnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">strlen</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">s</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="n">length</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">lencnt</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">length</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">length</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>比如说在多文件中使用这种自己写的同名函数，使用这种和库函数有差异的函数，在链接之前（编译在链接之前！！）根本无法区分，编译器自然只能将函数当成黑盒，而不敢轻易优化篡改之。</p>
 <p>内存很重要 Memory Matters</p>
-<pre><code class="language-c">/* Sum rows is of n X n matrix a and store in vector b */
-void sum_rows1(double *a, double *b, long n) {
-    long i, j;
-    for (i = 0; i &lt; n; i++) {
-        b[i] = 0;
-        for (j = 0; j &lt; n; j++)
-            b[i] += a[i*n + j];
-    }
-}
-</code></pre>
-<pre><code class="language-assembly"># sum_rows1 inner loop
+<div class="highlight"><pre><span></span><code><span class="cm">/* Sum rows is of n X n matrix a and store in vector b */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sum_rows1</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># sum_rows1 inner loop
 .L4:
     movsd   (%rsi,%rax,8), %xmm0 # FP Load
     addsd   (%rdi), %xmm0        # FP add
@@ -3685,31 +3684,31 @@ void sum_rows1(double *a, double *b, long n) {
     addq    $8, %rdi
     cmpq    %rcx, %rdi
     jne     .L4
-</code></pre>
+</code></pre></div>
 <p>code updates <code>b[i]</code> on every iteration</p>
 <p>Why couldn't compiler optimize this away?</p>
 <p>内存别名 Memory Aliasing</p>
 <p>​   别名：当程序的不同部分指向内存中的相同位置，称其为别名</p>
 <p>​   C 编译器很难快速得知是否有内存别名引用</p>
-<pre><code class="language-c">double A[9] =
-    { 0, 1,    2,
-      4, 8,   16,
-     32, 64, 128 };
-double *B = A + 3;
-sum_rows1(A, B, 3);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">   </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">     </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="w"> </span><span class="p">};</span>
+<span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="n">sum_rows1</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+</code></pre></div>
 <p>移除别名 Removing Aliasing</p>
-<pre><code class="language-c">/* Sum rows is of n X n matrix a and store in vector b */
-void sum_rows1(double *a, double *b, long n) {
-    long i, j;
-    for (i = 0; i &lt; n; i++) {
-        double val
-        for (j = 0; j &lt; n; j++)
-            val += a[i*n + j];
-        b[i] = val;
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Sum rows is of n X n matrix a and store in vector b */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sum_rows1</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">val</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">];</span>
+<span class="w">        </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>可能你没看懂，因为这个例子并<strong>不是</strong>为了说明正确计算，<code>B</code> 的内存重叠本身就会导致计算很难正确。</p>
 <p>这个例子是说明在存在别名的情况下，进行计算需要很多内存操作，以保证别名的正确，而我们往往会被这种别名的繁复计算给拖累。编译器不知道你用别名是不小心的还是故意的，所以就没有优化。</p>
 <p>Optimization Blocker: Memory Aliasing</p>
@@ -3729,42 +3728,42 @@ void sum_rows1(double *a, double *b, long n) {
 <p>​       编译器通常不会做这些变形 Compilers often cannot make these transformations</p>
 <p>​       浮点数计算不满足结合律和分配律 Lack of associativity and distributivity in floating-point arithmetic</p>
 <h3 id="benchmark-example-data-type-for-vectors">Benchmark Example: Data Type for Vectors</h3>
-<pre><code class="language-c">/* data structure for vectors */
-typedef struct {
-    size_t len;
-    data_t *data;
-} vec;
-/* retrieve vector element and store at val */
-int get_vec_element(*vec v, size_t idx, data_t *val) {
-    if (idx &gt;= v-&gt;len)
-        return 0;
-    *val = v-&gt;data[idx];
-    return 1;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cm">/* data structure for vectors */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span>
+<span class="cm">/* retrieve vector element and store at val */</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">get_vec_element</span><span class="p">(</span><span class="o">*</span><span class="n">vec</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">idx</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">v</span><span class="o">-&gt;</span><span class="n">len</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>基准计算 Benchmark Computation</p>
-<pre><code class="language-c">void  combine1(vec_ptr v, data_t *dest) {
-    long int i;
-    *dest = IDENT;
-    for (i = 0; i &lt; vec_length(v); i++) {
-        data_t val;
-        get_vec_element(v, i, &amp;val);
-        *dest = *dest OP val;
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w">  </span><span class="nf">combine1</span><span class="p">(</span><span class="n">vec_ptr</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="o">*</span><span class="n">dest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IDENT</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">data_t</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="n">get_vec_element</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
+<span class="w">        </span><span class="o">*</span><span class="n">dest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>注：此处 <code>OP</code> 是一个运算，可以是加法或乘法等等，<code>IDENT</code> 则表示该运算的单位元（identity），与之对应为 <code>0</code> 或 <code>1</code> 等等。</p>
 <p>进行一些基本的优化：</p>
-<pre><code class="language-c">void combine4(vec_ptr v, data_t *dest) {
-    long i;
-    long length = vec_length(v);
-    data_t *d = get_vec_start(v);
-    data_t t = IDENT;
-    for (i = 0; i &lt; length; i++)
-        t = t OP d[i];
-    *dest = t;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">combine4</span><span class="p">(</span><span class="n">vec_ptr</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_vec_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IDENT</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="o">*</span><span class="n">dest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>处理单个元素的所花的时间周期 Cycles Per Element (CPE)</p>
 <p>​   Convenient way to express performance of program that operates on vector or lists.</p>
 <p>​   T = CPE * n + Overhead. 教授给出了如下表格：</p>
@@ -3819,13 +3818,13 @@ int get_vec_element(*vec v, size_t idx, data_t *val) {
 <p>​   Most modern CPUs are superscalar.</p>
 <p>​   Intel: since Pentium (1993)（奔腾）</p>
 <p>流水线功能单元 Pipelined Functional Units【DLCO 的流水线历历在目】</p>
-<pre><code class="language-c">long mult_eg(long a, long b, long c) {
-    long p1 = a*b;
-    long p2 = a*c;
-    long p3 = p1*p2;
-    return p3;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">mult_eg</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">p3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="o">*</span><span class="n">p2</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">p3</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -3886,7 +3885,7 @@ int get_vec_element(*vec v, size_t idx, data_t *val) {
 <p>​   Pass partial computations from stage to stage</p>
 <p>​   Stage i can start on new computation once values passed to i+1</p>
 <p>​   e.g. complete 3 multiplications in 7 cycels even though each requires 3 cycels.</p>
-<pre><code>Haswell CPU
+<div class="highlight"><pre><span></span><code>Haswell CPU
     8 Total Functional Units
     Multiple instructions can execute in parallel
         2 load, with address computation
@@ -3903,16 +3902,16 @@ Integer/Long Divide        3-30    3-30
 Single/Double FP Multiply  5       
 Single/Double FP Add       3
 Single/Double FP Divide    3-15     
-</code></pre>
+</code></pre></div>
 <p>Haswell 是 Intel x86 系列的最新版本之一【此视频时间为 2015 年】，Latency：延迟，Cycle/Issue：表示两个指令阶段之间的距离，如表所示，除法没有流水线，效率相当低。</p>
 <p>x86-64 Compilation of <code>Combine4</code></p>
-<pre><code class="language-assembly"># Inner Loop (Case: Integer Multiply)
+<div class="highlight"><pre><span></span><code># Inner Loop (Case: Integer Multiply)
 .L519:                          # Loop:
     imull   (%rax,%rdx,4), %ecx # t = t * d[i]
     addq    $1, %rdx            # i++
     cmpq    %rdx, %rbp          # Compare length:i
     jg      .L519               # if &gt;, go to Loop
-</code></pre>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -3976,23 +3975,23 @@ Single/Double FP Divide    3-15
 </tbody>
 </table>
 <p>循环展开技术 Loop Unrolling (2*1)</p>
-<pre><code class="language-c">void unroll2a_combine(vec_ptr v, data_t *dest) {
-    long length = vec_length(v);
-    long limit = length-1;
-    data_t *d = get_vec_start(v);
-    data_t x = IDENT;
-    long i;
-    /* Combine 2 elements at a time */
-    for (i = 0; i &lt; limit; i+=2) {
-        x = (x OP d[i]) OP d[i+1];
-    }
-    /* Finish any remaining elements */
-    for (; i &lt; length; i++) {
-        x = x OP d[i];
-    }
-    *dest = x;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">unroll2a_combine</span><span class="p">(</span><span class="n">vec_ptr</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_vec_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IDENT</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Combine 2 elements at a time */</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">limit</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* Finish any remaining elements */</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="o">*</span><span class="n">dest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>循环展开的基本思想是在一次循环中计算多个值而不是一个值，这样可以减少计数和分支预测错误的代价。</p>
 <p>​   Helps integer add</p>
 <p>​       Achieves latency bound</p>
@@ -4005,23 +4004,23 @@ Single/Double FP Divide    3-15
 <p><img alt="QQ_1764956365635" src="../QQ_1764956365635.png" /></p>
 <p>延迟界限（latency bound）：在一系列操作必须严格顺序执行时，执行一条指令所要花费的全部时间。</p>
 <p>吞吐量界限（throughput bound）基于硬件的数量和性能、基于功能单元的原始计算能力，所以你在表中看到浮点数乘法的吞吐量界限更小，是因为我们之前展示的 Haswell CPU 有两个浮点数乘法单元，但只有一个浮点数加法单元。</p>
-<pre><code class="language-c">void unroll2a_combine(vec_ptr v, data_t *dest) {
-    long length = vec_length(v);
-    long limit = length-1;
-    data_t *d = get_vec_start(v);
-    data_t x0 = IDENT;
-    data_t x1 = IDENT;
-    long i;
-    for (i = 0; i &lt; limit; i += 2) {
-        x0 = x0 OP d[i];
-        x1 = x1 OP d[i+1];
-    }
-    for (; i &lt; length; i++) {
-        x0 = x0 OP d[i];
-    }
-    *dest = x0 OP x1;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">unroll2a_combine</span><span class="p">(</span><span class="n">vec_ptr</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="o">*</span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_vec_start</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IDENT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data_t</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IDENT</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">limit</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="o">*</span><span class="n">dest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="n">OP</span><span class="w"> </span><span class="n">x1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>这种循环展开相当于显式地并行。</p>
 <p>循环展开和累计 Unrolling &amp; Accumulating</p>
 <p>​   Idea</p>
@@ -4155,7 +4154,7 @@ Single/Double FP Divide    3-15
 </table>
 <p>基本上极限是吞吐量界限，当然之后你必须考虑的瓶颈就变成了一些额外的准备开销而不只是 CPE.</p>
 <p>我们之前谈过 SSE，现在来谈谈 AVX，其使用 YMM 寄存器作为浮点数寄存器而不是 XMM 寄存器，其大小是后者的两倍，Intel 还打算（视频时间为 2015 年）在一年内推出新的 AVX512 版本，其寄存器为 512 位，长度为 64 字节，是 YMM 寄存器的两倍长。</p>
-<pre><code>Programming with AVX2
+<div class="highlight"><pre><span></span><code>Programming with AVX2
 YMM Registers
 16 total, each 32 bytes
     32 single-byte integers
@@ -4165,11 +4164,11 @@ YMM Registers
     4 double-precision floats
     1 single-precision float
     1 double-precision float
-</code></pre>
-<pre><code>vaddsd %ymm0, %ymm1, %ymm1
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>vaddsd %ymm0, %ymm1, %ymm1
 vaddpd %ymm0, %ymm1, %ymm1
 等新的矢量运算指令也被添加了。
-</code></pre>
+</code></pre></div>
 <p>使用矢量指令 Using Vector Instructions</p>
 <table>
 <thead>

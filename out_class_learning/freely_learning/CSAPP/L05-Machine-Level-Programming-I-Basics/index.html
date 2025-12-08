@@ -3475,8 +3475,8 @@
 <p>第一步：使用编译器（compiler）转为汇编代码；第二步，使用汇编器（汇编编译器，assembler）将其转换为实际的字节形式；第三步，使用链接器（linker）将各文件的机器码融合在一起交给中央处理器处理。</p>
 <p>库导入一部分在 compiler 时动态导入，一部分在 linker 时导入。</p>
 <p>examples</p>
-<pre><code class="language-bash">$ gcc -Og -S sum.c 
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>gcc<span class="w"> </span>-Og<span class="w"> </span>-S<span class="w"> </span>sum.c<span class="w"> </span>
+</code></pre></div>
 <p>其中 <code>-Og</code> 表示优化调试体验，编译器按调试方便合理优化（即贴近源代码），一般是禁用了许多优化方式，<code>-S</code> 表示只将源文件编译成汇编代码，不进行汇编和链接。得到的结果应该是 <code>.s</code> 文件。</p>
 <p>crud，CRUD，create, retrieve, update &amp; drop，增删改查（增，查，改，删）</p>
 <p>鲨鱼机（shark machine）和非鲨鱼机器（non-shark）</p>
@@ -3488,11 +3488,11 @@
 </ol>
 <p>检查是否是真的可能的汇编：反汇编器（disassembler）：将机器码反汇编为汇编代码。</p>
 <p>虽然说汇编和机器码一一对应，但汇编中的变量名称汇编后就完全丢失。</p>
-<pre><code class="language-bash">$ gcc -Og sum.c -o sum 
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>gcc<span class="w"> </span>-Og<span class="w"> </span>sum.c<span class="w"> </span>-o<span class="w"> </span>sum<span class="w"> </span>
+</code></pre></div>
 <p>反汇编</p>
-<pre><code class="language-bash">$ odjdump -d sum &gt; sum.d
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>odjdump<span class="w"> </span>-d<span class="w"> </span>sum<span class="w"> </span>&gt;<span class="w"> </span>sum.d
+</code></pre></div>
 <p>当然你也可以使用 gdb 调试。</p>
 <h2 id="part-3">Part 3</h2>
 <p>x86-64 整数寄存器（integer registers），共十六类（个）寄存器</p>
@@ -3661,15 +3661,15 @@
 <pre><code>1. 计算地址而不用取引用，例如 `p = &amp;x[i];` （初始目的）
 1. 进行 `x+k*y` 的数值计算，其中 `k` 为 1, 2, 4, 8. （借用计算形式，普通调用乘法太慢）
 </code></pre>
-<pre><code class="language-c">long m12(long x) {
-    return x*12;
-}
-</code></pre>
-<pre><code class="language-assembly">leaq (%rdi,%rdi,2), %rax # t &lt;- x+x*2
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">m12</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="mi">12</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>leaq (%rdi,%rdi,2), %rax # t &lt;- x+x*2
 salq $2, %rax            # return t&lt;&lt;2
-</code></pre>
+</code></pre></div>
 <p>一些算术操作：</p>
-<pre><code>二元：
+<div class="highlight"><pre><span></span><code>二元：
 add   加
 sub   减
 imul  立即数乘法
@@ -3686,7 +3686,7 @@ inc   自加    dest &lt;- dest + 1
 dec   自减    dest &lt;- dest - 1
 neg   取负    dest &lt;- -dest
 not   按位取反 dest &lt;- ~dest
-</code></pre>
+</code></pre></div>
 <h2 id="summary-official">Summary (official)</h2>
 <ul>
 <li>History of Intel processors and architectures</li>

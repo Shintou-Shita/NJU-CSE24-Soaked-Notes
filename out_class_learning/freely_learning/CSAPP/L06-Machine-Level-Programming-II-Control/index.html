@@ -3563,43 +3563,43 @@
 </tbody>
 </table>
 <p>例如：</p>
-<pre><code class="language-c">int gt(long x, long y) {
-    return x &gt; y
-}
-/*
-%rdi   argument x
-%rsi   argument y
-%rax   return value
-*/
-</code></pre>
-<pre><code class="language-assembly">cmpq   %rsi, %rdi  # compare x:y
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">gt</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span>
+<span class="p">}</span>
+<span class="cm">/*</span>
+<span class="cm">%rdi   argument x</span>
+<span class="cm">%rsi   argument y</span>
+<span class="cm">%rax   return value</span>
+<span class="cm">*/</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cmpq   %rsi, %rdi  # compare x:y
 setg   %al         # set when &gt;
 movzbl %al, %eax   # zero rest of %rax
 ret
-</code></pre>
+</code></pre></div>
 <p>这里 <code>movzbl</code> 指令总体上是 <code>mov</code> 指令，但是有一个转换：<code>z</code> 表示零扩展，<code>b</code> 和 <code>l</code> 分别表示字节（byte，8 位）和长字（long word，32 位），那么为什么不是 <code>movzbq</code> 呢？首先没有这条指令，其次 <code>%rax</code> 高位会自动清零——对低 32 位操作会清理高 32 位，这个规则对字节-双字节不适用，至于谁设计了这条长字-四字规则，只有天知道。</p>
 <h2 id="part-2-conditional-branches">Part 2: Conditional branches</h2>
 <p>jX instructions（条件跳转指令）：</p>
 <p>之前十条 setx 改为 jx，额外加上一条无条件跳转指令：<code>jmp</code>，条件：<code>1</code>，描述：Unconditional（无条件）.</p>
 <p>条件跳转指令（老式）</p>
-<pre><code class="language-c">long absdiff(long x, long y) {
-    long result;
-    if (x &gt; y)
-        result = x - y;
-    else
-        result = y - x;
-    return result;
-}
-/*
-%rdi   argument x
-%rsi   argument y
-%rax   return value
-*/
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">absdiff</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*</span>
+<span class="cm">%rdi   argument x</span>
+<span class="cm">%rsi   argument y</span>
+<span class="cm">%rax   return value</span>
+<span class="cm">*/</span>
+</code></pre></div>
 <p>generation:</p>
-<pre><code class="language-bash">shark&gt; gcc -Og -S -fno-if-conversion control.c
-</code></pre>
-<pre><code class="language-assembly">absdiff:
+<div class="highlight"><pre><span></span><code>shark&gt;<span class="w"> </span>gcc<span class="w"> </span>-Og<span class="w"> </span>-S<span class="w"> </span>-fno-if-conversion<span class="w"> </span>control.c
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>absdiff:
    cmpq    %rsi, %rdi # x:y
    jle     .L4
    movq    %rdi, %rax # branch1
@@ -3609,43 +3609,43 @@ ret
    movq    %rsi, %rax # branch2
    subq    %rdi, %rax # branch2
    ret                # branch2
-</code></pre>
+</code></pre></div>
 <p>条件跳转指令（使用 goto）</p>
-<pre><code class="language-c">long absdiff_j(long x, long y) {
-    long result;
-    int ntest = x &lt;= y;
-    if (ntest) goto Else;
-    result = x - y;
-    goto Done;
-Else:
-    result = y - x;
-Done:
-    return result;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">absdiff_j</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ntest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ntest</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">Else</span><span class="p">;</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">Done</span><span class="p">;</span>
+<span class="nl">Else</span><span class="p">:</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="nl">Done</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>广义条件表达式翻译，使用分支（general conditional expressions translation with branches）</p>
-<pre><code class="language-c">val = Test ? Then_Expr : Else_Expr;
-// result = x &gt; y ? x - y : y - x;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Test</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Then_Expr</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Else_Expr</span><span class="p">;</span>
+<span class="c1">// result = x &gt; y ? x - y : y - x;</span>
+</code></pre></div>
 <p>Goto 版本：</p>
-<pre><code class="language-c">    ntest = !Test;
-    if (ntest) goto Else;
-    val = Then_Expr;
-    goto Done;
-Else:
-    val = Else_Expr;
-Done:
-    ...
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">ntest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">Test</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ntest</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">Else</span><span class="p">;</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Then_Expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">Done</span><span class="p">;</span>
+<span class="nl">Else</span><span class="p">:</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Else_Expr</span><span class="p">;</span>
+<span class="nl">Done</span><span class="p">:</span>
+<span class="w">    </span><span class="p">...</span>
+</code></pre></div>
 <p>使用条件移动（conditional moves）：Then 和 Else 结果同时计算，然后再根据 Test 计算决定取哪个，其中<strong>不需要暂停处理器的执行，特别是流水线的执行</strong>，看上去效率差，但反而更有效率，特别是计算十分简单的时候这一优点更加突出：这要得益于流水线技术，特别是其中的指令跳转预测。</p>
 <p>普通 C 代码和前述一致，Goto 版本如下：</p>
-<pre><code class="language-c">    result = Then_Expr;
-    eval = Else_Expr;
-    nt = !Test;
-    if (nt) result = eval;
-    return result;
-</code></pre>
-<pre><code class="language-assembly">absdiff:
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Then_Expr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Else_Expr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">nt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">Test</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nt</span><span class="p">)</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eval</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>absdiff:
     movq    %rdi, %rax  # x
     subq    %rsi, %rax  # result = x - y
     movq    %rsi, %rdx
@@ -3653,49 +3653,49 @@ Done:
     cmpq    %rsi, %rdi  # x:y
     cmovle  %rdx, %rax  # if &lt;=, result = eval
     ret
-</code></pre>
+</code></pre></div>
 <p>条件移动很坏的情况：</p>
 <ol>
 <li>各分支计算花费大</li>
 </ol>
-<pre><code class="language-c">val = Test(x) ? Hard1(x) : Hard2(x);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Test</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Hard1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Hard2</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div>
 <ol>
 <li>计算有风险</li>
 </ol>
-<pre><code class="language-c">val = p ? *p : 0;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
 <p>解引用可以吗？这段代码逻辑上来说没问题，非空则取其指向的值，但空指针解引用爆了——计算存在风险。</p>
 <ol>
 <li>计算有副作用</li>
 </ol>
-<pre><code class="language-c">val = x &gt; 0 ? x *= 7 : x += 3;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</code></pre></div>
 <p>两个分支的计算可能产生副作用干扰。</p>
 <p>以上三种情况，编译器不会采用条件移动优化。</p>
 <h2 id="part-3-loops">Part 3: Loops</h2>
 <p>Do-While 循环的例子：C 语言代码：</p>
-<pre><code class="language-c">long pcount_do(unsigned long x) {
-    long result = 0;
-    do {
-        result += x &amp; 0x1;
-        x &gt;&gt;= 1;
-    } while(x);
-    return result;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">pcount_do</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>goto 版本：</p>
-<pre><code class="language-c">long pcount_do(unsigned long x) {
-    long result = 0;
-loop:
-    result += x &amp; 0x1;
-    x &gt;&gt;= 1;
-    if (x) goto loop;
-    return result;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">pcount_do</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="nl">loop</span><span class="p">:</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">loop</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>注：以上函数用于计算数据在二进制下 1 的个数，一般称为 <code>popcount()</code> 函数。</p>
-<pre><code>do
+<div class="highlight"><pre><span></span><code>do
     Body
     while (Test);
 -------------------------------
@@ -3723,9 +3723,9 @@ loop:
         goto loop;
 done:
 ===============================
-</code></pre>
+</code></pre></div>
 <p>for 循环形式：</p>
-<pre><code>for (Init; Test; Update)
+<div class="highlight"><pre><span></span><code>for (Init; Test; Update)
     Body
 -------------------------------
 Init;
@@ -3733,33 +3733,33 @@ while (Test) {
     Body
     Update;
 }
-</code></pre>
+</code></pre></div>
 <p>显然这些循环编译过程中有很大优化空间，实际上也确实优化了很多。</p>
 <h2 id="part-4-switch-statements">Part 4: Switch Statements</h2>
-<p><code>c
- long switch_eg(long x, long y, long z) {
-     long w = 1;
-     switch(x) {
-     case 1:
-         w = y * x;
-         break;
-     case 2:
-         w = y / z;
-         /* Fall Through */
-     case 3:
-         w += z
-         break;
-     case 5:
-     case 6:
-         w -= z;
-         break;
-     default:
-         w = 2;
-     }
-     return w;
- }</code></p>
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">switch_eg</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">switch</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span>
+<span class="w">        </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span>
+<span class="w">        </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="w">        </span><span class="cm">/* Fall Through */</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span>
+<span class="w">        </span><span class="n">w</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">z</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="p">:</span>
+<span class="w">        </span><span class="n">w</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>switch 语句转为汇编：跳转表结构（jump table structure）</p>
-<pre><code>// switch form
+<div class="highlight"><pre><span></span><code>// switch form
 switch (x) {
 case val_0:
     Block0
@@ -3779,22 +3779,22 @@ jtab: Targ0
 -------------------------------
 // actual
 goto *JTab[x];
-</code></pre>
-<pre><code class="language-c">long switch_eg(long x, long y, long z) {
-    long w = 1;
-    switch(x) {
-        ... 
-    }
-    return w;
-}
-/*
-%rdi  argument x
-%rsi  argument y
-%rdx  argument z
-%rax  return value
-*/
-</code></pre>
-<pre><code class="language-assembly">.section    .rodata
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">switch_eg</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">switch</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">...</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*</span>
+<span class="cm">%rdi  argument x</span>
+<span class="cm">%rsi  argument y</span>
+<span class="cm">%rdx  argument z</span>
+<span class="cm">%rax  return value</span>
+<span class="cm">*/</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>.section    .rodata
     .align 8
 .L4
     .quad    .L8 # x = 0
@@ -3834,7 +3834,7 @@ switch_eg:
     cmpq    $6, %rdi      # x:6
     ja      .L6           # Use default
     jmp     *.L4(,%rdi,8) # goto *JTab[x]
-</code></pre>
+</code></pre></div>
 <p>编译器可能将 switch 语句优化成较短的 if-else 链甚至改用二分搜索（cases 过多时）</p>
 <h2 id="summary">Summary</h2>
 <ul>

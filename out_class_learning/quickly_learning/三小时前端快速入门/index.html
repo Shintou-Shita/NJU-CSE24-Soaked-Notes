@@ -3495,56 +3495,56 @@
 <h3 id="html_1">HTML 标签</h3>
 <p>HTML 通过一系列的<strong>标签</strong>（也称为<strong>元素</strong>）来通过属性提供信息，定义文本、图像、链接等，HTML 标签是由尖括号括起的关键字。</p>
 <p>标签通常成对出现，包括开始标签和结束标签，合称双标签，内容位于这两个标签之间，例如：</p>
-<pre><code class="language-html">&lt;p&gt;这是一个段落。&lt;/p&gt;
-&lt;hl&gt;这是一个标题。&lt;/hl&gt;
-&lt;a href=&quot;#&quot;&gt;这是一个超链接。&lt;/a&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>这是一个段落。<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">hl</span><span class="p">&gt;</span>这是一个标题。<span class="p">&lt;/</span><span class="nt">hl</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>这是一个超链接。<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
 <p>不过单标签也是存在的，例如：</p>
-<pre><code class="language-html">&lt;input type=&quot;text&quot;&gt;
-&lt;br&gt;
-&lt;hr&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+</code></pre></div>
 <p>单双标签的差别在于是否无文本内容。</p>
 <h3 id="html_2">HTML 文件结构</h3>
 <p><code>&lt;!DOCTYPE html&gt;</code> 用于告诉浏览器，这是一个 HTML 文件。</p>
 <p><code>&lt;html&gt;&lt;/html&gt;</code> 标签对，是这个 HTML 文档的根元素，表明 HTML 文档的起始点和这个文档的最外层容器，包含了整个文档的结构。</p>
 <p><code>&lt;head&gt;&lt;/head&gt;</code> 标签对，表示文档的头部，包含了一些文件的元信息，比如文档的标题、文件的编码格式、一些外部样式表（包含 CSS 和 JS 文件）。</p>
 <p><code>&lt;body&gt;&lt;/body&gt;</code> 标签对，包含了实际显示在浏览器页面内的内容。我们接下来的练习都是在该标签对内编写。</p>
-<pre><code class="language-html">&lt;!-- 这里防止文档的元信息 --&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;!-- 这里放置文档的元信息 --&gt;
-    &lt;title&gt;文档标题&lt;/title&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;!-- 链接外部样式表或脚本文件等 --&gt;
-    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;
-    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;!-- 这里放置页面内容 --&gt;
-    &lt;hl&gt;这是一个标题。&lt;/hl&gt;
-    &lt;p&gt;这是一个段落。&lt;/p&gt;
-    &lt;a href=&quot;https://www.example.com&quot;&gt;这是一个超链接。&lt;/a&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- 这里防止文档的元信息 --&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- 这里放置文档的元信息 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>文档标题<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- 链接外部样式表或脚本文件等 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;styles.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;script.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- 这里放置页面内容 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">hl</span><span class="p">&gt;</span>这是一个标题。<span class="p">&lt;/</span><span class="nt">hl</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>这是一个段落。<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.example.com&quot;</span><span class="p">&gt;</span>这是一个超链接。<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
 <p>现在 new 一个文件夹，Windows 下 cmd 命令行（Win+R 输入 cmd 进入）进入之：cd <File_Name>`.</p>
 <p>使用命令 <code>code .</code> 使用 VSCode 打开当前目录，即将其添加到工作区。</p>
 <p>在文件夹下创建一个 html 文件，比如 <code>demo.html</code>/</p>
 <p>你当然可以手动打一遍 html 模板，也可以在空白文件开头打一个或三个感叹号后 tab 补全。</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;demo_test&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>demo_test<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
 <p>然后我们可以在文件区域鼠标右键后选择 Open with Live Server 在浏览器中观察我们这个页面。</p>
 <h2 id="_3">常用文本标签</h2>
 <p><strong>标题标签</strong>：HTML 中标题标签共六级，分别使用双标签 <code>h1</code> 至 <code>h6</code>，显然 h 取自标题（heading），另外请灵活使用 HTML 的 Tab 键补全功能。</p>
@@ -3563,13 +3563,13 @@
 <h2 id="html_3">HTML 标签属性</h2>
 <p>属性在 HTML 中起到很重要的作用，用于定义元素的行为和外观，以及与其他元素的关系。</p>
 <p>基本语法：（属性值也可以用单引号括起来，但是惯例是双引号）</p>
-<pre><code>&lt;开始标签 属性名=&quot;属性值&quot;&gt;&lt;/结束标签&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>&lt;开始标签 属性名=&quot;属性值&quot;&gt;&lt;/结束标签&gt;
+</code></pre></div>
 <p>以下是一些例子：</p>
-<pre><code class="language-html">&lt;p id=&quot;describe&quot; class=&quot;section&quot;&gt;这是一个段落标签&lt;/p&gt;
-&lt;a href=&quot;http://www.baidu.com&quot;&gt;这是一个超链接&lt;/a&gt;
-&lt;img src=&quot;example.jpg&quot; alt=&quot;&quot;&gt;&lt;/img&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;describe&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;section&quot;</span><span class="p">&gt;</span>这是一个段落标签<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://www.baidu.com&quot;</span><span class="p">&gt;</span>这是一个超链接<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;example.jpg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">img</span><span class="p">&gt;</span>
+</code></pre></div>
 <p>属性名称不区分大小写，属性值大小写敏感。</p>
 <p><strong>适用于大多数 HTML 元素的属性</strong>：<code>class</code>：为 HTML 元素定义一个或多个类名（类名从样式文件中引入），<code>id</code>：定义元素唯一的 ID，<code>style</code>：规定元素的行内样式，这几个一般与 CSS 配合使用。</p>
 <p><strong><code>a</code> 标签</strong>：<code>a</code> 常用于表示超链接，其中可以使用 <code>href</code> 属性；还可以使用 <code>target</code> 属性，此属性用于链接的打开方式，属性值常见四种：<code>_blank</code>、<code>_parent</code>、<code>_self</code>、<code>_top</code></p>

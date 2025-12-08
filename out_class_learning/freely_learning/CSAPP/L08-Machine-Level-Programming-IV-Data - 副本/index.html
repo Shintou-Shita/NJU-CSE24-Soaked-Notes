@@ -3501,7 +3501,7 @@
 <p>在内存中需要分配一块 <code>T * sizeof(T)</code> 字节长度的区域。</p>
 <h3 id="_3">数组访问</h3>
 <p>标识符（identifier） <code>A</code> 可以作为指向下标为 <code>0</code> 的数组元素的指针：C 的指针、数组、数组标识符可互换的思想。</p>
-<pre><code>int val[5] = {1, 5, 2, 1, 3};
+<div class="highlight"><pre><span></span><code>int val[5] = {1, 5, 2, 1, 3};
 
 reference    type    value
 val[4]       int     3
@@ -3511,35 +3511,35 @@ val + 1      int *   x + 4
 val[5]       int     ??
 *(val + 1)   int     5
 val + i      int *   x + 4 *  i
-</code></pre>
-<pre><code class="language-c">#define ZLEN 5
-typedef int zip_dig[ZLEN]
-typedef long long i64
-typedef A B C
-    means
-zig_dip x === int x[ZLEN]
-i64 x     === long long x
-B x       === A x C
-// 我以前从来不知道还有这种用法
-</code></pre>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cp">#define ZLEN 5</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">zip_dig</span><span class="p">[</span><span class="n">ZLEN</span><span class="p">]</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">i64</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">C</span>
+<span class="w">    </span><span class="n">means</span>
+<span class="n">zig_dip</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">ZLEN</span><span class="p">]</span>
+<span class="n">i64</span><span class="w"> </span><span class="n">x</span><span class="w">     </span><span class="o">===</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span>
+<span class="n">B</span><span class="w"> </span><span class="n">x</span><span class="w">       </span><span class="o">===</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">C</span>
+<span class="c1">// 我以前从来不知道还有这种用法</span>
+</code></pre></div>
 <p>例子：</p>
-<pre><code class="language-c">int get_digit(zip_dig z, int digit) {
-    return z[digit]
-}
-</code></pre>
-<pre><code class="language-assembly">  # for IA32
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">get_digit</span><span class="p">(</span><span class="n">zip_dig</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">digit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="n">digit</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>  # for IA32
   # %rdi = z
   # %rsi = digit
 movl (%rdi,%rsi,4), %eax # z[digit]
-</code></pre>
+</code></pre></div>
 <p>又一例子</p>
-<pre><code class="language-c">void zincr(zip_dig z) {
-    size_t i;
-    for (i = 0; i &lt; ZLEN; i++)
-        z[i]++;
-}
-</code></pre>
-<pre><code class="language-assembly">  # %rdi = z
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">zincr</span><span class="p">(</span><span class="n">zip_dig</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ZLEN</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>  # %rdi = z
     movl    $0, %eax          # i = 0
     jmp     .L3               # goto middle
 .L4:                          # loop:
@@ -3549,10 +3549,10 @@ movl (%rdi,%rsi,4), %eax # z[digit]
     cmpq    $4, %rax          # i:4
     jbe     .L4               # if &lt;=, goto loop
     rep; ret
-</code></pre>
+</code></pre></div>
 <h3 id="_4">理解指针和数组：异同比较</h3>
 <p>关键的差别在于，声明一个数组时，为其分配了空间，但是声明一个指针，则只为指针分配了空间，而并不一定为其指向的地方分配了空间。</p>
-<pre><code>Decl           A1, A2                 *A1, *A2
+<div class="highlight"><pre><span></span><code>Decl           A1, A2                 *A1, *A2
                Comp    Bad    Size    Comp    Bad    Size
 int A1[3]      Y       N      12      Y       N      4
 int *A2        Y       N      8       Y       Y      4
@@ -3567,60 +3567,60 @@ T (*A)[Z] 为指向一个元素类型为 T，长度为 Z 的数组的指针 T，
 教授认为：空方括号 [] 是指针 * 的另一种表示，即 A[] 和 *A 等价
 
 Comp: Compiles (Y/N), Bad: Possible bad pointer reference (Y/N), Size: Value returned by sizeof().
-</code></pre>
+</code></pre></div>
 <h2 id="_5">二维等多维数组</h2>
 <p>对于 <code>T A[R][C]</code> 这样一个 <code>R</code> 行 <code>C</code> 列，元素类型为 <code>T</code> 的二维数组，假设一个 <code>T</code> 类型元素需要 <code>K</code> 字节，则数组大小为 <code>R * C * K</code> 字节，其排布应为行优先序（row-major ordering），即按如下排布：</p>
-<pre><code>A[0][0] ... A[0][C-1] A[1][0] ... A[1][C-1] ... A[R-1][0] ... A[R-1][C-1]
-</code></pre>
+<div class="highlight"><pre><span></span><code>A[0][0] ... A[0][C-1] A[1][0] ... A[1][C-1] ... A[R-1][0] ... A[R-1][C-1]
+</code></pre></div>
 <p>我们作这样的理解：<code>A[R][C]</code> 实际上是 <code>(A[R])[C]</code> 即长度为 <code>R</code> 的数组，每个元素为长度为 <code>C</code> 的数组，这类似于 <code>(*p)[Z]</code>.</p>
 <p>嵌套数组的例子：</p>
-<pre><code class="language-c">#define PCOUNT 4
-zip_dig pgh[PCOUNT] = // 相当于 int pgh[4][5]
-  {{1, 5, 2, 0, 6}.
-   {1, 5, 2, 1, 3},
-   {1, 5, 2, 1, 7},
-   {1, 5, 2, 2, 1}}
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|1|5|2|0|6|1|5|2|1|3|1|5|2|1|7|1|5|2|2|1|
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-76                                      156
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">#define PCOUNT 4</span>
+<span class="n">zip_dig</span><span class="w"> </span><span class="n">pgh</span><span class="p">[</span><span class="n">PCOUNT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// 相当于 int pgh[4][5]</span>
+<span class="w">  </span><span class="p">{{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">}.</span>
+<span class="w">   </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">},</span>
+<span class="w">   </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">},</span>
+<span class="w">   </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}}</span>
+<span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+<span class="o">|</span><span class="mi">1</span><span class="o">|</span><span class="mi">5</span><span class="o">|</span><span class="mi">2</span><span class="o">|</span><span class="mi">0</span><span class="o">|</span><span class="mi">6</span><span class="o">|</span><span class="mi">1</span><span class="o">|</span><span class="mi">5</span><span class="o">|</span><span class="mi">2</span><span class="o">|</span><span class="mi">1</span><span class="o">|</span><span class="mi">3</span><span class="o">|</span><span class="mi">1</span><span class="o">|</span><span class="mi">5</span><span class="o">|</span><span class="mi">2</span><span class="o">|</span><span class="mi">1</span><span class="o">|</span><span class="mi">7</span><span class="o">|</span><span class="mi">1</span><span class="o">|</span><span class="mi">5</span><span class="o">|</span><span class="mi">2</span><span class="o">|</span><span class="mi">2</span><span class="o">|</span><span class="mi">1</span><span class="o">|</span>
+<span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+<span class="mi">76</span><span class="w">                                      </span><span class="mi">156</span>
+</code></pre></div>
 <p>嵌套数组列访问：行向量：</p>
 <p><code>T A[R][C]</code> 中 <code>A[i]</code> 是 <code>C</code> 个元素的数组，每个 <code>T</code> 类型元素需要 <code>K</code> 个字节，也就是说 <code>A[i][j]</code> 的地址是 <code>A + (i * C + j) * K</code></p>
 <p>显然其中的乘法过多，而且因为是常数，所以编译器往往会做自己的小巧思，我们当然可以利用这些小巧思，比如将数组长度设定为二的幂，这样指令更少，运算会更快，比如下面是 16*16 的矩阵（使用数组表示），我们访问之的例子：</p>
-<pre><code class="language-c">/* Get element a[i][j] */
-int fix_ele(fix_matrix a, size_t i, size_t j) {
-    return a[i][j];
-}
-</code></pre>
-<pre><code class="language-assembly"># a in %rdi, i in %rsi, j in %rdx
+<div class="highlight"><pre><span></span><code><span class="cm">/* Get element a[i][j] */</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">fix_ele</span><span class="p">(</span><span class="n">fix_matrix</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># a in %rdi, i in %rsi, j in %rdx
     salq    $6, %rsi             # 64 * i  
     addq    %rsi, %rdi           # a + 64 * i
     movl    (%rdi,%rdx,4), %eax  # M[a + 64 * i + 4 * j]
     ret 
-</code></pre>
+</code></pre></div>
 <p>n * n 矩阵访问：</p>
-<pre><code class="language-c">/* Get element a[i][j] */
-int val_ele(size_t n, int a[n][n], size_t i, size_t j) {
-    return a[i][j];
-}
-</code></pre>
-<pre><code class="language-assembly"># n in %rdi, a in %rsi, i in %rdx, j in %rcx
+<div class="highlight"><pre><span></span><code><span class="cm">/* Get element a[i][j] */</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">val_ele</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">n</span><span class="p">],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># n in %rdi, a in %rsi, i in %rdx, j in %rcx
     imulq    %rdx, %rdi          # n * i
     leaq     (%rsi,%rdi,4), %rax # a + 4 * n * i
     movl     (%rax,%rcx,4), %eax # a + 4 * n * i + 4 * j
     ret
-</code></pre>
+</code></pre></div>
 <h2 id="_6">多级数组</h2>
-<pre><code class="language-c">#define ZLEN 5
-typedef int zip_dig[ZLEN]
-zip_dig cmu = {1, 5, 2, 1, 3};
-zip_dig mit = {0, 2, 1, 3, 9};
-zip_dig ucb = {9, 4, 7, 2, 0};
-#define UCOUNT 3
-int *univ[UCOUNT] = {mit, cmu, ucb};
-</code></pre>
-<pre><code>     +-+-+-+-+-+
+<div class="highlight"><pre><span></span><code><span class="cp">#define ZLEN 5</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">zip_dig</span><span class="p">[</span><span class="n">ZLEN</span><span class="p">]</span>
+<span class="n">zip_dig</span><span class="w"> </span><span class="n">cmu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="n">zip_dig</span><span class="w"> </span><span class="n">mit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">};</span>
+<span class="n">zip_dig</span><span class="w"> </span><span class="n">ucb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="cp">#define UCOUNT 3</span>
+<span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">univ</span><span class="p">[</span><span class="n">UCOUNT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">mit</span><span class="p">,</span><span class="w"> </span><span class="n">cmu</span><span class="p">,</span><span class="w"> </span><span class="n">ucb</span><span class="p">};</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>     +-+-+-+-+-+
 cmu  |1|5|2|1|3| &lt;---+
      +-+-+-+-+-+     |
      16        36    |   univ
@@ -3632,88 +3632,88 @@ mit  |0|2|1|3|9| &lt;-+ +-- 16 &lt;- 168
 cmu  |1|5|2|1|3| &lt;----+
      +-+-+-+-+-+
      56        76
-</code></pre>
+</code></pre></div>
 <p>多级数组的访问</p>
-<pre><code class="language-c">int get_univ_digit(size_t index, size_t digit) {
-    return univ[index][digit];
-}
-</code></pre>
-<pre><code class="language-assembly">    salq    $2, %rsi            # 4 * digit
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">get_univ_digit</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">digit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">univ</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">digit</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>    salq    $2, %rsi            # 4 * digit
     addq    univ(,%rdi,8), %rsi # p = univ[index] + 4 * digit
     movl    (%rsi), %eax        # return *p
     ret 
-</code></pre>
+</code></pre></div>
 <p>1999 年发行的 C99 以来，你可以将数组作为一个参数传递。</p>
 <h2 id="_7">结构体</h2>
-<pre><code class="language-c">struct rec {
-    int a[4];
-    size_t i;
-    struct rec *next;
-}
-</code></pre>
-<pre><code>r
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">rec</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rec</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>r
 |
 v
 +--------+----+----+
 |a       |i   |next|
 +--------+----+----+
 0        16   24   32
-</code></pre>
+</code></pre></div>
 <p>结构体被表示为一块内存 Structure represented as block of memory </p>
 <p>​   足够大能够包括所有字段（field） Big enough to hold all of the fields</p>
 <p>每一字段的顺序为声明顺序 Fields ordered according to declaration </p>
 <p>​   即使另一种顺序可以使用更少的空间 Even if another ordering couyld yield a more compact representation</p>
 <p>编译器决定了整体的大小和各字段的位置 Compiler determines overall size + positions of fields</p>
 <p>​   机器级程序不会理解源代码中的结构体 Machine-level program has no understanding of the structures in the source code </p>
-<pre><code class="language-c">int *get_ap(struct rec *r, size_t idx) {
-    return &amp;r-&gt;a[idx];
-}
-</code></pre>
-<pre><code class="language-assembly"># r in %rdi, idx in %rsi
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="nf">get_ap</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">rec</span><span class="w"> </span><span class="o">*</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># r in %rdi, idx in %rsi
     leaq    (%rdi,%rsi,4), %rax # r + 4 * idx
     ret 
-</code></pre>
-<pre><code class="language-c">void set_val(struct rec *r, int val) {
-    while (r) {
-        size_t i = r-&gt;i;
-        r-&gt;a[i] = val;
-        r = r-&gt;next;
-    }
-}
-/*
-%rdi    r
-%rsi    val
-*/
-</code></pre>
-<pre><code class="language-assembly">.L11:                           # loop:
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">set_val</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">rec</span><span class="w"> </span><span class="o">*</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">i</span><span class="p">;</span>
+<span class="w">        </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="cm">/*</span>
+<span class="cm">%rdi    r</span>
+<span class="cm">%rsi    val</span>
+<span class="cm">*/</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>.L11:                           # loop:
     movslq  16(%rdi), %rax      #   i = M[r+16]
     movl    %esi, (%rdi,%rax,4) #   M[r+4*i] = val
     movq    24(%rdi), %rdi      #   r = M[r+24]
     testq   %rdi, %rdi          #   Test r
     jne     .L11                #   if != 0 goto loop
-</code></pre>
+</code></pre></div>
 <p>结构体和对齐</p>
-<pre><code class="language-c">struct S1 {
-    char c;
-    int i[2];
-    double v;
-} *p;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">S1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</code></pre></div>
 <p>未对齐的数据：</p>
-<pre><code>+-+----+----+--------+
+<div class="highlight"><pre><span></span><code>+-+----+----+--------+
 |c|i[0]|i[1]|v       |
 +-+----+----+--------+
 p      p+5  p+9      p+17
-</code></pre>
+</code></pre></div>
 <p>对齐的数据：</p>
-<pre><code>+----+----+--------+--------+
+<div class="highlight"><pre><span></span><code>+----+----+--------+--------+
 |c\3B|i[0]|i[1]\4B |v       |
 +----+----+--------+--------+
 p    p+4  p+8      p+16     p+32
 可以看到其中有 3Bytes 和 4 Bytes 的空白字节，只是为了对齐
 原始数据需要 K 字节，那么地址必须是 K 的倍数 Primitive data type requires K bytes. Address must be multiple of K.
 具体来说，c 的相对地址是 0，是 1 的倍数；i[0] 和 i[1] 的相对地址是 4 和 8，是 4 的倍数，v 的相对地址是 16，是 8 的倍数.
-</code></pre>
+</code></pre></div>
 <p>对齐的引入是为了<strong>硬件</strong>运行：实际的内存系统一次不取一个字节，现在的大多数机器一次大约取 64 字节——这取决于硬件中的各种宽度（various widths），如果没有一个对齐的地址使得一个数据跨越了两个块之间的边界，将会导致硬件甚至操作系统来采取一些额外的步骤来处理，使得运行效率受到很大影响，对齐原则这一原则由此确立。</p>
 <p>对齐原则 Alignment Principles</p>
 <p>​   对齐数据 Aligned Data</p>
@@ -3734,35 +3734,35 @@ p    p+4  p+8      p+16     p+32
 <p>​           此处 K 是结构体内最大元素的对齐要求 K = Largest alignment of any element</p>
 <p>​       初始地址和结构体长度必须是 K 的倍数 Initial address &amp; structure length must be multiples of K</p>
 <p>另一例子：</p>
-<pre><code class="language-c">struct S2 {
-    double v;
-    int i[2];
-    char c;
-} *p;
-</code></pre>
-<pre><code>+--------+----+----+--------+
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">S2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+--------+----+----+--------+
 |v       |i[0]|i[1]|c\7B    |
 +--------+----+----+--------+
 p        p+8  p+12 p+16     p+24
-</code></pre>
-<pre><code class="language-c">struct S2 {
-    double v;
-    int i[2];
-    char c;
-} a[10]
-</code></pre>
-<pre><code>+------------------------+------------------------+-----
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">S2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+------------------------+------------------------+-----
 |a[0]                    |a[1]                    | ...
 +------------------------+------------------------+-----
 a+0                      a+24                     a+48
-</code></pre>
-<pre><code class="language-c">struct S3 {
-    short i;
-    float v;
-    short j;
-} a[10];
-</code></pre>
-<pre><code>+------------+------------+-----
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">S3</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+------------+------------+-----
 |a[0]        |a[1]        | ...
 +------------+------------+-----
 a+0          a+12         a+24
@@ -3771,28 +3771,27 @@ a+0          a+12         a+24
 |i \2Bv   |j \2B
 +----+----+--+-+ &lt;- a+12*idx+12
 a+12*idx  a+12*idx+8       
-
-</code></pre>
-<pre><code class="language-c">short get_j(int idx) {
-    return a[idx].j;
-}
-</code></pre>
-<pre><code class="language-assembly"># %rdi = idx
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">short</span><span class="w"> </span><span class="nf">get_j</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">j</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># %rdi = idx
     leaq (%rdi,%rdi,2), %rax   # 3 * idx
     movzwl a+8(,%rax,4), %eax  # 这里没有写出存储 a 地址的寄存器
-</code></pre>
+</code></pre></div>
 <p>需要<strong>手动</strong>优化：将大的数据类型放在前面：（贪心算法（greedy algorithm）保证了这会最小化占据的空间）</p>
-<pre><code class="language-c">struct S4 {
-    char c;
-    int i;
-    char d;
-} *p // 需要 12 字节 空间：c + 3 + i + d + 3
-struct S5 {
-    int i;
-    char c;
-    char d;
-} *p // 需要 8 字节空间：i + c + d + 2
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">S4</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="c1">// 需要 12 字节 空间：c + 3 + i + d + 3</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">S5</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="c1">// 需要 8 字节空间：i + c + d + 2</span>
+</code></pre></div>
 <h2 id="floating-point">浮点数（Floating Point）</h2>
 <p>背景 Background</p>
 <p>​   历史 History</p>
@@ -3817,28 +3816,28 @@ struct S5 {
 <li>存储 1 个双精度浮点型，其余空间随意。</li>
 </ul>
 <p>标量和单指令多数据操作 Scalar &amp; SIMD Operations【单指令多数据：SIMD, single instruction multiple data】</p>
-<pre><code class="language-assembly">addss %xmm0, %xmm1 # add scalar single 两个 单精度/4字节 标量相加（标量指令）
+<div class="highlight"><pre><span></span><code>addss %xmm0, %xmm1 # add scalar single 两个 单精度/4字节 标量相加（标量指令）
 addps %xmm0, %xmm1 # add pack single **八**个 单精度/4字节标量 **分别** 相加（SIMD 指令）
 addsd %xmm0, %xmm1 # add scalar double 两个 双精度/8字节 标量相加（标量指令）
-</code></pre>
+</code></pre></div>
 <p>SIMD 指令是精华：一个寄存器存储一组数据，一条指令执行一组加法</p>
 <p>浮点数内存引用 FP Memory Referencing</p>
 <p>​   整型（和指针）参数用常规寄存器传递 Integers (and pointer) arguments passed in regular registers</p>
 <p>​   浮点型使用 XMM 寄存器传递 FP values passed in XMM registers</p>
 <p>​   不同的 <code>mov</code> 指令来移动 XMM 寄存器中的值以及 XMM 寄存器和内存中的值 Different <code>mov</code> instructions to move between XMM registers, and between memory and XMM registers</p>
-<pre><code class="language-c">double dincr(double *p, double v) {
-    double x = *p;
-    *p = x + v;
-    return x;
-}
-</code></pre>
-<pre><code class="language-assembly"># p in %rdi, v in %xmm0
+<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="nf">dincr</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+<span class="w">    </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># p in %rdi, v in %xmm0
     movapd  %xmm0, %xmm1  # copy v
     movsd   (%rdi), %xmm0 # x = *p
     addsd   %xmm0, %xmm1  # t = x + v
     movsd   %xmm1, (%rdi) # *p = t
     ret 
-</code></pre>
+</code></pre></div>
 <p>【现在好像进化到使用 YMM 寄存器了，反正浮点数机制后面怎么发展的也没讲，这毕竟是 15 年的课程】</p>
 <p>其他浮点数代码相关 Other Aspects of FP code</p>
 <p>​   大量指令 <em>Lots</em> of instructions</p>

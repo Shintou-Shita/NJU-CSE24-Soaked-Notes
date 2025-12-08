@@ -3257,7 +3257,7 @@
 <p>​   CPU looks first for data in cache.</p>
 <p>​   Typical system structure: CPU chip &lt;-&gt; I/O bridge &lt;-&gt; Main memory</p>
 <p>通用的缓存结构 General Cache Organization (S, E, B)    </p>
-<pre><code>               E = 2^e lines per set（行）
+<div class="highlight"><pre><span></span><code>               E = 2^e lines per set（行）
  --------------|--------------
 /                             \
 -------------------------------  \
@@ -3271,7 +3271,7 @@
 -------------------------------   |
 |    |    |    |    |    |    |   |
 -------------------------------   /
-</code></pre>
+</code></pre></div>
 <p>高速缓存存储器完全由硬件管理，因为我们要高校地查找，所以我们必须以非常严格且简单地方式去组织高速缓存存储器。</p>
 <p>我们从这个结构图可以看出来，每个缓存含有 S 个组，每个组内有 E 行，每一行由一个 B = 2^b 字节的数据块组成，另外存在一个有效位（valid bit），指示这些数据位和数据块实际上是存在的；另外可能还存在标签位（tag bits）用于指示缓存查找。</p>
 <p>缓存大小 C 是块中包含的数据字节数，显然 C = S * E * B.</p>

