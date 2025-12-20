@@ -1,0 +1,5136 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../L14-Exceptional-Control-Flow-Exceptions-and-Processes/">
+      
+      
+        <link rel="next" href="../L16-System-Level-IO/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>L15 Exceptional Control Flow: Signals and Nonlocal Jumps - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#l15-exceptional-control-flow-signals-and-nonlocal-jumps" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              L15 Exceptional Control Flow: Signals and Nonlocal Jumps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    In class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    In class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semester 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semester 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discrete mathematics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Discrete mathematics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/discrete_mathematics/L01-03-%E5%BD%A2%E5%BC%8F%E9%80%BB%E8%BE%91%E4%B8%8E%E8%AF%81%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L01 03 形式逻辑与证明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/discrete_mathematics/L04-06-%E9%9B%86%E5%90%88%E4%B8%8E%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L04 06 集合与关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/discrete_mathematics/L07-10-%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA%E5%B7%A5%E5%85%B7-%E6%95%B0%E8%AE%BA-%E5%BD%92%E7%BA%B3%E6%B3%95-%E8%AE%A1%E6%95%B0-%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 10 基本理论工具 数论 归纳法 计数 概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/discrete_mathematics/L11-17-%E5%9F%BA%E6%9C%AC%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0-%E5%85%B3%E7%B3%BB-%E7%BE%A4%E8%AE%BA-%E6%A0%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L11 17 基本抽象代数 关系 群论 格
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/discrete_mathematics/L18-22-%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L18 22 图论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/discrete_mathematics/L23-25-%E6%A0%91%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L23 25 树论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to computer system
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction to computer system
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_1" id="__nav_2_1_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Lab-notes/Lab_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_2" id="__nav_2_1_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/AAA-Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch01 计算机系统概述
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch02-%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch02 数据的机器级表示与处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch03-%E7%A8%8B%E5%BA%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch03 程序转换与指令系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch04-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch04 程序的机器级表示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch05-%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A0%E8%BD%BD%E6%89%A7%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch05 程序的链接与加载执行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch06-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch06 存储器层次结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch07-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch07 虚拟存储器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch08-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch08 进程与异常控制流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch09-IO%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch09 IO操作的实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch10-Optional-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E7%9A%84%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch10 Optional 程序性能的优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch11-Optional-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch11 Optional 网络编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/introduction_to_computer_system/Theory_notes/Ch12-Optional-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch12 Optional 并发编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network attack and defense
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Network attack and defense
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab7_pwn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAD lab07 PWN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/network_attack_and_defense/lab9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_4" id="__nav_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/AAA_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%200%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%201%20%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%202%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%203%20%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%204%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%206%20%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch%207%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-0-%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-1-%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-2-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-3-%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-4-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-5-%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-6-%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-7-%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/probability_theory/Ch-8-%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.8 假设检验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    problem solving III
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    problem solving III
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5_1" id="__nav_2_1_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges/P10007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5_2" id="__nav_2_1_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges Solutions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges Solutions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1008/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1009/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1009
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1010/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1010
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1011/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1011
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1012/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1012
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1013/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1013
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1014/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1014
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1015/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1015
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1016/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1016
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1017/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1017
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1018/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1018
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/OnlineJudges-Solutions/P1025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5_3" id="__nav_2_1_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/A001_%E8%AE%B0%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A001 记号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L001_%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L002_%E8%BF%9E%E9%80%9A%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L003_%E5%9C%88%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L004_%E8%BF%9E%E9%80%9A%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L005_%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L006_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L006 单源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L007_%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L007 多源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L008_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E8%B5%8B%E6%9D%83%E6%AC%A7%E6%8B%89%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L009_%E6%9C%89%E5%90%91%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L010_%E6%B5%81%E7%BD%91%E7%BB%9C%E5%92%8C%E6%9C%80%E5%A4%A7%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L011_%E7%8B%AC%E7%AB%8B%E3%80%81%E8%A6%86%E7%9B%96%E5%92%8C%E6%94%AF%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L011 独立、覆盖和支配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L012_%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L013_%E5%B9%B3%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L014_%E7%BE%A4%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BE%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L014 群和循环群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L015_%E7%BD%AE%E6%8D%A2%E7%BE%A4%E3%80%81%E9%99%AA%E9%9B%86%E5%92%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L015 置换群、陪集和拉格朗日定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L016_%E4%BB%A3%E6%95%B0%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L16 代数编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../in_class_learning/semester_3/problem_solving_III/Theory/L017_%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L017 抽象代数中的其他问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Out class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Out class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Freely learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Freely learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CSAPP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CSAPPreadme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPPreadme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L05-Machine-Level-Programming-I-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L05 Machine-Level Programming I: Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L06-Machine-Level-Programming-II-Control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L07-Machine-Level-Programming-III-Procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L08-Machine-Level-Programming-IV-Data%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L08 Machine-Level Programming IV: Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L08-Machine-Level-Programming-IV-Data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L08 Machine-Level Programming IV: Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L09-Machine-Level-Programming-V-Advanced-Topics%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L09 Machine-Level Programming V: Advanced Topics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L09-Machine-Level-Programming-V-Advanced-Topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L09 Machine-Level Programming V: Advanced Topics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L10-Program-Optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L10 Program Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L11-The-Memory-Hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L11 The Memory Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L12-Cache-Memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L12 Cache Memories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L13-Linking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L13 Linking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L14-Exceptional-Control-Flow-Exceptions-and-Processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L14 Exceptional Control Flow: Exceptions and Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L15 Exceptional Control Flow: Signals and Nonlocal Jumps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L16-System-Level-IO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L16 System-Level I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../L17-Virtual-Memory-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L17 Virtual Memory: Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickly learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quickly learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++OOP 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/MkDocs%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quickly_learning/%E4%B8%89%E5%B0%8F%E6%97%B6%E5%89%8D%E7%AB%AF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三小时前端快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="l15-exceptional-control-flow-signals-and-nonlocal-jumps">L15 Exceptional Control Flow: Signals and Nonlocal Jumps</h1>
+<p>Source: https://www.bilibili.com/video/BV1iW411d7hd?p=15</p>
+<p>ECF Exists at All Levels of a System</p>
+<p>​   Exceptions</p>
+<p>​       Hardware and operating system kernel software.</p>
+<p>​   Process Context Switch.</p>
+<p>​       Hardware timer and kernel software.</p>
+<p>​   Signals</p>
+<p>​       Kernel software and application software.</p>
+<p>​   Nonlocal Jumps</p>
+<p>​       Application code.</p>
+<p>其中 Exceptions 和 Process Context Switch 为 L14 内容，Signals（信号机制）为 L15 即本次课内容，Nonlocal Jumps（C 的非本地跳转）则为书和补充幻灯片所补充（textbook and supplemental slides）。</p>
+<p>Today</p>
+<p>​   Shells</p>
+<p>​   Signals</p>
+<p>​   Nonlocal</p>
+<hr />
+<p>Linux 进程层次系统 Linux Process Hierarchy</p>
+<p><img alt="QQ_1765641743216" src="../QQ_1765641743216.png" /></p>
+<p>​   所有进程都是 <code>init</code> 进程的子进程（或后代进程），<code>init</code> 进程 启动时会创建守护进程（daemon），其一般是一个长期运行的程序，通常用来提供服务，比如说 web 服务器，或者其他你希望你只在系统上运行的服务。然后会创建登录进程，也就是登陆 shell（login shell），其为用户提供了命令行接口（command-line interface）。在其中输入并执行命令，比如说 <code>ls</code> 命令，实际上实在要求 shell 运行名为 <code>ls</code> 的可执行程序，为了运行，其就创建一个子进程，并在其中运行程序。</p>
+<p>shell 程序 Shell Programs</p>
+<p>​   A <strong><em>shell</em></strong> is an application program that runs programs on behalf of the user.</p>
+<p>​       <code>sh</code>: Original Unix shell (Stephen Bourne, AT&amp;T Bell Labs, 1977).</p>
+<p>​       <code>csh/tcsh</code>: BSD Unix C shell.</p>
+<p>​       <code>bash</code>:  "Bourne-Again" Shell (default Linux shell).</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">cmdline</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">];</span><span class="w"> </span><span class="cm">/* command line */</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* read */</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Fgets</span><span class="p">(</span><span class="n">cmdline</span><span class="p">,</span><span class="w"> </span><span class="n">MAXLINE</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">feof</span><span class="p">(</span><span class="n">stdin</span><span class="p">))</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/* evaluate */</span>
+<span class="w">        </span><span class="n">eval</span><span class="p">(</span><span class="n">cmdline</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>​   Execution is a sequence of read/evaluate steps.</p>
+<p>Simple Shell <code>eval</code> Function</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cmdline</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[</span><span class="n">MAXARGS</span><span class="p">];</span><span class="w"> </span><span class="cm">/* Argument list execve() */</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">];</span><span class="w">   </span><span class="cm">/* Holds modified command line */</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bg</span><span class="p">;</span><span class="w">              </span><span class="cm">/* Should the job run in bg or fg */</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span><span class="w">           </span><span class="cm">/* Process id */</span>
+
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">cmdline</span><span class="p">);</span>
+<span class="w">    </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parseline</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">          </span><span class="cm">/* Ignore empty lines */</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">builtin_command</span><span class="p">(</span><span class="n">argv</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fork</span><span class="p">())</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Child runs user job */</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">execve</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">environ</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s: Command not found.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">                </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="cm">/* Parent waits for foreground job to terminate */</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">waitpid</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">                </span><span class="n">unix_error</span><span class="p">(</span><span class="s">&quot;waitfg: waitpid error&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="n">cmdline</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>​   在 shell 中有个约定，如果命令行以一个 <code>&amp;</code> 符号作为结尾，那么你可以使 shell 在后台运行此作业（job）。即 shell 在读取下一个 stub 之前，不会等待这个作业完成；反之，你就是要求 shell 在前台运行此作业，shell 会等待它完成。</p>
+<p>​   <code>bg</code> for background（后台）, <code>fg</code> for foreground（前台）。</p>
+<p>​   shell 有一些内建的命令，shell 会检查 <code>argv[0]</code>，查看其是否是一个内建 shell 命令。如果不是内建的命令，那么就是在要求 shell 运行一些程序，于是 fork 一个子进程，然后使用 execve 在其中尝试运行该程序。</p>
+<p>​   因为 <code>execve()</code> 除非有错误否则不返回，或者有错误而总是返回 -1.</p>
+<p>​   接下来是父进程的事情，如果不是在后台运行，也就是在前台运行，则需要使用 waitpid 等待进程结束。否则输出一条信息并继续执行。</p>
+<p>Problem with Simple Shell Example</p>
+<p>​   Our example shell correctly waits for and reap foreground jobs.</p>
+<p>​   But what about background jobs?</p>
+<p>​       Will become zombies when they terminate.</p>
+<p>​       Will never be reaped because shell (typically) will not terminate.</p>
+<p>​       Will create a memory leak that could run the kernel out of memory.</p>
+<p>ECF to the Rescue!</p>
+<p>​   Solution: Exceptional control flow.</p>
+<p>​       The kernel will interrupt regular processing to alert us when a background process completes.</p>
+<p>​       In Unix, the alert mechanism is called a <strong><em>signal</em></strong>.</p>
+<p>Signals</p>
+<p>​   A <strong>signal</strong> is a small message that notifies a process that an event of some type has occurred in the system.</p>
+<p>​       Akin to exceptions and interrupts.</p>
+<p>​       Sent from the kernel (sometimes at the request of another process) to a process. （内核信号总是由内核发出，但有时进程也会发出信号）</p>
+<p>​       Signal type is identified by small integer ID's ( 1-30).</p>
+<p>​       Only information in a signal is its ID and the fact that it arrived.</p>
+<div class="highlight"><pre><span></span><code>  ID      Name  Default Action  Corresponding Event
+   2    SIGINT       Terminate  Used typed Ctrl-C  
+   9   SIGKILL       Terminate  Kill program (cannot override or ignore)
+  11   SIGSEGV       Terminate  Segmentation violation
+  14   SIGALRM       Terminate  Timer signal
+  17   SIGCHED          Ignore  Child stopped or terminated
+</code></pre></div>
+<p>Signal Concepts: Sending a Signal</p>
+<p>​   Kernel <strong>sends</strong> (delivers) a signal to a <strong>destination process</strong> by updating some state in the context of the destination process.</p>
+<p>​   Kernel sends a signal for one of following reasons:</p>
+<p>​       Kernel has detected a system event such as divide-by-zero (SIGFPE) or the termination of a child process (SIGCHLD)</p>
+<p>​       Another process has invoked <code>kill</code>  system call to explicitly request the kernel to send a signal to the destination process. （注意，<code>kill</code> 只是一种发信号的方式，并不一定是杀进程，起这个名字也是因为一些神秘原因）</p>
+<p>Signal Concepts: Receiving a Signal</p>
+<p>​   A destination process <strong>receives</strong> a signal when it is forced by the kernel to react in some way to the delivery of the signal.</p>
+<p>​   Some possible ways to react:</p>
+<p>​       <strong>Ignore</strong> the signal (do nothing).</p>
+<p>​       <strong>Terminate</strong> the process (with optional core dump).</p>
+<p>​       <strong>Catch</strong> the signal by executing a user-level function called <strong>signal handler</strong>（信号处理程序）.</p>
+<p>​           Akin to a hardware exception handler being called in response to an asynchronous interrupt:</p>
+<div class="highlight"><pre><span></span><code>(1) Signal received  |
+    by process       |  (2) Control passes
+                     v   to signal handler
+               I_curr----------------------&gt;|
+               I_next|\                     | (3) Signal 
+                     | \                    |  handler runs
+                     |  \                   v
+                     |   &lt;-------------------
+                     v   (4) Signal handler
+                           returns to next instruction
+</code></pre></div>
+<p>Signal Concepts: Pending and Blocked Signals</p>
+<p>​   如果一个信号被发出但尚未被接收，则称其<strong>待处理</strong>。A signal is <strong>pending</strong> if sent but not yet received.</p>
+<p>​       There can be at most one pending signal of any particular type.</p>
+<p>​       Important: Signals are not queued.</p>
+<p>​           If a process has a pending signal of type k, then subsequent signals of type k that are sent to that process are discarded. （在某时刻，只能有一个相同类型的待处理信号。）</p>
+<p>​   一个进程可以<strong>阻塞</strong>某些信号的接收。A process can <strong>block</strong> the receipt of certain signals.</p>
+<p>​       被阻塞的信号可以被传递，但在阻塞解除前不能被接收。Blocked signals can be delivered, but will not be received until the signal is unblocked.</p>
+<p>​   信号传递无法被阻止，但可以阻止进程在收到信号后的响应。</p>
+<p>​   待处理信号最多被接收一次。A pending signal is received at most once.</p>
+<p>Signal Concepts: Pending/Blocked Bits</p>
+<p>​   Kernel maintains <code>pending</code> and <code>blocked</code> bit vectors（位向量） in the context each process.</p>
+<p>​       <code>pending</code>: represents the set of pending signals.</p>
+<p>​           Kernel sets bit k in <code>pending</code> when a signal of type k is delivered.</p>
+<p>​           Kernel clears bit k in <code>pending</code> when a signal of type k is received.</p>
+<p>​       <code>blocked</code>: represents the set of blocked signals.</p>
+<p>​           Can be set and cleared by using the <code>sigprocmask</code> function.</p>
+<p>​           Also referred to as the <em>signal mask</em>（信号掩码）.</p>
+<p>Sending Signals: Process Groups（进程组）</p>
+<p><img alt="QQ_1765907847857" src="../QQ_1765907847857.png" /></p>
+<p>Sending Signals with <code>/bin/kill</code> Program</p>
+<p>​   <code>/bin/kill</code> program sends arbitrary signal to a process or process group.</p>
+<p>​   Examples:</p>
+<p>​       <code>/bin/kill -9 24818</code> Send SIGKILL to process 24818.</p>
+<p>​       <code>kill -9</code> 很常用，使用这个来杀掉某个进程。 </p>
+<p>​       <code>/bin/kill -9 -24817</code> Send SIGKILL to every process in process group 24817.</p>
+<div class="highlight"><pre><span></span><code>linux&gt;<span class="w"> </span>./forks<span class="w"> </span><span class="m">16</span>
+Child1:<span class="w"> </span><span class="nv">pid</span><span class="o">=</span><span class="m">24818</span><span class="w"> </span><span class="nv">pgrp</span><span class="o">=</span><span class="m">24817</span>
+Child2:<span class="w"> </span><span class="nv">pid</span><span class="o">=</span><span class="m">24819</span><span class="w"> </span><span class="nv">pgrp</span><span class="o">=</span><span class="m">24817</span>
+
+linux&gt;<span class="w"> </span>ps
+<span class="w">  </span>PID<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
+<span class="m">24788</span><span class="w"> </span>pts/2<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>tcsh
+<span class="m">24818</span><span class="w"> </span>pts/2<span class="w">    </span><span class="m">00</span>:00:02<span class="w"> </span>forks
+<span class="m">24819</span><span class="w"> </span>pts/2<span class="w">    </span><span class="m">00</span>:00:02<span class="w"> </span>forks
+<span class="m">24820</span><span class="w"> </span>pts/2<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>ps
+linux&gt;<span class="w"> </span>/bin/kill<span class="w"> </span>-9<span class="w"> </span>-24817
+linux&gt;<span class="w"> </span>ps
+<span class="w">  </span>PID<span class="w"> </span>TTY<span class="w">          </span>TIME<span class="w"> </span>CMD
+<span class="m">24788</span><span class="w"> </span>pts/2<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>tcsh
+<span class="m">24820</span><span class="w"> </span>pts/2<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>ps
+linux&gt;<span class="w"> </span>
+</code></pre></div>
+<p>Sending Signals from the Keyboard</p>
+<p><img alt="QQ_1765954400861" src="../QQ_1765954400861.png" /></p>
+<p>Example of <code>ctrl-c</code> and <code>ctrl-z</code></p>
+<div class="highlight"><pre><span></span><code>bluefish&gt;<span class="w"> </span>./forks<span class="w"> </span><span class="m">17</span>
+Child:<span class="w"> </span><span class="nv">pid</span><span class="o">=</span><span class="m">28108</span><span class="w"> </span><span class="nv">pgrp</span><span class="o">=</span><span class="m">28107</span>
+Parent:<span class="w"> </span><span class="nv">pid</span><span class="o">=</span><span class="m">28107</span><span class="w"> </span><span class="nv">pgrp</span><span class="o">=</span><span class="m">28107</span>
+&lt;types<span class="w"> </span>ctrl-z&gt;
+Suspended
+bluefish&gt;<span class="w"> </span>ps<span class="w"> </span>w
+<span class="w">  </span>PID<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+<span class="m">27699</span><span class="w"> </span>pts/8<span class="w">    </span>Ss<span class="w">     </span><span class="m">0</span>:00<span class="w"> </span>-tcsh
+<span class="m">28107</span><span class="w"> </span>pts/8<span class="w">    </span>T<span class="w">      </span><span class="m">0</span>:01<span class="w"> </span>./forks<span class="w"> </span><span class="m">17</span>
+<span class="m">28108</span><span class="w"> </span>pts/8<span class="w">    </span>T<span class="w">      </span><span class="m">0</span>:01<span class="w"> </span>./forks<span class="w"> </span><span class="m">17</span>
+<span class="m">28109</span><span class="w"> </span>pts/8<span class="w">    </span>R+<span class="w">     </span><span class="m">0</span>:00<span class="w"> </span>ps<span class="w"> </span>w
+bluefish&gt;<span class="w"> </span><span class="nb">fg</span>
+./forks<span class="w"> </span><span class="m">17</span>
+&lt;types<span class="w"> </span>ctrl-c&gt;
+bluefish&gt;<span class="w"> </span>ps<span class="w"> </span>w
+<span class="w">  </span>PID<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+<span class="m">27699</span><span class="w"> </span>pts/8<span class="w">    </span>Ss<span class="w">     </span><span class="m">0</span>:00<span class="w"> </span>-tcsh
+<span class="m">28110</span><span class="w"> </span>pts/8<span class="w">    </span>R+<span class="w">     </span><span class="m">0</span>:00<span class="w"> </span>ps<span class="w"> </span>w
+</code></pre></div>
+<p>​   STAT (process state) Legend:</p>
+<p>​       First letter: S: Sleeping; T: Stopped; R: Running.</p>
+<p>​       Second letter: s: session leader; +: foreground proc group.</p>
+<p>​       See <code>man ps</code> for more details.</p>
+<p>注：Suspended 被挂起</p>
+<p>Sending Signals with <code>kill</code> Function</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">fork12</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">child_status</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">())</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="cm">/* Child: Infinite Loop */</span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">                </span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Killing process %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">kill</span><span class="p">(</span><span class="n">pid</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">SIGINT</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">wpid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">child_status</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">WIFEXITED</span><span class="p">(</span><span class="n">child_status</span><span class="p">))</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Child %d terminated with exit status %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wpid</span><span class="p">,</span><span class="w"> </span><span class="n">WEXITSTATUS</span><span class="p">(</span><span class="n">child_status</span><span class="p">));</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Child %d terminated abnormally</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wpid</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Receiving Signals</p>
+<p>​   Suppose kernel is returning from an exception handler and is ready to pass control to process <em>p</em>.</p>
+<div class="highlight"><pre><span></span><code>|Time   Process A       process B
+|          |                         user code
+|          |
+|          -------\  
+|                  \                 kernel code \
+|                   \------*                      context switch
+|                          |         user code   /
+|                          | 
+|                   /-------
+|                  /                 kernel code \
+|          -------/                               context switch
+|          |                         user code   /
+|          |
+|          v 
+v
+</code></pre></div>
+<p>​   在 <code>*</code> 处就是发送接收检查信号，以确保交接控制权的一切都无误。</p>
+<p>​   Kernel computes <code>pnb = pending &amp; ~blocked</code> 内核通过计算位向量 <code>pnb</code> 来做到这一点</p>
+<p>​       The set of pending nonblocked signals for process <em>p</em>.</p>
+<p>​   If <code>pnb == 0</code></p>
+<p>​       Pass control to next instruction in the logical flow for <em>p</em>.</p>
+<p>​   Else</p>
+<p>​       Choose least nonzero bit <em>k</em> in <code>pnb</code> and force process <em>p</em> to <strong>receive</strong> signal <em>k</em>.</p>
+<p>​       The receipt of the signal triggers some <strong>action</strong> by <em>p</em>.</p>
+<p>​       Repeat for all nonzero <em>k</em> in <code>pnb</code>.</p>
+<p>​       Pass control to next instruction in logical flow for <em>p</em>.</p>
+<p>Default Actions</p>
+<p>​   Each signal type has a predefined <strong><em>default action</em></strong>, which is one of:</p>
+<p>​       The process terminates. 进程终止并转储内存。</p>
+<p>​       The process stops until restarted by a SIGCONT signal.</p>
+<p>​       The process ignore the signal.</p>
+<p>Installing Signal Handlers</p>
+<p>​   The <code>signal</code> function modifies the default action associated with the receipt of signal <code>signum</code>:</p>
+<p>​       <code>handler_t *signal(int signum, handler_t *handler)</code></p>
+<p>注：和 <code>kill</code> 一样，这也是个有误导性的起名， 调用<code>kill</code> 不一定杀死进程，而只是向进程发信号；调用 <code>signal</code> 并不是向进程发信号，而是修改信号的默认操作。</p>
+<p><code>signal</code> 函数指定信号的信号号（signal number，此处的 <code>signum</code>）和一个对信号默认行为的修改（此处的 <code>handler</code>）。</p>
+<p>​   Different values for <code>handler</code>:</p>
+<p>​       SIG_IGN: ignore signals of type <code>signum</code>.</p>
+<p>​       SIG_DFL: revert to the default action on receipt of signals of type <code>signum</code>.</p>
+<p>​       Otherwise, <code>handler</code> is the address of a user-level <strong>signal handler</strong>（用户级信号处理函数的地址）.</p>
+<p>​           Called when process receives signal of type <code>signum</code>.</p>
+<p>​           Referred to as <strong>"installing"</strong> the handler.</p>
+<p>​           Executing handler is called <strong>"catching"</strong> or <strong>"handling"</strong> the signal.</p>
+<p>​           When the handler executes its return statement, control passes to instruction in the control flow of the process that was in?? receipt of the signal.</p>
+<p>Signal Handling Example</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">sigint_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* SIGINT handler */</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;So you think you can stop the bomb with ctrl-c, do you?</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Well...&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;OK. :-)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Install the SIGINT handler */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">sigint_handler</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SIG_ERR</span><span class="p">)</span>
+<span class="w">        </span><span class="n">unix_error</span><span class="p">(</span><span class="s">&quot;signal error&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Wait for the receipt of a signal */</span>
+<span class="w">    </span><span class="n">pause</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Signals Handler as Concurrent Flows</p>
+<p>​   A signal handler is a separate logical flow (not process) that runs concurrently with the main program.</p>
+<div class="highlight"><pre><span></span><code>|Time    Process A      Process A      Process B
+|          while(1);    handler(){}
+|           o
+|                                          o
+|                          o
+|           o
+|                                          o
+|
+v
+</code></pre></div>
+<p>​   信号是并发的一种形式（Signals are another form of concurrency），信号是一个并发流。</p>
+<p>Another View of Signal Handlers as Concurrent Flows</p>
+<div class="highlight"><pre><span></span><code>|Time   Process A       process B
+|          |                         user code (main)
+|          | I_curr &lt;- Signal delivered to process A
+|          -------\  
+|                  \                 kernel code 
+|                   \------*                      context switch
+|                          |         user code (main)
+|                          | 
+|                   /-------
+|                  /                 kernel code 
+|          -------/                               context switch
+|          |                         user code (handler)
+|          |
+|          |                         kernel code
+|          | I_next &lt;- Signal received by process A
+|          |                         user code (main)
+|          |
+|          v
+|
+v
+</code></pre></div>
+<p><img alt="QQ_1765981185878" src="../QQ_1765981185878.png" /></p>
+<p>Blocking and Unblocking Signals</p>
+<p>​   Implicit blocking mechanism</p>
+<p>​       Kernel blocks any pending signals of type currently being handled.</p>
+<p>​       e.g. A SIGINT handler can't be interrupted by another SIGINT.</p>
+<p>​   Explicit blocking and unblocking mechanism.</p>
+<p>​       <code>sigprocmask</code> function.</p>
+<p>​   Supporting functions</p>
+<p>​       <code>sigemptyset</code>: Create empty set.</p>
+<p>​       <code>sigfillset</code>: Add every signal number to set.</p>
+<p>​       <code>sigaddset</code>: Add signal number to set.</p>
+<p>​       <code>sigdelset</code>: Delete signal number from set.</p>
+<p>Temporarily Blocking Signals</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kt">sigset_t</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">prev_mask</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Sigemptyset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sigaddset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">SIGINT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Block SIGINT and save previous blocked set */</span>
+<span class="w">    </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_mask</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">...</span><span class="w"> </span><span class="cm">/* Code region that will not be interrupted by SIGINT */</span>
+
+<span class="w">    </span><span class="cm">/* Restore previous blocked set, unblocking SIGINT */</span>
+<span class="w">    </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_mask</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</code></pre></div>
+<p>Safe Signal Handling</p>
+<p>​   Handlers are tricky because they are concurrent with main program and share the same global data structures.</p>
+<p>​       Shared data structures can become corrupted.</p>
+<p>​   We'll explore concurrency issues later in the term.</p>
+<p>​   For now here are some guidelines to help you avoid trouble.</p>
+<p>Guidelines for Writing Safe Handlers</p>
+<p>烦请参考《Unix 环境高级编程》信号一章。</p>
+<p>​   G0: Keep your handlers as simple as possible.</p>
+<p>​       e.g., Set a global flag and return.</p>
+<p>​   G1: 在你的处理程序中只调用异步信号安全函数。Call only async-signal-safe functions in your handlers.</p>
+<p>​       <code>printf</code>, <code>sprintf</code>, <code>malloc</code>, and <code>exit</code> are <strong>not</strong> safe!</p>
+<p>​   G2: Save and restore <code>errno</code> on entry and exit.</p>
+<p>​       So that other handlers don't overwrite your value of <code>errno</code>.</p>
+<p>​   G3: Protect accesses to shared data structures by temporarily blocking all signals.</p>
+<p>​       To prevent possible corruption.</p>
+<p>​   G4: Declare global variables as <code>volatile</code>.</p>
+<p>​       To prevent compiler from storing them in a register.</p>
+<p>​   G5: Declare global flags as <code>volatile sig_atomic_t</code> </p>
+<p>​       <em>flag</em>: variable that is only read or written (e.g. flag = 1, not flag).</p>
+<p>​       Flag declared this way does not need to be protected like others.</p>
+<p>异步信号安全 Async-Signal-Safety</p>
+<p>​   Function is <strong><em>async-signal-safe</em></strong> if either reentrant (e.g., all variables stored on stack frame, CS:APP3e 12.7.2) or non-interruptible by signals.</p>
+<p>​   Posix 标准确保了 117 个函数是同步信号安全的。Posix guarantees 117 functions to be async-signal-safe.</p>
+<p>​       Source: <code>man 7 signal</code>.</p>
+<p>​       Popular functions on the list:</p>
+<p>​           <code>_exit</code>, <code>write</code>, <code>wait</code>, <code>waitpid</code>, <code>sleep</code>, <code>kill</code>.</p>
+<p>​           Unfortunate fact: <code>write</code> is the only async-signal-safe output function.</p>
+<p>Safely Generating Formatted Output</p>
+<p>​   Use the reentrant SIO (Safe I/O library) from <code>csapp.c</code> in your handlers.</p>
+<p>​       <code>ssize_t sio_puts(char s[]) /* Put string */</code></p>
+<p>​       <code>ssize_t sio_putl(long v)   /* Put long */</code></p>
+<p>​       <code>void sio_error(char s[])   /* Put msg &amp; exit */</code></p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">sigint_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Safe SIGINT handler */</span>
+<span class="w">    </span><span class="n">Sio_puts</span><span class="p">(</span><span class="s">&quot;So you think you can stop the bomb with ctrl-c, do you?</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sio_puts</span><span class="p">(</span><span class="s">&quot;Well...&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sio_puts</span><span class="p">(</span><span class="s">&quot;OK. :-)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Correct Signal Handling</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">ccount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">child_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">olderrno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errno</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Sio_error</span><span class="p">(</span><span class="s">&quot;wait error&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ccount</span><span class="o">--</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Sio_puts</span><span class="p">(</span><span class="s">&quot;Handler reaped child &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sio_putl</span><span class="p">((</span><span class="kt">long</span><span class="p">)</span><span class="n">pid</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sio_puts</span><span class="p">(</span><span class="s">&quot; </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">olderrno</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">fork14</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ccount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Signal</span><span class="p">(</span><span class="n">SIGCHLD</span><span class="p">,</span><span class="w"> </span><span class="n">child_handler</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fork</span><span class="p">())</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Child exits */</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ccount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="cm">/* Parent spins */</span>
+<span class="w">        </span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>​   Pending signals are not queued.</p>
+<p>​       For each signal type, one bit indicates whether or not signal is pending...</p>
+<p>​       ... thus at most one pending signal of any particular type.</p>
+<p>​   You can't use signals to count events, such as children terminating.</p>
+<p>​   Must wait for all terminated child processes.</p>
+<p>​       Put <code>wait</code> in a loop to reap all terminated children.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">child_handler2</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">olderrno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errno</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ccount</span><span class="o">--</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Sio_puts</span><span class="p">(</span><span class="s">&quot;Handler reaped child &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Sio_putl</span><span class="p">((</span><span class="kt">long</span><span class="p">)</span><span class="n">pid</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Sio_puts</span><span class="p">(</span><span class="s">&quot; </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">errno</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ECHILD</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="n">Sio_error</span><span class="p">(</span><span class="s">&quot;wait error&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">olderrno</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Portable Signal Handling</p>
+<p>​   Ugh! Different versions of Unix can have different signals handling semantics.</p>
+<p>​       Some older systems restore action to default after catching signal.</p>
+<p>​       Some interrupted system calls can return with <code>errno == EINTR</code>.</p>
+<p>​       Some systems don't block signals of the type being handled.</p>
+<p>​   Solution: <code>sigaction</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">handler_t</span><span class="w"> </span><span class="o">*</span><span class="nf">Signal</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">signum</span><span class="p">,</span><span class="w"> </span><span class="n">handler_t</span><span class="w"> </span><span class="o">*</span><span class="n">handler</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sigaction</span><span class="w"> </span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">old_action</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">action</span><span class="p">.</span><span class="n">sa_handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">handler</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sigemptyset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">action</span><span class="p">.</span><span class="n">sa_mask</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Block sigs of type being handled */</span>
+<span class="w">    </span><span class="n">action</span><span class="p">.</span><span class="n">sa_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SA_RESTART</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Restart syscalls if possible */</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sigaction</span><span class="p">(</span><span class="n">signum</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">old_action</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">unix_error</span><span class="p">(</span><span class="s">&quot;Signal error&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">old_action</span><span class="p">.</span><span class="n">sa_handler</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Synchronizing Flows to Avoid Races</p>
+<p>​   Simple shell with a subtle synchronization error because it assumes parent runs before child.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">sigset_t</span><span class="w"> </span><span class="n">mask_all</span><span class="p">,</span><span class="w"> </span><span class="n">prev_all</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Sigfillset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask_all</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Signal</span><span class="p">(</span><span class="n">SIGCHLD</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+<span class="w">    </span><span class="n">initjobs</span><span class="p">();</span><span class="w"> </span><span class="cm">/* Initialize the job list */</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fork</span><span class="p">())</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Child */</span>
+<span class="w">            </span><span class="n">Execve</span><span class="p">(</span><span class="s">&quot;/bin/date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask_all</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_all</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Parent */</span>
+<span class="w">        </span><span class="n">addjob</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Add the child to the job list */</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASKJ</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_all</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>​   SIGCHLD handler for a simple shell.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">olderrno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errno</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">sigset_t</span><span class="w"> </span><span class="n">mask_all</span><span class="p">,</span><span class="w"> </span><span class="n">prev_all</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Sigfillset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask_all</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">waitpid</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Reap child */</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask_all</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_all</span><span class="p">);</span>
+<span class="w">        </span><span class="n">deletejob</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Delete the child from the job list */</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_all</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">errno</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ECHILD</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Sio_error</span><span class="p">(</span><span class="s">&quot;waitpid error&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">olderrno</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Corrected Shell Program without Race</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">sigset_t</span><span class="w"> </span><span class="n">mask_all</span><span class="p">,</span><span class="w"> </span><span class="n">mask_one</span><span class="p">,</span><span class="w"> </span><span class="n">prev_one</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Sigfillset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask_all</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sigemptyset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask_one</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sigaddset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask_one</span><span class="p">,</span><span class="w"> </span><span class="n">SIGCHLD</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Signal</span><span class="p">(</span><span class="n">SIGCHLD</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+<span class="w">    </span><span class="n">initjobs</span><span class="p">();</span><span class="w"> </span><span class="cm">/* Initialize the job list */</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">BIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask_one</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_one</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Block SIGCHLD */</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fork</span><span class="p">())</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Child process */</span>
+<span class="w">            </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_one</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Unblock SIGCHLD */</span>
+<span class="w">            </span><span class="n">Execve</span><span class="p">(</span><span class="s">&quot;/bin/date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask_all</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Parent process */</span>
+<span class="w">        </span><span class="n">addjob</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Add the child to the job list */</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASKJ</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev_one</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Unblock SIGCHLD */</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Explicitly Waiting for Signals</p>
+<p>​   Handlers for program explicitly waiting for SIGCHLD to arrive.</p>
+<div class="highlight"><pre><span></span><code><span class="k">volatile</span><span class="w"> </span><span class="kt">sig_atomic_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">sigchld_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">olderrno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errno</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Waitpid</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Main is waiting for nonzero pid */</span>
+<span class="w">    </span><span class="n">errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">olderno</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sigint_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>​   Similar to a shell waiting for a foreground job to terminate.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">sigset_t</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">prev</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Signal</span><span class="p">(</span><span class="n">SIGCHLD</span><span class="p">,</span><span class="w"> </span><span class="n">sigchld_handler</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">sigint_handler</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sigemptyset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sigaddset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">SIGCHLD</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Block SIGCHLD */</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Fork</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="cm">/* Child */</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="cm">/* Parent */</span>
+<span class="w">        </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Unblock SIGCHLD */</span>
+
+<span class="w">        </span><span class="cm">/* Wait for SIGCHLD to be received (wasteful!) */</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pid</span><span class="p">)</span>
+<span class="w">            </span><span class="p">;</span>
+<span class="w">        </span><span class="cm">/* Do some work after receiving SIGCHLD */</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>​   Program is correct, but very wasteful.</p>
+<p>​   Other options:</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pid</span><span class="p">)</span><span class="w"> </span><span class="cm">/* Race! */</span>
+<span class="w">    </span><span class="n">pause</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pid</span><span class="p">)</span><span class="w"> </span><span class="cm">/* Too slow! */</span>
+<span class="w">    </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div>
+<p>​   Solution: <code>sigsuspend</code>.</p>
+<p>Waiting for Signals with <code>sigsuspend</code></p>
+<p>​   <code>int sigsuspend(const sigset_t *mask)</code></p>
+<p>​   Equivalent to atomic (uninterruptable) version of: </p>
+<div class="highlight"><pre><span></span><code><span class="n">sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev</span><span class="p">);</span>
+<span class="n">pause</span><span class="p">();</span>
+<span class="n">sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">sigset_t</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">prev</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Signal</span><span class="p">(</span><span class="n">SIGCHLD</span><span class="p">,</span><span class="w"> </span><span class="n">sigchld_handler</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">sigint_handler</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sigemptyset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Sigaddset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">SIGCHLD</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Block SIGCHLD */</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Fork</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="cm">/* Child */</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/* Wait for SIGCHLD to be received*/</span>
+<span class="w">        </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pid</span><span class="p">)</span>
+<span class="w">            </span><span class="n">Sigsuspsend</span><span class="p">(</span><span class="o">&amp;</span><span class="n">prev</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/* Optionally unblock SIGCHLD */</span>
+<span class="w">        </span><span class="n">Sigprocmask</span><span class="p">(</span><span class="n">SIG_SETMASK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">        </span><span class="cm">/* Do some work after receiving SIGCHLD */</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

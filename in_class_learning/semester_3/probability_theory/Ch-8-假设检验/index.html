@@ -1,0 +1,4937 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Ch-7-%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/">
+      
+      
+        <link rel="next" href="../../problem_solving_III/OnlineJudges/AAA_README/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Ch.8 假设检验 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ch8" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ch.8 假设检验
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    In class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    In class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semester 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semester 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discrete mathematics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Discrete mathematics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../discrete_mathematics/L01-03-%E5%BD%A2%E5%BC%8F%E9%80%BB%E8%BE%91%E4%B8%8E%E8%AF%81%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L01 03 形式逻辑与证明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../discrete_mathematics/L04-06-%E9%9B%86%E5%90%88%E4%B8%8E%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L04 06 集合与关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../discrete_mathematics/L07-10-%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA%E5%B7%A5%E5%85%B7-%E6%95%B0%E8%AE%BA-%E5%BD%92%E7%BA%B3%E6%B3%95-%E8%AE%A1%E6%95%B0-%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 10 基本理论工具 数论 归纳法 计数 概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../discrete_mathematics/L11-17-%E5%9F%BA%E6%9C%AC%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0-%E5%85%B3%E7%B3%BB-%E7%BE%A4%E8%AE%BA-%E6%A0%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L11 17 基本抽象代数 关系 群论 格
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../discrete_mathematics/L18-22-%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L18 22 图论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../discrete_mathematics/L23-25-%E6%A0%91%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L23 25 树论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to computer system
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction to computer system
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_1" id="__nav_2_1_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Lab-notes/Lab_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_2" id="__nav_2_1_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/AAA-Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch01 计算机系统概述
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch02-%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch02 数据的机器级表示与处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch03-%E7%A8%8B%E5%BA%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch03 程序转换与指令系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch04-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch04 程序的机器级表示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch05-%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A0%E8%BD%BD%E6%89%A7%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch05 程序的链接与加载执行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch06-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch06 存储器层次结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch07-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch07 虚拟存储器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch08-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch08 进程与异常控制流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch09-IO%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch09 IO操作的实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch10-Optional-%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E7%9A%84%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch10 Optional 程序性能的优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch11-Optional-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch11 Optional 网络编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction_to_computer_system/Theory_notes/Ch12-Optional-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch12 Optional 并发编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network attack and defense
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Network attack and defense
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab7_pwn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAD lab07 PWN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_attack_and_defense/lab9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_4" id="__nav_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probability theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AAA_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%200%20%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%201%20%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%202%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%203%20%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%204%20%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%205%20%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%206%20%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch%207%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-0-%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch 0 常见分布速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-1-%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A6%82%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.1 随机事件与概率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-2-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.2 随机变量及其概率分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-3-%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.3 二维随机变量及其分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-4-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.4 随机变量的数字特征
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-5-%E6%9E%81%E9%99%90%E7%90%86%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.5 极限理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-6-%E7%BB%9F%E8%AE%A1%E9%87%8F%E4%B8%8E%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.6 统计量与抽样分布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ch-7-%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.7 参数估计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.8 假设检验
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch.8 假设检验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设检验的步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="假设检验的步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设检验的两类错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p 值检验法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体均值的假设检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体方差的假设检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拟合优度检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        独立性检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    problem solving III
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    problem solving III
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5_1" id="__nav_2_1_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges/P10007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5_2" id="__nav_2_1_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OnlineJudges Solutions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OnlineJudges Solutions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/AAA_README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAA README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1008/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1009/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1009
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1010/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1010
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1011/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1011
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1012/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1012
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1013/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1013
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1014/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1014
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1015/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1015
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1016/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1016
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1017/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1017
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1018/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1018
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1019
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1020
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1021
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/OnlineJudges-Solutions/P1025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5_3" id="__nav_2_1_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/A001_%E8%AE%B0%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A001 记号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L001_%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L002_%E8%BF%9E%E9%80%9A%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L003_%E5%9C%88%E5%92%8C%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L004_%E8%BF%9E%E9%80%9A%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L005_%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L006_%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L006 单源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L007_%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L007 多源最短路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L008_%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E8%B5%8B%E6%9D%83%E6%AC%A7%E6%8B%89%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L009_%E6%9C%89%E5%90%91%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L010_%E6%B5%81%E7%BD%91%E7%BB%9C%E5%92%8C%E6%9C%80%E5%A4%A7%E6%B5%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L011_%E7%8B%AC%E7%AB%8B%E3%80%81%E8%A6%86%E7%9B%96%E5%92%8C%E6%94%AF%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L011 独立、覆盖和支配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L012_%E6%9F%93%E8%89%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L013_%E5%B9%B3%E9%9D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L014_%E7%BE%A4%E5%92%8C%E5%BE%AA%E7%8E%AF%E7%BE%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L014 群和循环群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L015_%E7%BD%AE%E6%8D%A2%E7%BE%A4%E3%80%81%E9%99%AA%E9%9B%86%E5%92%8C%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L015 置换群、陪集和拉格朗日定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L016_%E4%BB%A3%E6%95%B0%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L16 代数编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../problem_solving_III/Theory/L017_%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L017 抽象代数中的其他问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Out class learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Out class learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Freely learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Freely learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CSAPP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/CSAPPreadme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSAPPreadme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L05-Machine-Level-Programming-I-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L05 Machine-Level Programming I: Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L06-Machine-Level-Programming-II-Control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L06 Machine-Level Programming II: Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L07-Machine-Level-Programming-III-Procedures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L07 Machine-Level Programming III: Procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L08-Machine-Level-Programming-IV-Data%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L08 Machine-Level Programming IV: Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L08-Machine-Level-Programming-IV-Data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L08 Machine-Level Programming IV: Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L09-Machine-Level-Programming-V-Advanced-Topics%20-%20%E5%89%AF%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L09 Machine-Level Programming V: Advanced Topics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L09-Machine-Level-Programming-V-Advanced-Topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L09 Machine-Level Programming V: Advanced Topics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L10-Program-Optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L10 Program Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L11-The-Memory-Hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L11 The Memory Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L12-Cache-Memories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L12 Cache Memories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L13-Linking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L13 Linking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L14-Exceptional-Control-Flow-Exceptions-and-Processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L14 Exceptional Control Flow: Exceptions and Processes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L15-Exceptional-Control-Flow-Signals-and-Nonlocal-Jumps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L15 Exceptional Control Flow: Signals and Nonlocal Jumps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L16-System-Level-IO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L16 System-Level I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/freely_learning/CSAPP/L17-Virtual-Memory-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L17 Virtual Memory: Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickly learning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quickly learning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/C%2B%2BOOP%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++OOP 快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/MkDocs%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../out_class_learning/quickly_learning/%E4%B8%89%E5%B0%8F%E6%97%B6%E5%89%8D%E7%AB%AF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三小时前端快速入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设检验的步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="假设检验的步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设检验的两类错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p 值检验法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体均值的假设检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正态总体方差的假设检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拟合优度检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        独立性检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ch8">Ch.8 假设检验</h1>
+<p>假设检验就是对总体的某些位置特征提出假设，并利用样本信息来推断该假设的正确性。</p>
+<h2 id="_1">基本概念</h2>
+<p>假设一般是某个量的取值或者分布。</p>
+<p>如果检验的假设只涉及总体分布中的未知参数，则称这种假设为<strong>参数检验假设</strong>，反之则称为<strong>非参数检验假设</strong>。</p>
+<p>我们以针对单个参数的参数检验假设为例子，比如有这样一个假设：总体样本的均值 <span class="arithmatex">\(\mu=0\)</span>，那么这个假设称为<strong>原假设</strong>或<strong>零假设</strong>，通常记作 <span class="arithmatex">\(H_0\)</span>，与之对立的 <span class="arithmatex">\(\mu\ne 0\)</span> 称为<strong>备择假设</strong>或<strong>对立假设</strong>，通常记作 <span class="arithmatex">\(H_1\)</span>。</p>
+<p>对于原假设与对立假设各居一边的检验问题，比如说 <span class="arithmatex">\(H_0:p\le 0.05,H_1:p&gt;0.05\)</span>，称其为<strong>单边检验</strong>。对于对立假设分局原假设的两边的检验问题，比如说 <span class="arithmatex">\(H_0:\mu=0,H_1:\mu\ne 0\)</span>，称其为<strong>双边检验</strong>。</p>
+<p>如果假设中只含有一个假设，则称其为<strong>简单假设</strong>；否则称为<strong>复杂假设</strong>。</p>
+<h3 id="_2">假设检验的步骤</h3>
+<ol>
+<li>根据问题提出原假设 <span class="arithmatex">\(H_0\)</span> 和对立假设 <span class="arithmatex">\(H_1\)</span>.</li>
+<li>构造一个合适的统计量 <span class="arithmatex">\(U\)</span>，往往由参数估计二濑，称为<strong>检验统计量</strong>，并在 <span class="arithmatex">\(H_0\)</span> 成立的条件下推导出该统计量的分布。</li>
+<li>给定一个小概率 <span class="arithmatex">\(\alpha\)</span>，确定 <span class="arithmatex">\(U\)</span> 的概率关于概率 <span class="arithmatex">\(\alpha\)</span> 的界限，称为<strong>临界值</strong>，以及 <span class="arithmatex">\(U\)</span> 不满足 <span class="arithmatex">\(H_0\)</span> 假设的取值集合，称为<strong>拒绝域</strong> <span class="arithmatex">\(W\)</span>. 拒绝域的补集称为<strong>接受域</strong>。</li>
+<li>由样本算出统计量的观察值，若落在拒绝域，则拒绝 <span class="arithmatex">\(H_0\)</span>；若落在接受域，则接受 <span class="arithmatex">\(H_0\)</span>.</li>
+</ol>
+<h4 id="_3">假设检验的两类错误</h4>
+<p><strong>第一类错误（弃真错误）</strong>：原假设 <span class="arithmatex">\(H_0\)</span> 正确，但由于统计量的值落在拒绝域而拒绝了原假设 <span class="arithmatex">\(H_0\)</span>.</p>
+<p><strong>第二类错误（存伪错误）</strong>：原假设 <span class="arithmatex">\(H_0\)</span> 不正确，但由于统计量的值落在接受域而接受了原假设 <span class="arithmatex">\(H_0\)</span>.</p>
+<p>显然，第一类错误的概率就是假设检验中的小概率 <span class="arithmatex">\(\alpha\)</span>：<span class="arithmatex">\(\mathrm{Pr}(拒绝\,H_0|H_0\,为真)=\mathrm{Pr}(U\in W|H_0\,为真)=\alpha\)</span>. 因此，有时会称 <span class="arithmatex">\(\alpha\)</span> 为<strong>显著性水平</strong>。第二类错误的概率 <span class="arithmatex">\(\beta\)</span> 一般计算比较困难：<span class="arithmatex">\(\mathrm{Pr}(接受\,H_0|H_1\, 为真)=\mathrm{Pr}(U\notin W|H_1\,为真)=\beta\)</span>.</p>
+<p>在进行假设检验时，当然希望两类错误的概率越小越好，然而，<strong>在给定样本容量的情况下，犯两类错误的概率不可能同时减小：减少其中一个，另一个会增大。</strong>因此，Neyman 和 Pearson 提出了 <strong>Neyman-Pearson 原则：在控制 <span class="arithmatex">\(\alpha\)</span> 的情况下，使 <span class="arithmatex">\(\beta\)</span> 尽量小</strong>。</p>
+<h3 id="p">p 值检验法</h3>
+<p>对于假设检验 <span class="arithmatex">\(H_0:\theta\in\Theta_0;H_1:\theta\in\Theta_1\)</span>，检验统计量为 <span class="arithmatex">\(T=T(X_1,\cdots,X_n)\)</span>，拒绝域 <span class="arithmatex">\(W=\{|T|\ge \lambda\}\)</span>. 设 <span class="arithmatex">\(x_1,\cdots,x_n\)</span> 为样本观察值，检验统计量 <span class="arithmatex">\(T\)</span> 的观察值为 <span class="arithmatex">\(t=T(x_1,\cdots, x_n)\)</span>，则定义 <strong>p 值</strong>如下：
+$$
+p(x_1,\cdots,x_n)=\sup_{\theta\in\Theta_0}\mathrm{Pr}_\theta(|T|\ge |t|)
+$$
+换句话说 p 值是基于样本观察值而计算出的拒绝原假设的概率，当原假设为复合假设时，取最大概率。由于 p 值依赖于样本观察值，故而其也是一个统计量。</p>
+<p>p 值越小，越应该拒绝原假设。Fisher 称 p 值为「反对原假设依据的强度」，当 p 值小于显著性水平 <span class="arithmatex">\(\alpha\)</span> 时，我们拒绝原假设，否则接受原假设。有了 p 值，我们可以不再将检验陷入接受/拒绝的二元情形，而是量化成 p 值这个指标和 <span class="arithmatex">\(\alpha\)</span> 进行比较，从而知道接受或拒绝原假设的「程度」。</p>
+<h2 id="_4">正态总体均值的假设检验</h2>
+<p>一、单个正态总体均值的假设检验</p>
+<p>设给定显著性水平 <span class="arithmatex">\(\alpha\)</span>，<span class="arithmatex">\(X_1,\cdots,X_n\)</span> 为来自总体 <span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span> 的一组样本，检验问题为：<span class="arithmatex">\(H_0:\mu=\mu_0;H_1:\mu\ne \mu_0\)</span>，分以下两种情况：</p>
+<p>​   (1)<span class="arithmatex">\(\sigma^2\)</span> 已知，此时使用 <span class="arithmatex">\(u\)</span> 检验。</p>
+<p>​   检验统计量为 <span class="arithmatex">\(U=\dfrac{\bar{X}-\mu_0}{\sigma/\sqrt{n}}\)</span>，在 <span class="arithmatex">\(H_0\)</span> 成立时，我们有 <span class="arithmatex">\(U\sim N(0,1)\)</span>，由此得知拒绝域：
+$$
+W={|U|\ge u_{\alpha/2}}
+$$
+​   这种检验方法称为 <strong><span class="arithmatex">\(u\)</span> 检验法</strong>，只因 <span class="arithmatex">\(\dfrac{\bar{X}-\mu_0}{\sigma/\sqrt{n}}\)</span> 习惯记为 <span class="arithmatex">\(U\)</span> 而称为 <span class="arithmatex">\(U\)</span> 统计量。</p>
+<p>其他变体情形：</p>
+<ol>
+<li>对于单边检验 <span class="arithmatex">\(H_0:\mu=\mu_0;H_1:\mu&gt;\mu_0\)</span>，利用 <span class="arithmatex">\(U\)</span> 统计量得到拒绝域 <span class="arithmatex">\(W=\{U\ge u_\alpha\}\)</span>；</li>
+<li>对于单边检验 <span class="arithmatex">\(H_0:\mu=\mu_0;H_1:\mu&lt;\mu_0\)</span>，利用 <span class="arithmatex">\(U\)</span> 统计量得到拒绝域 <span class="arithmatex">\(W=\{U\le -u_\alpha\}\)</span>.</li>
+<li>对于单边检验 <span class="arithmatex">\(H_0:\mu\le \mu_0;H_1:\mu&gt;\mu_0\)</span>，仍取 <span class="arithmatex">\(U\)</span> 统计量为检验统计量，但这个检验的原假设为复合假设，从而我们不能认为在原假设 <span class="arithmatex">\(H_0\)</span> 成立的情况下，<span class="arithmatex">\(U\sim N(0,1)\)</span>，但显然取 <span class="arithmatex">\(W'=\{U\ge u_\alpha\}\)</span> 时，我们因 <span class="arithmatex">\(\mu=\mu_0\)</span> 时第一类错误概率恰为 <span class="arithmatex">\(\alpha\)</span>，<span class="arithmatex">\(\mu&lt;\mu_0\)</span> 时第一类错误概率小于 <span class="arithmatex">\(\alpha\)</span>，故取拒绝域 <span class="arithmatex">\(W=W'\)</span> 时，第一类错误概率不大于 <span class="arithmatex">\(\alpha\)</span> 也可以。</li>
+<li>对于单边检验 <span class="arithmatex">\(H_0:\mu\ge \mu_0;H_1:\mu&lt;\mu_0\)</span>，同 3.</li>
+</ol>
+<p>显然，在检验统计量分布对称的情形下，单边检验的拒绝域可以由双边检验的拒绝域稍作变形得到。    </p>
+<p>​   (2) <span class="arithmatex">\(\sigma^2\)</span> 未知，此时使用 <span class="arithmatex">\(t\)</span> 检验。</p>
+<p>​   使用样本标准差 <span class="arithmatex">\(S=\sqrt{\dfrac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X})^2}\)</span> 代替 <span class="arithmatex">\(\sigma\)</span>，也就是取检验统计量 <span class="arithmatex">\(T=\dfrac{\bar{X}-\mu_0}{S/\sqrt{n}}\)</span>，由之前章节的结论，在 <span class="arithmatex">\(H_0\)</span> 成立的情况下，有 <span class="arithmatex">\(T\sim t(n-1)\)</span>，于是检验的拒绝域为
+$$
+W={|T|\ge t_{\alpha/2}(n-1)}
+$$
+​   这种检验方法称为 <strong><span class="arithmatex">\(t\)</span> 检验法</strong>，只因 <span class="arithmatex">\(T=\dfrac{\bar{X}-\mu_0}{S/\sqrt{n}}\)</span> 习惯记为 <span class="arithmatex">\(T\)</span> 而称为 <span class="arithmatex">\(T\)</span> 统计量。</p>
+<p>二、两个正态总体的均值差的假设检验</p>
+<p>设 <span class="arithmatex">\(X_1,\cdots,X_{n_1}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_1,\sigma_1^2)\)</span> 的一个样本，<span class="arithmatex">\(Y_1,\cdots,Y_{n_2}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_2,\sigma_2^2)\)</span> 的一个样本，且两样本相互独立，记 <span class="arithmatex">\(\bar{X},\bar{Y}\)</span> 分别为其样本均值，<span class="arithmatex">\(S_1^2,S_2^2\)</span> 分别为其样本方差，检验问题为：<span class="arithmatex">\(H_0:\mu_1=\mu_2;H_1:\mu_1\ne \mu_2\)</span>.</p>
+<p>​   (1) <span class="arithmatex">\(\sigma_1^2\)</span> 和 <span class="arithmatex">\(\sigma_2^2\)</span> 均已知。</p>
+<p>​   取检验统计量 <span class="arithmatex">\(U=\dfrac{\bar{X}-\bar{Y}}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}\)</span>，当 <span class="arithmatex">\(H_0\)</span> 成立时 <span class="arithmatex">\(U\sim N(0,1)\)</span>，此时 <span class="arithmatex">\(|U|\)</span> 不会太大，在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域 <span class="arithmatex">\(W=\{|U|\ge u_{\alpha/2}\}\)</span>.</p>
+<p>​   (2) <span class="arithmatex">\(\sigma_1^2,\sigma_2^2\)</span> 均未知但相等。</p>
+<p>​   取检验统计量 <span class="arithmatex">\(T=\sqrt{\dfrac{n_1n_2(n_1+n_2-2)}{n_1+n_2}}\dfrac{\bar{X}-\bar{Y}}{\sqrt{(n_1-1)S_1^2+(n_2-1)S_2^2}}\)</span>，当 <span class="arithmatex">\(H_0\)</span> 成立时 <span class="arithmatex">\(T\sim t(n_1+n_2-2)\)</span>，在给定显著性水平，此时 <span class="arithmatex">\(T\)</span> 在零附近，在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域 <span class="arithmatex">\(W=\{|T|\ge t_{\alpha/2}(n_1+n_2-2)\}\)</span>.</p>
+<p>三、基于成对数据的假设检验</p>
+<p>​   对于两个正态总体的样本来自同一个总体的重复测量，比如说样本 <span class="arithmatex">\((X_1,Y_1),\cdots,(X_n,Y_n)\)</span>，现记 <span class="arithmatex">\(Z_i=X_i-Y_i\)</span>，且假定 <span class="arithmatex">\(Z_i\sim N(\mu,\sigma^2)\)</span> 且 <span class="arithmatex">\(Z_i\)</span> 相互独立，检验问题为：<span class="arithmatex">\(H_0:\mu=0;H_1:\mu\ne 0\)</span>.</p>
+<p>​   使用 <span class="arithmatex">\(t\)</span> 检验法，此时称为<strong>成对 <span class="arithmatex">\(t\)</span> 检验法</strong>：取 <span class="arithmatex">\(T=\dfrac{\bar{Z}}{S_Z/\sqrt{n}}\)</span>，其中 <span class="arithmatex">\(\bar{Z}=\dfrac{1}{n}\sum_{i=1}^{n}Z_i,S_Z^2=\dfrac{1}{n-1}\sum_{i=1}^{n}(Z_i-\bar{Z})^2\)</span>，拒绝域为 <span class="arithmatex">\(W=\{|T|\ge t_{\alpha/2}(n-1)\}\)</span>.</p>
+<h2 id="_5">正态总体方差的假设检验</h2>
+<p>一、单个正态总体方差的假设检验</p>
+<p>​   设给定显著性水平 <span class="arithmatex">\(\alpha\)</span>，设 <span class="arithmatex">\(X_1,\cdots,X_n\)</span> 为来自总体 <span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span> 的一组样本，检验问题为 <span class="arithmatex">\(H_0:\sigma^2=\sigma_0^2;H_1:\sigma^2\ne \sigma_0^2\)</span>，在假定 <span class="arithmatex">\(\mu\)</span> 未知时，取检验统计量 <span class="arithmatex">\(\chi^2=\dfrac{(n-1)S^2}{\sigma_0^2}\)</span>，由之前章节的结论：在 <span class="arithmatex">\(H_0\)</span> 成立时有 <span class="arithmatex">\(\chi^2\sim \chi^2(n-1)\)</span>，此时 <span class="arithmatex">\(\chi^2\)</span> 不过大或过小，于是拒绝域：
+$$
+W={\chi^2\le \chi^2_{1-\alpha/2}(n-1)}\cup{\chi^2\ge \chi^2_{\alpha/2}(n-1)}
+$$
+​   此检验称为 <strong><span class="arithmatex">\(\chi^2\)</span> 检验法</strong>，理由同上节。</p>
+<p>二、两个正态总体的方差比的假设检验</p>
+<p>​   设 <span class="arithmatex">\(X_1,\cdots, X_{n_1}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_1,\sigma_1^2)\)</span> 的一个样本，<span class="arithmatex">\(Y_1,\cdots,Y_{n_2}\)</span> 是来自正态总体 <span class="arithmatex">\(N(\mu_2,\sigma_2^2)\)</span> 的一个样本，两样本相互独立，检验问题为 <span class="arithmatex">\(H_0:\sigma_1^2=\sigma_2^2;H_1:\sigma_1^2\ne \sigma_2^2\)</span>，且假定均值 <span class="arithmatex">\(\mu_1,\mu_2\)</span> 均未知。</p>
+<p>​   取检验统计量 <span class="arithmatex">\(F=\dfrac{S_1^2\sigma_2^2}{S_2^2\sigma_1^2}\)</span>. 在 <span class="arithmatex">\(H_0\)</span> 成立时，由之前z航姐的结论：<span class="arithmatex">\(F\sim F(n_1-1,n_2-1)\)</span>，在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域：
+$$
+W={F\le F_{1-\alpha/2}(n_1-1,n_2-1)}\cup{F\ge F_{\alpha/2}(n_1-1,n_2-1)}
+$$
+​   此检验称为 <strong><span class="arithmatex">\(F\)</span> 检验法</strong>，理由同上节。</p>
+<h2 id="_6">拟合优度检验</h2>
+<p>​   在实际问题中，我们常常不知道总体的分布类型（而和前文已知总体服从正态分布不同），这就需要对总体的分布类型进行推断，这种检验称为<strong>分布拟合优度检验</strong>，一般地，假设如下：<span class="arithmatex">\(H_0:F(x)=F_0(x;\theta)\)</span>，其中 <span class="arithmatex">\(F_0\)</span> 为某个已知的分布函数，<span class="arithmatex">\(\theta=(\theta_1,\cdots ,\theta_r)^{\mathsf{T}}\)</span> 为未知参数。</p>
+<p>​   下面我们介绍 Pearson <span class="arithmatex">\(\chi^2\)</span> 拟合优度检验，基本思想是利用事件频率和概率之间的偏差构造检验统计量。</p>
+<p>​   对于离散型随机变量的分布，设 <span class="arithmatex">\(H_0:P(X=x_i)=p_i,i=1,\cdots,k\)</span>，其中 <span class="arithmatex">\(p_i\)</span> 均已知，且 <span class="arithmatex">\(p_i\ge0,\sum_{i=1}^{n}p_i=1\)</span>，<span class="arithmatex">\(X_1,\cdots,X_n\)</span> 是一组样本，下面是检验步骤：</p>
+<ol>
+<li>
+<p>计算 <span class="arithmatex">\((X_1,\cdots,X_n)\)</span> 中取 <span class="arithmatex">\(x_i\)</span> 的实际频数 <span class="arithmatex">\(n_i,i=1,\cdots,k\)</span>，即：
+   $$
+   n_i=\sum_{i=1}^n[X_i=x_i]
+   $$</p>
+</li>
+<li>
+<p>计算实际频数与理论频数的偏差平方和
+   $$
+   \chi^2=\sum_{i=1}^{k}\dfrac{(n_i-np_i)^2}{np_i}
+   $$
+   该统计量称为 <strong>Pearson <span class="arithmatex">\(\chi^2\)</span> 统计量</strong>，其度量了实际数据与理论分布的拟合程度，<span class="arithmatex">\(\chi^2\)</span> 越大，拟合程度越差，可以证明，当 <span class="arithmatex">\(H_0\)</span> 成立时，<span class="arithmatex">\(\chi^2\)</span> 统计量的渐进分布为 <span class="arithmatex">\(\chi^2(k-1)\)</span>.</p>
+</li>
+<li>
+<p>在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域为：
+   $$
+   W={\chi^2\ge \chi^2_\alpha(k-1)}
+   $$</p>
+</li>
+</ol>
+<p>原理类似，我们给出一般的假设检验问题：</p>
+<ol>
+<li>
+<p>将样本空间分为 <span class="arithmatex">\(k\)</span> 个互不相交的事件 <span class="arithmatex">\(A_1,\cdots,A_k\)</span>.</p>
+</li>
+<li>
+<p>计算样本 <span class="arithmatex">\((X_1,\cdots, X_n)\)</span> 落在事件 <span class="arithmatex">\(A_i\)</span> 的实际频数 <span class="arithmatex">\(n_i,i=1,2,\cdots,k\)</span>.</p>
+</li>
+<li>
+<p>计算每个事件 <span class="arithmatex">\(A_i\)</span> 上的理论频数：若参数 <span class="arithmatex">\(\theta\)</span> 未知，则现算出 <span class="arithmatex">\(\theta\)</span> 的最大似然估计 <span class="arithmatex">\(\hat{\theta}\)</span>，然后计算理论频数 <span class="arithmatex">\(n\hat{p_i}\)</span>，其中 <span class="arithmatex">\(\hat{p_i}=\mathrm{Pr}(X\in A_i|\theta=\hat{\theta})\)</span>.</p>
+</li>
+<li>
+<p>计算实际频数与理论频数的偏差平方和：
+   $$
+   \chi^2=\sum_{i=1}^{k}\dfrac{(n_i-n\hat{p_i})^2}{n\hat{p_i}}
+   $$</p>
+</li>
+<li>
+<p>在 <span class="arithmatex">\(H_0\)</span> 为真时，Pearson-Fisher 定理给出结论：<span class="arithmatex">\(\chi^2\sim \chi^2(k-r-1)\)</span>.</p>
+</li>
+<li>
+<p>于是在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域如下：
+   $$
+   W={\chi^2\ge \chi^2_\alpha(k-r-1)}
+   $$</p>
+</li>
+</ol>
+<p>此处 <span class="arithmatex">\(r\)</span> 为独立未知参数的数量。</p>
+<h2 id="_7">独立性检验</h2>
+<p>设 <span class="arithmatex">\((X_1,Y_1),\cdots,(X_n,Y_n)\)</span> 为二维总体 <span class="arithmatex">\((X,Y)\)</span> 的一个样本，<span class="arithmatex">\(H_0: X\,与\, Y\, 独立\)</span>. 我们将 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的取值范围分成 <span class="arithmatex">\(r\)</span> 个与 <span class="arithmatex">\(s\)</span> 个互不相交的区间 <span class="arithmatex">\(A_1,\cdots,A_r\)</span> 和 <span class="arithmatex">\(B_1,\cdots,B_s\)</span>，用 <span class="arithmatex">\(n_{ij}\)</span> 表示指标 <span class="arithmatex">\(X\)</span> 落在 <span class="arithmatex">\(A_i\)</span>，<span class="arithmatex">\(Y\)</span> 落在 <span class="arithmatex">\(B_j\)</span> 的样本点的个数，又记 <span class="arithmatex">\(n_{i\bullet}=\sum_{j=1}^s n_{ij},n_{\bullet j}=\sum_{i=1}^{r}n_{ij}\)</span>.，由此绘制一张 <strong><span class="arithmatex">\(r\times s\)</span> 列联表</strong>：</p>
+<p><img alt="QQ_1765801832030" src="../QQ_1765801832030.png" /></p>
+<p>记 <span class="arithmatex">\(p_{ij}=\mathrm{Pr}(X\in A_i,Y\in B_k),p_{i\bullet}=\mathrm{Pr}(X\in A_i),p_{\bullet j}=\mathrm{Pr}(Y\in B_j)\)</span>，从而零假设 <span class="arithmatex">\(H_0\)</span> 等价为这个零假设：<span class="arithmatex">\(H_0:p_{ij}=p_{i\bullet} p_{\bullet j}\)</span>，该假设中含有 <span class="arithmatex">\(r+s\)</span> 个未知参数，但因 <span class="arithmatex">\(\sum_{i=1}^{r}p_{i\bullet}=\sum_{j=1}^{s}p_{\bullet j}=1\)</span>，故而仅有 <span class="arithmatex">\(r+s-2\)</span> 个独立的未知参数，下面使用 <span class="arithmatex">\(\chi^2\)</span> 检验法：</p>
+<p>当零假设成立时，似然函数为：
+$$
+L=\prod_{i=1}^{r}\prod_{j=1}^sp_{ij}^{n_{ij}}=\left(\prod_{i=1}^{r-1}p_{i\bullet}^{n_{i\bullet}}\right)\left(1-\sum_{i=1}^{r-1}p_{i\bullet}\right)^{n_{r\bullet}}\left(\prod_{j=1}^{s-1}p_{\bullet j}^{n_{\bullet j}}\right)\left(1-\sum_{j=1}^{s-1}p_{\bullet j}\right)^{n_{\bullet s}}
+$$
+对数似然为：
+$$
+\ln L=\sum_{i=1}^{r-1}n_{i\bullet}\ln p_{i\bullet}+n_{r\bullet}\ln\left(1-\sum_{i=1}^{r-1}p_{i\bullet}\right)+\sum_{j=1}^{s-1}n_{\bullet j}\ln p_{\bullet j}+n_{\bullet s}\ln\left(1-\sum_{j=1}^{s-1}p_{\bullet j}\right)+
+$$
+解似然方程组：
+$$
+\dfrac{\partial \ln L}{\partial p_{i\bullet}}=\dfrac{n_{i\bullet}}{p_{i\bullet}}+\dfrac{-n_{r\bullet}}{1-\sum_{i=1}^{r-1} p_{i\bullet}}=0\
+\dfrac{\partial \ln L}{\partial p_{\bullet j}}=\dfrac{n_{\bullet j}}{p_{\bullet j}}+\dfrac{-n_{\bullet s}}{1-\sum_{j=1}^{s-1} p_{\bullet j}}=0
+$$
+从而得到：
+$$
+\hat{p_{i\bullet}}=\dfrac{n_{i\bullet }}{n},\hat{p_{\bullet j}}=\dfrac{n_{\bullet j}}{n};i=1,\cdots,r-1; j=1,\cdots,s-1
+$$
+计算 <span class="arithmatex">\(\chi^2\)</span>：
+$$
+\chi^2=\sum_{i=1}^{r}\sum_{j=1}^{s} \dfrac{(n_{ij}-n\hat{p_{i\bullet}}\hat{p_{\bullet j}})^2}{n\hat{p_{i\bullet}}\hat{p_{\bullet j}}}=\sum_{i=1}^{r}\sum_{j=1}^{s} \dfrac{(n_{ij}-n_{i\bullet}n_{\bullet j}/n)^2}{n_{i\bullet}n_{\bullet j}/n}
+$$
+原假设成立时，其渐进分布为自由度 <span class="arithmatex">\(rs-(r+s-2)-1=(r-1)(s-1)\)</span> 的 <span class="arithmatex">\(\chi^2\)</span> 分布，因此在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，检验的拒绝域为 <span class="arithmatex">\(W=\{\chi^2\ge \chi^2_\alpha((r-1)(s-1))\}\)</span>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
