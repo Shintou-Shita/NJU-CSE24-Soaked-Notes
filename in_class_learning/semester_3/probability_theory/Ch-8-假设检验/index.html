@@ -4548,24 +4548,19 @@ W=\{F\le F_{1-\alpha/2}(n_1-1,n_2-1)\}\cup\{F\ge F_{\alpha/2}(n_1-1,n_2-1)\}
 <p>​   下面我们介绍 Pearson <span class="arithmatex">\(\chi^2\)</span> 拟合优度检验，基本思想是利用事件频率和概率之间的偏差构造检验统计量。</p>
 <p>​   对于离散型随机变量的分布，设 <span class="arithmatex">\(H_0:P(X=x_i)=p_i,i=1,\cdots,k\)</span>，其中 <span class="arithmatex">\(p_i\)</span> 均已知，且 <span class="arithmatex">\(p_i\ge0,\sum_{i=1}^{n}p_i=1\)</span>，<span class="arithmatex">\(X_1,\cdots,X_n\)</span> 是一组样本，下面是检验步骤：</p>
 <ol>
-<li>计算 <span class="arithmatex">\((X_1,\cdots,X_n)\)</span> 中取 <span class="arithmatex">\(x_i\)</span> 的实际频数 <span class="arithmatex">\(n_i,i=1,\cdots,k\)</span>，即：</li>
-</ol>
-<p>$$
-   n_i=\sum_{i=1}^n[X_i=x_i]
-   $$</p>
-<ol>
-<li>计算实际频数与理论频数的偏差平方和</li>
-</ol>
-<p>$$
-   \chi^2=\sum_{i=1}^{k}\dfrac{(n_i-np_i)^2}{np_i}
-   $$</p>
+<li>
+<p>计算 <span class="arithmatex">\((X_1,\cdots,X_n)\)</span> 中取 <span class="arithmatex">\(x_i\)</span> 的实际频数 <span class="arithmatex">\(n_i,i=1,\cdots,k\)</span>，即：<span class="arithmatex">\(n_i=\sum_{i=1}^n[X_i=x_i]\)</span></p>
+</li>
+<li>
+<p>计算实际频数与理论频数的偏差平方和：<span class="arithmatex">\(\chi^2=\sum_{i=1}^{k}\dfrac{(n_i-np_i)^2}{np_i}\)</span></p>
+</li>
+<li>
 <p>该统计量称为 <strong>Pearson <span class="arithmatex">\(\chi^2\)</span> 统计量</strong>，其度量了实际数据与理论分布的拟合程度，<span class="arithmatex">\(\chi^2\)</span> 越大，拟合程度越差，可以证明，当 <span class="arithmatex">\(H_0\)</span> 成立时，<span class="arithmatex">\(\chi^2\)</span> 统计量的渐进分布为 <span class="arithmatex">\(\chi^2(k-1)\)</span>.</p>
-<ol>
-<li>在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域为：</li>
+</li>
+<li>
+<p>在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域为：<span class="arithmatex">\(W=\{\chi^2\ge \chi^2_\alpha(k-1)\}\)</span></p>
+</li>
 </ol>
-<p>$$
-   W={\chi^2\ge \chi^2_\alpha(k-1)}
-   $$</p>
 <p>原理类似，我们给出一般的假设检验问题：</p>
 <ol>
 <li>
@@ -4578,23 +4573,15 @@ W=\{F\le F_{1-\alpha/2}(n_1-1,n_2-1)\}\cup\{F\ge F_{\alpha/2}(n_1-1,n_2-1)\}
 <p>计算每个事件 <span class="arithmatex">\(A_i\)</span> 上的理论频数：若参数 <span class="arithmatex">\(\theta\)</span> 未知，则现算出 <span class="arithmatex">\(\theta\)</span> 的最大似然估计 <span class="arithmatex">\(\hat{\theta}\)</span>，然后计算理论频数 <span class="arithmatex">\(n\hat{p_i}\)</span>，其中 <span class="arithmatex">\(\hat{p_i}=\mathrm{Pr}(X\in A_i|\theta=\hat{\theta})\)</span>.</p>
 </li>
 <li>
-<p>计算实际频数与理论频数的偏差平方和：</p>
+<p>计算实际频数与理论频数的偏差平方和：<span class="arithmatex">\(\chi^2=\sum_{i=1}^{k}\dfrac{(n_i-n\hat{p_i})^2}{n\hat{p_i}}\)</span></p>
 </li>
-</ol>
-<p>$$
-   \chi^2=\sum_{i=1}^{k}\dfrac{(n_i-n\hat{p_i})^2}{n\hat{p_i}}
-   $$</p>
-<ol>
 <li>
 <p>在 <span class="arithmatex">\(H_0\)</span> 为真时，Pearson-Fisher 定理给出结论：<span class="arithmatex">\(\chi^2\sim \chi^2(k-r-1)\)</span>.</p>
 </li>
 <li>
-<p>于是在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域如下：</p>
+<p>于是在给定显著性水平 <span class="arithmatex">\(\alpha\)</span> 下，拒绝域如下：<span class="arithmatex">\(W=\{\chi^2\ge \chi^2_\alpha(k-r-1)\}\)</span></p>
 </li>
 </ol>
-<p>$$
-   W={\chi^2\ge \chi^2_\alpha(k-r-1)}
-   $$</p>
 <p>此处 <span class="arithmatex">\(r\)</span> 为独立未知参数的数量。</p>
 <h2 id="_7">独立性检验</h2>
 <p>设 <span class="arithmatex">\((X_1,Y_1),\cdots,(X_n,Y_n)\)</span> 为二维总体 <span class="arithmatex">\((X,Y)\)</span> 的一个样本，<span class="arithmatex">\(H_0: X\,与\, Y\, 独立\)</span>. 我们将 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的取值范围分成 <span class="arithmatex">\(r\)</span> 个与 <span class="arithmatex">\(s\)</span> 个互不相交的区间 <span class="arithmatex">\(A_1,\cdots,A_r\)</span> 和 <span class="arithmatex">\(B_1,\cdots,B_s\)</span>，用 <span class="arithmatex">\(n_{ij}\)</span> 表示指标 <span class="arithmatex">\(X\)</span> 落在 <span class="arithmatex">\(A_i\)</span>，<span class="arithmatex">\(Y\)</span> 落在 <span class="arithmatex">\(B_j\)</span> 的样本点的个数，又记 <span class="arithmatex">\(n_{i\bullet}=\sum_{j=1}^s n_{ij},n_{\bullet j}=\sum_{i=1}^{r}n_{ij}\)</span>.，由此绘制一张 <strong><span class="arithmatex">\(r\times s\)</span> 列联表</strong>：</p>
@@ -4606,7 +4593,7 @@ L=\prod_{i=1}^{r}\prod_{j=1}^sp_{ij}^{n_{ij}}=\left(\prod_{i=1}^{r-1}p_{i\bullet
 \]</div>
 <p>对数似然为：</p>
 <div class="arithmatex">\[
-\ln L=\sum_{i=1}^{r-1}n_{i\bullet}\ln p_{i\bullet}+n_{r\bullet}\ln\left(1-\sum_{i=1}^{r-1}p_{i\bullet}\right)+\sum_{j=1}^{s-1}n_{\bullet j}\ln p_{\bullet j}+n_{\bullet s}\ln\left(1-\sum_{j=1}^{s-1}p_{\bullet j}\right)+
+\ln L=\sum_{i=1}^{r-1}n_{i\bullet}\ln p_{i\bullet}+n_{r\bullet}\ln\left(1-\sum_{i=1}^{r-1}p_{i\bullet}\right)+\sum_{j=1}^{s-1}n_{\bullet j}\ln p_{\bullet j}+n_{\bullet s}\ln\left(1-\sum_{j=1}^{s-1}p_{\bullet j}\right)
 \]</div>
 <p>解似然方程组：</p>
 <div class="arithmatex">\[
