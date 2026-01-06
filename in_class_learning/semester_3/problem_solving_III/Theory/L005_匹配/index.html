@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l005" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3100,6 +3105,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L005 匹配
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3117,6 +3142,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        匹配和最大匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完美匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4268,38 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        匹配和最大匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完美匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4316,24 @@
 
 
 
-  <h1>L005 匹配</h1>
-
-
+<h1 id="l005">L005 匹配</h1>
+<h3 id="_1">匹配和最大匹配</h3>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和边子集 <span class="arithmatex">\(M\subseteq E\)</span>，若 <span class="arithmatex">\(M\)</span> 中的边两两不相邻，则 <span class="arithmatex">\(M\)</span> 称作 <span class="arithmatex">\(G\)</span> 的一个「匹配」（matching），<span class="arithmatex">\(M\)</span> 中边的端点称作被 <span class="arithmatex">\(M\)</span>「饱和」（saturated），又称「已匹配」（matched）。</p>
+<p>对于匹配 <span class="arithmatex">\(M\)</span>，若 <span class="arithmatex">\(M\)</span> 不是 <span class="arithmatex">\(G\)</span> 任何匹配的真子集，那么称 <span class="arithmatex">\(M\)</span> 是 <span class="arithmatex">\(G\)</span> 的「极大匹配」（maximal matching），边数最多的匹配称为 <span class="arithmatex">\(G\)</span> 的最大匹配（maximum matching）。</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和匹配 <span class="arithmatex">\(M\subseteq E\)</span>，若路 <span class="arithmatex">\(P\)</span> 交替经过集合 <span class="arithmatex">\(M\)</span> 和 <span class="arithmatex">\(E\setminus M\)</span> 中的边，则称 <span class="arithmatex">\(P\)</span> 为 <span class="arithmatex">\(M\)</span>「交错路」（alternating path），起点和终点均未被 <span class="arithmatex">\(M\)</span> 饱和的非平凡 <span class="arithmatex">\(M\)</span> 交错路称作 <span class="arithmatex">\(M\)</span>「增广路」（augmenting path）。</p>
+<p>Th.5.1（Berge 定理）：对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和匹配 <span class="arithmatex">\(M\subseteq E\)</span>，<span class="arithmatex">\(M\)</span> 是最大匹配当且仅当 <span class="arithmatex">\(G\)</span> 不含 <span class="arithmatex">\(M\)</span> 增广路i。</p>
+<p>「匈牙利算法」（Hungarian algorithm）</p>
+<p>【Algo.5.1、Algo.5.2】</p>
+<p>Th.5.2</p>
+<p>「霍普克罗夫特-卡普算法」（Hopcroft-Karp algorithm）</p>
+<p>【Algo.5.3、Algo.5.4、Algo.5.5】</p>
+<p>Th.5.3 Th.5.4</p>
+<p>「花算法」（blossom algorithm）、「花」（blossom）、「花梗」（stem）、「花托」（base）。</p>
+<h3 id="_2">完美匹配</h3>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和匹配 <span class="arithmatex">\(M\subseteq E\)</span>，若 <span class="arithmatex">\(M\)</span> 饱和顶点集 <span class="arithmatex">\(V\)</span> 中所有顶点，则 <span class="arithmatex">\(M\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「完美匹配」（perfect matching）。</p>
+<p>Th.5.5（Hall 定理）：对于二分图 <span class="arithmatex">\(G=\left\langle X\cup Y, E\right\rangle\)</span>，<span class="arithmatex">\(G\)</span> 有饱和顶点子集 <span class="arithmatex">\(X\)</span> 中所有顶点的匹配当且仅当 <span class="arithmatex">\(\forall S\subseteq X,|N(S)|\ge |S|\)</span>，其中 <span class="arithmatex">\(N(S)\)</span> 表示 <span class="arithmatex">\(S\)</span> 中点的邻点构成的集合。</p>
+<p><span class="arithmatex">\(G\)</span> 中所有奇数阶连通分支的数量记作 <span class="arithmatex">\(o(G)\)</span>.</p>
+<p>Th.5.6（Tutte 定理）：对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，<span class="arithmatex">\(G\)</span> 有完美匹配当且仅当 <span class="arithmatex">\(\forall S\subseteq V,o(G-S)\le |S|\)</span>.</p>
 
 
 

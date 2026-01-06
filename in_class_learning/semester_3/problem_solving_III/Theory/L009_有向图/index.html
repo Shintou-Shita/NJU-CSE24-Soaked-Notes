@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l009" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3212,6 +3217,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L009 有向图
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3229,6 +3254,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的定义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的连通
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的距离
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4290,60 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的定义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的连通
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有向图的距离
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4360,39 @@
 
 
 
-  <h1>L009 有向图</h1>
-
-
+<h1 id="l009">L009 有向图</h1>
+<h3 id="_1">有向图的定义</h3>
+<p>「有向图」（directed graph）是一个二元组，记作 <span class="arithmatex">\(G=\left\langle V,A\right\rangle\)</span>，其中 <span class="arithmatex">\(V\)</span> 是顶点的有限集合，<span class="arithmatex">\(A\)</span> 是「有向边」（directed edge）的有限集合。「有向边」又称「弧」（arc），<span class="arithmatex">\(A\)</span> 中的每条弧都是一个有序对，由 <span class="arithmatex">\(V\)</span> 中的两个顶点组成。</p>
+<p>对于弧 <span class="arithmatex">\(a_1=\langle v_1,v_2\rangle\)</span>，<span class="arithmatex">\(v_1\)</span> 和 <span class="arithmatex">\(v_2\)</span> 分别称为 <span class="arithmatex">\(a_1\)</span> 的「尾」（tail）和「头」（head），统称为「端点」，弧和其观点互相「关联」。弧是它的头的「入弧」（incoming arc），是它的尾的「出弧」（outgoing arc）。</p>
+<p>一条弧的两个端点称作「相邻」，尾是头的「入邻点」（in-neighbor），头是尾的「出邻点」（out-neighbor）。头和尾完全相同的两条弧称作「重弧」（multiple arcs），也称「平行弧」（parallel arcs）。尾和头相反的两条弧互为「反向弧」（inverse arc）。</p>
+<p>有向图 <span class="arithmatex">\(G\)</span> 的顶点数量 <span class="arithmatex">\(|V|\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「阶」，记作 <span class="arithmatex">\(\nu(G)\)</span>. <span class="arithmatex">\(G\)</span> 的弧的数量 <span class="arithmatex">\(|A|\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「弧数」（size），记作 <span class="arithmatex">\(\epsilon(G)\)</span>.</p>
+<p>顶点 <span class="arithmatex">\(v\)</span> 关联的入弧的数量称作 <span class="arithmatex">\(v\)</span> 的「入度」（indegree），记作 <span class="arithmatex">\(d^-(v)\)</span>；关联的出弧的数量称作 <span class="arithmatex">\(v\)</span> 的「出度」（outdegree），记作 <span class="arithmatex">\(d^+(v)\)</span>；二者之和称为 <span class="arithmatex">\(v\)</span> 的度，记作 <span class="arithmatex">\(d(v)\)</span>.</p>
+<p>Th.7.1 对任意有向图 <span class="arithmatex">\(G=\left\langle V,A\right\rangle\)</span>：
+$$
+\sum_{v\in V} d^-(v)=\sum_{v\in V}d^+(v)=\epsilon(G)
+$$
+Cor.7.1 对任意有向图 <span class="arithmatex">\(G=\left\langle V,A\right\rangle\)</span>：
+$$
+\sum_{v\in V} d(v)=2\epsilon(G)
+$$
+「入度序列」、「最大入度」、「最小入度」、「出度序列」、「最大出度」、「最小出度」。</p>
+<p>将有向图 <span class="arithmatex">\(G\)</span> 的每条弧（有序对）改为边（无序对）形成的图 <span class="arithmatex">\(H\)</span> 称为 <span class="arithmatex">\(G\)</span> 的「底图」（underlying graph），<span class="arithmatex">\(G\)</span> 称作 <span class="arithmatex">\(H\)</span> 的「定向」（orientation）。</p>
+<h3 id="_2">有向图的表示</h3>
+<p>邻接矩阵、关联矩阵、邻接表</p>
+<h3 id="_3">有向图的连通</h3>
+<p>有向路线、「起点」和「终点」、长度、有向踪迹/有向迹、有向路径/有向路、有向闭路线、有向闭迹/有向回路、有向圈。</p>
+<p>对于有向图 <span class="arithmatex">\(G=\left\langle V,A\right\rangle\)</span>，若 <span class="arithmatex">\(G\)</span> 的底图连通，则称 <span class="arithmatex">\(G\)</span>「弱连通」（weakly connected），是「弱连通图」（weakly connected graph）。若有向图中存在 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 有向路，那么称 <span class="arithmatex">\(v\)</span> 是从 <span class="arithmatex">\(u\)</span>「可达」的（reachable）。若有向图 <span class="arithmatex">\(G=\left\langle V,A\right\rangle\)</span> 中每对顶点都相互可达，则称 <span class="arithmatex">\(G\)</span>「强连通」（strongly connected），是「强连通图」（strongly connected graph）。</p>
+<p>Th.7.2 对于有向图 <span class="arithmatex">\(G=\left\langle V,A\right\rangle\)</span>，其强连通当且仅当 <span class="arithmatex">\(G\)</span> 存在一条有向闭路线经过 <span class="arithmatex">\(V\)</span> 中所有顶点。</p>
+<p>Th.7.3（Robbins 定理）：连通图 <span class="arithmatex">\(G\)</span> 有强连通定向当且仅当 <span class="arithmatex">\(G\)</span> 没有割边。</p>
+<p>有向图 <span class="arithmatex">\(G\)</span> 的极大弱连通子图称为 <span class="arithmatex">\(G\)</span> 的「弱连通分支」（weakly connected component），<span class="arithmatex">\(G\)</span> 的极大强连通子图称为 <span class="arithmatex">\(G\)</span> 的「强连通分支」（strongly connected component）。</p>
+<p>顶点集 <span class="arithmatex">\(V\)</span> 上的互相可达关系将 <span class="arithmatex">\(V\)</span> 划分为若干子集，每个子集的点导出子图形成一个强连通分支。</p>
+<p>将有向图 <span class="arithmatex">\(G\)</span> 的所有强连通分支的集合记为 <span class="arithmatex">\(C\)</span>，构造有向图  <span class="arithmatex">\(H=\left\langle C,A'\right\rangle\)</span>，每个顶点 <span class="arithmatex">\(c_i\in C\)</span> 表示 <span class="arithmatex">\(G\)</span> 的一个强连通分支，弧 <span class="arithmatex">\(\langle c_i,c_j\rangle\in A'\)</span> 当且仅当 <span class="arithmatex">\(G\)</span> 含一条弧，其尾和头分别在 <span class="arithmatex">\(c_i\)</span> 和 <span class="arithmatex">\(c_j\)</span> 表示的强连通分支中。<span class="arithmatex">\(H\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「浓缩」（condensation）。</p>
+<p>【Algo.7.1】</p>
+<p>「塔尔真强连通分支算法」（Tarjan's strongly connected components algorithm）</p>
+<p>【Algo.7.2】</p>
+<p>Th.7.4 Th.7.5</p>
+<h3 id="_4">有向图的距离</h3>
+<p>在有向图中，对于顶点 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span>，长度最小的 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 有向路称为从 <span class="arithmatex">\(u\)</span> 到 <span class="arithmatex">\(v\)</span> 的「最短有向路」（shortest directed path），其长度称为 <span class="arithmatex">\(u\)</span> 到 <span class="arithmatex">\(v\)</span> 的「距离」，记作 <span class="arithmatex">\(\mathrm{dist}(u,v)\)</span>，特别地若不可达，则定义 <span class="arithmatex">\(\mathrm{dist}(u,v)=\infty\)</span>.</p>
 
 
 

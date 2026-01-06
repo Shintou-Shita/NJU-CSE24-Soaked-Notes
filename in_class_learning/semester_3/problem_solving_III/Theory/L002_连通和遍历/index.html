@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l002" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3016,6 +3021,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L002 连通和遍历
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3033,6 +3058,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        连通和 DFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        割点与割边
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        距离和 BFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4279,49 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        连通和 DFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        割点与割边
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        距离和 BFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4338,56 @@
 
 
 
-  <h1>L002 连通和遍历</h1>
-
-
+<h1 id="l002">L002 连通和遍历</h1>
+<h3 id="dfs">连通和 DFS</h3>
+<p>「路线」（walk）是以顶点开始，顶点和边交替出现，以顶点结束的序列 <span class="arithmatex">\(v_0,e_1,v_1,\cdots,e_l,v_l\)</span>，其中每条边 <span class="arithmatex">\(e_i\)</span> 的两个端点恰为 <span class="arithmatex">\(v_{i-1}\)</span> 和 <span class="arithmatex">\(v_i\)</span>. 其中 <span class="arithmatex">\(v_0\)</span> 和 <span class="arithmatex">\(v_l\)</span> 分别称为这条路线的「起点」（starting vertex）和「终点」（ending vertex），这条路线称为一条 <span class="arithmatex">\(v_0\)</span>-<span class="arithmatex">\(v_l\)</span> 路线，非负整数 <span class="arithmatex">\(l\)</span> 称为这条路线的「长度」（length）。</p>
+<p>长度为 <span class="arithmatex">\(0\)</span> 的路线称为「平凡路线」（trivial walk），其不经过任何边，即序列中仅含一个顶点。</p>
+<p>边在序列中不重复出现的路线称为「踪迹」（trail），简称「迹」。顶点在序列中不重复出现的路线称为「路径」（path），简称「路」。</p>
+<p>路中除起点和终点外的其他顶点称为「内顶点」（internal vertex）。</p>
+<p>在不含重边的简单图中，以两个特定顶点为端点的边唯一，此时序列表示中可省去边而仅记录点。</p>
+<p>若图中存在 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路，则称顶点 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 「连通」（connected），否则称其「不连通」（disconnected）。</p>
+<p>Th.2.1 连通关系是定义在顶点集上的等价关系。</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，若 <span class="arithmatex">\(V\)</span> 中每对顶点都连通，则称 <span class="arithmatex">\(G\)</span> 「连通」（connected），是「连通图」（connected graph）；否则称 <span class="arithmatex">\(G\)</span>「不连通」（disconnected），是「不连通图」（disconnected graph）。</p>
+<p>图 <span class="arithmatex">\(G\)</span> 的极大连通子图称为 <span class="arithmatex">\(G\)</span> 的「连通分支」（connected component），极大连通子图即连通的子图但不是任何 <span class="arithmatex">\(G\)</span> 连通子图的真子图。阶为 <span class="arithmatex">\(1\)</span> 的连通分支称为「平凡连通分支」（trivial connected component）。</p>
+<p>「深度优先搜索算法」（DFS 算法, depth-first search algorithm），伪代码如【Algo.2.1】所示。</p>
+<p>【Algo.2.1】</p>
+<p>Th.2.2 从某顶点出发运行 DFS 算法恰能访问与其连通的所有顶点。</p>
+<p>对于阶为 <span class="arithmatex">\(n\)</span>，边数为 <span class="arithmatex">\(m\)</span> 的图，DFS 算法的时间复杂度是 <span class="arithmatex">\(O(n+m)\)</span>.</p>
+<h3 id="_1">割点与割边</h3>
+<p>狭义而言，对于连通图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和顶点 <span class="arithmatex">\(v\in V\)</span>，图 <span class="arithmatex">\(G-v\)</span> 不连通，那么称 <span class="arithmatex">\(v\)</span> 为 <span class="arithmatex">\(G\)</span> 的「割点」（cut vertex），也称「关节点」（articulation point）。广义而言，对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和顶点 <span class="arithmatex">\(v\in V\)</span>，若 <span class="arithmatex">\(G-v\)</span> 的连通分支数量大于 <span class="arithmatex">\(G\)</span> 的连通分支数量，那么称 <span class="arithmatex">\(v\)</span> 为 <span class="arithmatex">\(G\)</span> 的顶点。</p>
+<p>Th.2.3 对于连通图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和顶点 <span class="arithmatex">\(v\in V\)</span>，<span class="arithmatex">\(v\)</span> 是 <span class="arithmatex">\(G\)</span> 的割点当且仅当存在顶点集 <span class="arithmatex">\(V\)</span> 的两个不相交非空子集 <span class="arithmatex">\(V_i\)</span> 和 <span class="arithmatex">\(V_j\)</span>，使得 <span class="arithmatex">\(\forall u\in V_i,w\in V_j\)</span>，每条 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(w\)</span> 路都经过 <span class="arithmatex">\(v\)</span>.</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和边 <span class="arithmatex">\(e\in E\)</span>，若图 <span class="arithmatex">\(G-e\)</span> 的连通分支数量大于 <span class="arithmatex">\(G\)</span> 的连通分支数量，则称 <span class="arithmatex">\(e\)</span> 为 <span class="arithmatex">\(G\)</span> 的「割边」（cut edge），也称「桥」（bridge）。</p>
+<p>Th.2.4 对于连通图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和边 <span class="arithmatex">\(e\in E\)</span>，<span class="arithmatex">\(e\)</span> 是 <span class="arithmatex">\(G\)</span> 的割边当且仅当存在顶点集 <span class="arithmatex">\(V\)</span> 的两个不相交非空子集 <span class="arithmatex">\(V_i\)</span> 和 <span class="arithmatex">\(V_j\)</span>，使得 <span class="arithmatex">\(\forall u\in V_i,w\in V_j\)</span>，每条 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(w\)</span> 路都经过 <span class="arithmatex">\(e\)</span>.</p>
+<p>【Algo.2.2】</p>
+<p>「父顶点」（parent）、「子顶点」（child）、「根顶点」（root）、「树边」（tree edge）、「后向边」（back edge）、「DFS 树」（DFS tree）、「祖先顶点」（ancestor）、「后代顶点」（descendant）。</p>
+<p>Th.2.5 Th.2.6</p>
+<h3 id="bfs">距离和 BFS</h3>
+<p>对于顶点 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span>，长度最小的 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路称作 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 间的「最短路」（shortest path）。</p>
+<p>顶点 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 间最短路的长度称作 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 间的「距离」（distance），记作 <span class="arithmatex">\(\mathrm{dist}(u,v)\)</span>，特别地，若不连通，则定义 <span class="arithmatex">\(\mathrm{dist}(u,v)=\infty\)</span>.</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，距离满足以下性质：：</p>
+<ul>
+<li>「非负性」：<span class="arithmatex">\(\forall u,v\in V,\mathrm{dist}(u,v)\ge 0\)</span>.</li>
+<li>「同一性」：<span class="arithmatex">\(\mathrm{dist}(u,v)=0\text{ iff. }u=v\)</span>.</li>
+<li>「对称性」：<span class="arithmatex">\(\forall u,v\in V,\mathrm{dist}(u,v)=\mathrm{dist}(v,u)\)</span>.</li>
+<li>对于连通图 <span class="arithmatex">\(G\)</span> 有：「三角不等式」：<span class="arithmatex">\(\forall u,v,w\in V,\mathrm{dist}(u,v)+\mathrm{dist}(v,w)\ge \mathrm{dist}(u,w)\)</span>.</li>
+</ul>
+<p>故而对于连通图 <span class="arithmatex">\(G\)</span>，距离是一种「度量」（metric）。度量即满足以上四条性质的函数。</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，定义顶点的「离心率」（eccentricity）：</p>
+<div class="arithmatex">\[
+\mathrm{ecc}(v)=\max_{u\in V}\mathrm{dist}(v,u)
+\]</div>
+<p>定义 <span class="arithmatex">\(G\)</span> 的「中心点」（central vertex）为 <span class="arithmatex">\(V\)</span> 中离心率最小的点，其离心率称为 <span class="arithmatex">\(G\)</span> 的「半径」（radius）：</p>
+<div class="arithmatex">\[
+\mathrm{rad}(G)=\min_{u\in V}\mathrm{ecc}(u)
+\]</div>
+<p><span class="arithmatex">\(G\)</span> 所有中心点的集合称为 <span class="arithmatex">\(G\)</span> 的「中心」（center）。类似地，称 <span class="arithmatex">\(G\)</span> 中离心率最大地点为「边缘点」（peripheral vertex），其离心率称为 <span class="arithmatex">\(G\)</span> 的「直径」（diameter）：</p>
+<div class="arithmatex">\[
+\mathrm{diam(G)}=\max_{u\in V}\mathrm{ecc}(u)
+\]</div>
+<p>Th.2.7 对于连通图 <span class="arithmatex">\(G\)</span>，有 <span class="arithmatex">\(\mathrm{rad}(G)\le \mathrm{diam}(G)\le 2\mathrm{rad}(G)\)</span>.</p>
+<p>「宽度优先搜索算法」（BFS 算法, breadth-first search algorithm），伪代码如【Algo.2.3】所示。</p>
+<p>【Algo.2.3】</p>
+<p>「BFS 树」（BFS tree）、「单向搜索」（unidirectional search）、「双向搜索」（bidirectional search）。</p>
 
 
 

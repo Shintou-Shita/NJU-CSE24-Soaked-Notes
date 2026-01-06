@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ch03" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -810,6 +815,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch03 程序转换与指令系统
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -827,6 +852,641 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序转换概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="程序转换概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器指令和汇编指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令集体系结构概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令系统设计风格
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器代码的生成过程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="机器代码的生成过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gnu-gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GNU 与 GCC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcc-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        以 GCC 为例说明 C 语言程序转换为可执行文件的过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-att" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intel 格式和 AT&amp;T 格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia-32x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA-32/x86-64 指令系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA-32/x86-64 指令系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作数类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寄存器组织
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="寄存器组织">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 的定点寄存器组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 的定点寄存器组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        浮点寄存器栈和多媒体扩展寄存器组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用寄存器的编号
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寻址方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="寻址方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本寻址方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32x64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32/x64 寻址方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器指令格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="机器指令格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia32_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 架构指令格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32-x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        兼容 IA32 的 x86-64 架构指令格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia32x64_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32/x64 常用指令及操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA32/x64 常用指令及操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传送指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="传送指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用数据传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据交换指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入栈/出栈指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地址传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入/输出指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标志传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定点算术运算指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="定点算术运算指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加/减运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        增 1/减 1 运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        取负指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比较指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        乘运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        除运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按位运算指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="按位运算指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逻辑运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        移位指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序执行流控制指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="程序执行流控制指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        无条件跳转指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件跳转指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件设置指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        调用和返回指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        陷阱指令（自陷指令）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x87" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x87浮点处理指令*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmxsseavx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MMX/SSE/AVX 指令*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 中的浮点处理指令*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -903,7 +1563,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -959,7 +1619,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -987,7 +1647,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -4202,6 +4862,632 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序转换概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="程序转换概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器指令和汇编指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令集体系结构概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令系统设计风格
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器代码的生成过程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="机器代码的生成过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gnu-gcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GNU 与 GCC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcc-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        以 GCC 为例说明 C 语言程序转换为可执行文件的过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-att" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intel 格式和 AT&amp;T 格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia-32x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA-32/x86-64 指令系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA-32/x86-64 指令系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作数类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寄存器组织
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="寄存器组织">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 的定点寄存器组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 的定点寄存器组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        浮点寄存器栈和多媒体扩展寄存器组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用寄存器的编号
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寻址方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="寻址方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本寻址方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32x64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32/x64 寻址方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器指令格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="机器指令格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia32_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 架构指令格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32-x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        兼容 IA32 的 x86-64 架构指令格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia32x64_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32/x64 常用指令及操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA32/x64 常用指令及操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传送指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="传送指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用数据传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据交换指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入栈/出栈指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地址传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入/输出指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标志传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定点算术运算指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="定点算术运算指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加/减运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        增 1/减 1 运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        取负指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比较指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        乘运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        除运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按位运算指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="按位运算指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逻辑运算指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        移位指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序执行流控制指令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="程序执行流控制指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        无条件跳转指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件跳转指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件设置指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件传送指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        调用和返回指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        陷阱指令（自陷指令）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x87" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x87浮点处理指令*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmxsseavx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MMX/SSE/AVX 指令*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 中的浮点处理指令*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +5504,689 @@
 
 
 
-  <h1>Ch03 程序转换与指令系统</h1>
-
-
+<h1 id="ch03">Ch03 程序转换与指令系统</h1>
+<p>本章将介绍程序的转换以及指令集体系结构相关的基本内容，主要包括程序转换概述、操作数类型及寻址方式、操作类型、Intel 架构指令系统 IA32 和 x86-64.</p>
+<p>本章所用机器级代码主要以汇编语言形式为主。本章中多处需要对指令系统进行描述，为简化对指令功能的说明，将采用「寄存器传送语言」（RTL, register transfer language）来说明。</p>
+<p>本书 RTL 规定：</p>
+<ul>
+<li><code>R[r]</code> 表示寄存器 r 的内容。</li>
+<li><code>M[addr]</code> 表示存储单元 addr 的内容。</li>
+<li><code>M[PC]</code> 表示 PC 所指存储单元的内容。</li>
+<li><code>M[R[r]]</code> 表示寄存器 r 的内容所指的存储单元的内容。</li>
+<li>传送方向用 <code>&lt;-</code> 表示，即传送源在右，传送目的在做。 </li>
+</ul>
+<p>本书中寄存器名称的书写约定如下：寄存器的名称若出现在汇编指令或 RTL 中，则用小写表示；若在正文段落或其它部分，则用大写表示。</p>
+<p>本书对汇编指令或汇编指令名称的书写约定如下：具体一条汇编指令或指令名称用小写表示，但在泛指某一类指令的指令类别名称时用大写表示。</p>
+<h2 id="_1">程序转换概述</h2>
+<h3 id="_2">机器指令和汇编指令</h3>
+<p>asd</p>
+<h3 id="_3">指令集体系结构概述</h3>
+<p>ISA 定义了机器语言级虚拟机的属性和功能特性，主要包括如下信息：</p>
+<ul>
+<li>可执行的指令的集合。</li>
+<li>指令可以接受的操作数的类型。</li>
+<li>操作数或其地址所能存放的通用寄存器组的结构，包括每个寄存器的名称、编号、长度和用途。</li>
+<li>操作数或其地址所能存放的存储空间的大小和编址方式。</li>
+<li>操作数在存储空间存放时按照大端还是小端方式存放。</li>
+<li>指令获取操作数以及下一条指令的方式，即寻址方式。</li>
+<li>指令执行过程的控制方式，包括程序计数器、条件码定义。</li>
+</ul>
+<p>除了上述与机器指令密切相关的内容外，ISA 还定义了：控制寄存器的定义、I/O 空间的编址方式、异常/中断处理机制、机器特权模式和状态的定义与切换、输入/输出组织和数据传送方式、存储保护方式等与操作系统密切相关的内容。</p>
+<p>一条指令中必须明显或隐含地包含以下信息：</p>
+<ul>
+<li>操作码。指定操作类型。</li>
+<li>源操作数或其地址。指出一个或多个源操作数或其所在的地址，可以是一个主（虚）存地址、寄存器编号，或直接就是一个立即操作数。</li>
+<li>结果的地址。结果所存放的地址。</li>
+<li>下一条指令地址。</li>
+</ul>
+<p>通常，下一条指令的地址不在指令中明显给出，而是隐含在程序计数器 PC 中。指令按顺序执行时，只要自动将 PC 的值加上指令的长度就可得到下一条指令的地址。特别地如果是跳转指令，则修改 PC 的值以确保跳转正确。</p>
+<p>一条指令由一个操作码和几个地址码构成。根据指令显式给出的地址码个数，指令可分为三地址指令、二地址指令、单地址指令和零地址指令。</p>
+<h3 id="_4">指令系统设计风格</h3>
+<p>早期指令系统规定其中一个操作数隐含在累加器中，这种累加型指令系统在进行复杂表达式运算时，会因移入/移出累加器指令过多而影响效率。</p>
+<p>现代计算机采用通用寄存器型指令系统，使用通用寄存器来存放运算过程中所用的临时数据，器指令的操作数可以是立即数（I, immediate）或来自通用寄存器（R, register）或来自存储单元（S, stored）。指令类型可以是 RR 型（两个操作数都来自寄存器）、RS 型、SI 型、SS 型等。</p>
+<p>通用型寄存器型指令系统占主导地位的原因是：通用寄存器集成在 CPU 中，作为 ALU 的操作数来源，二者靠得很近，可缩短传输研制；存储区位于存储器层次结构的顶端，速度快且容易使用。</p>
+<p>寄存器个数不能太多，否则成本高且会延长存取时间而使得时钟周期变长；寄存器个数也不能太少，否则编译器只能把许多变量分配到存储单元，每次都要存取，影响程序性能。</p>
+<p>只有 Load/Save 型指令才可以访问存储器，运算类指令不能访问存储器。</p>
+<p>Java 虚拟机采用的是栈型指令系统，它规定指令的操作数总是来自栈顶和/或次栈顶，栈型指令系统中的指令都是零地址或一地址指令，因此指令字短。由于指令所用操作数只能来自栈顶，所以在对表达式进行编译时，所生成的指令顺序以及操作数在栈中的排列都有严格的规定，因而不灵活，带来指令条数的增加。因此栈型指令系统很少被通用计算机使用。</p>
+<p>按照指令格式的复杂度份，可分为 CISC 和 RISC 两种类型的指令系统。</p>
+<p>「复杂指令集计算机」（CISC, complex instruction set computer）：本书介绍的 Intel x86 指令系统就是典型的 CISC 架构。</p>
+<p>复杂的指令系统使计算机的结构越来越复杂，不仅增加了研制周期和成本，而且难以保证其正确性，甚至降低了系统性能。对大量典型的 CISC 程序的调查表明，占代码 80% 以上的常用简单指令只占指令系统的 20%，而需要大量硬件支持的复杂指令在程序中的出现频率却很低，造成了硬件资源的大量浪费。</p>
+<p>因此，1970 年代中期，一些高校和公司开始研究指令系统的合理性问题，并提出了「精简指令集计算机」（RISC, reduced instruction set computer）的概念。</p>
+<p>RISC 的着眼点不是简单地放在简化指令系统上，而是通过简化指令使计算机结构更加简单合理，从而提高机器地性能。与 CISC 相比，RISC 地主要特点如下：</p>
+<ul>
+<li>指令数目少。只包含使用频度高地简单指令。</li>
+<li>指令格式规整。采用定长指令字方式，操作码和操作数地址等字段地长度和位置固定，寻址方式少，指令格式少。</li>
+<li>采用 Load/Store 型指令设计风格。</li>
+</ul>
+<p>采用 RISC 技术后，由于指令系统简单，CPU 的控制逻辑被大大简化，芯片上可以设置更多的通用寄存器，指令系统也可以采用速度较快的硬连线逻辑实现，而且更适合采用指令集流水线技术，这些都使指令的执行速度得到进一步提高。虽然指令数量少，使得编译工作量加大了，但指令系统中的指令都是精选的，编译时间短，总体来看还是有利的。</p>
+<p>1970 年代中期，RISC 技术开始研究，到了 1980 年代中期，RISC 技术已被广泛使用，势头高涨，先后出现了大量种类高性能 RISC 芯片及相应的计算机。</p>
+<p>虽然 RISC 技术在性能上有优势，但 RISC 最终并没有在 PC (personal computer) 市场上占优势。一是因为 Intel x86 架构早期占领的市场，这一沉没成本使得用户不愿采购使用 RISC 技术的计算机；二是随着处理器速度和芯片密度的提高，RISC 系统也日趋复杂；三是混合技术的出现，比如 Intel Pentium 4 中直接将简单指令转换为类 RISC 指令，性能更加强大，能够在保证软件兼容的前提下达到具有较强竞争力的整体性能。</p>
+<p>不过随着后 PC 时代的到来，个人移动设备的使用和嵌入式系统的应用愈加广泛，许多如 ARM 处理器等采用 RISC 技术的产品在嵌入式系统中占有绝对优势，更受推崇。</p>
+<h3 id="_5">机器代码的生成过程</h3>
+<p>使用 GCC 工具将一个 C 语言程序转换为可执行目标代码的过程，通常分为以下四个步骤：</p>
+<ol>
+<li>预处理：在 C 语言源程序中一些以井号 <code>#</code> 开头的语句，在预处理阶段对这些语句进行处理，即在源程序中插入 <code>#include</code> 命令指定的文件和 <code>#define</code> 声明指定的宏。</li>
+<li>编译：由编译器将预处理后的源程序文件编译生成相应的汇编语言程序文件。</li>
+<li>汇编：由汇编器将汇编语言程序文件转换为可重定位的机器语言目标文件。</li>
+<li>链接：由链接器将多个可重定位的机器语言目标文件以及库例程链接起来，生成最终的可执行文件。</li>
+</ol>
+<h4 id="gnu-gcc">GNU 与 GCC</h4>
+<p>asd</p>
+<h4 id="gcc-c">以 GCC 为例说明 C 语言程序转换为可执行文件的过程</h4>
+<p>asd</p>
+<h4 id="intel-att">Intel 格式和 AT&amp;T 格式</h4>
+<p>asd</p>
+<h2 id="ia-32x86-64">IA-32/x86-64 指令系统</h2>
+<p>x86 是 Intel 开发的一种处理器体系结构的泛称。该系列中较早期的处理器名称以数字表示，并以「86」结尾，例如 Intel 8086、80286、i386、i486，因此得名。因数字并不能注册商标，故 Intel 及其竞争者均对新一代处理器使用了可注册的名称，例如 Pentium、Pentium Pro、Core 2、Core i7，现 Intel 将 32 位 x86 的架构的名称 x86-32 改称为 IA-32，即 Intel Architecture, 32-bit.</p>
+<p>1985 年推出的 Intel 80386 处理器是 IA32 家族中的第一款产品，IA32 体系结构是典型的 CISC 类型指令集体系结构。Intel 最早推出的 64 位架构是基于「超长指令字」（VLIW, very long instruction word）技术的 IA64 体系结构，Intel 称其为「显式并行指令计算机」（EPIC, explicitly parallel instruction computer）。IA64 体系结构最早的具体实现是 Intel 在 2000 年和 2002 年推出的 Itanium 和 Itanium 2，但这两件产品均因过于激进，不仅实现思路繁杂，而且使用的全新指令集虽兼容 IA32 但性能较差，故而在市场上并未成功。</p>
+<p>Intel 的竞争对手 AMD 借此机会抢先在 2003 年推出了兼容 IA32 的 64 位版本指令集 x86-64，并获成功。AMD 后来将 x86-64 改称为 AMD 64.</p>
+<p>Intel 慢一步地在 2004 年推出了 IA32-EM64T（extended memory 64 technology，64 位内存扩展技术），其支持 x86-64 指令集。Intel 在 2006 年将其改称为 Intel 64. 此处 Intel 64 和 IA64 是完全不同的体系结构，但 Intel 64 可以和 IA32 和 AMD 64 兼容。</p>
+<p>因 AMD 64 和 Intel 64 均支持 x86-64 指令集，故人们将其都称呼为 x86-64，有时简称 x64.</p>
+<h4 id="_6">操作数类型</h4>
+<p>在 IA32 中，有 8 位的字节（Byte）、16 位的字（word）、32 位的双字（doubleword），其中 16 位被称为字是因为 IA32/x64 由 16 位架构发展而来，后面还发展出了 64 位的四字（quadword）。</p>
+<p>高级语言所支持的数据类型与指令中指定的操作数类型之间有密切关系，其由 ABI 规范定义。</p>
+<p>在 System V ABI 规范中 C 语言基本数据类型和 IA32/x64 中操作数长度之间的对应关系如下：其中 char 默认位带符号整型</p>
+<table>
+<thead>
+<tr>
+<th>C 语言声明</th>
+<th>IA32 操作数</th>
+<th>-</th>
+<th>-</th>
+<th>x64 操作数</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>类型</td>
+<td>后缀</td>
+<td>位数</td>
+<td>类型</td>
+<td>后缀</td>
+<td>位数</td>
+</tr>
+<tr>
+<td><code>(unsigned) char</code></td>
+<td>整数</td>
+<td><code>b</code></td>
+<td>8</td>
+<td>整数</td>
+<td><code>b</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>(unsigned) short</code></td>
+<td>整数</td>
+<td><code>w</code></td>
+<td>16</td>
+<td>整数</td>
+<td><code>w</code></td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>(unsigned) int</code></td>
+<td>整数</td>
+<td><code>l</code></td>
+<td>32</td>
+<td>整数</td>
+<td><code>l</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>(unsigned) long int</code></td>
+<td>整数</td>
+<td><code>l</code></td>
+<td>32</td>
+<td>整数</td>
+<td><code>q</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>(unsigned) long long int</code></td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>整数</td>
+<td><code>q</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>char *</code></td>
+<td>整数</td>
+<td><code>l</code></td>
+<td>32</td>
+<td>整数</td>
+<td><code>q</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>单精度浮点数</td>
+<td><code>s</code></td>
+<td>32</td>
+<td>单精度浮点数</td>
+<td><code>s</code></td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>双精度浮点数</td>
+<td><code>l</code></td>
+<td>64</td>
+<td>双精度浮点数</td>
+<td><code>l</code></td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>long double</code></td>
+<td>扩展精度浮点数</td>
+<td><code>t</code></td>
+<td>80/96</td>
+<td>扩展精度浮点数</td>
+<td><code>t</code></td>
+<td>80/128</td>
+</tr>
+</tbody>
+</table>
+<p>其中后缀指的是 GCC 生成的汇编代码中的指令助记符的长度后缀。在微软 MASM 工具生成的 Intel 汇编格式中，并不以长度后缀来表示操作数长度，而是直接通过寄存器名称和长度指示符 PTR 来区分。</p>
+<p>IA32/x64 中大部分指令需要区分操作数类型，C 语言程序中的基本数据类型主要有以下几类：</p>
+<ul>
+<li>指针、地址： 用来表示字符串火其他区域的指针或存储地址，其宽度在 IA32 中为 32 位的双字，在 x64 中为 64 位的四字。</li>
+<li>序数、位串等，其为无符号整数。</li>
+<li>带符号整数，使用补码表示。</li>
+<li>浮点数，采用 IEEE 754 标准的单精度、双精度、扩展精度标准表示，但 x87 例外。对于 IA32 + LInux 平台，<code>long double</code> 按四字节边界对齐，存储长度为 12 字节，前两字节不用，仅使用 80 位；x86-64 + Linux 平台，<code>long double</code> 要求按 16 字节边界对齐，存储长度为 16 字节，前六字节不用，仅使用 80 位。</li>
+</ul>
+<h3 id="_7">寄存器组织</h3>
+<p>不考虑 I/O 指令，IA32/x64 指令中给出的操作数有三类：立即数、寄存器操作数和存储器操作数。</p>
+<p>IA32/x64 指令中用到的寄存器主要分为「定点寄存器组」、「浮点寄存器栈」和「多媒体扩展寄存器组」。</p>
+<h4 id="ia32">IA32 的定点寄存器组</h4>
+<p>IA32 的定点寄存器中共有 8 个通用寄存器、2 个专用寄存器和 6 个段寄存器。</p>
+<p>8 个通用寄存器长度均为 32 位，其中 EAX、EBX、ECX、EDX 主要用于存放操作数，根据操作数长度为 8 位的字节、16 位的字还是 32  位的双字，分别取对应低位，称为 ?L、?X、E?X 寄存器，另外第 8-15 位也称为 ?H 寄存器；ESP、EBP、ESI、EDI 主要用于存放变址值或指针，E?? 也和 16 位的 ?? 共用低 16 位，其中 ESP 是「栈指针寄存器」，EBP 是「基址指针寄存器」</p>
+<p>2 个专用寄存器分别是「指针指令寄存器」EIP 和「标志寄存器」EFLAGS，同样有去前缀 E 的低位版本，空间共用。IP 即 instruction pointer，其与程序计数器 PC 的功能完全相同，仅名称不同，都用于存放将要执行的下一条指令地址。</p>
+<p>6 个段寄存器分别是 CS、SS、DS、ES、FS、GS，均为 16 位。CPU 根据段寄存器的内容与寻址方式确定的有效地址，结合其他用户不可见的内部寄存器，生成操作数所在地址。</p>
+<p>具体地，名称由来：AX：累加器；BX：基址寄存器；CX：计数寄存器；DX：数据寄存器；SP：栈指针；BP：基址指针；SI：源变址寄存器；DI：目标变址寄存器；IP：指令指针寄存器；FLAGS：标志寄存器；CS：代码段；SS：堆栈段；DS、ES、FS、GS：附加段。EFLAGS 中：</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CF</td>
+<td>1</td>
+<td>PF</td>
+<td>0</td>
+<td>AF</td>
+<td>0</td>
+<td>ZF</td>
+<td>SF</td>
+</tr>
+<tr>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12-13</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+</tr>
+<tr>
+<td>TF</td>
+<td>IF</td>
+<td>DF</td>
+<td>OF</td>
+<td>IOPL</td>
+<td>NT</td>
+<td>0</td>
+<td>RF</td>
+</tr>
+<tr>
+<td>17</td>
+<td>18</td>
+<td>19</td>
+<td>20</td>
+<td>21</td>
+<td>20-31</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VM</td>
+<td>AC</td>
+<td>VIF</td>
+<td>VIP</td>
+<td>ID</td>
+<td>保留</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>EFLAGS 寄存器中 0-11 位的 9 个标志位继承自 8086 微处理器，可分为 6 个条件标志和 3 个控制标志。</p>
+<p>「条件标志」用于存放运行的状态信息，由硬件自动设定。「控制标志」由软件设定，用于诸多控制要求。</p>
+<p>部分含义说明如下：</p>
+<ul>
+<li>OF, overflow flag：溢出标志，对于无符号运算无意义。</li>
+<li>SF, sign flag：符号标志，无符号运算无意义。</li>
+<li>ZF, zero flag：零标志。</li>
+<li>CF, carry flag：进/借位标志，对于带符号运算无意义。</li>
+<li>DF: direction flag：方向标志，用于确定串操作指令执行时变址寄存器 SI/ESI 和 DI/EDI 中的内容时自动递增（DF=0）还是自动递减（DF=1），可用 <code>std</code> 指令和 <code>cld</code> 指令分别置一和置零。</li>
+<li>IF: interrupt flag：中断允许标志，IF=1 表示允许响应中断，IF=0 表示禁止响应中断。IF 对非屏蔽中断和内部异常不起作用，仅对外部可屏蔽中断起作用，可用 <code>sti</code> 指令和 <code>cli</code> 指令分别置一和置零。</li>
+<li>TF: trap flag：陷阱标志，用于控制单步执行操作。TF=1 时，CPU 按单步方式执行命令。没有专用指令用于对其求改，可用栈操作指令改变其志。</li>
+</ul>
+<p>EFLAGS 寄存器的第 12-31 位中的其他状态或控制信息是从 80286 以后逐步添加的，包括用于表示当前程序的 I/O 特权级（IOPL）、当前任务是否是嵌套任务（NT）、当前处理器是否处于虚拟 8086 方式（VM）等。</p>
+<h4 id="x86-64">x86-64 的定点寄存器组</h4>
+<p>x86-64 中的通用寄存器除 IA32 中的 8 个外，增加了 8 个，它们都：R8、R9、R10、R11、R12、R13、R14、R15，同样和其低位版本共用空间：64 位 R?、32 位 R?D、16 位 R?W、8位 R?B. 且 IA32 中的 8 个增添了高位版本 R??，例如 RAX. 且 IA32 中 ESP、EBP、ESI、EDI 四个新增了低 8 位版本 ??L，例如 SPL.</p>
+<p>x86-64 中的 2 个专用寄存器新增 64 位版本：RIP、RFLAGS，同样和低位版本共用空间。</p>
+<h4 id="_8">浮点寄存器栈和多媒体扩展寄存器组</h4>
+<p>IA32 的浮点处理架构有两种：一是与 x86 配套的浮点协处理器 x87 架构，其为一种栈结构 FPU，浮点数计算所需的数来源于浮点寄存器栈栈顶；另一种是有 MMX 发展而来的 SSE 架构，采用「单指令多数据」（SIMD, single instruction multi data）技术，其使用单条指令同时并行处理多个数据元素，操作数来源于新增的 8 个 128 位寄存器 XMM0-XMM7. </p>
+<p>【这里的 SIMD 技术就是，比如说我们把 XMM0 和 XMM1 128 位划分为 4 个 32 位的单精度浮点数，然后我取多数据计算的 XMM0 += XMM1 这个加法指令，则将 XMM1 中的 4 个数据分别加到 XMM0 的 4 个上。】</p>
+<p>「浮点运算器」（FPU, float point unit）是专用于浮点运算的处理器，以前的 FPU 是单独的芯片， 80486 之后 Intel 将其集成在 CPU 之内。MMX 即 MultiMedia eXtensions，于 1997 年首次运用于 P54C Pentium 处理器（多能奔腾处理器）。MMX 技术即在 CPU 中加入了特定为视频信号（video signal）、音频信号（audio signal）和图象处理（graphical manipulation）而设计的 57 条指令，从而提高了多媒体处理能力。</p>
+<p>x87 FPU 中有 8 个 80 位的数据寄存器，1 个 16 位的控制寄存器、1 个 16 位的状态寄存器和 1 个 16 位的标记寄存器。</p>
+<ul>
+<li>数据寄存器：被组织为浮点寄存器栈，栈顶为 ST(0)、栈底为 ST(7)，栈大小为 8，栈被装满时即可访问 ST(0)-ST(7).</li>
+<li>控制寄存器：主要用于指定浮点处理单元的舍入方式及最大有效数据位数（精度），Intel 浮点处理器的默认精度是 64 位，即 80 位扩展精度浮点数中的 64 位尾数。</li>
+<li>状态寄存器：用于记录比较结果，并标记运算是否溢出、是否产生错误，还记录了数据寄存器栈的栈顶位置。</li>
+<li>标记寄存器：指出 8 个数据寄存器各自的状态，比如是否为空、是否可用、是否为零、是否是特殊值（NaN、+inf、-inf）</li>
+</ul>
+<p>SSE 指令集由 MMX 指令集发展而来。MMX 指令使用 8 个 64 位寄存器 MM0-MM7，其借用了 x87 FPU 中的 ST(0)-ST(7)，仅存储 64 位尾数，故而实质上确实是 64 位的寄存器。MMX 指令因效果并不显著。Intel 从 1999 年在主打产品首推 SSE 指令集，并陆续推出 SSE2、SSE3、SSSE3、SSE4 等采用 SIMD 的指令集，统称为 SSE 指令集，其兼容 MMX 指令，并通过 SIMD 技术在单个时钟周期内并行处理多个浮点数来有效提高浮点运算技术。</p>
+<p>因 MMX 指令中 MM? 和 ST(?) 的空间共用降低浮点数运算速度，故而 SSE 指令集增加了 8 个 128 位的 SSE 指令专用的「多媒体扩展通用寄存器」XMM0-XMM7. x86-64 中 XMM 寄存器进一步增加到了 16 个。较近版本的 x86-64 处理器又引入了「高基向量扩展」（AVX, Advanced Vector eXtension）指令集，同时引入了 16 个 256 位的 YMM 寄存器。</p>
+<h4 id="_9">通用寄存器的编号</h4>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>8 位寄存器</th>
+<th>16 位寄存器</th>
+<th>32 位寄存器</th>
+<th>64/80 位寄存器</th>
+<th>128 位寄存器</th>
+<th>256 位寄存器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000</td>
+<td>AL</td>
+<td>AX</td>
+<td>EAX</td>
+<td>MM0/ST(0)/RAX</td>
+<td>XMM0</td>
+<td>YMM0</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>CL</td>
+<td>CX</td>
+<td>ECX</td>
+<td>MM1/ST(1)/RCX</td>
+<td>XMM1</td>
+<td>YMM1</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>DL</td>
+<td>DX</td>
+<td>EDX</td>
+<td>MM2/ST(2)/RDX</td>
+<td>XMM2</td>
+<td>YMM2</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>BL</td>
+<td>BX</td>
+<td>EBX</td>
+<td>MM3/ST(3)/RBX</td>
+<td>XMM3</td>
+<td>YMM3</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>AH/SPL</td>
+<td>SP</td>
+<td>ESP</td>
+<td>MM4/ST(4)/RSP</td>
+<td>XMM4</td>
+<td>YMM4</td>
+</tr>
+<tr>
+<td>0101</td>
+<td>CH/BPL</td>
+<td>BP</td>
+<td>EBP</td>
+<td>MM5/ST(5)/RBP</td>
+<td>XMM5</td>
+<td>YMM5</td>
+</tr>
+<tr>
+<td>0110</td>
+<td>DH/SIL</td>
+<td>SI</td>
+<td>ESI</td>
+<td>MM6/ST(6)/RSI</td>
+<td>XMM6</td>
+<td>YMM6</td>
+</tr>
+<tr>
+<td>0111</td>
+<td>BH/DIL</td>
+<td>DI</td>
+<td>EDI</td>
+<td>MM7/ST(7)/RDI</td>
+<td>XMM7</td>
+<td>YMM7</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>R8B</td>
+<td>R8W</td>
+<td>R8D</td>
+<td>R8</td>
+<td>XMM8</td>
+<td>YMM8</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>R9B</td>
+<td>R9W</td>
+<td>R9D</td>
+<td>R9</td>
+<td>XMM9</td>
+<td>YMM9</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>R10B</td>
+<td>R10W</td>
+<td>R10D</td>
+<td>R10</td>
+<td>XMM10</td>
+<td>YMM10</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>R11B</td>
+<td>R11W</td>
+<td>R11D</td>
+<td>R11</td>
+<td>XMM11</td>
+<td>YMM11</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>R12B</td>
+<td>R12W</td>
+<td>R12D</td>
+<td>R12</td>
+<td>XMM12</td>
+<td>YMM12</td>
+</tr>
+<tr>
+<td>1101</td>
+<td>R13B</td>
+<td>R13W</td>
+<td>R13D</td>
+<td>R13</td>
+<td>XMM13</td>
+<td>YMM13</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>R14B</td>
+<td>R14W</td>
+<td>R14D</td>
+<td>R14</td>
+<td>XMM14</td>
+<td>YMM14</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>R15B</td>
+<td>R15W</td>
+<td>R15D</td>
+<td>R15</td>
+<td>XMM15</td>
+<td>YMM15</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">寻址方式</h3>
+<h4 id="_11">基本寻址方式</h4>
+<ul>
+<li>立即寻址：指令直接给出操作数。</li>
+<li>直接寻址：指令给出操作数的有效地址，此地址称为「直接地址」或「绝对地址」。</li>
+<li>间接寻址：指令给出存放操作数有效地址的存储单元的地址。</li>
+<li>寄存器寻址：指定的寄存器 R 的内容为操作数。</li>
+<li>寄存器间接寻址：指令中给出的地址吗为寄存器编号，该寄存器中存放操作数的有效地址。</li>
+<li>变址寻址：指令给出「基准地址」A 和变址寄存器 I 的编号，「偏移量」或「位移量」由变址寄存器给出。操作数的有效地址 EA = A + (I)，此处 (x) 表示编号为 x 的寄存器存储的内容或存储单元中地址 x 的内容。</li>
+<li>相对寻址：指令给出「形式地址」即偏移量 A，基准地址由 PC 给出，即 EA = (PC) + A.</li>
+<li>基指令寻址：指令给出基址寄存器 B 和偏移量 A，EA = (B) + A.</li>
+</ul>
+<h4 id="ia32x64">IA32/x64 寻址方式</h4>
+<p>存储器操作数的寻址方式与微处理器的工作方式有关，IA32/x64 处理器主要有两种工作模式：「实地址模式」和「保护模式」。</p>
+<p>实地址模式是为了与 8086/8088 兼容而设置的，在加电或复位时处于该模式。此模式下的存储管理、中断控制及应用程序运行环境等都与 8086/8088 相同：</p>
+<p>最大寻址空间为 1MB，32 条地址线中的 A31-A20 不起作用，存储管理采用分段方式，每段的最大地址空间为 64KB，物理地址由段地址乘 16 加上偏移地址构成。</p>
+<p>保护模式的引入是为了实现在多任务方式下对不同任务使用的虚拟存储空间进行完全的隔离，以保证不同任务之间不会破坏各自的代码和数据，是 80286 以后的微处理器的常用工作模式。系统启动后总是先进入实地址模式，将系统初始化后进入保护模式进行操作。保护模式下处理器采用虚拟存储管理方式。</p>
+<p>在存储器操作数情况下，指令必须显示或隐式给出以下信息：</p>
+<ul>
+<li>段寄存器 SR：可用段前缀显式给出，或使用默认段寄存器。</li>
+<li>位移量 A：由位移量字段显式给出。</li>
+<li>基址寄存器 B：由相应字段显式给出，可指定为任一通用寄存器</li>
+<li>变址寄存器 I：由相应字段显式给出，可指定为除 ESP/RSP 外任一通用寄存器。</li>
+</ul>
+<p>IA32/x64 有以下几种寻址方式：</p>
+<ul>
+<li>立即寻址：立即数作为操作数。</li>
+<li>寄存器寻址：指定的寄存器内容为操作数。</li>
+<li>位移：LA = (SR) + A</li>
+<li>基址寻址：LA = (SR) + (B)</li>
+<li>基址加位移：LA = (SR) + (B) + A</li>
+<li>比例变址加位移：LA = (SR) + (I) * S + A</li>
+<li>基址加变址加位移：LA = (SR) + (B) + (I) + A</li>
+<li>基址加比例变址加位移：LA = (SR) + (B) + (I) * S + A</li>
+<li>相对寻址：LA = (PC) + A</li>
+</ul>
+<p>其中 S 为比例系数，为 1, 2, 4, 8，一般是元素类型的字节数，LA 为线性地址，线性地址中一般为操作数的有效地址。</p>
+<p>对于最一般的基址加比例变址加位移格式，写成 <code>A(B, I, S)</code>.</p>
+<h3 id="_12">机器指令格式</h3>
+<p>「机器指令」（instruction）是用于指示 CPU 完成一个特定操作的 0/1 序列。因 Intel x86 是典型的 CISC 架构，所以指令格式较复杂，指令长度和操作码长度均可变且字段划分不规整。</p>
+<h4 id="ia32_1">IA32 架构指令格式</h4>
+<p>IA32 架构的机器指令格式包含「前缀」（prefix）和指令本身的代码部分。</p>
+<p>前缀有四种前缀类型，无先后顺序关系，均可占 0Byte 或 1Byte，包括「指令前缀」、「段前缀」、「操作数长度」和「地址长度」。</p>
+<p>指令前缀包括「加锁」LOCK 和「重复执行」REP/REPE/REPZ/REPNE/REPNZ 两种。</p>
+<p>段前缀、操作数长度、地址长度用于指定指令所使用的非默认段寄存器、操作数、地址长度。</p>
+<p>指令代码部分本身最多有五个字段：「主操作码」OP、「ModR/M」、「SIB」、「位移」、「立即数」。</p>
+<p>主操作码，字节数为 1 或 2 或 3，必需。</p>
+<p>ModR/M 字节数为 0 或 1，一个字节又可细分为 0-2 位的 R/M、3-5 位的 Reg/OP、6-7 位的 Mod. Reg/OP 可能是三位扩展操作码或寄存器编号。 Mod 和 R/M 共五位，组合成 32 种形式，Mod 或 Mod 与 R/M 指示操作方式， R/M 可能给出一个寄存器编号。</p>
+<p>ModR/M 字节后一定跟 SIB，SIB 为 0 或 1 个字节，一字节划分为 0-2 位的 Base、3-5 位的 Index、6-7 位的 SS，分别表示基址寄存器、变址寄存器、比例因子。</p>
+<p>如果寻址存在位移量，则由位移字段给出，为 0 或 1 或 2 或 4 字节。</p>
+<p>如果需要一个立即数作为源操作数，则有立即数字段给出，为 0 或 1 或 2 或 4 字节。</p>
+<p>如果要查询指令，首先查主操作码 OP 与可能存在的扩展操作码 Reg/OP，确定格式后查 ModR/M 字节定义表，然后可能查 SIB 字节定义表，通过指令其余部分计算操作数或其有效地址。</p>
+<p>例如机器码 <code>C7 44 24 04 01 00 00 00</code> 因  IA32 为小端方式，AT&amp;T 和 Intel 格式的汇编指令分别为：<code>movl $0x1, 0x4(%esp)</code> 和 <code>MOV [ESP+4], 1</code>.</p>
+<h4 id="ia32-x86-64">兼容 IA32 的 x86-64 架构指令格式</h4>
+<p>x86-64 架构的指令格式仅需在 IA32 指令格式的前缀和指令编码之间增加可选的 REX 前缀，REX 即 0100WRXB：</p>
+<ul>
+<li>第 7-4 位：0100</li>
+<li>第 3 位，为 W 字段，W=1 则为 64 位操作数，W=0 则</li>
+<li>为 8/16/32 位操作数。</li>
+<li>第 2 位，为 R 字段，作为 ModR/M 中 Reg 字段的扩展位。</li>
+<li>第 1 位，为 X 字段，作为 SIB 中 Index 字段的扩展位。</li>
+<li>第 0 位，为 B 字段，作为 ModR/M 中 R/M 字段或 SIB 中 Base 字段或 Reg 字段的扩展位。</li>
+</ul>
+<p>B 的三种情况如下：</p>
+<ul>
+<li>B 为 ModR/M 中 R/M 字段的扩展位，此时 X=0，随即设 ModR/M 为 11rrrbbb（Mod + Reg + R/M），则组合 Rrrr 和 Bbbb.</li>
+<li>B 为 Reg 字段扩展位，设 Reg 为 bbb，则组合 Bbbb.</li>
+<li>B 为 SIB 中 Base 字段扩展位，此时 ModR/M 为 ??rrr100(??≠11),SIB 为 ssxxxbbb，则组合 Rrrr、Xxxx、Bbbb.</li>
+</ul>
+<h2 id="ia32x64_1">IA32/x64 常用指令及操作</h2>
+<h3 id="_13">传送指令</h3>
+<h4 id="_14">通用数据传送指令</h4>
+<p>一般分为三类：</p>
+<ul>
+<li>MOV：一般的传送指令，包括 <code>movb</code>、<code>movw</code>、<code>movl</code>、<code>movq</code> 等，源操作数为立即数或寄存器或存储单元内容，目的地址为寄存器或存储单元内容。</li>
+<li>MOVS：符号扩展传送指令，将短的源操作数高位符号扩展后传送道目的地址，源操作数为寄存器或存储单元内容，目的地址只能为寄存器。</li>
+<li>MOVZ：零扩展传送指令，将短的源操作数高位符号扩展后传送道目的地址，源操作数为寄存器或存储单元内容，目的地址只能为寄存器。</li>
+</ul>
+<p>对于 x86-64 架构，注意：</p>
+<ul>
+<li>当 <code>movl</code> 指令目的地址为寄存器时，会将目的寄存器高 32 位清零，此时等价于 <code>movzlq</code>。</li>
+<li>当 <code>movq</code> 指令的源操作数为立即数时，最高只能指定 32 位立即数，从而按符号扩展至 64 位后传送。</li>
+<li><code>movabsq</code> 指令特别用于将一个 64 位立即数送到 64 位目的寄存器中。</li>
+<li><code>cltq</code> 指令用于将 EAX 内容符号扩展为 64 位后送 RAX，无需显式指定操作数，相当于 <code>movslq %eax, %rax</code>.</li>
+</ul>
+<h4 id="_15">数据交换指令</h4>
+<p>XCHG：将两个寄存器的内容或一个寄存器与一存储单元内容互换，例如 <code>xchgb</code> 与 <code>xchgq</code> 分别交换 1 字节与 8 字节内容。</p>
+<h4 id="_16">入栈/出栈指令</h4>
+<p>PUSH：先执行 <code>R[?sp] &lt;- R[?sp] - ?</code>，例如 <code>R[esp] &lt;- R[esp] - 4</code>，然后将一个内容从指定寄存器送到 ?SP 指定的栈单元中。例如 <code>pushw</code>、<code>pushl</code>、<code>pushq</code>.</p>
+<p>POP：先将一个内容从 ?SP 指示的栈单元送到指定寄存器中，再执行 <code>R[?SP] &lt;- R[?SP] + ?</code>. 例如 <code>popw</code>、<code>popl</code>、<code>popq</code>.</p>
+<h4 id="_17">地址传送指令</h4>
+<p>「加载有效地址」（LEA, load effect address）用于将源操作数的存储地址送入目的寄存器。</p>
+<p>但该指令也用于一些简单运算。</p>
+<h4 id="_18">输入/输出指令</h4>
+<p>专门用于在累加器和 I/O 端口之间进行数据传送。例如 <code>in</code>  指令和<code>out</code> 指令分别用于将 I/O 端口内容送累加器和将累加器内容送 I/O 端口。</p>
+<h4 id="_19">标志传送指令</h4>
+<p>标志传送指令专门用于对标志寄存器进行操作。如 <code>pushf</code> 指令用于将标志寄存器压入栈中，<code>popf</code> 指令用于将栈顶内容送标志寄存器。</p>
+<h3 id="_20">定点算术运算指令</h3>
+<p>定点算术运算指令用于二进制整数算术运算和无符号十进制整数算术运算。无符号十进制整数（BCD）码采用 8421 码表示。但高级语言中的算术运算都被转换为二进制整数运算指令，故我们可以忽略上述十进制运算。</p>
+<h4 id="_21">加/减运算指令</h4>
+<p>ADD 与 SUB ，两个操作数中最多只能有一个是存储器操作数，不区分有无符号整数，将产生的和/差送目的地，将生成的标志信息送标志寄存器。影响 OZSC 四个标志位。</p>
+<h4 id="1-1">增 1/减 1 运算指令</h4>
+<p>INC 与 DEC，给定操作数既是源操作数又是目的操作数，不区分有无符号整数，将生成的标志信息送标志寄存器，但 CF 标志不生成。影响 OZS 三个标志位。</p>
+<h4 id="_22">取负指令</h4>
+<p>NEG：将给定长度的位串取反加一，也称为「取补指令」，给定操作数既是源操作数又是目的操作数，将生成的标志信息送标志寄存器。影响 OZSC 四个标志位。 </p>
+<p>一些特殊情形：对于最小负数，NEG 后结果无变化但 OP=1；对于零，NEG 后结果无变化但 CF=0；对于非零操作数 NEG 后都有 CF=1. </p>
+<h4 id="_23">比较指令</h4>
+<p>CMP 用于两个寄存器操作数的比较，用目的操作数减源操作数，运算结果生成标志送标志寄存器，通常后接条件转移指令或条件设置指令。</p>
+<h4 id="_24">乘运算指令</h4>
+<p>分为无符号整数乘 MUL 和带符号整数乘 IMUL. 影响 OC 两个标志位。</p>
+<p>对于 IMUL 可以给出一个、两个或三个操作数，但对于 MUL 只能给出一个。</p>
+<p>若指令只给出一个操作数 SRC，则另一个源操作数隐藏于累加器 ?AX/AL，将 SRC 和累加器相乘，乘积存放于 AX（16 位结果）、DX-AX（32 位结果）、EDX-EAX（64 位结果）、RDX-RAX（128 位结果）。对 MUL 和 IMUL 都成立。</p>
+<p>若指令只给出两个操作数 DST 和 SRC，其中 SRC 可以为存储器操作数或寄存器操作数，DST 只能为寄存器操作数，则将其相乘，取低位存放至 DST.</p>
+<p>若指令给出三个操作数 REG, SRC, IMM，则将 SRC 与立即数 IMM 相乘，取低位送 REG 寄存器.</p>
+<p>标志位说明：对于 MUL：若乘积高位为全零，则 OF=0, CF=0；否则 OF=1, CF=1；对于 IMUL：若乘积高位为全零或全一且等于低位的最高位，则 OF=0, CF=0；否则 OF = 1, CF = 1.</p>
+<p>因带符号整数和无符号整数的乘积低位总相同，故有时使用 IMUL 代替 MUL 来使用两个/三个操作数的格式，但标志位就不可靠了。</p>
+<h4 id="_25">除运算指令</h4>
+<p>分为无符号整数除 DIV 和带符号整数除 IDIV. OZSC 四个标志位都不受影响。</p>
+<p>指令中只给出除数作为操作数，被除数存放于 ?AX/AL 中，被除数、商、余数存储区域如下：</p>
+<table>
+<thead>
+<tr>
+<th>位数</th>
+<th>被除数</th>
+<th>商</th>
+<th>余数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16/8=8……8</td>
+<td>AX</td>
+<td>AL</td>
+<td>AH</td>
+</tr>
+<tr>
+<td>32/16=16……16</td>
+<td>DX-AX</td>
+<td>AX</td>
+<td>DX</td>
+</tr>
+<tr>
+<td>64/32=32……32</td>
+<td>EDX-EAX</td>
+<td>EAX</td>
+<td>EDX</td>
+</tr>
+<tr>
+<td>128/64=64……64</td>
+<td>RDX-RAX</td>
+<td>RAX</td>
+<td>RDX</td>
+</tr>
+</tbody>
+</table>
+<p>特殊情况：商溢出或除数为零，则系统产生中断类型号为 0 的异常。</p>
+<p>为了支持将被除数扩展至两倍长度，专门设置了 CWD、CDQ、CQO 三条指令，分别用于将 ?AX 内容送 ?DX-?AX，其 AT&amp;T 助记符分别为：<code>cwtl</code>、<code>cltq</code>、<code>cqto</code>.</p>
+<p>除了三条扩展指令和比较指令，上述谈到的所有定点算数运算指令 AT&amp;T 指令助记符都为其转小写后添加后缀 <code>b</code>、<code>w</code>、<code>l</code>、<code>q</code>.</p>
+<h3 id="_26">按位运算指令</h3>
+<h4 id="_27">逻辑运算指令</h4>
+<p>以下五类逻辑运算指令，近 NOT 不影响条件标志位，其他执行后 OF=0, CF=0；若结果全零则 ZF=1 否则 ZF=0；SF 为结果最高位。</p>
+<p>NOT：按位取反；AND：按位与；OR：按位或；XOR：按位异或；TEST：按按位与结果计算条件标志位，结果不送。</p>
+<h4 id="_28">移位指令</h4>
+<p>所移位数为立即数或存放于 CL 寄存器中低 m 位，高若干位忽略。</p>
+<ul>
+<li>SHL：逻辑左移，每左移一次。最高位送 CF，低位补 0.</li>
+<li>SHR：逻辑右移，每右移一次。最低位送 CF，高位补 0.</li>
+<li>SAL：算术左移，每左移一次。最高位送 CF，低位补 0. 但若移位前后符号位发生变化，则 OF=1，反之 OF=0.</li>
+<li>SAR：算术右移，逻辑右移，每右移一次。最低位送 CF，高位补符号位.</li>
+<li>ROL：循环左移，每左移一次，最高位移到最低位，并送 CF.</li>
+<li>ROR：循环右移，每右移一次，最低位移到最高位，并送 CF.</li>
+<li>RCL：带循环左移，将 CF 作为操作数的一部分循环左移。</li>
+<li>RCR：带循环右移，将 CF 作为操作数的一部分循环右移。</li>
+</ul>
+<h3 id="_29">程序执行流控制指令</h3>
+<p>指令执行的顺序在 IA32 中由 EIP 确定，在 x86-64 中由 RIP 确定。有些时候我们需要跳转，此时可直接将指令指定的跳转目标地址送 ?IP.</p>
+<p>跳转分为「直接跳转」和「间接跳转」：直接跳转：跳转目标地址由出现在指令机器码中的立即数作为偏移量得到；间接跳转：跳转目标地址间接存储在某寄存器或某存储单元中。</p>
+<p>计算跳转地址的方式也有两种：「相对跳转」和「绝对跳转」：相对跳转：以 ?IP 为基准地址，加偏移量得到；绝对跳转：直接给出跳转地址。</p>
+<p>通常直接跳转采用相对跳转方式，在汇编语言中，使用标号（label）标明；间接跳转采用绝对跳转方式，在汇编语言中，使用 * 和操作指示符表示，例如 <code>*%eax</code> 和 <code>*(%eax)</code>.</p>
+<h4 id="_30">无条件跳转指令</h4>
+<p>JMP. </p>
+<h4 id="_31">条件跳转指令</h4>
+<p>Jcc，其中 cc 为条件助记符，以标准位或其组合作为跳转条件。</p>
+<ul>
+<li><code>jc</code>：CF=1，有进/借位。</li>
+<li><code>jnc</code>：CF=0，无进/借位。</li>
+<li><code>je</code>/<code>jz</code>：ZF=1，相等（非 TEST）或等于零（TEST）。</li>
+<li><code>jne</code>/<code>jnz</code>：ZF=0，不相等（非 TEST）或不等于零（TEST）。</li>
+<li><code>js</code>：SF=1，是负数。</li>
+<li><code>jns</code>：SF=0，是非负数。</li>
+<li><code>jo</code>：OF=1，有溢出。</li>
+<li><code>jno</code>：OF=0，无溢出。</li>
+<li><code>ja</code>/<code>jnbe</code>：CF=0 AND ZF=0，无符号整数大于。</li>
+<li><code>jae</code>/<code>jnb</code>：CF=0，无符号整数大于等于。</li>
+<li><code>jb</code>/<code>jnae</code>：CF=1，无符号整数小于。</li>
+<li><code>jbe</code>/<code>jna</code>：CF=1 OR ZF=1，无符号整数小于等于。</li>
+<li><code>jg</code>/<code>jnle</code>：SF=OF AND ZF=0，带符号整数大于。</li>
+<li><code>jge</code>/<code>jnl</code>：SF=OF，带符号整数大于等于。</li>
+<li><code>jl</code>/<code>jnge</code>：SF!=OF，带符号整数小于。</li>
+<li><code>jle</code>/<code>jng</code>：SF!=OF OR ZF=1，带符号整数小于等于，</li>
+</ul>
+<h4 id="_32">条件设置指令</h4>
+<p>SETcc，其中 cc 为条件助记符，cc 条件同 Jcc，用于将某通用寄存器设置为 1 或 0.</p>
+<h4 id="_33">条件传送指令</h4>
+<p>CMOVcc，其中 cc 为条件助记符，cc 条件同 Jcc，传送指令部分同 MOV.</p>
+<h4 id="_34">调用和返回指令</h4>
+<p>CALL：调用指令，为无条件跳转指令，与 JMP 类似，分为直接跳转和间接跳转。它实际上是：先将返回地址（?IP）入栈（相当于 PUSH），然后跳转到对应地址（同时修改了 ?IP）。CALL 会 修改 ?SP.</p>
+<p>RET：返回指令，为无条件转移指令。它实际上是先从栈顶取出返回地址（相当于 POP），然后内容送 ?IP. RET 会修改 ?SP，特别地若 RET 后跟操作数 n，则会执行 <code>R[?SP] &lt;- R[?SP] + n</code>.</p>
+<h4 id="_35">陷阱指令（自陷指令）</h4>
+<p>「陷阱」也称为「自陷」或「陷入」，其为一种预先安排的异常事件。执行到陷阱指令时，CPU 调出对应程序执行，结束后返回到原处继续执行。</p>
+<p>为了使用户程序能够向内核提出系统调用请求，指令集架构会定义若干条特殊的系统调用指令，如 IA32 中的 <code>int</code> 指令与 <code>sysenter</code> 指令、RISC-V 中的 <code>ecall</code> 指令、MIPS 中的 <code>syscall</code> 指令。</p>
+<p>以下为部分 IA32/x64 中提供的部分异常/中断指令，其中 INT、into、sysenter 为陷阱指令。</p>
+<ul>
+<li>INT n：n 为中断类型号，取值范围为 0-255.</li>
+<li>iret：中断返回指令，执行后将回到被中断的程序继续进行。</li>
+<li>into：溢出中断指令，若 OF=1，产生类型号为 4 的异常，进入相应的溢出异常处理。</li>
+<li>sysenter：快速进入系统调用指令。</li>
+<li>sysexit：快速推出系统调用指令。</li>
+</ul>
+<h3 id="x87">x87浮点处理指令*</h3>
+<h3 id="mmxsseavx">MMX/SSE/AVX 指令*</h3>
+<h3 id="x86-64_1">x86-64 中的浮点处理指令*</h3>
+<h2 id="_36">章节小结</h2>
+<p>本章主要介绍了 IA32/x64 指令集体系结构的基础内容，包括其支持的数据类型、寄存器组织、寻址方式、常用指令类型、指令格式和指令功能。</p>
 
 
 

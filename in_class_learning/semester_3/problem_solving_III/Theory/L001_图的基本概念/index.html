@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l001" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -2988,6 +2993,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L001 图的基本概念
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3005,6 +3030,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的定义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的运算
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4290,60 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的定义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的表示
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图的运算
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4360,61 @@
 
 
 
-  <h1>L001 图的基本概念</h1>
-
-
+<h1 id="l001">L001 图的基本概念</h1>
+<h3 id="_1">图的定义</h3>
+<p>一般认为，图论起源于 1730s 「欧拉」（Leonhard Euler）为「柯尼斯堡七桥问题」（Seven Bridges of Königsberg）给出的解。</p>
+<p>「图」（graph）的一种简单数学表示是一个二元组，记作 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，其中 <span class="arithmatex">\(V\)</span> 是「顶点」（vertex）的有限集合，顶点也称「结点」（node）；<span class="arithmatex">\(E\)</span> 是「边」（edge）的有限集合，<span class="arithmatex">\(E\)</span> 中的每条边是一个无序对，由 <span class="arithmatex">\(V\)</span> 中的两个顶点组成。</p>
+<p>若边 <span class="arithmatex">\(e_1=(v_1,v_2)\)</span>，那么 <span class="arithmatex">\(v_1,v_2\)</span> 称作 <span class="arithmatex">\(e_1\)</span> 的两个「端点」（endpoint），边和它的端点互相「关联」（incident），称一条边的两个端点「相邻」（adjacent），其互为「邻点」（neighbor）。</p>
+<p>若又考虑 <span class="arithmatex">\(e_2=(v_1,v_2)\)</span>，其和 <span class="arithmatex">\(e_1\)</span> 端点完全相同，称呼其为「重边」（multiple edges），也称「平行边」（parallel edges）。为了支持重边，我们扩展图的定义，将 <span class="arithmatex">\(E\)</span> 扩展为「多重集」（multiset）。</p>
+<p>若 <span class="arithmatex">\(e_3=(v,v)\)</span>，即两个端点为同一个端点，那么称 <span class="arithmatex">\(e_3\)</span> 为一个「自环」（loop）。</p>
+<p>不含自环和重边的图称作「简单图」（simple graph）。</p>
+<p>图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 中的顶点数量 <span class="arithmatex">\(|V|\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「阶」（order），记作 <span class="arithmatex">\(\nu(G)\)</span>. 阶为零的图称为「零图」（null graph）。</p>
+<p>图 <span class="arithmatex">\(G\)</span> 的边的数量 <span class="arithmatex">\(|E|\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「边数」（size），记作 <span class="arithmatex">\(\epsilon(G)\)</span>. 边数为零的图称为「空图」（empty graph），阶为 1 的空图称为「平凡图」（trivial graph）。</p>
+<p>若一个简单图的每对顶点都相邻，则称为「完全图」（complete graph），阶为 <span class="arithmatex">\(n\)</span> 的完全图记作 <span class="arithmatex">\(K_n\)</span>.</p>
+<p>顶点 <span class="arithmatex">\(v\)</span> 关联的边的数量称作 <span class="arithmatex">\(v\)</span> 的「度」（degree），记作 <span class="arithmatex">\(d(v)\)</span>，特别地，每个自环按 2 计数。度为零的点称为「孤立点」（isolated vertex）。</p>
+<p>Th.1.1 对于任意图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，有：</p>
+<div class="arithmatex">\[
+\sum_{v\in V}d(v)=2\epsilon(G)
+\]</div>
+<p>该定理俗称「握手引理」（handshake lemma）。</p>
+<p>Cor.1.1 任何一个图中，度为奇数的顶点有偶数个。</p>
+<p>图 <span class="arithmatex">\(G\)</span> 中所有顶点的度构成的非增序列称为 <span class="arithmatex">\(G\)</span> 的「度序列」（degree sequence），其中的最大值称为「最大度」（maximum degree），记作 <span class="arithmatex">\(\Delta(G)\)</span>；其中的最小值称为「最小度」（minimum degree），记作 <span class="arithmatex">\(\delta(G)\)</span>.</p>
+<h3 id="_2">图的表示</h3>
+<p>将图表示为矩阵，便可运用线性代数方法对图进行研究，这是「代数图论」（algebraic graph theory）的分支。</p>
+<p>对于阶为 <span class="arithmatex">\(n\)</span> 的图 <span class="arithmatex">\(G\)</span>，其「邻接矩阵」（adjacency matrix）是 <span class="arithmatex">\(n\)</span> 维对称方阵，记作 <span class="arithmatex">\(\mathbf{A}(G)\)</span>，其第 <span class="arithmatex">\(i\)</span> 列第 <span class="arithmatex">\(j\)</span> 列元素 <span class="arithmatex">\(A_{i,j}\)</span> 表示顶点 <span class="arithmatex">\(v_i\)</span> 和顶点 <span class="arithmatex">\(v_j\)</span> 共同关联的边的数量，特别地，若 <span class="arithmatex">\(i=j\)</span>，则 <span class="arithmatex">\(A_{i,i}\)</span> 为两倍 <span class="arithmatex">\(v_i\)</span> 关联的自环数。</p>
+<p>显然，<span class="arithmatex">\(\mathbf{A}(G)\)</span> 的第 <span class="arithmatex">\(i\)</span> 列元素和与第 <span class="arithmatex">\(i\)</span> 行元素和都是 <span class="arithmatex">\(v_i\)</span> 的度，即：</p>
+<div class="arithmatex">\[
+\sum_{j=1}^{n}A_{j,i}=\sum_{j=1}^{n}A_{i,j}=d(v_i)
+\]</div>
+<p>对于阶为 <span class="arithmatex">\(n\)</span>，边数为 <span class="arithmatex">\(m\)</span> 的图 <span class="arithmatex">\(G\)</span>，其「关联矩阵」（incidence matrix）是 <span class="arithmatex">\(n\times m\)</span> 维矩阵，记作 <span class="arithmatex">\(\mathbf{M}(G)\)</span>，其中第 <span class="arithmatex">\(i\)</span> 列第 <span class="arithmatex">\(j\)</span> 行元素 <span class="arithmatex">\(M_{i,j}\)</span> 表示顶点 <span class="arithmatex">\(v_i\)</span> 与边 <span class="arithmatex">\(e_j\)</span> 是否关联：1 是 0 否，特别地，若 <span class="arithmatex">\(e_j\)</span> 为自环，则 <span class="arithmatex">\(M_{i,j}=2\)</span> 当且仅当 <span class="arithmatex">\(e_j\)</span> 是关联 <span class="arithmatex">\(v_i\)</span> 的自环，否则 <span class="arithmatex">\(M_{i,j}=0\)</span>.</p>
+<p>显然 <span class="arithmatex">\(\mathbf{M}(G)\)</span> 第 <span class="arithmatex">\(i\)</span> 行元素之后为 <span class="arithmatex">\(v_i\)</span> 的度，且任一列元素之和必为 <span class="arithmatex">\(2\)</span> ，也即：</p>
+<div class="arithmatex">\[
+\sum_{j=1}^{m}M_{i,j}=d(v_i),\sum_{i=1}^{n}M_{i,j}=2
+\]</div>
+<p>以上是图的数学表示，接下来讨论图在计算机内存中的存储方式。</p>
+<p>图可以表示为邻接矩阵或关联矩阵，而矩阵可以用二维数组存储在内存中。然而实际中的图往往稀疏（边较少），故而采用「邻接表」（adjacency list）存储。</p>
+<p>邻接表是一种数据结构，使用双层嵌套列表存储邻接表。对于阶为 <span class="arithmatex">\(n\)</span>，边数为 <span class="arithmatex">\(m\)</span> 的图，邻接表的存储空间是 <span class="arithmatex">\(O(n+m)\)</span>. 当然这个列表的具体实现可以采用数组、链表、哈希表等数据结构，各有优缺点。</p>
+<h3 id="_3">图的关系</h3>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V_G,E_G\right\rangle\)</span> 和图 <span class="arithmatex">\(H=\left\langle V_H,E_H\right\rangle\)</span>，若 <span class="arithmatex">\(V_H\subseteq V_G\)</span> 且 <span class="arithmatex">\(E_H\subseteq E_G\)</span>，那么称 <span class="arithmatex">\(H\)</span> 是 <span class="arithmatex">\(G\)</span> 的「子图」（subgraph）。</p>
+<p>在此条件下，若 <span class="arithmatex">\(V_H\subset V_G\)</span> 且 <span class="arithmatex">\(E_H\subset E_G\)</span>，那么称 <span class="arithmatex">\(H\)</span> 是 <span class="arithmatex">\(G\)</span> 的「真子图」（proper subgraph）；若 <span class="arithmatex">\(V_H=V_G\)</span>，则称 <span class="arithmatex">\(H\)</span> 是 <span class="arithmatex">\(G\)</span> 的「生成子图」（spanning graph）。</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，若 <span class="arithmatex">\(V'\subseteq V\)</span> 且以 <span class="arithmatex">\(V'\)</span> 为顶点集，<span class="arithmatex">\(E\)</span> 中两端点均在 <span class="arithmatex">\(V'\)</span> 中的所有边为边集组成的图称为 <span class="arithmatex">\(G\)</span> 的「点导出子图」（vertex-induced subgraph），简称「导出子图」（induced subgraph），记作 <span class="arithmatex">\(G[V']\)</span>.</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，若 <span class="arithmatex">\(E'\subseteq E\)</span> 且以 <span class="arithmatex">\(E'\)</span> 中所有边的端点为顶点集，<span class="arithmatex">\(E'\)</span> 为边集组成的图称为 <span class="arithmatex">\(G\)</span> 的「边导出子图」（edge-induced subgraph），记作 <span class="arithmatex">\(G[E']\)</span>.</p>
+<p>从简单图 <span class="arithmatex">\(G=\left\langle V_G,E_G\right\rangle\)</span> 到图 <span class="arithmatex">\(H=\left\langle V_H,E_H\right\rangle\)</span> 的「同构」（isomorphism）是双射 <span class="arithmatex">\(f:V_G\to V_H\)</span>，满足边 <span class="arithmatex">\((v_i,v_j)\in E\)</span> 当且仅当 <span class="arithmatex">\((f(v_i),f(v_j))\in E'\)</span>. 若该同构存在，则称 <span class="arithmatex">\(G\)</span> 和 <span class="arithmatex">\(H\)</span> 「同构」（isomorphic），记作 <span class="arithmatex">\(G\cong H\)</span>. 特别地，若 <span class="arithmatex">\(H=G\)</span> 则称 <span class="arithmatex">\(f\)</span> 为 <span class="arithmatex">\(G\)</span> 的「自同构」 （automorphism）。</p>
+<p>Th.1.2 同构关系是定义在所有简单图的集合上的等价关系。</p>
+<p>同构的定义可以扩展到非简单图，只需如此修改：从图 <span class="arithmatex">\(G=\left\langle V_G,E_G\right\rangle\)</span> 到 <span class="arithmatex">\(H=\left\langle V_H,E_H\right\rangle\)</span> 的同构是两个双射 <span class="arithmatex">\(f:V_G\to V_H\)</span> 和 <span class="arithmatex">\(g:E_G\to E_H\)</span>，其中 <span class="arithmatex">\(e\in E_G\)</span> 的端点为顶点 <span class="arithmatex">\(v_i,v_j\in V_G\)</span> 当且仅当 <span class="arithmatex">\(g(e)\in E_H\)</span> 且 <span class="arithmatex">\(g(e)\)</span> 的端点恰为 <span class="arithmatex">\(f(v_i),f(v_j)\in V_H\)</span>.</p>
+<p>【这里有一张图，图 1.6】</p>
+<p>上图展示了「彼得森图」（Peterson graph）</p>
+<p>判定两个图是否同构的问题的复杂度属于「非确定性多项式时间」（NP, nondeterministic polynomial-time），但尚不清楚属于「多项式时间」（P, polynomial-time）还是「NP 完全」（NPC, NP-complete），即对该问题复杂度的认识尚不充分。</p>
+<h3 id="_4">图的运算</h3>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，从 <span class="arithmatex">\(G\)</span> 中「删除」（delete）边子集 <span class="arithmatex">\(E'\subseteq E\)</span> ，剩余的子图记作 <span class="arithmatex">\(G-E'\)</span>. 特别地，仅删除一条边 <span class="arithmatex">\(e\in E\)</span> 时，<span class="arithmatex">\(G-\{e\}\)</span> 可简写为 <span class="arithmatex">\(G-e\)</span>. 从 <span class="arithmatex">\(G\)</span> 中删除边并不会删除其端点。</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，从 <span class="arithmatex">\(G\)</span> 中「删除」（delete）点子集 <span class="arithmatex">\(V'\subseteq V\)</span> ，剩余的子图记作 <span class="arithmatex">\(G-V'\)</span>. 特别地，仅删除一个顶点 <span class="arithmatex">\(v\in V\)</span> 时，<span class="arithmatex">\(G-\{v\}\)</span> 可简写为 <span class="arithmatex">\(G-v\)</span>. 从 <span class="arithmatex">\(G\)</span> 中删除顶点时会删除其关联的所有边。</p>
+<p>简单图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 的「补图」（complement）是以 <span class="arithmatex">\(V\)</span> 为顶点集 <span class="arithmatex">\(\{(u,v)|(u,v)\notin E\}\)</span> 为边集的简单图，记作 <span class="arithmatex">\(\overline{G}\)</span>.</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V_G,E_G\right\rangle\)</span> 和图 <span class="arithmatex">\(H=\left\langle V_H,E_H\right\rangle\)</span>：</p>
+<ul>
+<li>它们的「交」（intersection）是以集合 <span class="arithmatex">\(V_G\cap V_H\)</span> 为点集，<span class="arithmatex">\(E_G\cap E_H\)</span> 为边集的图，记作 <span class="arithmatex">\(G\cap H\)</span>；</li>
+<li>它们的「并」（union）是以集合 <span class="arithmatex">\(V_G\cup V_H\)</span> 为点集，<span class="arithmatex">\(E_G\cup E_H\)</span> 为边集的图，记作 <span class="arithmatex">\(G\cup H\)</span>，若 <span class="arithmatex">\(V_G\cap V_H=\varnothing\)</span>，则 <span class="arithmatex">\(G\cup H\)</span> 称为「不交并」（disjoint union），又称「和」（sum），记作 <span class="arithmatex">\(G+H\)</span>；</li>
+<li>它们的「联」（join）是向图 <span class="arithmatex">\(G+H\)</span> 中增加边集 <span class="arithmatex">\(\{(u,v)|u\in V_G,v\in V_H\}\)</span> 得到的简单图，记作 <span class="arithmatex">\(G\lor H\)</span>.</li>
+</ul>
 
 
 

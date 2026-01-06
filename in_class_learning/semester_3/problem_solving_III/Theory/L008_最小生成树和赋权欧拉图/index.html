@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l008" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3184,6 +3189,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L008 最小生成树和赋权欧拉图
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3201,6 +3226,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最小生成树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        赋权欧拉图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        旅行商问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4279,49 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最小生成树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        赋权欧拉图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        旅行商问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4338,33 @@
 
 
 
-  <h1>L008 最小生成树和赋权欧拉图</h1>
-
-
+<h1 id="l008">L008 最小生成树和赋权欧拉图</h1>
+<h3 id="_1">最小生成树</h3>
+<p>对于连通赋权图 <span class="arithmatex">\(G=\left\langle V,E,w\right\rangle\)</span>，边权和最小的生成树称作「最小生成树」（minimum spanning tree）。</p>
+<p>「普里姆算法」（Prim's algorithm）</p>
+<p>【Algo.6.2】</p>
+<p>Th.6.2</p>
+<p>「克拉斯克尔算法」（Kruskal's algorithm）</p>
+<p>【Algo.6.3】</p>
+<p>Th.6.3</p>
+<h3 id="_2">赋权欧拉图</h3>
+<p>「中国邮递员问题」（Chinese postman problem）：寻找「最优邮递路线」。</p>
+<p>「邮递路线」（post walk）：经过每条边至少一次的闭路线。其权定义为路线中边的边权之和，重复经过重复计入。</p>
+<p>「最优邮递路线」：权和最小的邮递路线。</p>
+<p>Th.6.4 存在一条最优邮递路线，其对应重边的集合 <span class="arithmatex">\(E^\text{M}\)</span> 是以赋权图 <span class="arithmatex">\(G\)</span> 中所有 <span class="arithmatex">\(2k(k\ge 0)\)</span> 个度为奇数的顶点为起点和 <span class="arithmatex">\(k\)</span> 条无公共边的最短路经过的边的集合。</p>
+<p>「最小权完美匹配」（minimum-weight perfect matching）：对于赋权图，权和最小的完美匹配。可以采用花算法的变体基于线性规划计算。</p>
+<p>「埃德蒙兹-约翰逊算法」（Edmonds-Johnson algorithm）。</p>
+<p>【Algo.6.4】</p>
+<h3 id="_3">旅行商问题</h3>
+<p>「旅行商问题」（TSP, traveling salesman problem）：找出赋权图中最短的哈密尔顿圈。</p>
+<p>「度量旅行商问题」（<span class="arithmatex">\(\Delta\)</span>-TSP, metric traveling salesman problem）：赋权函数满足三角不等式的旅行商问题。</p>
+<p><span class="arithmatex">\(\Delta\)</span>-TSP 是一个「NP 难」（NP-hard）的优化问题。</p>
+<p>「最近邻点算法」（nearest neighbor algorithm）</p>
+<p>【Algo.6.5】</p>
+<p>Th.6.5</p>
+<p>「 克里斯托菲德斯-谢尔久科夫算法」（Christofides-Serdyukov algorithm）</p>
+<p>【Algo.6.6】</p>
+<p>Th.6.6</p>
 
 
 

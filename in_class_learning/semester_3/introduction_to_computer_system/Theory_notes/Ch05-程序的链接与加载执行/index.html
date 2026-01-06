@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ch05" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -866,6 +871,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch05 程序的链接与加载执行
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -883,6 +908,609 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译、汇编和静态链接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="编译、汇编和静态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译和汇编
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="编译和汇编">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        预处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        汇编
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的生成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可执行文件的生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号解析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标文件格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="目标文件格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ELF 目标文件格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可重定位文件格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可重定位文件格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ELF 头
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        节
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        节头表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的存储器映像
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号表和符号解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="符号表和符号解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号和符号表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="符号解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全局符号的解析规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号解析过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与静态库的链接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="重定位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位过程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="重定位过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r_386_pc32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R_386_PC32 方式的重定位
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r_386_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R_386_32 方式的重定位
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动态链接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="动态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动态链接的机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序加载时的动态链接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序运行时的动态链接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        位置无关代码
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="位置无关代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块内过程调用和跳转
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块内数据引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块间数据引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块间过程调用和跳转
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        库打桩机制*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="库打桩机制*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译时打桩*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        链接时打桩*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行时打桩*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的加载与执行
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可执行文件的加载与执行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序和指令的执行过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPU 的基本功能和基本组成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        打断程序正常执行的事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -903,7 +1531,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -959,7 +1587,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -987,7 +1615,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -4202,6 +4830,600 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译、汇编和静态链接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="编译、汇编和静态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译和汇编
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="编译和汇编">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        预处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        汇编
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的生成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可执行文件的生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号解析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标文件格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="目标文件格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ELF 目标文件格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可重定位文件格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可重定位文件格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ELF 头
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        节
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        节头表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的存储器映像
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号表和符号解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="符号表和符号解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号和符号表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="符号解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全局符号的解析规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号解析过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与静态库的链接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="重定位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位过程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="重定位过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r_386_pc32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R_386_PC32 方式的重定位
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r_386_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R_386_32 方式的重定位
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动态链接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="动态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动态链接的机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序加载时的动态链接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序运行时的动态链接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        位置无关代码
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="位置无关代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块内过程调用和跳转
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块内数据引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块间数据引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模块间过程调用和跳转
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        库打桩机制*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="库打桩机制*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译时打桩*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        链接时打桩*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行时打桩*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的加载与执行
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可执行文件的加载与执行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件的加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序和指令的执行过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPU 的基本功能和基本组成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        打断程序正常执行的事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +5440,353 @@
 
 
 
-  <h1>Ch05 程序的链接与加载执行</h1>
-
-
+<h1 id="ch05">Ch05 程序的链接与加载执行</h1>
+<h2 id="_1">编译、汇编和静态链接</h2>
+<p>链接的概念早在高级编程语言出现之前就已存在。</p>
+<p>高级编程语言出现之后，程序功能愈加复杂，规模愈加庞大，需要多人开发不同模块。</p>
+<p>在每个程序模块中，包含一些变量和子程序（函数）的定义，其地址就属于符号定义。</p>
+<p>子程序的调用或在表达式中使用变量进行计算就是符号引用。</p>
+<p>某一个模块中定义的符号可能被另一个模块引用，因而最终必须通过链接将程序包含的所有模块合并起来，合并时须在符号引用出填入定义时的地址。</p>
+<h3 id="_2">编译和汇编</h3>
+<p>此内容在 Ch01、Ch03 均提及过，将高级语言源程序文件转换为可执行目标文件分为预处理、编译、汇编、链接等过程。</p>
+<p>前三步用来对各模块（即源程序文件）生成「可重定位目标文件」（relocatable object file），GCC 生成的文件名后缀为 <code>.o</code>，VS 输出的为 <code>.obj</code>. 最后一步是链接，用来将若干可重定位目标文件（包括若干标准库函数目标模块）组合起来，生成一个「可执行目标文件」（executable object file）。</p>
+<p>两种目标文件为行文方便，下文分别简称为「可重定位文件」和「可执行文件」。</p>
+<h4 id="_3">预处理</h4>
+<p>用于 C 语言编译器对各种预处理命令（<code>#</code> 开头命令）进行处理，包括头文件的包含、宏定义的扩展、条件编译的选择等，可使用 <code>gcc -E main.c -o main.i</code> 或 <code>cpp main.c -o main.i</code> 实现，预处理后的文件是可显示的文本文件。</p>
+<h4 id="_4">编译</h4>
+<p>使用命令 <code>gcc -S main.i -o main.s</code> 或 <code>ccl main.i -o main.s</code> 对 <code>main.i</code> 编译并生成汇编代码文件 <code>main.s</code>.</p>
+<h4 id="_5">汇编</h4>
+<p>使用命令 <code>gcc -c main.s -o main.o</code> 或 <code>as main.s -o main.o</code> 生成可重定位文件。</p>
+<h3 id="_6">可执行文件的生成</h3>
+<p>可重定位文件和可执行文件都是机器语言目标文件，<strong>前者，代码总是从 0 开始；后者，代码在 ABI 规范规定的「虚拟地址空间」中产生。</strong></p>
+<p>链接器在将多个可重定位文件组合称一个可执行文件时，主要完成「符号解析」和「重定位」两个任务。</p>
+<h4 id="_7">符号解析</h4>
+<p>符号解析的目的是将每个符号的引用与一个确定的符号定义建立关联。符号包括「全局变量名」、「静态变量名」和「函数名」，<strong>非静态局部变量名不是符号</strong>。</p>
+<p>编译器将所有符号存放在可重定位文件的「符号表」（symbol table）中。</p>
+<h4 id="_8">重定位</h4>
+<p>可重定位文件中的代码区和数据区都从地址 0 开始，链接器将不同模块中相同的节合并生成新的单独的节，并将合并后的代码区和数据区按照 ABI 规范确定的「虚拟地址空间划分」（也称「存储器映像」）重新确定位置。</p>
+<p>例如，对于 IA32 + Linux 系统，其<strong>只读代码段总是从地址 0x8048000 开始；而可读写数据段总是在只读代码段后的第一个 4KB 对齐的地址处开始。</strong></p>
+<p>因而链接器需要重新确定每条指令和每个数据的地址，并且在指令中需要明确给定所引用符号的地址，这种确定代码和数据的地址并更新指令中被引用符号地址的工作称为「重定位」（relocation）。</p>
+<h2 id="_9">目标文件格式</h2>
+<p>「目标代码」（object code）是指编译器或汇编器处理源代码后所生成的机器语言目标代码。</p>
+<p>「目标文件」（object file）是指存放目标代码的文件。</p>
+<p>通常目标文件有三类：可重定位目标文件、可执行目标文件和共享库目标文件。「共享库目标文件」是特殊的可重定位目标文件，能在装入或运行时加载到内存并自动被链接，也称为「共享库文件」。</p>
+<h3 id="elf">ELF 目标文件格式</h3>
+<p>目标文件中包含可直接被 CPU 执行的机器代码以及代码在运行时使用的数据，还包含重定位信息和调试信息等，不过目标文件中唯一与运行时相关的要素是机器代码及其使用的数据，例如，用于嵌入式系统的目标文件可能仅仅含有机器代码及其使用数据。</p>
+<p>目标文件格式有许多不同的种类，早期计算机都拥有自身独特的格式，随着 UNIX 和其他可移植操作系统的问世，人们定义了一些标准目标文件格式，并在不同的系统上使用它们。</p>
+<p>System V UNIX 的早期版本使用的是「通用目标文件格式」（COFF, common object file format），Windows 使用的是 COFF 的一个变种，称为「可移植可执行」（PE, portable executable）格式。现代 UNIX 操作系统，如 Linux、BSD Unix 等，主要使用「可执行可链接格式」（ELF, executable and linkable format），本章采用 ELF 标准二进制文件格式进行说明。</p>
+<p>【这里有一张图，图 5.3】</p>
+<p>图中展示了「链接视图」和「执行视图」。</p>
+<p>链接视图主要由不同的「节」（section）构成，节是 ELF 文件中具有相同特征的最小可处理信息单位，不同的节描述了目标文件中不同类型的信息及其特征，例如「代码节」（.text）、「只读数据节」（.rodata）、「已初始化全局数据节」（.data）、「未初始化全局数据节」（.bss）等。从上到下分别为 ELF 头、程序头表（可选）、节、节头表。</p>
+<p>执行视图主要由不同的「段」（segment）构成，描述了目标文件中的节如何映射到存储空间的段中，可以将多个节合并后又映射到同一个段，例如可以合并 .data 和 .bss 的内容，并将内容映射到一个「可读写数据段」中。从上到下分别为 ELF 头、程序头表、段、节头表（可选）。</p>
+<p>显然可重定位文件和可执行文件对应的 ELF 视图不同，前者对应链接视图，后者对应执行视图。</p>
+<h3 id="_10">可重定位文件格式</h3>
+<p>【这里有一张图，图 5.4】</p>
+<p>从上到小分别为 ELF 头、.text 节、.rodata 节、.data 节、.bss 节、.symtab 节、.rel.text 节、.rel.data 节、.debug 节、.line 节、.strtab 节、节头表。</p>
+<h4 id="elf_1">ELF 头</h4>
+<p>ELF 头位于目标文件的起始位置，包含文件结构说明信息，其数据结构分为 32 位系统对应的数据结构和 64 位系统对应的。</p>
+<p>【书中此处展示了 32 位系统对应的数据结构，共占 52 字节。】</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#define EI_NIDENT 16</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">             </span><span class="n">e_ident</span><span class="p">[</span><span class="n">EI_NIDENT</span><span class="p">];</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_type</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_machine</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">                </span><span class="n">e_version</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Addr</span><span class="w">                </span><span class="n">e_entry</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Off</span><span class="w">                 </span><span class="n">e_phoff</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Off</span><span class="w">                 </span><span class="n">e_shoff</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">                </span><span class="n">e_flags</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_ehsize</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_phentsize</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_phnum</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_shentsize</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_shnum</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">                </span><span class="n">e_shstrndx</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Elf32_Ehdr</span><span class="p">;</span><span class="w"> </span>
+</code></pre></div>
+<p>文件开头若干字节称为「魔数」，用于确定文件的类型或格式。在加载或读取文件时，可用魔数确认文件类型是否正确。</p>
+<p>在 32 位 ELF 头数据结构中：</p>
+<ul>
+<li>字段 <code>e_ident</code> 是长为 16 的字节序列，最开始 4 字节为魔数，用于标识是否为 ELF 文件，如果是，则四个字节分别为 0x7F、<code>'E'</code>、<code>'L'</code>、<code>'F'</code>，随后的 12 字节包含一些表示信息，例如是 32 位还是 64 位格式、小端还是大端方式，ELF 头的版本号等。</li>
+<li>字段 <code>e_type</code> 用于说明目标文件类型是可重定位文件、可执行文件还是共享库文件。</li>
+<li>字段 <code>e_machine</code> 指定机器结构类型，如 IA-32、SPARC V9、AMD64 等。</li>
+<li>字段 <code>e_version</code> 标识目标文件版本。</li>
+<li>字段 <code>e_entry</code> 指定系统将控制权转移到的起始虚拟地址（入口点），可重定位文件中为 0.</li>
+<li>字段 <code>e_ehsize</code> 说明 ELF 头大小。</li>
+<li>字段 <code>e_shoff</code> 指出节头表在文件中的偏移量。</li>
+<li>字段 <code>e_shentsize</code> 表示节头表中一个表项的大小，所有表项大小相同。</li>
+<li>字段 <code>e_shnum</code> 表示节头表中的项数。和 <code>e_shentsize</code> 共同指定节头表大小。</li>
+<li>偏移量和各字段大小都以字节为单位。</li>
+</ul>
+<p><strong>ELF 头在文件中总是最开始的位置，其他部分的位置由 ELF 头和节头表指出，不具有固定顺序。</strong></p>
+<p>可以使用 <code>readelf -h main.o</code> 对 <code>main.o</code> 进行解析。</p>
+<h4 id="_11">节</h4>
+<p>「节」（section） 是 ELF 文件中的主体信息，典型的 ELF 可重定位文件包含以下节：</p>
+<ul>
+<li>.text：目标代码部分。</li>
+<li>.rodata：只读数据。</li>
+<li>.data：已初始化且初值不为零的全局变量和静态变量。</li>
+<li>.bss：所有未初始化或初始化为零的全局变量和静态变量。目标文件区分是否初始化是为了提高磁盘利用率，未初始化的在运行时再为这些变量分配空间，之前都仅作为占位符。</li>
+<li>.symtab：「符号表」（symbol table）。</li>
+<li>.rel.text：.text 节相关的可重定位信息。</li>
+<li>.rel.data：.data 节相关的可重定位信息。</li>
+<li>.debug：调试用符号表，有些表项对定义的局部变量和类型定义进行说明，有些表项对定义和引用的全局静态变量进行说明。</li>
+<li>.line：C 程序中行号和 ,text 节中指令之间的映射。</li>
+<li>.strtab：字符串表，包括 .symtab 节和 .debug 节中的符号和节头表中的节名。字符串表就是以 NULL 结尾的字符串序列。</li>
+</ul>
+<h4 id="_12">节头表</h4>
+<p>节头表由若干表项组成，每个表项描述某个节的节名、在文件中的偏移、大小、访问属性、对齐方式等信息，目标文件中每个节都有一个表项与之对应。</p>
+<p>可使用 <code>readelf -S test.o</code> 对 <code>test.o</code> 进行解析。</p>
+<p>根据每个节，可画出 <code>test.o</code> 的结构。</p>
+<h3 id="_13">可执行文件格式</h3>
+<p>链接器将相互关联的可重定位文件中相同的代码和数据节合并，以形成可执行文件中对应的节，因为相同的代码和数据节合并后，在可执行文件中各指令和数据的位置就可确定，所以定义的函数和变量的起始位置就可确定，即每个符号的定义就可确定，从而在符号的引用出可以根据确定的符号定义进行重定位。</p>
+<p>【这里有一张图，图5.6】</p>
+<p>ELF 可执行文件从上到下分别为「只读代码段」、「可读写代码段」、「无须映射到存储空间的符号表和调试信息」，其中只读代码段从上到下为：「ELF 头」、「程序头表」、「.init 节、.fini 节」、「.text 节」、「.rodata 节」；可读写代码段从上到下分别为「.data 节」、「.bss 节」；无须映射...信息从上到下分别为「.symtab 节」、「.debug 节」、「.line 节」、「.strtab 节」、「节头表」。</p>
+<p>可执行文件格式与可重定位文件格式类似，在这两种格式中，<strong>ELF 头的数据结构一样，.text 节、.rodata 节、.data 节除了有些和重定位地址不同外，其余大部分都相同</strong>。与可重定位文件格式相比，可执行文件主要有如下不同点：</p>
+<ul>
+<li>ELF 头字段 <code>e_entry</code> 给出程序执行入口地址，可重定位文件中为 0.</li>
+<li>通常会有 .init 节和 .fini 节。其中 .init 节定义 <code>_init</code> 函数，用于可执行文件开始执行时的初始化工作，当程序开始运行时，系统会在进程进入主函数 <code>main</code> 之前，先执行这个节中的指令代码；.fini 节包含进程终止时要执行的指令代码，当程序退出时，系统会执行这个节中的指令代码。</li>
+<li>少了 .rel.text 和 .rel.data 等重定位信息节，因为可执行文件中的指令和数据已被重定位，所以它们不需要了。</li>
+<li>多了一个「程序头表」，也称「段头表」（segment header table），它是一个结构体数组。</li>
+</ul>
+<p>可执行文件中所有代码位置连续，所有只读数据位置连续，所有可读可写数据位置连续，如前图所示，它们构成了「只读代码段」（read-only code segment）和「可读写数据段」（read/write data segment）。显然，在可执行文件启动运行时，这两个段必须被装入内存并分配存储空间，因而称为「可装入段」。</p>
+<p>为了在可执行文件执行时能够在内存中访问到代码和数据，必须将可执行文件中这些连续的具有相同访问属性的代码和数据段映射到存储空间（通常是虚拟地址空间中）。<strong>程序头表就用于描述这种映射关系，每个表项对应一个连续的「存储段」或「特殊节」。</strong>程序头表的表项大小和表项数分别由 ELF 头中的字段 <code>e_phentsize</code> 和 <code>e_phnum</code> 指定。</p>
+<p>32 位系统的程序头表中每个表项具有以下数据结构：</p>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">    </span><span class="n">p_type</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Off</span><span class="w">     </span><span class="n">p_offset</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Addr</span><span class="w">    </span><span class="n">p_vaddr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Addr</span><span class="w">    </span><span class="n">p_paddr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">    </span><span class="n">p_filesz</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">    </span><span class="n">p_memsz</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ELf32_Word</span><span class="w">    </span><span class="n">p_flags</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">    </span><span class="n">p_align</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Elf32_Phdr</span><span class="p">;</span>
+</code></pre></div>
+<p>64 位系统对应数据结构为 <code>Elf64_Phdr</code>，其中描述的成员与 <code>Elf32_Phdr</code> 类似，只是为了对齐考虑，将 <code>p_flags</code> 移到了 <code>p_offset</code> 之前。下面是详细说明：</p>
+<ul>
+<li><code>p_type</code> 描述存储段的类型或特殊节的类型，如是否为「可装入段」（PT_LOAD）、是否是特殊的「动态节」（PT_DYNAMIC）、是否是特殊的「解释程序节」（PT_INTERP）。</li>
+<li><code>p_offset</code> 指出本段首字节在文件中的偏移地址。</li>
+<li><code>p_vaddr</code> 指出本段首字节的虚拟地址。</li>
+<li><code>p_paddr</code> 指出本段首字节的物理地址，但因物理地址由操作系统根据情况动态确定，所以该信息基本上无效。</li>
+<li><code>p_filesz</code> 指出本段在文件中所占的字节数，可以为 0.</li>
+<li><code>p_memsz</code> 指出本段在存储器中所占的字节数，可以为 0.</li>
+<li><code>p_flags</code> 指出存取权限。</li>
+<li><code>p_align</code> 指出对齐方式，值为 2 的正整数幂。例如可分配段的页大小为 <span class="arithmatex">\(4\pu{KB}=2^{12}\pu{Bytes}\)</span>，则为 0x1000=2^{12}D.</li>
+</ul>
+<p>可使用 <code>readelf -l main</code> 命令显示可执行文件 <code>main</code> 的程序头表中的部分信息。</p>
+<h3 id="_14">可执行文件的存储器映像</h3>
+<p>特定系统中每个可执行文件都采用统一的存储器映像，映射到一个统一的「虚拟地址空间」。对于特定系统，可执行文件与虚拟地址空间之间的「存储器映像」（memory mapping）由 ABI 规范定义。</p>
+<p>例如，对于 IA32 + Linux 系统，i386 System V ABI 规范规定：</p>
+<ul>
+<li>只读代码段总是映射到从虚拟地址为 0x8048000 开始的一段区域；</li>
+<li>可读写数据段映射到只读代码段后 4KB 对齐的高地址上，其中 .bss 节所在存储区在运行时被初始化为 0.</li>
+<li>「运行时堆」（run-time heap）则在可读写数据段后 4KB 对齐的高地址处，通过 <code>malloc</code> 库函数动态向高地址分配空间。</li>
+<li>运行时「用户栈」（user stack）则从用户空间的最大地址向低地址方向增长。</li>
+<li>堆区和栈区中间有一块空间保留给共享库目标代码。</li>
+<li>用户栈区以上的高地址区是操作系统内核的虚拟存储区。</li>
+</ul>
+<p>【这里有一张图，图 5.8】</p>
+<p><strong>当启动可执行文件时，首先会通过某种方式调出常驻内存的一个称为「加载器」的操作系统程序。</strong>例如 Linux 程序的加载执行都通过调用 <code>execve</code> 系统调用函数来启动加载器。</p>
+<p>加载器根据可执行文件中的程序头表，将可执行文件中的相关内容与虚拟地址空间中的只读代码段和可读写代码段建立映射，然后启动可执行文件中的第一条指令并执行。</p>
+<p>特定系统平台中每个可执行文件映射到一个统一的虚拟地址空间，使得链接器在重定位时可以按照统一的虚拟存储空间来确定每个符号的地址，而不用管其数据和代码将来存放在主存或磁盘的何处。<strong>因此，引入统一的虚拟地址空间简化了链接器的设计和实现。</strong></p>
+<p>同样，<strong>引入虚拟地址空间也简化了程序加载过程</strong>，因为统一的虚拟地址空间映像使得每个可执行文件的只读代码段都映射到 0x8048000 开始的一块连续区域，而可读写数据段也映射到虚拟地址空间中的一块连续区域，所以加载器可以非常容易地对这些连续区域进行分页，并初始化相应页表项的内容。因 IA32 中页大小通常为 4KB，所以这里的可装入段都按 2^12B = 4KB 对齐。</p>
+<p><strong>程序在加载过程中，实际上并没有真正从硬盘上加载代码和数据到主存，而是仅仅创建了只读代码段和可读写数据段对应的页表项。只有在执行代码过程中发生了缺页异常，才会真正从硬盘加载代码和数据到主存。</strong>相关内容可参见 Ch07.</p>
+<h2 id="_15">符号表和符号解析</h2>
+<h3 id="_16">符号和符号表</h3>
+<p>链接器在生成可执行文件时，必须完成符号解析，而要进行符号解析，则需要用到符号表，表中包含了在程序模块中定义的所有符号的相关信息。对于某个模块 m 来说，包含在其符号表中的有以下三种不同类型：</p>
+<ul>
+<li>在 m 中定义并被其他模块引用的「全局符号」（global symbol）。这类符号包括非静态的函数名和全局变量名。</li>
+<li>由其他模块定义并被 m 引用的全局符号，称为模块 m 的「外部符号」（external symbol），包括 m 所引用的在被其他模块定义的外部函数名和函数变量名。</li>
+<li>在 m 中定义并在 m 中引用的「本地符号」（local symbol）。这类符号包括带 static 属性的函数名和静态变量吗。虽然在一个过程内部定义的带 static 属性的静态局部变量的作用域局限在函数内部，但因为其生存期在整个程序运行过程中，所以这种变量并不分配在栈中，而是分配在静态数据区。</li>
+</ul>
+<p>如果在模块 m 内有两个不同的函数使用了同名 static 局部变量，则需要为这两个变量都分配空间，即不可视作同一个符号。</p>
+<p>ELF 文件中包含的符号表中的每个表项具有如下数据结构：</p>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ELf32_Word</span><span class="w">      </span><span class="n">st_name</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_addr</span><span class="w">      </span><span class="n">st_value</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">      </span><span class="n">st_size</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">   </span><span class="n">st_info</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">   </span><span class="n">st_other</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Half</span><span class="w">      </span><span class="n">st_shndx</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Elf32_Sym</span><span class="p">;</span>
+</code></pre></div>
+<p>64 位系统对应的数据结构为 Elf64_Sym，其中成员的描述与 Elf32_Sym 类似。各字段含义如下：</p>
+<ul>
+<li>
+<p><code>st_name</code> 给出符号在字符串表中的索引（字节偏移量），指向在「字符串表」（.strtab 节）中一个以 NULL 结尾的字符串，即符号名。</p>
+</li>
+<li>
+<p><code>st_value</code> 给出符号的值，在可重定位文件中，是指符号所在位置相对于所在节起始位置的字节偏移量；在可执行文件和共享目标文件中，则是符号所在的虚拟地址。</p>
+</li>
+<li>
+<p><code>st_size</code> 给出符号所表示对象的字节数。若符号无大小或大小未知则标为 0.</p>
+</li>
+<li>
+<p><code>st_info</code> 指出符号的类型（type）和绑定属性（bind），符号类型占低 4 位，符号绑定占高 4 位：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cp">#define ELF32_ST_BIND(info)           ((info)&gt;&gt;4)</span>
+<span class="cp">#define ELF32_ST_TYPE(info)           ((info)&amp;0xf)</span>
+<span class="cp">#define ELF32_ST_INFO(bind,type)      (((bind)&lt;&lt;4)+((type)&amp;0xf))</span>
+</code></pre></div>
+<p>符号类型可以是「未指定」（NOTYPE）、「变量」（OBJECT）、「函数」（FUNC）、「节」（SECTION）等，当符号类型位节时，其表项主要用于重定位。</p>
+<p>绑定属性可以是「本地」（LOCAL）、「全局」（GLOBAL）、「弱」（WEAK）等。</p>
+<p>其中，本地符号指本模块内定义和引用的带 static 属性的符号，外部模块不可见，名称相同的本地符号可存在于多个文件中而不会相互干扰；</p>
+<p>全局符号对于所有被合并的目标文件都可见；</p>
+<p>弱符号是通过 GCC 扩展的属性指定符 <code>__attribute__((weak))</code> 指定的符号，它与全局符号一样，对于所有被合并的目标文件都可见。</p>
+<ul>
+<li>
+<p><code>st_other</code> 指出符号的可见性。通常在可重定位文件中指定可见性，它定义了当符号成为可执行文件或共享目标库的一部分后访问该符号的方式。</p>
+</li>
+<li>
+<p><code>st_shndx</code> 指出符号所在节在节头表中的索引，有些符号属于三种特殊「伪节」（pseudosection）之一，伪节在节头表中没有相应的表项，无法表示其索引值，因而用以下特殊的索引值表示：</p>
+</li>
+</ul>
+<p>​   ABS 表示该符号不会被重定位；UNDEF 表示未定义符号，即在本模块引用而在其他模块定义的外部符号；COMMON 表示未被分配位置的未初始化全局变量，称为「COMMON 符号」，对应 <code>st_value</code> 字段给出其对齐要求，<code>st_size</code> 字段给出其最小长度。</p>
+<ul>
+<li>可通过 GNU READELF 工具显示符号表，例如使用命令 <code>readelf -s main.o</code> 查看 <code>main.o</code> 的符号表。</li>
+</ul>
+<p>当汇编器对汇编代码文件进行进一步处理时，汇编器根据其中的「汇编指示符」（以「.」开头的行）对符号的属性进行解释，以生成可重定位文件中的符号表。</p>
+<h3 id="_17">符号解析</h3>
+<p>「符号解析」的目的是将每个模块中引用的符号于某个目标模块中的定义符号建立关联。每个定义符号在代码段或数据段中都被分配了存储空间，因此将引用符号与相对应的定义符号建立关联后，就可以在重定位时将引用符号的地址重定位为相关联的定义符号的地址。</p>
+<p>对于在同一个模块中定义且被引用的本地符号（特指在可重定位文件的符号表中绑定属性为 LOCAL 的符号）的符号解析比较容易，因为编译器会检查每个模块中的本地符号是否具有唯一的定义，所以只要找到第一个本地定义符号与之关联即可。</p>
+<p>对于跨模块的全局符号，因为在多个和模块中可能会出现对同名全局符号进行多重定义的情况，所以链接器需要确认以那个定义为准来进行符号解析。</p>
+<h4 id="_18">全局符号的解析规则</h4>
+<p>一个全局符号可能是「函数」、「.data 节中具有特定初始值的全局变量」、「.bss 中被初始化为 0 的全局变量」、「COMMON 符号（说明为 COMMON 伪节的未初始化全局变量）」、「绑定属性为 WEAK 的弱符号」，其中为行文方便，将前三类统称为强符号。</p>
+<p>在 Linux 系统中 GCC 链接器根据以下规则处理多重定义的同名全局符号：</p>
+<ul>
+<li>规则一：强符号不能多次定义，否则出现链接错误。</li>
+<li>规则二：若出现一次强符号定义和多次 COMMON 符号或若符号定义，则以强符号定义为准。</li>
+<li>规则三：若同时出现 COMMON 符号定义和若符号定义，则以 COMMON 符号定义为准。</li>
+<li>规则四：若一个 COMMON 符号出现多次定义，则以其中占空间最大的一个为准。</li>
+<li>规则五：若使用编译选项 <code>-fno-common</code>，则不考虑 COMMON 符号，而将 COMMON 符号当作强符号处理。</li>
+</ul>
+<p>其中规则四是因为，符号表中仅记录 COMMON 符号的最小长度，而不记录变量的类型，所以在链接器确定多重 COMMON 符号的唯一定义时，以最小长度中的最大值为准进行符号解析，能够保证满足所有同名 COMMON 符号的空间要求。</p>
+<p>由于多重定义变量引起的值的而改变往往是在没有任何警告的情况下发生的，而且通常在程序执行了一段时间后才表现出来且远离错误发生源，故最好使用相应的选项命令 <code>-fno-common</code>，以在遇到多重定义的全局符号时，触发一个错误，或使用 <code>-Werror</code> 选项命令将所有警告变为错误。</p>
+<p>解决这个问题的办法是，尽量避免使用全局变量，一定要用的话，可以定义为 static 属性的静态变量。此外要尽量给全局变量赋初值使其变为强符号，而外部全局变量尽量使用 <code>extern</code>.</p>
+<h4 id="_19">符号解析过程</h4>
+<p>编译系统通常会提供一种将多个目标模块打包称一个单独的库文件的机制，如「静态库」（static library）文件。在构建可执行文件时只需指定库文件名，链接器会自动到库文件中寻找应用程序用到的目标模块，并且只把用到的模块从库中拷贝出来。</p>
+<p>为行文方便，将定义处的符号和引用处的符号分别称为「定义符号」和「引用符号」。</p>
+<p>链接器按照所有可重定位文件和静态库文件出现在命令行中的顺序从左至右依次扫描它们，在此期间链接器需要维护多个集合：</p>
+<ul>
+<li>集合 E 是指将被合并到一起组成可执行文件的所有可重定位文件集合。</li>
+<li>集合 U 是指未解析符号的集合。「未解析符号」为还未与定义符号关联的引用符号。</li>
+<li>集合 D 是指当且位置已被加入 E 的所有可重定位文件中定义符号的集合。、</li>
+</ul>
+<p>符号解析开始时，三个集合皆为空，按如下算法进行符号解析：</p>
+<ol>
+<li>对命令行中的每一个输入文件 f，链接器确定它是可重定位文件还是库文件：若为可重定位文件，就将其加入 E，根据 f 中未解析符号和定义符号分别更新集合 U、D.</li>
+<li>如果 f 是一个库文件，链接器会尝试将 U 中的所有为解析符号与 f 中各目标模块定义的符号进行匹配。如果某个目标模块 m 定义了一个 U 中的未解析符号 x。那么就把 m 加入 E 中，并将 x 从 U 移入 D 中。不断地对 f 中的所有目标模块重复这个过程，知道 U、D 不再变化位置。那些未加入 E 中的 f 里的目标模块就被丢弃，链接器继续处理下一输入文件。</li>
+<li>若处理过程中往 D 中加入一个已存在的符号（出现双重定义符号），或者当扫描完所有输入文件时 U 非空，则链接器报错并停止。否则，链接器把 E 中所有的可重定位文件进行重定位后合并在一起，以生成可执行文件。</li>
+</ol>
+<h3 id="_20">与静态库的链接</h3>
+<p>在类 UNIX 系统中，静态库文件采用一种称为「存档档案」（archive）的特殊文件格式，其使用 <code>.a</code> 作为后缀。</p>
+<p>用户也可以自定义一个静态库文件，使用 AR 工具生成静态库。</p>
+<p>【这里有一张图，图 5.16】</p>
+<p>关于静态库的链接顺序问题，通常的准则是将静态库文件放在命令行文件列表的后面。若有多个静态库文件，则根据这些静态库文件的目标模块中的符号是否有引用关系来确定顺序。如果两个静态库的目标有相互引用关系，则在命令行中可以重复静态库文件名。</p>
+<h2 id="_21">重定位</h2>
+<p>「重定位」的目的是在符号解析的基础上将所有关联的目标模块合并，并确定运行时每个定义符号在虚拟地址空间中的地址，在定义符号的引用处重定位引用的地址。</p>
+<p>具体来说，重定位包含以下两方面的工作：</p>
+<ol>
+<li>节和定义符号的重定位：<strong>链接器将相互关联的所有可重定位文件中相同类型的节合并，生成一个同一类型的新节</strong>（例如所有模块的 .data 节合并为一个大的 .data 节，从而形成生成的可执行文件中的 .data 节）。然后<strong>链接器根据每个新节在虚拟地址空间中的位置以及新节中每个定义符号的位置，为新节中的每个定义符号确定地址。</strong></li>
+<li>引用符号的重定位：<strong>链接器对合并后新代码节（.text）和新数据节（.data）中的引用符号进行重定位，使其指向对应的定义符号起始处。</strong>为了实现该操作，链接器需要「重定位信息」，其存放在「重定位节」（包括 .rel.text 和 .rel.data）中</li>
+</ol>
+<h3 id="_22">重定位信息</h3>
+<p>在 IA32 可重定位文件的 .rel.text 节和 .rel.data 节中，存放着每个需要重定位的符号的重定位信息。.rel.text 节和 .rel.data 节采用的数据类型是结构数组，每个数组元素是一个表项，每个表项对应一个需要重定位的符号，表项的数据结构如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Elf32_Addr</span><span class="w">    </span><span class="n">r_offset</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Elf32_Word</span><span class="w">    </span><span class="n">r_info</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Elf32_Rel</span><span class="p">;</span><span class="w"> </span>
+</code></pre></div>
+<p>各字段介绍如下：</p>
+<ul>
+<li><code>r_offset</code> 指出当前需要重定位的位置相对于所在节的字节偏移量，变量所在节为 .data、函数所在节为 .text.</li>
+<li><code>r_info</code> 指出当前重定位所引用的符号在符号表中的索引值以及相应的重定位类型，符号索引（r_sym）是 <code>r_info</code> 的高 24 位，重定位类型（r_type）是其低 8 位：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cp">#define ELF32_R_SYM(info)            ((info)&gt;&gt;8)</span>
+<span class="cp">#define ELF32_R_TYPE(info)           ((unsigned char)(info))</span>
+<span class="cp">#define ELF32_R_INFO(sym, type)      (((sym)&lt;&lt;8)+(unsigned char)(type))</span>
+</code></pre></div>
+<p>重定位类型与特定的处理器有关，具体由 ABI 规范定义，IA32 处理器的重定位类型由多种，最基本的是以下两种：</p>
+<ul>
+<li>R_386_PC32：指明引用处采用 PC 相对寻址方式：有效地址为 PC 内容加重定位后的 32 位地址，PC 的内容是下一条指令地址。</li>
+<li>R_386_32：指明引用处采用绝对地址方式，即有效地址就是重定位后的 32 位地址。</li>
+</ul>
+<p>可用命令 <code>readelf -r main.o</code> 来显示 <code>main.o</code> 中的重定位表项。</p>
+<p>为行文方便，以下把重定位后的 32 位地址简称为「重定位值」。</p>
+<h3 id="_23">重定位过程</h3>
+<p>重定位过程对 .text 节和 .data 节中由相应重定位节的重定位表项所指的每一处按顺序进行。</p>
+<h4 id="r_386_pc32">R_386_PC32 方式的重定位</h4>
+<p>IA32 中跳转目标地址计算公式为：跳转目标地址 = PC + 偏移地址（重定位值），也就是重定位值 = 跳转目标地址 - PC，更具体地，也就是：重定位值 = ADDR(r_sym) - ((ADDR(.text) + r_offset) - init).</p>
+<p>其中 ADDR(r_sym) 为符号 r_sym 在运行时的存储地址，ADDR(.text) 为 .text 节在运行时的起始地址，r_offset 为偏移值，init 为初值。若指令为 <code>call</code> 则因 <code>call</code> 的机器码 E8 FC FF FF FF，得知 init 为 0xFFFF FFFC（IA32 为小端）即 -4.</p>
+<h4 id="r_386_32">R_386_32 方式的重定位</h4>
+<p>此处可看书。</p>
+<h2 id="_24">动态链接</h2>
+<p>还有一类目标文件是「共享目标文件」（shared object file），也称为「共享库文件」。</p>
+<p>它是一种特殊的可重定位目标文件，能在可执行文件加载或运行时被动态地装入到内存中并自动被链接，这个过程称为「动态链接」（dynamic link），由一个称为「动态链接器」（dynamic linker）的程序来完成。</p>
+<p>类 UNIX 系统中共享库文件采用 <code>.so</code> 作为后缀，Windows 则称其为「动态链接库」（DLLs, dynamic link libraries），使用 <code>.dll</code> 后缀。</p>
+<h3 id="_25">动态链接的机制</h3>
+<p>asd</p>
+<h3 id="_26">程序加载时的动态链接</h3>
+<p>asd</p>
+<h3 id="_27">程序运行时的动态链接</h3>
+<p>asd</p>
+<h3 id="_28">位置无关代码</h3>
+<p>asd</p>
+<h4 id="_29">模块内过程调用和跳转</h4>
+<p>asd</p>
+<h4 id="_30">模块内数据引用</h4>
+<p>asd</p>
+<h4 id="_31">模块间数据引用</h4>
+<p>asd</p>
+<h4 id="_32">模块间过程调用和跳转</h4>
+<p>asd</p>
+<h2 id="_33">库打桩机制*</h2>
+<h3 id="_34">编译时打桩*</h3>
+<h3 id="_35">链接时打桩*</h3>
+<h3 id="_36">运行时打桩*</h3>
+<h2 id="_37">可执行文件的加载与执行</h2>
+<p>经过预处理、编译、汇编、链接生成的可执行文件可被直接加载执行，但在指令和数据被取到 CPU 中处理之前，需要先将其从硬盘的可执行文件加载到内存中。</p>
+<h3 id="_38">可执行文件的加载</h3>
+<p>在 Linux 系统的 shell 命令行提示符下输入可执行文件名以及相应的参数就可启动可执行文件的加载执行，例如对于可执行文件 <code>test</code>，若不实现库打桩功能，只需执行 <code>./test</code> 命令即可加载运行 <code>test</code>.</p>
+<p>命令行解释程序 shell 接受到输入的 <code>./test</code> 命令后，首先检查 <code>test</code> 是否为内置 shell 命令，否，于是通过执行 <code>execve()</code> 函数调用驻留在内存中的「加载器」（loader）执行。</p>
+<p>加载器是操作系统内核代码，它将可执行文件中的只读代码段和可读写数据段从硬盘“拷贝”到内存，然后跳转到可执行文件第一条指令处执行，此处由 ELF 头中的「入口点地址」（entry point address）<code>e_entry</code> 字段指定。</p>
+<p>这个过程称作可执行文件的加载。</p>
+<p>此处「拷贝」打引号，正如前文所说，加载过程中实际上并没有真正将代码和数据从硬盘上读到内存，而仅仅创建了只读代码段和可读写数据段对应的初始页表项。只有在执行代码过程中发生了缺页异常，才会真正加载代码和数据到主存。在生成可执行文件的过程中，链接器会按照 ABI 规范规定的存储器映像来确定所有指令和数据的地址，在可执行文件的程序头表中，对只读代码段和可读写数据段在文件地址与虚拟空间区段之间建立映射关系。因此在加载其对可执行文件进行加载处理的过程中，可以利用 ELF 文件程序头表中的映射关系构建可执行文件对应进程的初始描述星系，并生成对应进程的初始页表，以完成实质上的「拷贝」。此处进程描述信息通常称为「进程控制块」。</p>
+<p>当加载器完成「拷贝」后，加载器跳转到程序入口地址处执行，该地址对应全局符号 _start 的取值，因此 <strong><code>_start()</code> 函数是可执行文件调用的第一个函数，在启动例程 <code>ctrl.o</code> 中定义</strong>（函数位于 .text 节），<strong>每个 C 程序都是如此。</strong></p>
+<p>可执行文件 _start 处定义的启动代码主要通过一系列过程调用初始化「运行时环境」，<strong>在动态链接方式下首先调用「系统启动函数」<code>__libc_start_main()</code>，该函数在 <code>libc.so</code> 中定义</strong>，对应符号定义位于可执行文件的 .plt 节。</p>
+<p><strong>在静态链接方式下会依次调用 <code>__libc_init_first</code> 和 <code>_init</code> 两个初始化过程，随后通过调用 <code>atexit()</code> 过程登记注册程序正常结束时需要调用的函数</strong>，这个函数称为「终止处理函数」，由 <code>exit()</code> 函数自动调用执行。</p>
+<p><strong>然后再调用可执行目标中的主函数 <code>main()</code>，最后调用 <code>exit()</code> 过程</strong>，结束进程的执行。</p>
+<h3 id="_39">程序和指令的执行过程</h3>
+<p>CPU 取出并执行一条指令的时间称为「指令周期」，不同指令的指令周期可能不同。</p>
+<p>【这里有一张图，图 5.28】</p>
+<p>CPU 执行一条指令的过程如上图所示，大致分为「取指令」、「指令译码」、「计算源操作数地址并取操作数」、「执行数据操作」、「计算目的操作数地址并存结果」、「计算下一条指令地址」这几个步骤。</p>
+<p>【这个 DLCO 讲过了，想看也可以再看一遍书。】</p>
+<p>根据对上述指令执行过程的分析，每条指令的功能总是通过对以下 4 种基本操作进行组合实现的：</p>
+<ul>
+<li>读取指定存储地址中的内容，并将其装入寄存器。</li>
+<li>把一个数据从某个寄存器存储到给定的存储地址中。</li>
+<li>把一个数据从某个寄存器传送到另一寄存器或 ALU 中。</li>
+<li>在 ALU 中进行某种算术运算或逻辑运算，结果送某寄存器。</li>
+</ul>
+<h3 id="cpu">CPU 的基本功能和基本组成</h3>
+<p>CPU 的基本职能是周而复始地执行指令，指令执行过程中的全部操作由 CPU 中的控制器控制执行。</p>
+<p>随着超大规模集成电路技术的发展，更多的功能逻辑被集成到 CPU 芯片中，包括 cache、MMU、浮点运算逻辑、异常和中断处理等，因而 CPU 的内部组成愈加复杂，甚至可以在一个 CPU 芯片中集成许多处理器核。</p>
+<p>但无论如何，<strong>CPU 的最基本部件还是「数据通路」（data path）和「控制器」（control unit）</strong>。控制器根据每条指令功能的不同，生成对数据通路的控制信号，并正确控制指令的执行。</p>
+<p>【这里有一张图，图 5.29】</p>
+<p>【这个 DLCO 讲过了，想看也可以再看一遍书。】</p>
+<h3 id="_40">打断程序正常执行的事件</h3>
+<p>从开机后 CPU 被加电开始到断电为止，CPU 自始至终一直重复做一件事情：读出 PC 所致存储单元的指令并执行它。正常情况下，CPU 按部就班地按照程序规定的顺序执行一条接一条指令，要么顺序，要么因跳转指令跳转到目标指令执行。其都正常。但有时 CPU 会遇到一些特殊情况而无法继续执行当前程序，包括如下事件：</p>
+<ul>
+<li>「非法操作码」：对指令操作码进行译码时，发现操作码不符合规定情况，即非法操作码，CPU 不知道如何执行而无法继续执行。</li>
+<li>「段错误」或「缺页」：在访问指令或数据时访问不到。CPU 没有获得正确的指令和数据而无法继续执行。</li>
+<li>「运算失败」：ALU 运算结果发生溢出，或除数为零。CPU 发现运算结果不正确而无法继续执行。</li>
+<li>「外部事件」：在执行过程中，CPU 外部发生了「采样计时时间到」、「网络数据包到达网络适配器」、「磁盘完成数据读写」等外部事件，要求 CPU 中止当前程序的执行，转而执行专门的外部事件处理程序。</li>
+</ul>
+<p>因此 CPU 除了正常执行，还须具有程序的正常执行被打断的处理机制，其称为「异常处理机制」或「中断处理机制」，CPU 中相应的异常和中断处理逻辑被称为「中断机构」。</p>
+<p>所有这些打断程序正常执行的事件都被分为两大类：「内部异常」和「外部中断」，参见 Ch08 &amp; Ch09.</p>
+<h2 id="_41">章节小结</h2>
 
 
 

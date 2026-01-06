@@ -23,7 +23,7 @@
     
     
       
-        <title>Ch09 IO操作的实现 - My Docs</title>
+        <title>Ch09 I/O 操作的实现 - My Docs</title>
       
     
     
@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ch09-io" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -95,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ch09 IO操作的实现
+              Ch09 I/O 操作的实现
             
           </span>
         </div>
@@ -895,7 +900,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -951,7 +956,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -978,6 +983,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch09 I/O 操作的实现
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -986,7 +1011,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -995,6 +1020,291 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 子系统概述
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用户空间 I/O 软件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用户空间 I/O 软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用户程序中的 I/O 函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文件的基本概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统级 I/O 函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C 标准 I/O 库函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内核空间 I/O 软件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="内核空间 I/O 软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设备无关的 I/O 软件层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设备驱动程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断服务程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 硬件与软件的接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I/O 硬件与软件的接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 设备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基于总线的互连结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 接口的功能和结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 端口及其编址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hello" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hello 程序运行过程综述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hello 程序运行过程综述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shell 进程等待用户键盘输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用户从键盘输入命令行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        唤醒并切换至 shell 进程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hello 进程的加载和执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4512,282 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 子系统概述
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用户空间 I/O 软件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用户空间 I/O 软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用户程序中的 I/O 函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文件的基本概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统级 I/O 函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C 标准 I/O 库函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内核空间 I/O 软件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="内核空间 I/O 软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设备无关的 I/O 软件层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设备驱动程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断服务程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 硬件与软件的接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I/O 硬件与软件的接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 设备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基于总线的互连结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 接口的功能和结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I/O 端口及其编址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hello" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hello 程序运行过程综述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hello 程序运行过程综述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shell 进程等待用户键盘输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用户从键盘输入命令行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        唤醒并切换至 shell 进程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hello 进程的加载和执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4804,33 @@
 
 
 
-  <h1>Ch09 IO操作的实现</h1>
-
-
+<h1 id="ch09-io">Ch09 I/O 操作的实现</h1>
+<h2 id="io">I/O 子系统概述</h2>
+<p>「I/O 子系统」主要解决各类信息的输入和输出问题，即通过外设的输入输出问题。</p>
+<p>所有高级语言的「运行时系统」（run-time system）都提供了执行 I/O 功能的高级机制。</p>
+<p>运行时系统也称为「运行时环境」（run-time environment）或简称为「运行时」（run-time）。</p>
+<h2 id="io_1">用户空间 I/O 软件</h2>
+<h3 id="io_2">用户程序中的 I/O 函数</h3>
+<h3 id="_1">文件的基本概念</h3>
+<h3 id="io_3">系统级 I/O 函数</h3>
+<h3 id="c-io">C 标准 I/O 库函数</h3>
+<h2 id="io_4">内核空间 I/O 软件</h2>
+<h3 id="io_5">设备无关的 I/O 软件层</h3>
+<h3 id="_2">设备驱动程序</h3>
+<h3 id="_3">中断服务程序</h3>
+<h2 id="io_6">I/O 硬件与软件的接口</h2>
+<h3 id="io_7">I/O 设备</h3>
+<h3 id="_4">基于总线的互连结构</h3>
+<h3 id="io_8">I/O 接口的功能和结构</h3>
+<h3 id="io_9">I/O 端口及其编址</h3>
+<h3 id="_5">中断程序</h3>
+<h2 id="hello">hello 程序运行过程综述</h2>
+<h3 id="shell">shell 进程等待用户键盘输入</h3>
+<h3 id="_6">用户从键盘输入命令行</h3>
+<h3 id="shell_1">唤醒并切换至 shell 进程</h3>
+<p>### 使用 <code>fork()</code> 函数创建子进程</p>
+<h3 id="hello_1">hello 进程的加载和执行</h3>
+<h2 id="_7">章节小结</h2>
 
 
 

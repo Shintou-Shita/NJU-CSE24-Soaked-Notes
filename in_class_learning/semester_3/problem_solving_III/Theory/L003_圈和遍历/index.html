@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l003" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3044,6 +3049,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L003 圈和遍历
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3061,6 +3086,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        圈和树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二分图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        欧拉图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        哈密尔顿图
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4290,60 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        圈和树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二分图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        欧拉图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        哈密尔顿图
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4360,44 @@
 
 
 
-  <h1>L003 圈和遍历</h1>
-
-
+<h1 id="l003">L003 圈和遍历</h1>
+<h3 id="_1">圈和树</h3>
+<p>起点和终点相同的非平凡路线称作「闭路线」（closed walk），边不重复出现的闭路线称作「闭迹」（closed trail），又称「回路」（circuit、tour），顶点不重复出现的闭迹称作「圈」（cycle）。</p>
+<p>Th.3.1 对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和边 <span class="arithmatex">\(e\in E\)</span>，<span class="arithmatex">\(e\)</span> 是 <span class="arithmatex">\(E\)</span> 的割边当且仅当 <span class="arithmatex">\(e\)</span> 不在任何圈中。</p>
+<p>图 <span class="arithmatex">\(G\)</span> 中最短圈的长度称为 <span class="arithmatex">\(G\)</span> 的「围长」（girth），最长圈的长度称作 <span class="arithmatex">\(G\)</span> 的周长（circumference）。</p>
+<p>不含圈的连通图称作「树」（tree），树中度为 <span class="arithmatex">\(1\)</span> 的顶点称作「叶顶点」（leaf）。更一般地，不含圈的图称为「森林」（forest）。</p>
+<p>Th.3.2 给出了一系列树的等价定义：对于图 <span class="arithmatex">\(G\)</span>：</p>
+<ul>
+<li><span class="arithmatex">\(G\)</span> 连通且不含圈。</li>
+<li><span class="arithmatex">\(G\)</span> 中任意两个顶点间有且仅有一条路。</li>
+<li><span class="arithmatex">\(G\)</span> 不含圈且 <span class="arithmatex">\(\epsilon(G)=\nu(G)-1\)</span>.</li>
+<li><span class="arithmatex">\(G\)</span> 连通且 <span class="arithmatex">\(\epsilon(G)=\nu(G)-1\)</span>.</li>
+<li><span class="arithmatex">\(G\)</span> 极小连通，即 <span class="arithmatex">\(G\)</span> 连通，但删除任一条边均不连通。</li>
+<li><span class="arithmatex">\(G\)</span> 极大无圈，即 <span class="arithmatex">\(G\)</span> 不含圈，但增加任一条边均形成圈。</li>
+</ul>
+<p>若连通图 <span class="arithmatex">\(G\)</span> 的生成子图 <span class="arithmatex">\(H\)</span> 是树，则 <span class="arithmatex">\(H\)</span> 称为 <span class="arithmatex">\(G\)</span> 的「生成树」（spanning tree）。</p>
+<h3 id="_2">二分图</h3>
+<p>长度为奇数的圈称为「奇圈」（odd cycle），长度为偶数的圈称作「偶圈」（even cycle）。</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，若顶点集 <span class="arithmatex">\(V\)</span> 可划分为两个子集 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span>，使每条边 <span class="arithmatex">\(e\in E\)</span> 的两个端点分别属于 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span>，那么称 <span class="arithmatex">\(G\)</span> 为「二分图」（bipartite graph），记作 <span class="arithmatex">\(G=\left\langle X\cup Y,E\right\rangle\)</span>.</p>
+<p>若顶点子集 <span class="arithmatex">\(X\)</span> 每个顶点与 <span class="arithmatex">\(Y\)</span> 中每个顶点都相邻，则 <span class="arithmatex">\(G\)</span> 称为「完全二分图」（complete bipartite graph），记作  <span class="arithmatex">\(K_{|X|,|Y|}\)</span>.</p>
+<p>Th.3.3 非平凡图 <span class="arithmatex">\(G\)</span> 是二分图当且仅当 <span class="arithmatex">\(G\)</span> 不含奇圈。</p>
+<p>【Algo.3.1】</p>
+<p>Th.3.4</p>
+<h3 id="_3">欧拉图</h3>
+<p>经过图的每条边恰一次的迹称为「欧拉迹」（Eulerian trail），经过图的每条边恰一次的闭迹（回路）称作「欧拉回路」（Eulerian circuit）。含欧拉回路的图称为「欧拉图」（Eulerian graph）。</p>
+<p>Th.3.5 非空连通图 <span class="arithmatex">\(G\)</span> 含欧拉回路当且仅当 <span class="arithmatex">\(G\)</span> 没有顶点的度为奇数。</p>
+<p>「弗勒里算法」（Fleury's algorithm）</p>
+<p>【Algo.3.2】</p>
+<p>Th.3.6</p>
+<p>「希尔霍尔策算法」（Hierholzer's algorithm）</p>
+<p>【Algo.3.3】</p>
+<p>Th.3.7 Th.3.8</p>
+<h3 id="_4">哈密尔顿图</h3>
+<p>经过图的所有顶点的路称作「哈密尔顿路」（Hamiltonian path），经过图的所有顶点的圈称作「哈密尔顿圈」（Hamiltonian cycle）。含哈密尔顿圈的图称为「哈密尔顿图」（Hamiltonian graph）。</p>
+<p>Th.3.9 若图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 是哈密尔顿图，则对于任一一个顶点子集 <span class="arithmatex">\(\varnothing \sub V'\sub V\)</span>，图 <span class="arithmatex">\(G-V'\)</span> 含至多 <span class="arithmatex">\(|V'|\)</span> 个连通分支。</p>
+<p>Th.3.10 对于阶为 <span class="arithmatex">\(n\)</span> 的图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，若 <span class="arithmatex">\(n\ge 3\)</span> 且任意两个不相邻顶点 <span class="arithmatex">\(u,v\in V\)</span> 都满足 <span class="arithmatex">\(d(u)+d(v)\ge n\)</span>，则 <span class="arithmatex">\(G\)</span> 是哈密尔顿图。</p>
+<p>Cor.3.3 对于阶为 <span class="arithmatex">\(n\)</span> 的图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，若 <span class="arithmatex">\(n\ge 3\)</span> 且 <span class="arithmatex">\(\delta(G)\ge n/2\)</span>，则 <span class="arithmatex">\(G\)</span> 为哈密尔顿图。</p>
+<p>判定一个图是否含哈密尔顿路和判定一个图是否含哈密尔顿圈可互相规约，而这两个判定问题的复杂度都属于 NPC，且可归约为旅行商问题。</p>
 
 
 

@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l013" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3324,6 +3329,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L013 平面
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3341,6 +3366,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可平面图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面的染色
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4268,38 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可平面图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面的染色
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4316,22 @@
 
 
 
-  <h1>L013 平面</h1>
-
-
+<h1 id="l013">L013 平面</h1>
+<h3 id="_1">可平面图</h3>
+<p>对于图 <span class="arithmatex">\(G=\langle V,E\rangle\)</span>，将 <span class="arithmatex">\(G\)</span> 画在平面上的「画法」（drawing）是一个单射函数 <span class="arithmatex">\(dr\)</span>，其将每个顶点 <span class="arithmatex">\(v\in V\)</span> 映射到平面上的一个坐标点 <span class="arithmatex">\(dr(v)\)</span>；将每条边 <span class="arithmatex">\((u,v)\in E\)</span> 映射到平面上的一条 <span class="arithmatex">\(dr(u)\)</span>-<span class="arithmatex">\(dr(v)\)</span> 曲线。</p>
+<p>若边集中任意两条边映射到的平面曲线不交叉，即没有除了端点以外的公共坐标点，则称 <span class="arithmatex">\(G\)</span> 为「可平面图」（planar graph），<span class="arithmatex">\(dr\)</span> 称作 <span class="arithmatex">\(G\)</span> 的一个「平面嵌入」（planar embedding），映射到平面上的结果称作 <span class="arithmatex">\(G\)</span> 的一个「平面图」（plane graph）；否则称 <span class="arithmatex">\(G\)</span> 为「不可平面图」（non-planar graph）。</p>
+<p>平面图 <span class="arithmatex">\(H\)</span> 将平面分割出的极大相连区域（不含平面图自身）称作 <span class="arithmatex">\(H\)</span> 的「面」（face），面积无限的面称作「无限面」（unbounded face），也称「外部面」（outer face）；面积有限的面称作「有限面」（bounded face），也称「内部面」（inner face）。</p>
+<p>平面图 <span class="arithmatex">\(H\)</span> 的面的数量称作 <span class="arithmatex">\(H\)</span> 的「面数」（number of faces），记作 <span class="arithmatex">\(\phi(H)\)</span>.</p>
+<p>Th.10.1 Cor.10.1</p>
+<p>图 <span class="arithmatex">\(G\)</span> 的平面图 <span class="arithmatex">\(f\)</span> 的「长度」（length）是从平面分割出的 <span class="arithmatex">\(f\)</span> 中的 <span class="arithmatex">\(G\)</span> 的闭路线长度的和，记作 <span class="arithmatex">\(l(f)\)</span>.</p>
+<p>Th.10.2-10.3 Cor.10.2</p>
+<p>Th.10.4-10.5</p>
+<p>「DMP 算法」（DMP algorithm, Demoucron-Malgrange -Pertuiset algorithm）、「片段」（fragment）、「固定点」（vertex of attachment）。</p>
+<p>Th.10.6</p>
+<h3 id="_2">面的染色</h3>
+<p>「对偶图」（dual graph）、「<span class="arithmatex">\(k\)</span> 面染色」、「正常 <span class="arithmatex">\(k\)</span> 面染色」、「<span class="arithmatex">\(k\)</span> 面色可染」、「面色数」。</p>
+<p>Th.10.7-10.10</p>
+<p>「可约构形」（reducible configuration）、「不可避免集」（unavoidable set）。</p>
 
 
 

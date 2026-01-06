@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l004" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3072,6 +3077,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L004 连通度
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3089,6 +3114,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        割集和连通度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4268,38 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        割集和连通度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4316,37 @@
 
 
 
-  <h1>L004 连通度</h1>
-
-
+<h1 id="l004">L004 连通度</h1>
+<h3 id="_1">块</h3>
+<p>图 <span class="arithmatex">\(G\)</span> 的极大无割点的连通子图称作 <span class="arithmatex">\(G\)</span> 的「块」（block）。</p>
+<p>Th.4.1 块为边集定义了一种等价关系。</p>
+<p>Th.4.2 对于阶至少为 <span class="arithmatex">\(3\)</span> 的图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span>，块的几个等价定义：</p>
+<ul>
+<li><span class="arithmatex">\(G\)</span> 没有割点。</li>
+<li><span class="arithmatex">\(\forall u,v\in V\)</span>，<span class="arithmatex">\(G\)</span> 含两条无公共内顶点的 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路。</li>
+<li><span class="arithmatex">\(\forall u,v\in V\)</span>，<span class="arithmatex">\(G\)</span> 含圈经过 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span>.</li>
+<li><span class="arithmatex">\(\forall v\in V,e\in E\)</span>，<span class="arithmatex">\(G\)</span> 含圈经过 <span class="arithmatex">\(v\)</span> 和 <span class="arithmatex">\(e\)</span>.</li>
+<li><span class="arithmatex">\(\forall e,f\in E\)</span>，<span class="arithmatex">\(G\)</span> 含圈经过 <span class="arithmatex">\(e\)</span> 和 <span class="arithmatex">\(f\)</span>.</li>
+<li><span class="arithmatex">\(\forall u,v\in V,e\in E\)</span>，<span class="arithmatex">\(G\)</span> 含 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路经过 <span class="arithmatex">\(e\)</span>.</li>
+<li><span class="arithmatex">\(\forall u,v,w\in V\)</span>，<span class="arithmatex">\(G\)</span> 含 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路经过 <span class="arithmatex">\(w\)</span>.</li>
+<li><span class="arithmatex">\(\forall u,v,w\in V\)</span>，<span class="arithmatex">\(G\)</span> 含 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路不经过 <span class="arithmatex">\(w\)</span>. </li>
+</ul>
+<p>对于图 <span class="arithmatex">\(G\)</span>，将图的所有割点的集合记为 <span class="arithmatex">\(C\)</span>，构造二分图 <span class="arithmatex">\(H=\left\langle B\cup C,E'\right\rangle\)</span>，其中 <span class="arithmatex">\(B\)</span> 中每个顶点表示 <span class="arithmatex">\(G\)</span> 的一个块，边 <span class="arithmatex">\((b,v)\in E'\)</span> 当且仅当 <span class="arithmatex">\(b\in B\)</span> 表示的块含顶点 <span class="arithmatex">\(c\in C\)</span>，<span class="arithmatex">\(H\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「块-割点图」（block-cut graph）。</p>
+<p>Th.4.3 对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和顶点 <span class="arithmatex">\(v\in V\)</span>，<span class="arithmatex">\(v\)</span> 是 <span class="arithmatex">\(G\)</span> 的割点当且仅当 <span class="arithmatex">\(G\)</span> 的至少两个块含 <span class="arithmatex">\(v\)</span>.</p>
+<p>【Algo.4.1】</p>
+<p>Th.4.4 Th.4.5</p>
+<h3 id="_2">割集和连通度</h3>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和顶点子集 <span class="arithmatex">\(S\subseteq V\)</span>，若图 <span class="arithmatex">\(G-S\)</span> 的连通分支数量大于 <span class="arithmatex">\(G\)</span> 的连通分支数量，则 <span class="arithmatex">\(S\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「点割集」（vertex cut），又称「分离集」（separating set），因此割点对应单元素点割集。</p>
+<p>若 <span class="arithmatex">\(G\)</span> 的任何点割集都不是点割集 <span class="arithmatex">\(S\)</span> 的真子集，那么 <span class="arithmatex">\(S\)</span> 为 <span class="arithmatex">\(G\)</span> 的「极小点割集」（minimal vertex cut）。顶点数量最少的点割集称为 <span class="arithmatex">\(G\)</span> 的「最小点割集」（minimum vertex cut）。</p>
+<p>使得 <span class="arithmatex">\(G\)</span> 不连通或成为平凡图而至少从 <span class="arithmatex">\(G\)</span> 中删除的顶点数量称作 <span class="arithmatex">\(G\)</span> 的「点连通度」（vertex connectivity），简称「连通度」（connectivity），记作 <span class="arithmatex">\(\kappa(G)\)</span>. 若正整数 <span class="arithmatex">\(k\le \kappa(G)\)</span>，则称 <span class="arithmatex">\(G\)</span> 为「<span class="arithmatex">\(k\)</span> 点连通图」（<span class="arithmatex">\(k\)</span>-vertex-connected graph），简称「<span class="arithmatex">\(k\)</span> 连通图」（<span class="arithmatex">\(k\)</span>-connected graph）。</p>
+<p>对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和边子集 <span class="arithmatex">\(S'\subseteq E\)</span>，若图 <span class="arithmatex">\(G-S'\)</span> 的连通分支数量大于 <span class="arithmatex">\(G\)</span> 的连通分支数量，则 <span class="arithmatex">\(S'\)</span> 称作 <span class="arithmatex">\(G\)</span> 的「边割集」（edge cut），因此割边对应单元素边割集。</p>
+<p>若 <span class="arithmatex">\(G\)</span> 的任何边割集都不是边割集 <span class="arithmatex">\(S'\)</span> 的真子集，那么 <span class="arithmatex">\(S'\)</span> 为 <span class="arithmatex">\(G\)</span> 的「极小边割集」（minimal edge cut）。边数量最少的边割集称为 <span class="arithmatex">\(G\)</span> 的「最小边割集」（minimum edge cut）。</p>
+<p>使得 <span class="arithmatex">\(G\)</span> 不连通或成为平凡图而至少从 <span class="arithmatex">\(G\)</span> 中删除的边数量称作 <span class="arithmatex">\(G\)</span> 的「边连通度」（edge connectivity），记作 <span class="arithmatex">\(\kappa'(G)\)</span>. 若正整数 <span class="arithmatex">\(k\le \kappa'(G)\)</span>，则称 <span class="arithmatex">\(G\)</span> 为「<span class="arithmatex">\(k\)</span> 边连通图」（<span class="arithmatex">\(k\)</span>-edge-connected graph）。平凡图的边连通度为 <span class="arithmatex">\(0\)</span>.</p>
+<p>Th.4.6 对于任一图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\kappa(G)\le \kappa'(G)\le \delta(G)\)</span>.</p>
+<p>Th.4.7 （Menger 定理）：对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和两个不相邻顶点 <span class="arithmatex">\(u,v\in V\)</span>，使 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 不连通需要从 <span class="arithmatex">\(G\)</span> 中删除的顶点数量等于 <span class="arithmatex">\(G\)</span> 中两两无公共内顶点的 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路的最大数量。</p>
+<p>Cor.4.1 非平凡图 <span class="arithmatex">\(G\)</span> 是 <span class="arithmatex">\(k\)</span> 连通图当且仅当 <span class="arithmatex">\(G\)</span> 中任意两个顶点间存在至少 <span class="arithmatex">\(k\)</span> 条两两无公共内顶点的路。</p>
+<p>Th.4.8 （Menger 定理，边版本）：对于图 <span class="arithmatex">\(G=\left\langle V,E\right\rangle\)</span> 和两个顶点 <span class="arithmatex">\(u,v\in V\)</span>，使 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 不连通需要从 <span class="arithmatex">\(G\)</span> 中删除的边数量等于 <span class="arithmatex">\(G\)</span> 中两两无公共边的 <span class="arithmatex">\(u\)</span>-<span class="arithmatex">\(v\)</span> 路的最大数量。</p>
+<p>Cor.4.2 非平凡图 <span class="arithmatex">\(G\)</span> 是 <span class="arithmatex">\(k\)</span> 边连通图当且仅当 <span class="arithmatex">\(G\)</span> 中任意两个顶点间存在至少 <span class="arithmatex">\(k\)</span> 条两两无公共边的路。</p>
 
 
 

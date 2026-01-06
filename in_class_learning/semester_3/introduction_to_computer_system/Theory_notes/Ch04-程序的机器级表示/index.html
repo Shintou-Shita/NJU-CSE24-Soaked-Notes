@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ch04" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -838,6 +843,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ch04 程序的机器级表示
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -855,6 +880,536 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程调用的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="过程调用的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA-32 的过程调用约定
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA-32 的过程调用约定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 中用于过程调用的指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程调用的执行步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程调用所使用的栈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 寄存器使用约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 的栈、栈帧及其结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变量的作用域和生存期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按值传递参数和按地址传递参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程递归调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        非静态局部变量的存储分配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 的过程调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 过程的浮点参数传递*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流程控制语句的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="流程控制语句的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择语句的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选择语句的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件运算表达式的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        if-else 语句的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        switch 语句的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        循环语句的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="循环语句的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        do-while 循环的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        while 循环的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for 循环的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复杂数据类型的分配和访问
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="复杂数据类型的分配和访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组的分配和访问
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数组的分配和访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组元素在存储空间的存放和访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组的存储分配和初始化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组和指针
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指针数组和多维数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构体数据的分配和访问
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结构体数据的分配和访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构体成员在存储空间的存放和访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构体数据作为入口参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        联合体数据的分配和访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据的对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        越界访问和缓冲区溢出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="越界访问和缓冲区溢出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组的越界访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        缓冲区溢出攻击
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对缓冲区溢出攻击的防范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="对缓冲区溢出攻击的防范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地址空间随机化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        栈破坏检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行代码区域限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -903,7 +1458,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -959,7 +1514,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -987,7 +1542,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -4202,6 +4757,527 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程调用的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="过程调用的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA-32 的过程调用约定
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA-32 的过程调用约定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ia32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 中用于过程调用的指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程调用的执行步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程调用所使用的栈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 寄存器使用约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ia32_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA32 的栈、栈帧及其结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变量的作用域和生存期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按值传递参数和按地址传递参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过程递归调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        非静态局部变量的存储分配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 的过程调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x86-64_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86-64 过程的浮点参数传递*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流程控制语句的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="流程控制语句的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择语句的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选择语句的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        条件运算表达式的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        if-else 语句的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        switch 语句的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        循环语句的机器级表示
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="循环语句的机器级表示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        do-while 循环的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        while 循环的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for 循环的机器级表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复杂数据类型的分配和访问
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="复杂数据类型的分配和访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组的分配和访问
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数组的分配和访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组元素在存储空间的存放和访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组的存储分配和初始化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组和指针
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指针数组和多维数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构体数据的分配和访问
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结构体数据的分配和访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构体成员在存储空间的存放和访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结构体数据作为入口参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        联合体数据的分配和访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据的对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        越界访问和缓冲区溢出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="越界访问和缓冲区溢出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数组的越界访问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        缓冲区溢出攻击
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对缓冲区溢出攻击的防范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="对缓冲区溢出攻击的防范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地址空间随机化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        栈破坏检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行代码区域限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +5294,335 @@
 
 
 
-  <h1>Ch04 程序的机器级表示</h1>
-
-
+<h1 id="ch04">Ch04 程序的机器级表示</h1>
+<h2 id="_1">过程调用的机器级表示</h2>
+<h3 id="ia-32">IA-32 的过程调用约定</h3>
+<p>将程序分成若干模块后，编译器对每个模块分别进行编译。为了彼此同一，编译的模块代码之间必须遵循一些调用接口约定，这些约定称为「调用约定」（calling convention），具体由 ABI 规范定义，由编译器强制执行。</p>
+<h4 id="ia32">IA32 中用于过程调用的指令</h4>
+<p>Ch03 中提到的 CALL 和 RET 指令是用于过程调用的主要指令。它们属于无条件跳转指令，都会改变程序执行的顺序。</p>
+<p>为了支持嵌套和递归调用，通常利用「栈」来保存「返回地址」、「入口参数」和过程内部定义的「非静态局部变量（auto 变量）」。</p>
+<p>CALL 指令在跳转前要将返回地址压入栈，RET 指令在返回的跳转前要从栈中取出返回地址。</p>
+<p>有些指令系统的调用指令会将返回地址存放在专门的返回地址寄存器中，而非压入栈中，例如 RISC 指令架构的 RISC-V、ARM、MIPS.</p>
+<h4 id="_2">过程调用的执行步骤</h4>
+<p>假设过程 P 调用过程 Q，则称 P 为「调用者」（caller），Q 为「被调用者」（callee），其步骤如下：</p>
+<ol>
+<li>P 传递入口参数（实参）到 Q 可访问位置。</li>
+<li>P 将返回地址传递到特定地方，随后将控制转移给 Q.</li>
+<li>Q 保存 P 的现场，并为自己的非静态局部变量分配空间。</li>
+<li>执行 Q 的函数体（过程体）。</li>
+<li>Q 恢复 P 的现场，并释放 Q 所占的栈空间。</li>
+<li>Q 取出返回地址，并将控制转移给 P.</li>
+</ol>
+<p>其中步骤 1 和 2 由 P 完成，步骤 2 由 CALL 指令实现；步骤 3-6 由 Q 完成，步骤 3 称为「准备阶段」，步骤 5 称为「结束阶段」，步骤 6 由 RET 指令实现。</p>
+<p>若存在递归或 Q 有其他调用，实现包括在步骤 4 中。</p>
+<p>因每个处理器只有一套通用寄存器，所以在准备阶段会将其传递到栈中，在结束阶段会从栈中取出，这些通用寄存器内容就称为「现场」。但注意并非所有通用寄存器都由被调用者保存，部分是由调用者保存的（它们在 P 交接控制权前保存，交还控制权后取出），这个取决于 ABI 规范中的「寄存器使用约定」。</p>
+<h4 id="_3">过程调用所使用的栈</h4>
+<p>就是一个栈。</p>
+<h4 id="ia32_1">IA32 寄存器使用约定</h4>
+<p>i386 System V ABI 规范规定：</p>
+<ul>
+<li>寄存器 EAX、ECX、EDX 是调用者保存寄存器（caller saved register）。</li>
+<li>寄存器 EBX、ESI、EDI 是被调用者保存寄存器（callee saved register）。</li>
+<li>寄存器 EBP 和 ESP 分别指向当前栈帧的底部和顶部。</li>
+<li>函数返回的整数类型参数存放在 EAX 寄存器中。 </li>
+</ul>
+<h4 id="ia32_2">IA32 的栈、栈帧及其结构</h4>
+<p>每个过程都有自己的栈区，称为「栈帧」（stack frame）。</p>
+<p>一个调用中通常分为「调用过程栈帧」和「当前栈帧」，从高地址到低地址分别为：</p>
+<ul>
+<li>调用者寄存器（必要时）</li>
+<li>参数 n... 参数 1（地址高到地址低，也即参数入栈顺序从右至左）</li>
+<li>返回地址。此处被以前 ESP 指示。以上为调用过程栈帧</li>
+<li>EBP 旧值，此处被当前 EBP 指示。</li>
+<li>被调用者保存寄存器（存在时）</li>
+<li>非静态局部变量，此处最低地址被当前 ESP 指示。以上为当前栈帧。</li>
+</ul>
+<p>对于非静态局部变量，如果其为简单变量且有空闲的通用寄存器，则编译器会将其分配给局部变量；但是对于复杂的（数组、结构体等）非静态局部变量，则只能放置在栈中。</p>
+<p>i386 System V ABI 规定，栈中参数按 4 字节对齐，故而参数 1 的地址总是 <code>R[ebp]+8</code>（8 为一个地址的宽度），参数 2 的地址一般总是 <code>R[ebp]+12</code>.</p>
+<h3 id="_4">变量的作用域和生存期</h3>
+<p>C 语言中自动变量（auto 变量）就是函数内的非静态局部变量，因为其通过执行指令而动态、自动地在栈中分配并在函数执行结束时释放的，所以其作用域仅限于函数内部，具有的仅是「局部生存期」。</p>
+<p>auto 变量可以和其他函数中的变量重名，只因这些变量要么实际占用自己栈帧中的空间（同名 auto 变量），要么存储于静态数据区（同名静态局部变量）。</p>
+<p>C 语言中的外部变量（全局变量）和静态变量都分配在静态数据区，故而其在整个程序运行器件一直占据着固定的存储单元，它们具有「全局生存期」。</p>
+<p>内存各区域的划分由 ABI 规范规定，在 Ch05 介绍。</p>
+<p><strong>GCC 为保证 x86 架构的对齐会规定每个函数的栈帧大小必须是 16 字节的倍数。</strong></p>
+<p><code>leave</code> 用于释放当前栈帧并恢复旧 EBP 的值，等价于此两条指令：<code>movl %ebp, %esp</code>、<code>popl %ebp</code>，这两条指令分别更新 ESP 和将 EBP 恢复为旧值。<code>leave</code> 后一般接 <code>ret</code>，<code>ret</code> 就从 ESP 所指处取返回地址返回。</p>
+<p>编译器也可通过 <code>pop</code> 指令和对 ESP 内容做加法来进行退栈，而不必使用 <code>leave</code>.</p>
+<p>对于一个被调用过程，其不再调用其他过程，这样的过程称作「叶子过程」，其没有入口参数和返回地址要保存，其栈帧中只需保存 EBP。</p>
+<h3 id="_5">按值传递参数和按地址传递参数</h3>
+<p>使用参数传递数据是 C 语言函数间传递数据的主要方式。C 语言中的数据类型分为「基本数据类型」和「复杂数据类型」，而复杂数据类型又分为「构造类型」和「指针类型」。基本数据类型包括整型和浮点型，构造类型包括数组、结构体、联合体等类型。</p>
+<p>C 语言中的「形式参数」可以是基本类型变量名、构造类型变量名和指针类型变量名。对于不同类型的形式参数，传递参数的方式不同，总体来说分为两种：「按值传递」和「按参数传递」。当形参是基本类型变量名是，采用按值传递方式；当形参是指针类型变量名或构造类型变量名时，采用按地址传递方式。</p>
+<p>编译器并不为形式参数分配存储空间，而是给形参对应的实参范培空间，形参实际上只是被调用函数使用实参时的一个名称，通过形参名来引用实参。不管是按值传递还是按地址传递，在调用过程用 CALL 指令调用被调用过程时，对应的实参都已有具体的值，并已将实参的值放在调用过程的栈帧中作为入口参数，以等待被调用过程的指令使用。</p>
+<h3 id="_6">过程递归调用</h3>
+<p>【这里有一张图，书图 4.11】</p>
+<p>虽然占用的栈空间是临时的，过程执行结束后其所占的所有栈空间都会被释放，但是若递归深度相当大，则栈空间的开销会非常大。操作系统为程序分配的栈有默认的大小限制，当递归深度大到一定程度，使得占据的栈空间超过这个大小限制，则发生「栈溢出」（stack overflow）。</p>
+<p>除了空间开销，我们还需考虑时间开销，因每个过程中都包含了准备阶段和结束阶段，为实现这些需要增加许多条额外指令，因此应尽量避免不必要的过程调用，特别是递归调用。</p>
+<h3 id="_7">非静态局部变量的存储分配</h3>
+<p>对于非静态局部变量的分配顺序，C 标注规范中没有规定必须按顺序或逆序分配，因而其属于未定义行为（undefined behavior），不同的编译器有不同的处理方式。</p>
+<p>编译器在给非静态局部变量分配空间时，通常将其占用的空间分配在本过程的栈帧中。有些编译器在编译优化的情况下，也可能把属于基本数据类型的非静态局部变量分配在通用寄存器中，但是，对于复杂的数据类型变量，如数组、结构体和联合体等数据类型变量，一定会分配在栈帧中。</p>
+<p>在 IA32 + Linux + GCC 平台下处理，局部变量的分配是按顺序连续地从小地址到大地址进行的。</p>
+<p>事实上 C 语言标准和 ABI 规范都没有定义按何种顺序分配变量的空间，C 语言标准明确指出，对不同变量的地址进行除了 <code>==</code> 和 <code>!=</code> 之外的关系运算都属于未定义行为。</p>
+<h3 id="x86-64">x86-64 的过程调用</h3>
+<p>前述 IA32 架构应为通用寄存器只有 8 个，所以采用栈进行参数传递。x86-64 中通用寄存器个数增加到 16 个，此时前 6 个参数通过寄存器传递。x86-64 中通用寄存器的使用约定主要包括以下几个方面：</p>
+<ul>
+<li>IA32 中通常使用栈指针 EBP 指向栈帧底部，并通过将 EBP 作为基址寄存器来访问自动变量和入口参数。<strong>x86-64 中，不再使用帧指针寄存器 RBP 指向栈帧底部，而是使用栈指针寄存器 RSP 作为基址寄存器来访问栈帧中的信息，RBP 随即作为普通寄存器使用。</strong></li>
+<li>传送入口参数的寄存器依次为 RDX、RSI、RDX、RCX、R8、R9，返回参数存放于 RAX 中。</li>
+<li>调用者保存的寄存器为 R10 和 R11，被调用者保存的寄存器为 RBX、RBP、R12、R13、R14、R15.</li>
+</ul>
+<p>若入口参数是整数类型或指针类型且少于或等于 6 个，则无须用栈来传递参数。如果同时该过程无须在栈中存放局部变量和被调用者保存寄存器内容，那么，该过程就不需要栈帧。传递参数时，如果参数不是 64 位的，而是 32/16/8 位的，则使用对应寄存器的低位版本。</p>
+<p>在 x86-64 中，最多可以有六个整型或指针型入口参数通过寄存器传递；入口参数超过六个时，后面的参数通过栈传递。<strong>在栈中传递的参数若是基本类型数据，则不管是什么基本类型，都分配 8 字节以对齐。</strong>当入口参数少于六个或入口参数已被用过而不再需要时，存放对应参数的寄存器可以作为临时寄存器使用。对于存放返回结果的 RAX 寄存器，在产生最终结果前，也可以作为临时寄存器被重复使用。</p>
+<p>在 x86-64 中，调用指令 <code>call</code>（或 <code>callq</code>）将一个 64 位返回地址保存在栈中，故包含执行 <code>R[rsp] &lt;- R[rsp] - 8</code> 操；返回指令 <code>ret</code> 也是从栈中取出 64 位返回地址，故包含执行 <code>R[rsp] &lt;- R[rsp] + 8</code> 操作。</p>
+<p>详细内容可以参考 AMD64 System V ABI 手册。</p>
+<p>x86-64 架构对应的 AMD64 System V ABI 规定，栈中参数按 8 字节对齐。因此此处额外说明这一点 ：即使在栈中传递的参数不是 <code>long</code> 型或指针类型，也都应分配 8 字节的空间。</p>
+<p>C 语言标准规定，当 <code>printf()</code> 函数的格式说明符和参数类型不匹配时，输出结果是<strong>未定义的</strong>。</p>
+<p><strong>在机器级代码中，浮点常数不能像整数常数那样出现在指令的立即数字段</strong>，因此编译器必须为所有浮点常数分配存储空间并将机器数定义在所分配处。这样，在机器级代码中，通过加载（LOAD）指令将存储单元中的浮点数送到浮点寄存器中，然后通过浮点运算对其进行操作。</p>
+<p>编译器通常用一个标号表示所分配的浮点常数存储区，该存储区由两个以汇编指示符 <code>.long</code> 表示的 32 位子存储区组成，其中高 32 位为全零，低 32 位机器数为无符号十进制数 1076101120 对应的二进制表示，即 40240000H.</p>
+<p>同理，字符串的机器级表示也不能出现在立即数字段，因此编译器必须为其分配存储空间并将机器数定义在所分配处。同样，也是通过标号来表示字符串所在空间的开始位置，在指令中通过标号对应的存储单元地址来引用字符串，字符串值由汇编指示符 <code>.string</code> 来定义。</p>
+<p>Ch05 中介绍程序链接时会提到目标文件由多个不同的节（section）组成，其中的只读数据节（<code>.rodata</code>）就包含了上述浮点常数和字符串，它们不会被修改。</p>
+<h3 id="x86-64_1">x86-64 过程的浮点参数传递*</h3>
+<h2 id="_8">流程控制语句的机器级表示</h2>
+<h3 id="_9">选择语句的机器级表示</h3>
+<h4 id="_10">条件运算表达式的机器级表示</h4>
+<p>此处的条件运算表达式就是指三目运算符（<code>?:</code>）构建的条件运算表达式，通用格式如下：<code>x = cond_expr ? then_expr : else_expr</code>.</p>
+<p>通常，直接转换为比较指令、条件传送指令或条件设置指令。</p>
+<h4 id="if-else">if-else 语句的机器级表示</h4>
+<p>通用格式如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cond_expr</span><span class="p">)</span>
+<span class="w">    </span><span class="n">then_statement</span>
+<span class="k">else</span><span class="w"> </span>
+<span class="w">    </span><span class="n">else_statement</span>
+</code></pre></div>
+<p>通常，编译得到以下两种不同结构：</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">c</span><span class="p">)</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">false_label</span><span class="p">;</span>
+<span class="w">    </span><span class="n">then_statement</span><span class="p">;</span>
+<span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">done</span><span class="p">;</span>
+<span class="nl">false_label</span><span class="p">:</span>
+<span class="w">    </span><span class="n">else_statement</span><span class="p">;</span>
+<span class="nl">done</span><span class="p">:</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="w">        </span><span class="k">goto</span><span class="w"> </span><span class="n">true_label</span><span class="p">;</span>
+<span class="w">    </span><span class="n">else_statement</span><span class="p">;</span>
+<span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">done</span><span class="p">;</span>
+<span class="nl">true_label</span><span class="p">:</span>
+<span class="w">    </span><span class="n">then_statement</span><span class="p">;</span>
+<span class="nl">done</span><span class="p">:</span>
+</code></pre></div>
+<p>其中 <code>if... goto...</code> 对应条件跳转指令，<code>goto...</code> 对应无条件跳转指令。编译器可以使用在底层 ISA 中提供的各种条件标志位设置功能、条件跳转指令、条件设置指令、条件传送指令、无条件跳转指令等相应的机器级代码支持机制来实现。</p>
+<h4 id="switch">switch 语句的机器级表示</h4>
+<p>多分支选择可以使用连续的 if-else 语句实现，也可使用跳转表实现。</p>
+<p>通用格式如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">switch</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">x_1</span><span class="p">:</span>
+<span class="w">        </span><span class="n">statement_1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">x_2</span><span class="p">:</span>
+<span class="w">        </span><span class="n">statement_2</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">x_n</span><span class="p">:</span>
+<span class="w">        </span><span class="n">statement_n</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="n">statement_d</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>使用一个跳转表来实现：</p>
+<div class="highlight"><pre><span></span><code>.section .rodata
+.align 4
+.La
+    .long  .L1
+    .long  .L2
+    ...
+    .long  .Ln
+    .long  .Ld
+</code></pre></div>
+<p>此处为 IA32，故对齐 <code>.align</code> 为 4 字节，且地址助记符为 <code>.long</code>，同时偏移量为索引值 * 4.</p>
+<p>偏移量与跳转表首地址（<code>.La</code> 指定）相加得到每个表项的地址，一般使用 <code>*.La( , %eax, 4)</code> 快速计算得到，此处 EAX 放置了索引值。</p>
+<p>如你所见，对 switch 语句进行编译转换的关键是构造跳转表，并正确设置索引值。一旦生成可执行文件，所有指令的地址就已确定，因此就可以确定跳转表表项中标号对应的跳转地址，其在程序执行中不可改写，故而存放于只读数据节，且对齐为 4.</p>
+<p>以上的关键在于索引值，这就限定了 <code>x_1 ... x_n</code> 间极差不能过大，因为索引值即 <code>a - min(x)</code>（不在 <code>0</code> 到 <code>max(x) - min(x)</code> 的直接跳转 <code>default</code>），连续占用 <code>base + 0 * 4</code> 到 <code>base + (max(x) - min(x)) * 4</code> 这些地址作为跳转地址，中间空出的（不在 <code>x_i</code> 之列的），跳转表中指向 <code>default</code>.</p>
+<p>如果不满足，就很难构造一个有限表项个数的跳转表，编译器于是会将其分段，生成分段跳转代码，而不会采用构造跳转表来进行跳转，这样就比较类似于连续 if-else 语句的实现。</p>
+<h3 id="_11">循环语句的机器级表示</h3>
+<h4 id="do-while">do-while 循环的机器级表示</h4>
+<p>一般通用格式如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">loop_body_statement</span>
+<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cond_expr</span><span class="p">)</span>
+</code></pre></div>
+<p>转换为更接近机器语言的 if-goto 与 goto 版本，即：</p>
+<div class="highlight"><pre><span></span><code><span class="nl">loop</span><span class="p">:</span>
+<span class="w">    </span><span class="n">loop_body_statement</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">loop</span><span class="p">;</span>
+</code></pre></div>
+<p>此时就直接转为对应指令生成汇编即可。</p>
+<h4 id="while">while 循环的机器级表示</h4>
+<p>一般通用格式如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cond_expr</span><span class="p">)</span>
+<span class="w">    </span><span class="n">loop_body_statement</span>
+</code></pre></div>
+<p>转换为更接近机器语言的 if-goto 与 goto 版本，即：</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">done</span><span class="p">;</span>
+<span class="nl">loop</span><span class="p">:</span>
+<span class="w">    </span><span class="n">loop_body_statement</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">loop</span><span class="p">;</span>
+<span class="nl">done</span><span class="p">:</span>
+</code></pre></div>
+<p>不难发现就是 do-while 拆解出第一次执行循环，直接转为对应指令生成汇编即可。</p>
+<h4 id="for">for 循环的机器级表示</h4>
+<p>一般通用格式如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">begin_expr</span><span class="p">;</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span><span class="w"> </span><span class="n">update_expr</span><span class="p">)</span>
+<span class="w">    </span><span class="n">loop_body_statement</span>
+</code></pre></div>
+<p>转换为更接近机器语言的 if-goto 与 goto 版本，即：</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">begin_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">done</span><span class="p">;</span>
+<span class="nl">loop</span><span class="p">:</span>
+<span class="w">    </span><span class="n">loop_body_statement</span>
+<span class="w">    </span><span class="n">update_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cond_expr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">loop</span><span class="p">;</span>
+<span class="nl">done</span><span class="p">:</span>
+</code></pre></div>
+<p>不难发现这就是用 while 改写 for 语句，直接转为对应指令生成汇编即可。</p>
+<p>当条件与更新非常简单时，编译器优化可能直接将循环优化为多条语句，而没有跳转。</p>
+<h2 id="_12">复杂数据类型的分配和访问</h2>
+<h3 id="_13">数组的分配和访问</h3>
+<h4 id="_14">数组元素在存储空间的存放和访问</h4>
+<p>在程序中使用数组，必须遵循定义在前，使用在后的原则，一维数组定义的一般形式如下：</p>
+<div class="highlight"><pre><span></span><code>storing_type element_type name[size]; 
+</code></pre></div>
+<p>其中，存储类型 <code>storing_type</code> 可以缺省，可选项有 <code>static</code> 等。</p>
+<h4 id="_15">数组的存储分配和初始化</h4>
+<p>数组可以定义为「静态（static）存储型数组」、「外部（extern）存储型数组」、「自动（auto）存储型数组」，其中只有 auto 型数组分配在栈中，其他存储型数组都分配在静态数据区。</p>
+<p>数组初始化就是在定义数组时对数组赋初值。</p>
+<p>由于在编译、链接时就可以确定在静态区中数组的首地址，因此在编译、链接阶段就可以将数组首址和数组变量建立关联。</p>
+<h4 id="_16">数组和指针</h4>
+<p>C 语言中指针与数组的关系十分密切，它们均用于处理存储器中连续存放的一组数据，因而在访问存储器时两者的地址计算方法是一致的，数组元素的引用可以用指针来实现。</p>
+<p>IA32 中数组元素或指针变量的表达方式及其计算方式示例如下表：其中数组声明 <code>int A[114514]</code></p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>类型</th>
+<th>值的计算方式</th>
+<th>汇编代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A</code></td>
+<td><code>int *</code></td>
+<td><code>SA</code></td>
+<td><code>leal (%ecx), %eax</code></td>
+</tr>
+<tr>
+<td><code>A[0]</code></td>
+<td><code>int</code></td>
+<td><code>M[SA]</code></td>
+<td><code>movl (%ecx), %eax</code></td>
+</tr>
+<tr>
+<td><code>A[i]</code></td>
+<td><code>int</code></td>
+<td><code>M[SA + 4 * i]</code></td>
+<td><code>movl (%ecx, %edx, 4), %eax</code></td>
+</tr>
+<tr>
+<td><code>&amp;A[3]</code></td>
+<td><code>int *</code></td>
+<td><code>SA + 12</code></td>
+<td><code>leal 12(%ecx), %eax</code></td>
+</tr>
+<tr>
+<td><code>&amp;A[i] - A</code></td>
+<td><code>int</code></td>
+<td><code>(SA + 4 * i - SA) / 4</code> = <code>i</code></td>
+<td><code>movl %edx, %eax</code></td>
+</tr>
+<tr>
+<td><code>*(A + i)</code></td>
+<td><code>int</code></td>
+<td><code>M[SA + 4 * i]</code></td>
+<td><code>movl (%ecx, %edx, 4), %eax</code></td>
+</tr>
+<tr>
+<td><code>*(&amp;A[0] + i - 1)</code></td>
+<td><code>int</code></td>
+<td><code>M[SA + 4 * i - 4]</code></td>
+<td><code>movl -4(%ecx, %edx, 4), %eax</code></td>
+</tr>
+<tr>
+<td><code>A + i</code></td>
+<td><code>int *</code></td>
+<td><code>SA + 4 * i</code></td>
+<td><code>leal (%ecx, %edx, 4), %eax</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_17">指针数组和多维数组</h4>
+<p>指针数组和多维数组没啥特殊的。</p>
+<p>更详细的解释见 CSAPP.</p>
+<h3 id="_18">结构体数据的分配和访问</h3>
+<h4 id="_19">结构体成员在存储空间的存放和访问</h4>
+<p>结构体中的数据成员存放在存储器中一段连续的存储区中，指向结构的指针就是其第一个字节的地址。编译器在处理结构型数据时，根据每个成员的数据类型获得相应的字节偏移量，然后通过每个成员的字节偏移量来访问结构成员。</p>
+<h4 id="_20">结构体数据作为入口参数</h4>
+<p>当结构体变量称为一个函数的形式参数时，类似的，有两种传递方式：按值传递和按地址传递。</p>
+<p>因按值传递需要将结构体内的每个成员复制到栈中的参数区，开销较大，故一般采用按地址传递方式。</p>
+<p>按地址传递通常就将一个指向结构体的指针作为参数，其只记录了结构体的首地址。</p>
+<h3 id="_21">联合体数据的分配和访问</h3>
+<p>与结构体类似的是联合体。相比于结构体每个成员各自占据自己的存储空间，联合体的各个成员共享一份存储空间，因此「联合体」也称为「共用体」。</p>
+<p>联合体通常用于一些特殊场合，比如事先知道其中成员的使用时间互斥，或者是故意使用共享的存储空间以实现对相同位序列进行不同数据类型的解释。</p>
+<p>联合体在机器级其实是容易实现的，因为机器级代码基本上不处理对象的数据类型，除非对象的宽度不同。</p>
+<h3 id="_22">数据的对齐</h3>
+<p>可以把存储器看作由连续的位构成，每 8 位为 1 个字节，每 1 个字节有 1 个地址编号，这种编址方式称为「按字节编址」。</p>
+<p>假定每次访存最多只能读写 64 位，即 8Bytes（8B），那么就实现了「8 字节宽存储机制」。</p>
+<p>因遵守以上两条规则，若访存频繁跨 8 字节边界，将会导致访存效率的极大下降，因此带来了数据对齐机制。</p>
+<p>对于机器级代码，虽然它支持按任意地址访存，但由于以上两条高级抽象规则和底层存储器底层抽象的实现，在对齐方式下程序执行效率更高。此底层抽象的事实迫使高级抽象，即操作系统按对齐方式分配管理内存，以及编译器按对齐方式转换代码。</p>
+<p>最简单的对齐策略是要求各基本数据类型按照其长度对齐，例如 <code>int</code> 型数据长度为 4B，因此规定 <code>int</code> 型数据的地址必须是 4 的倍数，这杯称作「4 字节边界对齐」，简称「4 字节对齐」，其余数据类型同理。这种对齐策略被 Windows 采用。</p>
+<p>Linux 采用的对齐策略更为宽松，<strong>i386 System V ABI 中定义：<code>short</code> 数据地址为 2 的倍数，其他类型数据的地址都只需为 4 的倍数。</strong>这导致 <code>double</code> 型数据可能需要两次访存，对于扩展精度浮点数（10B），为了使随后的相同数据类型能够落在 4 字节边界上，<strong>i386 System V ABI 规定 <code>long double</code> 型数据长度为 12B</strong>，GCC 自然遵循该定义为其分配 12B 空间。</p>
+<p>对于由基本数据类型构成的结构体数据，为保证其中每个字段都满足对齐要求，Linux 采用的 i386 System V ABI 对结构提数据有以下几条对齐规则：</p>
+<ol>
+<li>整个结构体变量的对齐方式与其中对齐最严格的成员相同。</li>
+<li>每个成员在满足其对齐方式的前提下，取最小可用位置作为成员在结构体中的偏移量，这暗示可能存在内部插空。</li>
+<li>结构体大小应为对齐边界长度的整数倍，这暗示可能存在尾部插空。</li>
+</ol>
+<p>与 IA32 一样，x86-64 中各种类型数据也应遵循一定的对齐规则，而且对齐要求更加严格，只因 x86-64 中存储器的访存接口被设计为以 8B 或 16B 为单位进行存取，其对齐规则是任何 K 字节宽的基本数据类型和指针类型数据的起始地址一定是 K 的倍数。这暗示了 <code>long double</code> 型数据必须按 16 字节对齐。（<code>long double</code> 在 IA32 为 10B，在 x86-64 为 16B）。</p>
+<p>具体对齐规则可查 AMD64 System V ABI 手册。 </p>
+<h2 id="_23">越界访问和缓冲区溢出</h2>
+<p>C 语言中的数组元素可以使用指针访问，却未对数组的引用进行边界约束，从而程序对数组的访问可能会超出数组存储区范围而不被发现。C 语言标准规定，这种行为即数组越界，属于未定义行为，以下几种情况会导致不可预知的结果：访问了一个空闲的内存位置；访问了某个不该访问的变量；访问了非法的地址导致程序异常终止。进而这可能形成安全漏洞而招致恶意攻击。</p>
+<h3 id="_24">数组的越界访问</h3>
+<p>在 C 语言程序执行过程中，当前正在执行的过程在栈中会形成本过程的栈帧，如果在非静态局部变量中定义了数组变量，那么，有可能在对数组元素访问时发生朝珠数组存储区的越界访问。</p>
+<p>我们通常称这种数组存储区看作一个「缓冲区」，这种超出数组存储区范围的访问称为「缓冲区溢出」。</p>
+<p>缓冲区溢出会导致程序执行结果错误，甚至存在相当危险的安全漏洞。</p>
+<h3 id="_25">缓冲区溢出攻击</h3>
+<p>缓冲区溢出是一种非常普遍、非常危险的漏洞，在各种操作系统和应用软件中广泛存在。「缓冲区溢出攻击」即利用缓冲区溢出漏洞所进行的攻击行为。</p>
+<p>如果攻击者恶意利用在栈中分配的缓冲区的写溢出，将一个恶意代码段的首地址作为「返回地址」覆写到原先正确的返回地址处，那么程序就会在执行 <code>ret</code> 指令时转到恶意代码段执行，从而劫持了控制权，进而进行一系列非法操作。</p>
+<p>造成缓冲区溢出的一个原因是程序没有对作为缓冲区的数组进行越界检查。</p>
+<p>【此处书中展示了一个攻防的例子，非常精彩】</p>
+<p>缓冲区溢出攻击有多个英文名称，包括：<strong>buffer overflow</strong>, buffer overrun, smash the stack, trash the stack, scribble the stack, mangle the stack, <strong>memory leak</strong>, overrun screw. 第一个缓冲区溢出攻击是 Morris 蠕虫，发生于 1988 年 11 月，曾造成全世界 6000 多台网络服务器瘫痪。</p>
+<p>随意向缓冲区填内容造成溢出一般只会出现段错误，而不能达到攻击的目的。最常见的手段是通过制造缓冲区溢出使程序运行一个用户 shell，再通过 shell 执行其他命令。如果该程序属于 root 且有 suid 权限，那么攻击者就可获得一个有 root 权限的 shell，从而可对系统进行任意操作。【见网络攻防实战】</p>
+<p>缓冲区溢出攻击之所以称为一种常见的安全攻击手段，是因为缓冲区溢出漏洞过于普遍，而且易于实现。缓冲区溢出成为远程攻击的主要的手段，其原因在于缓冲区溢出漏洞使攻击者能够植入并执行攻击代码。被植入的攻击代码以一定的权限运行有缓冲区溢出漏洞的程序，从而得到被攻击主机的控制权。</p>
+<h3 id="_26">对缓冲区溢出攻击的防范</h3>
+<h4 id="_27">地址空间随机化</h4>
+<p>「地址空间随机化」（ASLR, address space layout randomization）是一种比较有效的防御缓冲区溢出攻击的技术，目前 Linux、FreeBSD 和 Windows Vista 等主流操作系统中都使用了该技术。</p>
+<p>基于缓冲区溢出漏洞的攻击者必须了解缓冲区的起始地址，从而诞生了该防御手段。</p>
+<p>地址空间随机化的基本思路是：将加载程序时生成的代码段、静态数据段、堆区、动态库和栈区各部分的首地址进行随机化处理（起始位置在一定范围内随机）。从而对于一个随机生成的栈其实位置，基于缓冲区溢出漏洞的攻击者不太容易确定栈的起始位置。通常将这种使得程序加载的栈空间的起始位置随机变化的技术称为「栈随机化」。</p>
+<p>不过显然的是， 如果攻击者多次反复使用不同的栈地址进行试探性攻击，那么仍然有可能攻破。</p>
+<h4 id="_28">栈破坏检测</h4>
+<p>如果在程序跳转到攻击代码执行之前，能够检测出程序的栈已被破坏，就可避免受到严重攻击。新的 GCC 版本在产生的代码中加入了一种「栈保护者」（stack protector）机制【我觉得翻译成栈保护器更好】，用于检测缓冲区是否越界。</p>
+<p>主要思想是，在函数的准备阶段，在其栈帧中的缓冲区底部与保存的寄存器状态之间加入一个随机生成的特定值，该值称为「金丝雀值」或「金丝雀哨兵值」。在函数的恢复阶段，在回复寄存器并返回到调用过程前，先检测改制是否被改变，若发生改变，则程序异常中止。</p>
+<p>书中的一个例子是在 Windows 系统下的 VS 开发环境中，R[ebp]-4 的位置存入了一个由 _security_cookie 处存放的内容与 R[ebp] 异或得到的特殊值（即金丝雀值），而后者因栈随机化机制而随机，前者放置在不可更改的只读区。</p>
+<h4 id="_29">可执行代码区域限制</h4>
+<p>通过将程序的数据段地址空间设置为不可执行，使攻击者人不可能执行被植入在输入缓冲区的代码，此技术称为「不可执行缓冲区技术」。</p>
+<p>然而，这种技术对于将攻击代码植入堆或静态数据段的攻击，可以通过引用一个驻留程序的指针轻松绕过。</p>
+<h2 id="_30">章节小结</h2>
+<p>/</p>
 
 
 

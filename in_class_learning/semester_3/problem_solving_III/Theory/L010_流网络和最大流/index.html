@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l010" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3240,6 +3245,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L010 流网络和最大流
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3257,6 +3282,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流网络和最大流
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4257,27 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流网络和最大流
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4294,40 @@
 
 
 
-  <h1>L010 流网络和最大流</h1>
-
-
+<h1 id="l010">L010 流网络和最大流</h1>
+<h3 id="_1">流网络和最大流</h3>
+<p>「流网络」（flow network）是一个五元组，记作 <span class="arithmatex">\(G=\langle V,A,c,s,t\rangle\)</span>，其中 <span class="arithmatex">\(V\)</span> 和 <span class="arithmatex">\(A\)</span> 分别是顶点和弧的有限集合，<span class="arithmatex">\(c:A\to \mathbb{R}_+\)</span> 是「容量函数」（capacity function），<span class="arithmatex">\(c(a)\)</span> 是弧 <span class="arithmatex">\(a\)</span> 的「容量」（capacity），<span class="arithmatex">\(s\in V\)</span> 是「源」（source），<span class="arithmatex">\(t\in V\)</span> 是「汇」（sink），且 <span class="arithmatex">\(s\ne t\)</span>.</p>
+<p>在流网络 <span class="arithmatex">\(G\)</span> 中，「流」（flow）是一个函数 <span class="arithmatex">\(f:A\to \mathbb{R}\)</span>，其中 <span class="arithmatex">\(f(a)\)</span> 称作弧 <span class="arithmatex">\(a\)</span> 的「流量」（flow）。所有弧的流量均为零的流称作「零流」（zero flow）。满足以下两点的流称作「可行流」（feasible flow）：</p>
+<ul>
+<li>「容量约束」（capacity constraint）：<span class="arithmatex">\(\forall a\in A,0\le f(a)\le c(a)\)</span>.</li>
+<li>「守恒约束」（conservation constraints）：<span class="arithmatex">\(\forall v\in V\setminus \{s,t\},f^-(v)=f^+(v)\)</span>，其中 <span class="arithmatex">\(f^-(v)\)</span> 和 <span class="arithmatex">\(f^+(v)\)</span> 分别表示顶点 <span class="arithmatex">\(v\)</span> 的「流入量」和「流出量」，定义如下：</li>
+</ul>
+<div class="arithmatex">\[
+f^-(v)=\sum_{\langle u,v\rangle\in A}f(\langle u,v\rangle),
+f^+(v)=\sum_{\langle v,u\rangle\in A}f(\langle v,u\rangle)
+\]</div>
+<p>对于可行流 <span class="arithmatex">\(f\)</span>，汇的净流入量 <span class="arithmatex">\(f^-(t)-f^+(t)\)</span> 称作 <span class="arithmatex">\(f\)</span> 的「值」，记作 <span class="arithmatex">\(\mathrm{val}(f)\)</span>. 流网络中值最大的可行流称为「最大流」（maximum flow）。</p>
+<p>对于流网络 <span class="arithmatex">\(G\)</span> 和可行流 <span class="arithmatex">\(f\)</span>，「剩余容量」（residual capacity）是一个函数 <span class="arithmatex">\(r:V\times V\to \mathbb{R}_+\)</span>，<span class="arithmatex">\(r(u,v)\)</span> 称作顶点 <span class="arithmatex">\(u\)</span> 到顶点 <span class="arithmatex">\(v\)</span> 的剩余容量，表示从 <span class="arithmatex">\(u\)</span> 到 <span class="arithmatex">\(v\)</span> 的容量的可增量，包含下述两项的和：</p>
+<ul>
+<li><span class="arithmatex">\(\langle u,v\rangle\)</span> 的可增量：仅当弧 <span class="arithmatex">\(\langle u,v\rangle\)</span> 存在时，为 <span class="arithmatex">\(c(\langle u,v\rangle)-f(\langle u,v\rangle)\)</span>，否则计为零。</li>
+<li><span class="arithmatex">\(\langle v,u\rangle\)</span> 的可减量：仅当弧 <span class="arithmatex">\(\langle v,u\rangle\)</span> 存在时，为 <span class="arithmatex">\(f(\langle v,u\rangle)\)</span>，否则计为零。</li>
+</ul>
+<p>所有顶点间的剩余容量可以表示为一个赋权有向图，称作「剩余网络」（residual network），记作 <span class="arithmatex">\(G_f=\langle V,A_f, r\rangle\)</span>，其中：</p>
+<ul>
+<li><span class="arithmatex">\(V\)</span> 是顶点的有限集合，继承自 <span class="arithmatex">\(G\)</span>.</li>
+<li><span class="arithmatex">\(A_f\)</span> 是弧的有限集合，<span class="arithmatex">\(\langle u,v\rangle\in A_f\text{ iff. }r(u,v)&gt;0\)</span>.</li>
+<li><span class="arithmatex">\(r\)</span> 是赋权函数，继承自剩余容量函数。</li>
+</ul>
+<p>在剩余网络 <span class="arithmatex">\(G_f\)</span> 中，<span class="arithmatex">\(s\)</span>-<span class="arithmatex">\(t\)</span> 有向路称作 <span class="arithmatex">\(f\)</span>「增广路」（augmenting path），其经过的弧的最小权称为这条路的「可增量」（tolerance）。</p>
+<p>Th.7.6 对于流网络 <span class="arithmatex">\(G\)</span> 和可行流 <span class="arithmatex">\(f\)</span>，<span class="arithmatex">\(f\)</span> 是最大流当且仅当剩余网络 <span class="arithmatex">\(G_f\)</span> 中不含 <span class="arithmatex">\(f\)</span> 增广路。</p>
+<p>Lem.7.4 对于流网络 <span class="arithmatex">\(G\)</span>、可行流 <span class="arithmatex">\(f\)</span>、顶点集 <span class="arithmatex">\(V\)</span> 的划分 <span class="arithmatex">\(S,T(s\in S,t\in T)\)</span>，所有尾在 <span class="arithmatex">\(S\)</span> 中，头在 <span class="arithmatex">\(T\)</span> 中的弧的流量和记作 <span class="arithmatex">\(f^+(S)\)</span>；所有头在 <span class="arithmatex">\(S\)</span> 中，尾在 <span class="arithmatex">\(T\)</span> 中的弧的流量和记作 <span class="arithmatex">\(f^-(S)\)</span>，则 <span class="arithmatex">\(f^+(s)-f^-(s)=f^+(S)-f^-(S)\)</span>.</p>
+<p>所有尾在 <span class="arithmatex">\(S\)</span>、头在 <span class="arithmatex">\(T\)</span> 中的弧的集合称作 <span class="arithmatex">\(G\)</span> 的「源汇割」（source-sink cut），记作 <span class="arithmatex">\(C_{S,T}\)</span>，其中所有弧的容量和称作 <span class="arithmatex">\(C_{S,T}\)</span> 的「容量」（capacity），记作 <span class="arithmatex">\(c(S,T)\)</span>.</p>
+<p>Cor.7.2 对于流网络 <span class="arithmatex">\(G\)</span>、可行流 <span class="arithmatex">\(f\)</span>、源汇割 <span class="arithmatex">\(C_{S,T}\)</span>，有 <span class="arithmatex">\(\mathrm{val}(f)\le c(S,T)\)</span>.</p>
+<p>Th.7.7（最大流最小割定理）对于任何一个流网络，最大流的值等于所有源汇割的容量的最小值。</p>
+<p>「福特-法尔克森算法」（Ford-Fulkerson algorithm）</p>
+<p>【Algo.7.4】</p>
+<p>「整数流」（integer flow）、「单位路径流」（unit path flow）。</p>
+<p>「单源单汇流网络」（single-source single-sink network）、「多源多汇流网络」（multi-source multi-sink network）、「超源」（super-source）、「超汇」（super-sink）。</p>
 
 
 

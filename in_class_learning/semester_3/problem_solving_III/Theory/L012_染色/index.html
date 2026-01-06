@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l012" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -891,7 +896,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +952,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +980,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -3296,6 +3301,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L012 染色
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -3313,6 +3338,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边的染色
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶点的染色
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4202,6 +4268,38 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边的染色
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶点的染色
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +4316,25 @@
 
 
 
-  <h1>L012 染色</h1>
-
-
+<h1 id="l012">L012 染色</h1>
+<h3 id="_1">边的染色</h3>
+<p>「<span class="arithmatex">\(k\)</span> 边染色」、「正常 <span class="arithmatex">\(k\)</span> 边染色」、「<span class="arithmatex">\(k\)</span> 边色可染」、「边色数」。</p>
+<p>Th.9.1-9.2</p>
+<p>Vizing 定理（Th.9.52）表明边色数 <span class="arithmatex">\(\chi'(G)\)</span> 要么为 <span class="arithmatex">\(\Delta(G)\)</span>，要么为 <span class="arithmatex">\(\Delta(G)+1\)</span>，据此将图分别分为「第一类图」（class 1 graph）和「第二类图」（class 2 graph）。</p>
+<p><span class="arithmatex">\(K_{2n}\)</span> 是第一类图，<span class="arithmatex">\(K_{2n+1}\)</span> 是第二类图，树和二分图是第一类图。当阶趋向于 <span class="arithmatex">\(\infty\)</span> 时，第一类图的比例趋于 <span class="arithmatex">\(1\)</span>.</p>
+<p>第一类图的判定问题属于 NP 完全，从而图的正常 <span class="arithmatex">\(\chi'\)</span> 染色的计算是一个 NP 难的优化问题。</p>
+<p>「DCEC 算法」（一种分治算法）</p>
+<p>【Algo.9.1-9.3】</p>
+<p>Th.9.3</p>
+<p>「米什拉-格赖斯算法」（Misra-Gries algorithm）、「扇」（fan）、扇的「旋转」（rotate）、颜色的「翻转」（invert）。</p>
+<p>【Algo.9.4】</p>
+<p>Th.9.4</p>
+<h3 id="_2">顶点的染色</h3>
+<p>「<span class="arithmatex">\(k\)</span> 点染色/<span class="arithmatex">\(k\)</span> 染色」、「正常 <span class="arithmatex">\(k\)</span> 点染色/正常 <span class="arithmatex">\(k\)</span> 染色」、「<span class="arithmatex">\(k\)</span> 点色可染/<span class="arithmatex">\(k\)</span> 色可染」、「点色数/色数」、「<span class="arithmatex">\(k\)</span> 色图」。</p>
+<p>Th.9.5-9.6</p>
+<p>找出图的正常 <span class="arithmatex">\(\chi\)</span> 点染色是一个 NP 难的优化问题。</p>
+<p>【Algo.9.5】</p>
+<p>Th.9.7</p>
 
 
 

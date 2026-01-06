@@ -23,7 +23,7 @@
     
     
       
-        <title>Ch08 进程与异常控制流 - My Docs</title>
+        <title>L08 进程与异常控制流 - My Docs</title>
       
     
     
@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#l08" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -95,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ch08 进程与异常控制流
+              L08 进程与异常控制流
             
           </span>
         </div>
@@ -895,7 +900,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -950,6 +955,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    L08 进程与异常控制流
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -958,7 +983,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -967,6 +992,403 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进程与进程的上下文切换
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进程与进程的上下文切换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序和进程的概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进程的逻辑控制流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进程的上下文切换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常和中断
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常和中断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内部异常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        外部中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常的分类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常的分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        故障
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        陷阱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        终止
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断的分类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断的分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可屏蔽中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不可屏蔽中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常和中断的响应
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常和中断的响应">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保护断点和程序状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        识别异常和中断事件并转到相应的处理程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia-32x86-64-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA-32/x86-64 + Linux 的异常和中断机制*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA-32/x86-64 + Linux 的异常和中断机制*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断向量表和中断描述符表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常和中断的处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常和中断的处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDT 的初始化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对异常的处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对中断的处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统调用机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统调用机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过软中断指令进入和推出系统调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过快速系统调用指令进入和推出系统调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux 中的进程控制*
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux 中的信号与非本地跳转*
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -987,7 +1409,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -4202,6 +4624,394 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进程与进程的上下文切换
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进程与进程的上下文切换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序和进程的概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进程的逻辑控制流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进程的上下文切换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常和中断
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常和中断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内部异常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        外部中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常的分类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常的分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        故障
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        陷阱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        终止
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断的分类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断的分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可屏蔽中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不可屏蔽中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常和中断的响应
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常和中断的响应">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保护断点和程序状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关中断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        识别异常和中断事件并转到相应的处理程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia-32x86-64-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IA-32/x86-64 + Linux 的异常和中断机制*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IA-32/x86-64 + Linux 的异常和中断机制*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中断向量表和中断描述符表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常和中断的处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="异常和中断的处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDT 的初始化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对异常的处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对中断的处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统调用机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统调用机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过软中断指令进入和推出系统调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通过快速系统调用指令进入和推出系统调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux 中的进程控制*
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux 中的信号与非本地跳转*
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        章节小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4218,9 +5028,119 @@
 
 
 
-  <h1>Ch08 进程与异常控制流</h1>
-
-
+<h1 id="l08">L08 进程与异常控制流</h1>
+<p>一个程序的正常执行流程为顺序加跳转，CPU 所执行的指令地址序列称为「CPU 控制流」，按正常执行流程得到的控制流称为「正常控制流」。</p>
+<p>由特殊事件引起用户程序正常执行被打断所形成的意外控制流称为「异常控制流」（ECF, exceptional control of flow），显然，计算机系统必须提供一种机制使自身能够实现异常控制流。</p>
+<p>计算机系统各层都有实现异常控制流的机制：</p>
+<ul>
+<li>硬件层：CPU 可检测异常和中断事件并将控制转移到操作系统内核执行。</li>
+<li>操作系统层：内核通过进程的上下文切换将控制流从一个进程切换到另一个进程。</li>
+<li>应用软件层：一个进程可直接发送信号到另一个进程，接收信号的进程将控制转移到它注册的「信号处理程序」。</li>
+</ul>
+<h2 id="_1">进程与进程的上下文切换</h2>
+<h3 id="_2">程序和进程的概念</h3>
+<p>对计算机来说，「程序」（program）就是代码和数据的集合，因而程序的概念是静态的。</p>
+<p>「进程」（process）则是程序的一次运行过程，是操作系统对程序运行过程的一种抽象，是动态的概念，它有自己的生命周期。</p>
+<p>计算机系统中的「任务」通常是指「进程」。Linux 内核中把进程称为任务，每个进程主要通过一个称为「进程控制块」或「进程描述符」（process descriptor）的结构来描述，其结构类型定义为 <code>task_struct</code>，所有进程通过一个双向循环链表来实现的「任务列表」（task list）来描述，其元素为一个进程描述符。IA32 中「任务状态段」（TSS）、「任务门」（task gate）等概念中的任务，其实页式进程。</p>
+<p>进程的引入为应用程序提供了两方面的抽象：一个独立的逻辑控制流和一个私有的虚拟地址空间。</p>
+<p>为了实现上述两方面的抽象，操作系统必须提供一整套管理的机制，包括「处理器调度」、「进程上下文切换」、「虚拟存储管理」。</p>
+<h3 id="_3">进程的逻辑控制流</h3>
+<p>对于一个仅有单处理器核的系统，若一段时间内有多个进程在该系统上运行，则它们会轮流使用处理器，即处理器的「物理控制流」由多个逻辑控制流交织组成。</p>
+<p>不同进程的逻辑控制流在时间上交错，这种情况称为「并发执行」，并发执行概念和处理器核数无关。</p>
+<p>注意：两个逻辑控制流在时间上交错或重叠都称为「并发」（concurrency），但在时间上重叠称为「并行」（parallelism），并行是并发的一种特殊情形。</p>
+<h3 id="_4">进程的上下文切换</h3>
+<p>连续执行同一个进程的时间段称为「时间片」（time slice）。</p>
+<p>一个进程的逻辑控制流不会因为中间被其他进程打断而改变，被打断后还能回到被打断的「断点」处继续执行，这种实现不同进程中指令交替执行的机制称为进程的「上下文切换」（context switching）。</p>
+<p>操作系统通过进程的上下文切换，换一个新的进程到处理器上执行，并开始一个新的时间片，这个过程称为「时间片轮转处理器调度」。</p>
+<p>进程的代码、数据和支撑进程运行的环境合称为「进程的上下文」。由用户进程的代码、用户进程数据、运行时的堆和用户栈（通称为「用户堆栈」）等组成的「用户空间信息」称为「用户级上下文」。由进程标识信息、进程现场信息、进程控制信息和系统内核栈等组成的「内核空间信息」称为「系统级上下文」。</p>
+<p>进程的上下文包括用户级上下文和系统级上下文。其中用户级上下文和系统级上下文一起构成了进程的整个存储器映像，即进程的虚拟地址空间，见下图：</p>
+<p>【这里有一张图，图 8.2】</p>
+<p>「进程控制信息」包含各种内核数据结构，例如「进程表」（process table）、「页表」、「打开文件列表」等。</p>
+<p>处理器中各个寄存器的内容称为「寄存器上下文」（也称为「硬件上下文」）。操作系统需要通过上下文切换调度一个新进程到处理器上运行，具体过程如下：</p>
+<ul>
+<li>将当前寄存器上下文保存到当前进程系统级上下文的现场信息中。</li>
+<li>根据新进程系统级上下文中的现场信息恢复寄存器上下文。</li>
+<li>将控制转移到新进程执行。</li>
+</ul>
+<p>这里，一个重要的上下文信息是 PC 值，其作为上下文信息的一部分保存在进程现场信息中。</p>
+<p>【这里有一个例子】</p>
+<p>【这里有一张图，图 8.3】</p>
+<p>为了准确统计每个进程运行的事件，操作系统将进程在用户态运行的事件称为其「用户时间」（user time），将进程在内核态运行的事件称为其「系统时间」（system time），两者之和为其「实际时间」（real time）或「挂钟时间」（wall clock time）。</p>
+<p>系统中由多个进程并发执行时，操作系统内核通常通过某种算法策略决定在哪个时间点进行进程的换上换下操作，这称作「处理器调度」（scheduling），由内核中的「调度程序」（schedular）进行处理。</p>
+<h2 id="_5">异常和中断</h2>
+<p>除了前文提到的时间片轮转处理器调度外，进程还可能被别的特殊事件打断，其统称为「异常」（exception）或「中断」（interrupt）。</p>
+<p>当发生异常或中断时，CPU 专区执行具体的内核程序来处理这些特殊事件。</p>
+<p><strong>异常和中断两个概念定义各家有各家的说法。本书使用 Intel 体系结构规定的两者概念。</strong></p>
+<p>早期 Intel 8086/8088 微处理器并不区分二者而统称中断，CPU 内部产生的意外事件称为「内中断」，从 CPU 外部通过中断请求引脚 INTR 和 NMI 向 CPU 发出的中断请求为「外中断」。</p>
+<p>但 80286 开始，Intel 统一把内中断称为异常，外中断称为中断。</p>
+<p>IA32 架构说明文档中，Intel 作出如下说明：</p>
+<ul>
+<li>中断是一种由 I/O 设备触发的与当前正在执行的指令无关的典型「异步事件」。</li>
+<li>异常是处理器执行一条指令时，由处理器在其内部检测到的、与正在执行的指令相关的「同步事件」。</li>
+</ul>
+<p>有时为强调，称异常为「内部异常」，中断为「外部中断」。</p>
+<h4 id="_6">内部异常</h4>
+<p>「内部异常 」是由 CPU 内部的异常引起的意外事件。</p>
+<p>根据其发生的原因又分为「硬故障中断」和「程序性异常」。</p>
+<ul>
+<li>「硬故障中断」是由于硬连线路出现异常而引起的，如主存校验线路错等。</li>
+<li>「程序性异常」由 CPU 执行某指令而引起的发生在 CPU 内部的异常事件。</li>
+</ul>
+<p>程序性异常包括「除数为 0」、「结果溢出」、「寻址错」、「访问超时」、「非法操作码」、「栈溢出」、「缺页」、「地址越界（段错误）」等。</p>
+<p>此外还有一种异常称为「陷阱」，其和其他异常事件不同，是预先安排的一种异常事件，如「系统调用」、「单步跟踪调试」、「调试断点设置」等都可以通过陷阱机制实现。</p>
+<h4 id="_7">外部中断</h4>
+<p>程序执行过程中，若外设完成任务或发生某些特殊事件，例如：「打印机缺纸」、「定时采样计数时间到」、「键盘缓冲区已满」、「从网络中接收到一个信息包」、「从磁盘读入一块数据」等。</p>
+<p>【这里有一张图，图 8.4】</p>
+<p>上图展示了中断和异常处理过程。</p>
+<h3 id="_8">异常的分类</h3>
+<p>通常将内部分为三类：「故障」（fault）、「陷阱」（trap）和「终止」（abort）。</p>
+<h4 id="_9">故障</h4>
+<p>「故障」是 CPU 在执行指令过程中检测到的一类与指令执行相关的意外事件，有些可以恢复，有些不可以恢复。例如「非法操作码」、「除数为零」、「页故障」：</p>
+<ul>
+<li>非法操作码：一般通过信号机制在屏幕上说明，并调用 abort 例程终止当前进程。</li>
+<li>除数为零：浮点数返回非规格数，整数除以零一般调用 abort 例程终止当前进程。</li>
+<li>页故障：地址越界或访问越权，不可恢复，终止；若是缺页，从硬盘读入页以恢复。在 Linux 中不可恢复的访存故障称为「段故障」。</li>
+</ul>
+<h4 id="_10">陷阱</h4>
+<p>「陷阱」也称「自陷」或「陷入」，是预先安排的异常。</p>
+<p>「系统调用号」、「单步跟踪状态」：asd</p>
+<h4 id="_11">终止</h4>
+<p>执行指令过程中发生了严重错误，则只能终止当前程序。</p>
+<h3 id="_12">中断的分类</h3>
+<p>「中断请求」是有 CPU 外部的 I/O 设备需要 CPU 进行某种处理时发出的一种请求信号。</p>
+<p>通常，在「中断响应周期」中，CPU 将当前 PC 值（称为「断点」）和当前的及其状态保存到栈或特定寄存器中，并切换至「关中断」状态，然后跳转到统一的中断服务程序执行。</p>
+<p><strong>中断响应过程由硬件完成，具体的中断处理工作由 CPU 执行统一的中断服务程序完成</strong>，包括读取「中断类型号」，并根据中断类型号跳转到具体的服务执行。中断处理完成后，再回到被打断程序的断点处继续执行。</p>
+<p>Intel 将中断分为「可屏蔽中断」（maskable interrupt）和「不可屏蔽中断」（non-maskable interrupt）。</p>
+<h4 id="_13">可屏蔽中断</h4>
+<p>「可屏蔽中断」是指通过「可屏蔽中断请求线」INTR 向 CPU 请求的中断，主要来自 I/O 设备的中断请求。</p>
+<h4 id="_14">不可屏蔽中断</h4>
+<p>「不可屏蔽中断」通常由非常紧急的硬件故障引起，通过专门的「不可屏蔽中断请求线」NMI 向 CPU 发出中断请求。</p>
+<h3 id="_15">异常和中断的响应</h3>
+<p>CPU 对异常和中断的响应过程可分为三个步骤：「保护断点和程序状态」、「关中断」、「识别异常和中断事件并转到相应的处理程序」。</p>
+<h4 id="_16">保护断点和程序状态</h4>
+<p>为了支持异常/中断的嵌套处理，CISC 处理器将断点保存在栈中。</p>
+<p>异常/中断处理后可能恢复执行，因此必须保存并恢复被中断时源程序的状态（如产生的各种信息、允许中断标志等）。</p>
+<p>每个正在运行程序的状态信息称为「程序状态字」（PSW, program status word），通常存放在「程序状态字寄存器」（PSWR, program status word register），如在 IA32 中 PSWR 就是 EFLAGS.</p>
+<p>显然 PSW 也要保存到栈或特定寄存器中。</p>
+<h4 id="_17">关中断</h4>
+<p>如果中断在保存现场过程中又发生了新的中断，那么就会因为要处理新中断而破坏原现场，这种新的中断不应被响应。</p>
+<p>因此引入了「中断使能位」，置一称为「开中断」，置零称为「关中断」，IA32 中中断使能位就是 EFLAGS 寄存器中的中断标志位 IF.</p>
+<h4 id="_18">识别异常和中断事件并转到相应的处理程序</h4>
+<p>在转到相应的处理程序前，我们应得知异常/中断请求源。</p>
+<p>内部异常事件的识别很简单，CPU 会给出异常事件相关的信息。</p>
+<p>外部中断源的识别比较复杂，通常是由「中断控制器」根据 I/O 设备的中断请求和中断屏蔽情况，集合中断响应优先级来识别当前请求的中断类型号，并通过数据总线送 CPU. 详细内容参见 Ch09.4.5</p>
+<h2 id="ia-32x86-64-linux">IA-32/x86-64 + Linux 的异常和中断机制*</h2>
+<h3 id="_19">中断向量表和中断描述符表</h3>
+<h3 id="_20">异常和中断的处理</h3>
+<h4 id="idt">IDT 的初始化</h4>
+<h4 id="_21">对异常的处理</h4>
+<h4 id="_22">对中断的处理</h4>
+<h3 id="_23">系统调用机制</h3>
+<h4 id="_24">通过软中断指令进入和推出系统调用</h4>
+<h4 id="_25">通过快速系统调用指令进入和推出系统调用</h4>
+<h2 id="linux">Linux 中的进程控制*</h2>
+<h2 id="linux_1">Linux 中的信号与非本地跳转*</h2>
+<h2 id="_26">章节小结</h2>
 
 
 

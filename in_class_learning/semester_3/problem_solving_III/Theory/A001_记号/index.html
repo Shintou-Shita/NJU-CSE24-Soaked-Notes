@@ -891,7 +891,7 @@
   <span class="md-ellipsis">
     
   
-    Ch06 存储器层次结构
+    存储器层次结构
   
 
     
@@ -947,7 +947,7 @@
   <span class="md-ellipsis">
     
   
-    Ch08 进程与异常控制流
+    L08 进程与异常控制流
   
 
     
@@ -975,7 +975,7 @@
   <span class="md-ellipsis">
     
   
-    Ch09 IO操作的实现
+    Ch09 I/O 操作的实现
   
 
     
@@ -4220,7 +4220,59 @@
 
   <h1>A001 记号</h1>
 
-
+<p>图的阶 <span class="arithmatex">\(\nu(G)\)</span> L001 P3</p>
+<p>图的边数 <span class="arithmatex">\(\epsilon(G)\)</span> L001 P3</p>
+<p>顶点的度 <span class="arithmatex">\(d(G)\)</span> L001 P3</p>
+<p>图的最大度 <span class="arithmatex">\(\Delta(G)\)</span> L001 P3</p>
+<p>图的最小度 <span class="arithmatex">\(\delta(G)\)</span> L001 P3</p>
+<p>图的邻接矩阵 <span class="arithmatex">\(\mathbf{A}(G)\)</span> L001 P5</p>
+<p>图的关联矩阵 <span class="arithmatex">\(\mathbf{M}(G)\)</span> L001 P5</p>
+<p>两点间的距离 <span class="arithmatex">\(\mathrm{dist}(u,v)\)</span> L002 P23</p>
+<p>点的离心率 <span class="arithmatex">\(\mathrm{ecc}(v)\)</span> L002 P24</p>
+<p>图的半径 <span class="arithmatex">\(\mathrm{rad}(G)\)</span> L002 P24</p>
+<p>图的直径 <span class="arithmatex">\(\mathrm{diam}(G)\)</span> L002 P24</p>
+<p>图的点连通度 <span class="arithmatex">\(\kappa(G)\)</span> L004 P53</p>
+<p>图的边连通度 <span class="arithmatex">\(\kappa'(G)\)</span> L004 P54</p>
+<p>图的奇数阶连通分支数 <span class="arithmatex">\(o(G)\)</span> L005 P70</p>
+<p>可行流的值 <span class="arithmatex">\(\mathrm{val}(f)\)</span> L007 P107</p>
+<p>源汇割的容量 <span class="arithmatex">\(c(S,T)\)</span> L007 P108</p>
+<p>图的边独立数 <span class="arithmatex">\(\alpha'(G)\)</span> L008 P115</p>
+<p>图的边覆盖数 <span class="arithmatex">\(\beta'(G)\)</span> L008 P116</p>
+<p>图的边支配数 <span class="arithmatex">\(\gamma'(G)\)</span> L008 P116</p>
+<p>图的点独立数 <span class="arithmatex">\(\alpha(G)\)</span> L008 P122</p>
+<p>图的点覆盖数 <span class="arithmatex">\(\beta(G)\)</span> L008 P122</p>
+<p>图的点支配数 <span class="arithmatex">\(\gamma(G)\)</span> L008 P123</p>
+<p>图的边色数 <span class="arithmatex">\(\chi'(G)\)</span> L009 P133</p>
+<p>图的色数 <span class="arithmatex">\(\chi(G)\)</span> L009 P145</p>
+<p>平面图的面数 <span class="arithmatex">\(\phi(H)\)</span> L010 P151</p>
+<p>面的长度 <span class="arithmatex">\(l(f)\)</span> L010 P152</p>
+<p>CH Th.1.1 P3 任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\sum_{v\in V}d(v)=2\epsilon(G)\)</span>.</p>
+<p>CH Th.2.7 P24 连通图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\mathrm{rad}(G)\le \mathrm{diam}(G)\le 2\mathrm{rad}(G)\)</span>.</p>
+<p>CH Th.4.6 P54 任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\kappa(G)\le \kappa'(G)\le \delta(G)\)</span>.</p>
+<p>CH Th.8.1 P117 无孤立点图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\alpha'(G)\le \beta'(G)\)</span>.</p>
+<p>CH Th.8.2 P117 无孤立点图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\alpha'(G)+\beta'(G)=\nu(G)\)</span>.</p>
+<p>CH Cor.8.1 P117 无孤立点图 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(\alpha'(G)=\beta'(G)\)</span> 当且仅当存在完美匹配。</p>
+<p>CH Th.8.3 P117 任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\alpha'(G)\ge \gamma'(G)\)</span></p>
+<p>CH Th.8.8 P124 任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\alpha(G)+\beta(G)=\nu(G)\)</span>.</p>
+<p>CH Th.8.9 P124 任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\alpha(G)\ge \gamma(G)\)</span>.</p>
+<p>CH Th.8.10 P124 无孤立点图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\beta(G)\ge \gamma(G)\)</span>.</p>
+<p>CH Th.8.11 P124 任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\beta(G)\ge\alpha'(G)\)</span>.</p>
+<p>CH Th.8.12 P125（König-Egerváry 定理） 任意二分图 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(\beta(G)=\alpha'(G)\)</span>.</p>
+<p>CH Th.8.13 P125 无孤立点图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\alpha(G)\le \beta'(G)\)</span></p>
+<p>CH Th.8.14 P125 任意无孤立点二分图 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(\alpha(G)=\beta'(G)\)</span>.</p>
+<p>CH Th.8.15 P125 无孤立点图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\gamma(G)\le\beta'(G)\)</span>.</p>
+<p>CH Th.8.16 P126 无孤立点图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\gamma(G)\le \alpha'(G)\)</span>.</p>
+<p>CH Th.9.1 P134 任意二分图 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(\chi'(G)=\Delta(G)\)</span>.</p>
+<p>CH Th.9.2 P134（Vizing 定理）任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\Delta(G)\le \chi'(G)\le \Delta(G)+1\)</span>.</p>
+<p>CH Th.9.5 P146 任意图 <span class="arithmatex">\(G\)</span>：<span class="arithmatex">\(\chi(G)\le \Delta(G)+1\)</span>.</p>
+<p>CH Th.9.6 P146（Brooks 定理）任意非完全图非奇圈的连通图 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(\chi(G)\le \Delta(G)\)</span>.</p>
+<p>CH Th.10.1（Euler 公式）对任意连通图 <span class="arithmatex">\(G\)</span> 的平面图 <span class="arithmatex">\(H\)</span> 有：<span class="arithmatex">\(\nu(G)-\epsilon(G)+\phi(G)=2\)</span>.</p>
+<p>CH Cor.10.1 对任意 <span class="arithmatex">\(w\)</span> 个连通分支的图 <span class="arithmatex">\(G\)</span> 的平面图 <span class="arithmatex">\(H\)</span> 有：<span class="arithmatex">\(\nu(G)-\epsilon(G)+\phi(G)=w+1\)</span>.</p>
+<p>CH Th.10.2 对任意图 <span class="arithmatex">\(G\)</span> 的平面图 <span class="arithmatex">\(H\)</span> 有：<span class="arithmatex">\(\sum_{i=1}^{\phi(H)}l(f_i)=2\epsilon(G)\)</span>.</p>
+<p>CH Th.10.3 对任意阶大于等于 <span class="arithmatex">\(3\)</span> 的极大可平面图 <span class="arithmatex">\(G\)</span> 有：<span class="arithmatex">\(\epsilon(G)=3\nu(G)-6\)</span>.</p>
+<p>CH Cor.10.2 对任意阶大于等于 <span class="arithmatex">\(3\)</span> 的简单可平面图 <span class="arithmatex">\(G\)</span> 有：<span class="arithmatex">\(\epsilon(G)\le 3\nu(G)-6\)</span></p>
+<p>CH Th.10.7/10.8（五色定理）：任意简单可平面图 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(\chi(G)\le 5\)</span>.</p>
+<p>CH Th.10.9/10.10（四色定理）：任意简单可平面图 <span class="arithmatex">\(G\)</span> 有 <span class="arithmatex">\(\chi(G)\le 4\)</span>.</p>
 
 
 
